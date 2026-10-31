@@ -1,0 +1,88 @@
+.title {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.vitals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 25px;
+  margin-top: 25px;
+  background: #f9fffa;
+}
+
+.vital-card {
+  padding: 15px;
+  border-radius: 30px;
+  background: white;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+}
+
+.vital-icon {
+  padding: 10px;
+  font-size: 28px;
+  border-radius: 14px;
+  background: var(--icon-bg, #ececec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.subtitle span {
+  color: #41c556;
+  font-size: 10px;
+}
+
+.symptoms-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px;
+  border-radius: 16px;
+  background: #0c1b33;
+  color: white;
+  margin-top: 10px;
+}
+
+.plus-icon {
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.subtitle {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 4px;
+}

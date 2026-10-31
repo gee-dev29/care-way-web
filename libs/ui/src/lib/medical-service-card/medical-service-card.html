@@ -1,0 +1,12 @@
+<div class="service-card">
+  <div class="service-row">
+    <span class="service-name">{{ service?.productName }}</span>
+    <span class="service-price">{{ service?.unitPrice | currency: 'NGN' }}</span>
+  </div>
+  <div class="service-delivery">
+    <span class="service-delivery-label">Delivery:</span>
+    <span class="service-delivery-value">{{
+      service?.requiresDelivery ? 'Yes' : 'No'
+    }}</span>
+  </div>
+</div>

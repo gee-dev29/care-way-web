@@ -1,0 +1,14 @@
+.bts {
+  margin-top: 2rem;
+}
+
+.paragraph span {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.instruction span {
+  cursor: pointer;
+  color: var(--primary-color);
+  text-decoration: underline;
+}

@@ -1,0 +1,81 @@
+<ui-page-body>
+  <div class="grouped__btn">
+    <img
+      class="left-arrow-icon"
+      (click)="goBack()"
+      src="icons/left-arrow-black.svg"
+      alt=""
+    />
+    <h2 class="title">Hospital</h2>
+  </div>
+  <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+  <div class="mt-1">
+    @if(activeTab !== 0){
+    <ui-page-highlight
+      [primaryDetailTitle]="'Name:'"
+      [primaryDetail]="facilityName"
+      [secondaryDetailTitle]="'Category:'"
+      [secondaryDetail]="category"
+    ></ui-page-highlight>
+    } @if (activeTab === 0 ) {
+    <div>
+      <back-office-medical-facility-details-card
+        [medicalFacility$]="hospital$"
+        [cardHeading]="'Hospital Details'"
+      ></back-office-medical-facility-details-card>
+    </div>
+    } @if(activeTab === 1){
+    <div class="mt-3">
+      <back-office-list-all-patients
+        [patients$]="patients$"
+        [totalRecords]="totalRecords"
+      ></back-office-list-all-patients>
+    </div>
+    } @if(activeTab === 2){
+    <div class="mt-3">
+      <ui-medical-professional-hospital-table
+        [hospitalProfessionals$]="doctorsCharge$"
+        [totalRecords]="totalRecords"
+      ></ui-medical-professional-hospital-table>
+    </div>
+    } @if(activeTab === 3){
+    <div class="mt-3">
+      <back-office-appointment-table
+        [showProfessionalName]="false"
+        [showPatient]="true"
+        [facilityTypeId]="facilityTypeId"
+        (viewAppointment)="viewAppointmentDetails($event)"
+      ></back-office-appointment-table>
+    </div>
+    } @if(activeTab === 4) {
+    <div class="mt-3">
+      <back-office-membership-card-table
+        [membershipCard$]="membershipCard$"
+      ></back-office-membership-card-table>
+    </div>
+    } @if(activeTab === 5){
+    <div class="mt-2">
+      <back-office-bank-details-card
+        [cardHeading]="'Bank Details'"
+        [bank$]="bankDetails$"
+      ></back-office-bank-details-card>
+    </div>
+    } @if(activeTab === 6){
+    <div class="mt-2">
+      <back-office-license-details-card
+        [license$]="license$"
+      ></back-office-license-details-card>
+    </div>
+    }@if(activeTab === 7) {
+    <div class="mt-3">
+      <back-office-wallet [beneficiaryId]="facilityId"></back-office-wallet>
+    </div>
+    } @if(activeTab === 8){
+    <div class="mt-2">
+      <back-office-medical-product-table
+        [facilityTypeId]="facilityTypeId"
+      ></back-office-medical-product-table>
+    </div>
+    }
+  </div>
+</ui-page-body>

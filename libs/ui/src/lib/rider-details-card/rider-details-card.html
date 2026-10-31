@@ -1,0 +1,49 @@
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>{{cardHeading}}</h3>
+      </div>
+    </div>
+    @if (details$ | async; as rider) {
+    <div class="content__bottom">
+      <div class="content__bottom">
+        @if (rider.firstName) {
+        <div class="content__body">
+          <p>First Name</p>
+          <h5>{{ rider.firstName | titlecase}}</h5>
+        </div>
+        } @if (rider.lastName) {
+        <div class="content__body">
+          <p>Last Name</p>
+          <h5>{{ rider.lastName | titlecase}}</h5>
+        </div>
+        } @if (rider.phone) {
+        <div class="content__body">
+          <p>Phone</p>
+          <h5>{{ rider.phone}}</h5>
+        </div>
+        } @if (rider.status) {
+        <div class="content__body">
+          <p>Status</p>
+          <h5>{{ rider.status}}</h5>
+        </div>
+        } @if(rider.gender){
+        <div class="content__body">
+          <p>Gender</p>
+          <h5>{{ rider.gender}}</h5>
+        </div>
+        }
+      </div>
+    </div>
+    <div class="content__bottom mt-2">
+      @if(rider.email){
+      <div class="content__body">
+        <p>Email</p>
+        <h5>{{ rider.email}}</h5>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>

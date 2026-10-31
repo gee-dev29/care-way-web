@@ -1,0 +1,82 @@
+.fee-list-card {
+  background-color: #cfffd7;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fee-list-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.fee-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fee-list-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.65);
+  text-align: left;
+  cursor: pointer;
+}
+
+.fee-list-item:active {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.fee-item-img {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.fee-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.fee-item-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fee-item-type {
+  font-size: 12px;
+  font-weight: 400;
+  color: #4b5563;
+  text-transform: capitalize;
+}
+
+.fee-item-eye {
+  font-size: 20px;
+  color: #1a1a1a;
+  flex-shrink: 0;
+}
+
+.fee-list-empty {
+  padding: 14px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.65);
+  color: #4b5563;
+  font-size: 14px;
+  text-align: center;
+}

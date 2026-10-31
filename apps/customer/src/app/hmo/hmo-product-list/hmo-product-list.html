@@ -1,0 +1,92 @@
+<ion-content id="background-content" fullscreen>
+  <div class="page ion-padding">
+    <div class="header">
+      <ion-icon
+        tabindex="0"
+        (keyup.enter)="back()"
+        (click)="back()"
+        class="left__arrow"
+        name="left-arrow"
+      ></ion-icon>
+      <div class="title">{{ title }}</div>
+      <div></div>
+    </div>
+
+    <div class="searchWrap">
+      <ion-searchbar
+        (ionInput)="search($event)"
+        class="search"
+        placeholder="Search"
+      ></ion-searchbar>
+    </div>
+
+    @if (!loaded) {
+    <div class="list">
+      @for (item of skeletons; track $index) {
+      <div class="row">
+        <ion-skeleton-text animated class="logoSkeleton"></ion-skeleton-text>
+        <div class="middle">
+          <ion-skeleton-text
+            animated
+            style="width: 150px; height: 14px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="width: 80px; height: 12px; margin-top: 8px"
+          ></ion-skeleton-text>
+        </div>
+        <ion-skeleton-text
+          animated
+          style="width: 90px; height: 14px"
+        ></ion-skeleton-text>
+      </div>
+      }
+    </div>
+    } @else if (failed) {
+    <p class="empty">We couldn't load HMO products. Pull back and try again.</p>
+    } @else if (!filtered.length) {
+    <p class="empty">
+      @if (mode === 'active') { You have no HMO plans yet. } @else { No HMO
+      products available at the moment. }
+    </p>
+    } @else {
+    <div class="list">
+      @for (product of filtered; track $index) {
+      <div
+        class="row"
+        tabindex="0"
+        (keyup.enter)="open(product)"
+        (click)="open(product)"
+      >
+        @if (product.logoUrl) {
+        <img
+          class="logo"
+          [src]="product.logoUrl"
+          [alt]="product.hmo?.name"
+          (error)="onLogoError(product)"
+        />
+        } @else {
+        <div class="logo logo--initials">{{ initials(product.hmo?.name) }}</div>
+        }
+
+        <div class="middle">
+          <p class="name">{{ product.productName }}</p>
+          <p class="duration">{{ product.durationInMonths }} months</p>
+        </div>
+
+        <div class="right">
+          <p class="price">NGN {{ product.price | amountFormat }}</p>
+          @if (mode === 'active') {
+          <p class="status" [style.color]="statusColor(product.status)">
+            {{ statusLabel(product.status) }}
+          </p>
+          }
+        </div>
+
+        <ion-icon class="chevron" name="right-arrow"></ion-icon>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</ion-content>

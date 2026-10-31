@@ -1,0 +1,42 @@
+<div class="card__container">
+    <div class="card__wrapper">
+      <div class="content__top">
+        <div class="title">
+          <h3>Medical Facility Details</h3>
+        </div>
+      </div>
+      <div class="content__bottom">
+        @if (medicalFacility$ | async; as facility) {
+        <div class="content__bottom">
+          @if (facility.name) {
+          <div class="content__body">
+            <p>Facility Name</p>
+            <h5>{{ facility.name }}</h5>
+          </div>
+          } @if (facility.email) {
+          <div class="content__body">
+            <p>Email Address</p>
+            <h5>{{ facility.email }}</h5>
+          </div>
+          } @if (facility.phoneNumber) {
+          <div class="content__body">
+            <p>Phone Number</p>
+            <h5>{{ facility.phoneNumber }}</h5>
+          </div>
+          } @if (facility.country) {
+          <div class="content__body">
+            <p>Country</p>
+            <h5>{{ facility.country }}</h5>
+          </div>
+          } @if (facility.state) {
+          <div class="content__body">
+            <p>State</p>
+            <h5>{{ facility.state }}</h5>
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  

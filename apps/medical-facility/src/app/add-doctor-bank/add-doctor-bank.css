@@ -1,0 +1,34 @@
+.body {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  overflow-y: none;
+  margin-top: 30px;
+  scrollbar-width: none;
+}
+
+.page {
+  margin-top: 70px;
+}
+@media (min-width: 500px) {
+  .body {
+    overflow-y: auto;
+    padding-top: 45%;
+  }
+}
+
+@media (min-width: 401px) {
+  .body {
+    overflow-y: auto;
+    padding-top: 0% !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .body {
+    overflow-y: auto;
+    padding-top: 0rem;
+  }
+}

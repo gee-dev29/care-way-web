@@ -1,0 +1,26 @@
+#background-content {
+  background: #f4f5fe !important;
+}
+#prescription {
+  padding-top: 115px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.ion-padding {
+  padding: 0 10px;
+}
+.pricing-title {
+  font-weight: 600;
+  display: block;
+  font-size: 16px;
+}
+
+.pricing-head {
+  display: flex;
+  gap: 20px;
+  align-items: start;
+  justify-content: start;
+  margin-bottom: 10px;
+}

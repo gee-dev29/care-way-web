@@ -1,0 +1,187 @@
+<ion-content fullscreen id="background">
+  <div id="padding">
+    <div class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title">Patient Profile</div>
+      <div></div>
+    </div>
+    @if(loading){
+    <div class="patient-card">
+      <div>
+        <ion-skeleton-text
+          animated
+          style="width: 160px; height: 14px; margin-bottom: 8px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 220px; height: 12px"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+    }@else{ @if ( (member$ | async); as patient) {
+    <div class="patient-card">
+      <p class="label">{{ patient.firstName }} {{patient.lastName}}</p>
+      <div class="sub-text">
+        <span>{{ patient.gender }}</span>
+        @if(patient.dob !== null) { |
+        <span>{{ calculateAge(patient.dob) }} years</span> } |
+        <span>Blood Group: {{patient.bloodGroup ?? 'NA'}}</span>
+      </div>
+    </div>
+    } }
+
+    <div class="appointment">
+      <p class="apt">Appointments</p>
+      <ui-plus-icon-component
+        size="'small'"
+        (keyup.enter)="createAppointment()"
+        (click)="createAppointment()"
+      ></ui-plus-icon-component>
+    </div>
+    <div class="tabs">
+      <button
+        class="tab"
+        [class.active]="activeTab === appointmentType.Virtual"
+        (click)="setTab(appointmentType.Virtual)"
+      >
+        Virtual
+      </button>
+      <button
+        class="tab"
+        [class.active]="activeTab === appointmentType.Physical"
+        (click)="setTab(appointmentType.Physical)"
+      >
+        Physical
+      </button>
+    </div>
+    @if (loading) { @for (item of appointments; track $index) {
+    <div class="skeleton-card">
+      <ion-skeleton-text animated class="sk-title"></ion-skeleton-text>
+      <ion-skeleton-text animated class="sk-sub"></ion-skeleton-text>
+      <ion-skeleton-text animated class="sk-time"></ion-skeleton-text>
+    </div>
+    } } @else {
+
+    <!-- @for (appointment of (appointments$ | async); track
+    appointment;) {
+    <div class="appointment-card" tabindex="">
+      <div class="left">
+        <ion-img [src]="appointment.image" class="doctor-img"></ion-img>
+      </div>
+      <div class="right">
+        <p class="doc-name">{{ appointment.professionalName }}</p>
+        <p class="doc-role">{{ appointment.specialization }}</p>
+        <div class="date">
+          <ion-icon src="/logo/calendar.svg"></ion-icon>
+          <span>{{ appointment.date }}, {{ appointment.time }}</span>
+        </div>
+      </div>
+      <ui-button
+        [label]="'Assign'"
+        [fill]="'solid'"
+        [size]="'small'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+      ></ui-button>
+      <ui-button
+        [label]="'Cancel'"
+        [size]="'small'"
+        [shape]="'round'"
+        [textColor]="'black'"
+      ></ui-button>
+    </div> -->
+
+    @for (appointment of (appointments$ | async); track
+    appointment.appointmentId) {
+    <div class="card big">
+      <div class="apptTop">
+        <div>
+          @if(appointment?.professionalName === null ){
+          <div class="cardTitle">
+            Patient:
+            <span class="member-name"
+              >{{ appointment?.memberName !== null ? appointment?.memberName :
+              'N/A' }}</span
+            >
+          </div>
+          } @if(appointment?.professionalName !== null ){
+          <div class="cardTitle">
+            Doctor:
+            <span class="member-name"
+              >{{ appointment?.professionalName !== null ?
+              appointment?.professionalName : 'N/A' }}</span
+            >
+          </div>
+          }
+        </div>
+        <div class="status">
+          <span class="dot"></span>
+          <span>{{ getStatus(appointment.status) }} </span>
+        </div>
+      </div>
+      <div class="apptMeta">
+        <div class="metaItem">
+          <ion-icon src="/icons/calender.svg"></ion-icon>
+          <span>
+            {{moment.utc(`${appointment.date} ${appointment.time}`, 'YYYY-MM-DD
+            HH:mm') .local() .format('MMM D, YYYY h:mm A')}}
+          </span>
+        </div>
+        <div class="metaItem">
+          <ion-icon
+            [src]="
+            appointment.appointmentType === appointmentType.Physical
+              ? '/icons/location-outline.svg'
+              : '/icons/virtual.svg'
+          "
+            [style.color]="
+            appointment.appointmentType === appointmentType.Physical
+              ? '#2c7a3f'
+              : null
+          "
+          ></ion-icon>
+          <span>{{ appointment?.appointmentType }}</span>
+        </div>
+      </div>
+      <div class="label">Specialization</div>
+      <div class="complaint">
+        {{ appointment?.specialization ? (appointment?.specialization |
+        titlecase) : 'Not Specified'}}
+      </div>
+      <div class="label">Complaints</div>
+      <div class="complaint">{{ appointment?.notes }}</div>
+      @if (appointment.status === status.AwaitingHospitalConfirmation ) {
+      <div class="btnRow">
+        <div class="tabs">
+          <button
+            class="pill"
+            [class.active]="true"
+            (click)="assignDoctor(appointment)"
+          >
+            Assign to Doctor
+          </button>
+          <button class="pill" (click)="openCancelModal(appointment)">Cancel</button>
+        </div>
+      </div>
+      } @if (appointment?.status=== status.Pending || appointment?.status===
+      status.AwaitingHospitalConfirmation ) {
+      <div class="btnRow">
+        <div class="tabs">
+          <button class="pill" [class.active]="true" (click)="openCancelModal(appointment)">Cancel</button>
+        </div>
+      </div>
+      }
+    </div>
+    } }
+  </div>
+</ion-content>
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to cancel this appointment?'"
+  [background]="'#d9463e'"
+  [open]="cancelModal"
+  (next)="confirmCancelAppointment()"
+  (no)="closeCancelModal()"
+  (dismiss)="closeCancelModal()"
+></ui-confirmation-modal>

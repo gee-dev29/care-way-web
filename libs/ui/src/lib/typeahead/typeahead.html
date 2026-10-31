@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-buttons slot="start">
+      <ion-button class="cancel" (click)="cancelChanges()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title class="labeller">{{ label }}</ion-title>
+    @if (isMultiselect) {
+    <ion-buttons slot="end">
+      <ion-button class="save" (click)="confirmChanges()">Done</ion-button>
+    </ion-buttons>
+    } @else {
+    <div></div>
+    }
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar (ionInput)="searchbarInput($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-list id="modal-list" [inset]="true">
+    @if (hasGroups) { @for (groupName of groups; track groupName) {
+    <ion-item-divider sticky="true">
+      <ion-label>{{ groupName }}</ion-label>
+    </ion-item-divider>
+    @if (itemsForGroup(groupName).length === 0) {
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap empty-group-notice"
+        >{{emptyGroupMessage}}</ion-label
+      >
+    </ion-item>
+    } @else { @for (item of itemsForGroup(groupName); track item) {
+    <ion-item>
+      <ion-checkbox
+        [value]="isItemObject ? item: item.text"
+        [checked]="isChecked(item.text)"
+        (ionChange)="checkboxChange($event)"
+        (click)="onSelect(item)"
+        ><ion-label class="ion-text-wrap"
+          >{{ item.text }}</ion-label
+        ></ion-checkbox
+      >
+    </ion-item>
+    } } } } @else { @for (item of filteredItems; track item) {
+    <ion-item>
+      <ion-checkbox
+        [value]="isItemObject ? item: item.text"
+        [checked]="isChecked(item.text)"
+        (ionChange)="checkboxChange($event)"
+        (click)="onSelect(item)"
+        ><ion-label class="ion-text-wrap"
+          >{{ item.text }}</ion-label
+        ></ion-checkbox
+      >
+    </ion-item>
+    } }
+  </ion-list>
+</ion-content>

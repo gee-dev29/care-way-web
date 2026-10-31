@@ -1,0 +1,60 @@
+.page {
+  --background: linear-gradient(to bottom, #ffffff, #bababa);
+  height: 100% !important;
+}
+
+.background {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url('/bg/homeup.svg');
+  background-size: cover;
+  background-position: top center;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 40px;
+}
+
+.center ion-img {
+  width: clamp(160px, 60%, 280px);
+}
+
+.content-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.center p {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.ion-padding .nurse {
+  width: 100%;
+  height: clamp(12rem, 60vh, 35rem);
+}
+
+.nurse {
+  display: flex;
+  justify-content: center;
+}
+
+.nurse ion-img {
+  width: 100%;
+}
+
+.bts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

@@ -1,0 +1,25 @@
+<ui-page-body>
+  <div class="table__head">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">HMO Purchased Details</h2>
+    </div>
+  </div>
+  <ui-tab
+    [tabs]="tabs"
+    [value]="activeTab"
+    (tabChange)="activeTab = $event"
+  ></ui-tab>
+  <back-office-hmo-purchased-order-details-card
+    [cardHeading]="'Purchased Details'"
+    [endDate]="endDate"
+    [hmoProductOrderDetails$]="hmoProductOrderDetails$"
+  ></back-office-hmo-purchased-order-details-card>
+</ui-page-body>

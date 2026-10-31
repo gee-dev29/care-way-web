@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+.p-splitbutton .p-splitbutton-button,
+.p-splitbutton.p-button-rounded > .p-splitbutton-button.p-button,
+.p-splitbutton.p-button-outlined > .p-splitbutton-button.p-button {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.p-splitbutton-dropdown,
+.p-splitbutton.p-button-rounded > .p-splitbutton-dropdown.p-button,
+.p-splitbutton.p-button-outlined > .p-splitbutton-dropdown.p-button {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.p-ripple.p-tieredmenu-item-link{
+  color: var(--text-color) !important;
+}
+.p-ripple.p-tieredmenu-item-link:hover{
+  color: var(--surface-a) !important;
+}
+
+.form__body {
+  margin-top: 15px;
+}
+.p-inputtext {
+  background-color: transparent !important;
+  color: var(--text-color) !important;
+}

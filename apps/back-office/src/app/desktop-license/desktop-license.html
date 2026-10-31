@@ -1,0 +1,43 @@
+<div class="page">
+  <div class="mb-2">
+    <h3>{{ facilityType }} License Details</h3>
+  </div>
+  <form [formGroup]="form">
+    <div class="container">
+      <ui-desktop-input
+        [label]="'License ID'"
+        [control]="licenseNumber"
+      ></ui-desktop-input>
+      <ui-date-input
+        [control]="issueDate"
+        (emitDate)="calculateDate()"
+        [min]="1900-01-01"
+        [label]="'License Issue Date'"
+      ></ui-date-input>
+      <ui-date-input
+        [max]="max"
+        [min]="form.value.issueDate"
+        [control]="expiryDate"
+        [label]="'License Expiry Date'"
+      ></ui-date-input>
+    </div>
+    <div class="grouped__btn">
+      <ui-desktop-button
+        [label]="'Cancel'"
+        [width]="'full'"
+        [primary]="true"
+        [size]="'large'"
+        (Click)="cancel()"
+      ></ui-desktop-button>
+      <ui-desktop-button
+        [label]="label"
+        [width]="'full'"
+        [primary]="true"
+        [size]="'large'"
+        [loading]="loading"
+        (Click)="proceed()"
+      ></ui-desktop-button>
+      <!-- [disabled]="loading || (!form.valid)" -->
+    </div>
+  </form>
+</div>

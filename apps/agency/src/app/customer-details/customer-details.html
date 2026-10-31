@@ -1,0 +1,71 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="home" class="ion-padding mt-4 page-layout">
+    <div class="header">
+      <ion-icon
+        (click)="routeTo('dashboard/all-customers')"
+        name="chevron-back-outline"
+      ></ion-icon>
+      <div class="title">Customer Details</div>
+    </div>
+
+    <div class="profile">
+      <ion-img class="img" src="images/man-profile.svg" alt="profile" />
+    </div>
+
+    <div class="info-card">
+      <div class="row">
+        <span>Name</span>
+        <ion-text> {{ users?.firstName }} {{ users?.lastName }}</ion-text>
+      </div>
+      <div class="row">
+        <span>Gender</span>
+        <ion-text> {{ users?.gender }}</ion-text>
+      </div>
+      <div class="row">
+        <span>Phone</span>
+        <ion-text> {{ users?.phone }}</ion-text>
+      </div>
+    </div>
+
+    <div class="tab-bar-wrapper">
+      <div class="tab-bar">
+        @for(tab of tabsText; track tab.key) {
+        <ion-text
+          class="tab-btn"
+          [class.active]="activeTab === tab.key"
+          (click)="setActiveTab(tab.key)"
+        >
+          {{ tab.label }} ({{tab.label === 'Orders' ? orders.length :
+          appointments.length}})
+        </ion-text>
+        }
+      </div>
+    </div>
+
+    @if(activeTab === 'Orders') {
+    <div class="orders-list">
+      @if (orders.length > 0) { @for (order of orders; track
+      order.serviceRequestId) {
+      <agency-agency-order-list-card [order]="order" />
+      } } @else {
+      <div class="empty-state">
+        <ion-icon name="document-outline"></ion-icon>
+        <p>No orders for {{ activeTab }}</p>
+      </div>
+      }
+    </div>
+    } @else {
+    <div class="orders-list">
+      @if (appointments.length > 0) { @for (appointment of appointments; track
+      appointment.appointmentId) {
+      <agency-appointment-card [appointments]="appointment" />
+      } } @else {
+      <div class="empty-state">
+        <ion-icon name="document-outline"></ion-icon>
+        <p>No appointments for {{ activeTab }}</p>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</ion-content>

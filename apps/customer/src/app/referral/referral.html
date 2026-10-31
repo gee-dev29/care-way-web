@@ -1,0 +1,49 @@
+<ion-content id="background-content" fullscreen>
+  <div class="top-section ion-padding">
+    <div class="header">
+      <div class="left">
+        <ion-icon src="/logo/backarrow.svg" (click)="goBack()"></ion-icon>
+        <div class="title">Referral</div>
+      </div>
+
+      <ion-text class="history" (click)="viewHistory()"
+        >View Referral History</ion-text
+      >
+    </div>
+
+    <ion-img class="ref-image" src="/images/referral.svg"></ion-img>
+
+    <h2 class="main-title">
+      <span class="highlight">Invite friends</span> and enjoy special benefits!
+    </h2>
+
+    <p class="subtitle">
+      Let others book appointments easily by sharing your link.
+    </p>
+
+    <div class="label">Your Referral Link</div>
+
+    <div class="ref-box">
+      <input type="text" readonly [value]="refLink" />
+      <ion-icon
+        src="/logo/copy.svg"
+        class="copy-icon"
+        (click)="copyLink()"
+      ></ion-icon>
+    </div>
+
+    <div class="or">or</div>
+
+    <ui-button
+      (click)="shareLink()"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      [label]="'Share'"
+      [loading]="loading"
+    >
+    </ui-button>
+  </div>
+</ion-content>

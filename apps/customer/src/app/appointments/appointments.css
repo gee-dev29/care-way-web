@@ -1,0 +1,155 @@
+.page-content {
+  /* --background: #f9fffa; */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.up {
+  height: 20px;
+}
+
+.back {
+  width: 44px;
+  height: 44px;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  border-radius: 999px;
+}
+
+.back ion-icon {
+  font-size: 20px;
+  color: #121212;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  color: #121212;
+  font-weight: 500;
+}
+
+.spacer {
+  width: 44px;
+}
+
+.searchWrap {
+  margin-top: 12px;
+  margin-bottom: 20px;
+}
+
+.search {
+  --background: #eef4ef;
+  --border-radius: 999px;
+  --box-shadow: none;
+  --placeholder-color: #9aa39a;
+  --icon-color: #9aa39a;
+  --clear-button-color: transparent;
+}
+
+.searchSkeleton {
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  padding-bottom: 10px;
+  justify-content: space-between;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.pill {
+  height: 35px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #9aa39a;
+  background: #fff;
+  color: #121212;
+  font-size: 14px;
+}
+
+.pill.active {
+  background: #2c7a3f;
+  border-color: #2c7a3f;
+  color: #fff;
+}
+
+.list {
+  margin-top: 16px;
+  display: grid;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.empty {
+  text-align: center;
+  color: #6f786f;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.skCard {
+  cursor: default;
+}
+
+.mt-3 {
+  margin-top: 30px;
+}
+
+.schedule-appointment-plus-icon {
+  background: #b5dbba !important;
+  border-radius: 999px;
+  padding: 10px;
+}
+
+.show-more-container {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  width: fit-content;
+  gap: 6px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #f6f6f6;
+  color: var(--button-color);
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+.icon {
+  font-size: 16px;
+  transition: transform 0.25s ease;
+}
+
+.item-left {
+  text-align: left;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  padding: 24px 50px 24px 16px;
+  border-radius: 18px;
+  background: var(--light-grey);
+  position: relative;
+}

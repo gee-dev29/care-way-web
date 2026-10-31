@@ -1,0 +1,41 @@
+<div class="page">
+    <div class="mb-2">
+      <h3>Add Patient Card Type</h3>
+    </div>
+    <form [formGroup]="form">
+      <ui-form-body [columns]="'no-split'" class="form__body">
+        <ui-desktop-input
+          [label]="'Card Name'"
+          [control]="cardName"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [label]="'Card Fee'"
+          [control]="cardFee"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [label]="'Maximum Number of Members'"
+          [control]="membershipLimit"
+        ></ui-desktop-input>
+  
+        <div class="grouped__btn">
+          <ui-desktop-button
+            [label]="'Cancel'"
+            [width]="'full'"
+            [primary]="true"
+            [size]="'large'"
+            (Click)="cancel()"
+          ></ui-desktop-button>
+          <ui-desktop-button
+            [label]="label"
+            [width]="'full'"
+            [primary]="true"
+            [size]="'large'"
+            [loading]="loading"
+            [disabled]="loading || (!form.valid)"
+            (Click)="next()"
+          ></ui-desktop-button>
+        </div>
+      </ui-form-body>
+    </form>
+  </div>
+  

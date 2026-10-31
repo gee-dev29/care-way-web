@@ -1,0 +1,111 @@
+#background-content {
+  background: #fff !important;
+}
+#prescription {
+  margin-top: 85px !important;
+}
+ion-card {
+  margin: 0;
+}
+.summary-temp {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  align-items: center;
+}
+
+.summary-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+}
+
+.degree {
+  font-size: 50px;
+  font-weight: 700;
+  color: var(--ion-color-dark);
+}
+
+.toggle {
+  margin-top: 4px;
+  margin-bottom: -20px;
+}
+
+.summary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.status {
+  font-size: 28px;
+  font-weight: 600;
+
+  color: var(--ion-color-danger);
+}
+
+.temp-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  margin-bottom: 14px;
+}
+
+ion-card {
+  /* background: #e7f6e9 !important; */
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row-title {
+  display: flex;
+  gap: 10px;
+  justify-content: start;
+  align-items: center;
+}
+
+.temperature {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.range {
+  margin-top: 2px;
+  font-size: 0.75rem;
+  color: #989595;
+  font-weight: 800;
+}
+
+.label {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: #000;
+  font-weight: 600;
+}
+
+.status-col {
+  text-align: right;
+}
+
+.status-badge {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+}
+.color-white {
+  color: #fff;
+}
+.color-black {
+  color: #000000;
+}
+.date {
+  margin-top: 2px;
+  font-size: 0.75rem;
+  color: #666;
+}

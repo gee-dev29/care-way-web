@@ -1,0 +1,8 @@
+.wallet__wrapper {
+  background: url(../../../../../libs/ui/assets/images/wallet-bg.svg);
+  padding: 3rem 1.5rem;
+  border-radius: 12px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+

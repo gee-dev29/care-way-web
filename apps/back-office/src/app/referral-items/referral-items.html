@@ -1,0 +1,73 @@
+<div class="table__head">
+  <h2 class="title">{{heading}}</h2>
+</div>
+<div>
+  <p-table
+    #dt1
+    dataKey="id"
+    [paginator]="true"
+    [rows]="20"
+    [totalRecords]="totalRecords"
+    [value]="referralItems"
+    [rowsPerPageOptions]="[20, 50, 100]"
+  >
+    <ng-template #header>
+      <tr>
+        @if(referralType===type.Laboratory){
+        <th>Test</th>
+        <th>Test Group</th>
+        } @if(referralType===type.Radiology){
+        <th>Test</th>
+        } @if(referralType===type.BloodBank){
+        <th>Blood Test</th>
+        <th>Blood Group</th>
+        <th>Quantity</th>
+        } @if(referralType===type.Pharmacy){
+        <th>Item Type</th>
+        <th>Active Ingredient</th>
+        <th>Product</th>
+        <th>Form</th>
+        <th>Strength</th>
+         <th>Quantity</th>
+         <th>UOM</th>
+        } @if(isReferral === type.Pharmacy){
+        <th>Frequency of Use</th>
+        <th>Duration</th>
+        <th>Duration Type</th>
+        } @if(!isReferral){
+        <th>Cost</th>
+        }
+        <th>Status</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        @if(referralType===type.Laboratory){
+        <td>{{ item.testName }}</td>
+        <td>{{ item.testGroup }}</td>
+        } @if(referralType===type.Radiology){
+        <td>{{ item.serviceName }}</td>
+        } @if(referralType===type.BloodBank){
+        <td>{{ item.serviceName }}</td>
+        <td>{{ item.bloodGroup }}</td>
+        <td>{{ item.quantity }}</td>
+        } @if(referralType===type.Pharmacy){
+        <td>{{ item.type }}</td>
+        <td>{{ item.activeIngredient }}</td>
+        <td>{{ item.product }}</td>
+        <td>{{ item.form }}</td>
+        <td>{{ item.strength ?? 'N/A' }}</td>
+         <td>{{ item.quantity }}</td>
+         <td>{{ item.uom }}</td>
+        } @if(isReferral === type.Pharmacy){
+        <td>{{ item.frequencyOfUse }}</td>
+        <td>{{ item.duration }}</td>
+        <td>{{ item.durationType ?? 'N/A' }}</td>
+        } @if(!isReferral){
+        <td>{{item.cost | currency: 'NGN '}}</td>
+        }
+        <td>{{ item.status }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+  @if (timeLeft > 0) {
+  <div class="time">
+    <countdown
+      [config]="{ leftTime: timeLeft, format: 'HH:mm:ss',notify: [60, 300] }"
+      (event)="timerEvent($event)"
+    ></countdown>
+  </div>
+  }
+  <div #remote id="remote-playerlist" class="player--remote"></div>
+  <div #local id="local-player" class="player--local"></div>
+  <div class="controls">
+    <button type="button" class="btn-control" (click)="switchCamera()">
+      <ion-icon src="/icons/camera-reverse.svg"></ion-icon>
+    </button>
+    <button type="button" class="btn-control" (click)="toggleMic()">
+      <ion-icon
+        [src]="muted ? '/icons/mic-off.svg' : '/icons/mic.svg'"
+      ></ion-icon>
+    </button>
+    <button
+      type="button"
+      class="btn-control btn-control--end"
+      (click)="leave()"
+    >
+      <ion-icon src="/icons/call.svg"></ion-icon>
+    </button>
+  </div>
+</div>

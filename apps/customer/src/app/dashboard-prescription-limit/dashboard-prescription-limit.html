@@ -1,0 +1,148 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="prescription" class="ion-padding">
+    <div class="pricing-head">
+      <div class="icon__down">
+        <ion-text (click)="goBack()" class="icon__text">
+          <ion-icon class="left__arrow" name="chevron-back-outline"></ion-icon>
+        </ion-text>
+      </div>
+
+      <div>
+        <ion-text class="pricing-title"> {{ facilityType}} Request </ion-text>
+        <!-- <ion-text class="pricing-sub-text"
+          >View available drugs by price range</ion-text
+        > -->
+      </div>
+    </div>
+    @if (request!==null) {
+    <ui-medical-request-card
+      [arrowShow]="false"
+      [request]="request"
+      [background]="'#c8eacd'"
+    >
+    </ui-medical-request-card>
+    }
+    <div class="card-container">
+      @for (limitDatas of groupedLimitsDetails | keyvalue; track limitDatas.key;
+      let i = $index) {
+
+      <ion-card class="p-4">
+        <!-- Header -->
+        <div class="flex hgt">
+          <ion-text class="drug-Title"> {{ limitDatas.key }} </ion-text>
+
+          <p class="drug-variant">
+            <ion-text class="gap">
+              <p>{{ limitDatas.value.items.length }} Variant(s)</p>
+
+              <span>
+                <ion-icon
+                  class="drug-toggle"
+                  (click)="onToggle(i)"
+                  [name]="expanded[i] ? 'chevron-up-outline' : 'chevron-down-outline'"
+                ></ion-icon>
+              </span>
+            </ion-text>
+          </p>
+        </div>
+
+        @if (expanded[i]) {
+        <ion-list>
+          <ion-card-content class="limit-details">
+            <!-- @if (facilityType === FacilityType.Pharmacy) { -->
+            <ion-radio-group
+              [value]="limitDatas.value.selectedId"
+              (ionChange)="onCheck(limitDatas.key, $event.detail.value)"
+            >
+              @for (item of limitDatas.value.items; track item.costingId) {
+              <div class="limit-detail">
+                <div class="limit-detail-content">
+                  <div class="limit-detail-drug">
+                    <div class="limit-detail-toggle">
+                      <ion-radio
+                        slot="start"
+                        [value]="item.costingId"
+                      ></ion-radio>
+
+                      <div class="limit-product-detail">
+                        <ion-label class="name"
+                          >{{ item.product ?? item.testName }}</ion-label
+                        >
+
+                        <ion-text class="frequency">
+                          {{ item.frequencyOfUse ?? "" }}
+                        </ion-text>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ion-text class="cost">
+                    {{ item.cost | currency:'NGN' }}
+                  </ion-text>
+                </div>
+              </div>
+              }
+            </ion-radio-group>
+            <!-- }  -->
+            <!-- @else { 
+              @for (item of limitDatas.value.items; track
+            item.costingId) {
+            <div class="limit-detail">
+              <div class="limit-detail-content">
+                <div class="limit-detail-drug">
+                  <div class="limit-detail-toggle">
+                    <ion-checkbox
+                      [checked]="isChecked(limitDatas.key, item.costingId)"
+                      (ionChange)="onCheck(limitDatas.key, item.costingId, $event.detail.checked)"
+                    ></ion-checkbox>
+
+                    <div class="limit-product-detail">
+                      <ion-label>{{ item.product ?? item.testName }}</ion-label>
+
+                      <ion-text class="frequency">
+                        {{ item.frequencyOfUse ?? "" }}
+                      </ion-text>
+                    </div>
+                  </div>
+                </div>
+
+                <ion-text class="cost">
+                  {{ item.cost | currency:'NGN' }}
+                </ion-text>
+              </div>
+            </div>
+            } 
+          } -->
+          </ion-card-content>
+        </ion-list>
+        }
+      </ion-card>
+      }
+
+      <ion-card class="pad-7">
+        <div class="flex mbg">
+          <ion-text class="total-summary">
+            {{ selectedCount }} items selected
+          </ion-text>
+
+          <ion-text class="total-summary">
+            {{ totalAmount | currency:'NGN' }}
+          </ion-text>
+        </div>
+
+        <ui-button
+          label="Proceed to Summary"
+          width="full"
+          size="small"
+          fill="solid"
+          shape="round"
+          [loading]="loading"
+          [disabled]="loading"
+          backgroundColor="#307d3d"
+          textColor="#FDFDFD"
+          (Click)="proceedToSummary()"
+        ></ui-button>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

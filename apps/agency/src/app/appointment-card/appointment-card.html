@@ -1,0 +1,28 @@
+<div
+  class="order-card"
+  (click)="openAppointment.emit(appointments())"
+  (keyup.enter)="openAppointment.emit(appointments())"
+  role="button"
+  tabindex="0"
+>
+  <div class="order-left">
+    <div class="flex">
+      <ion-icon src="/icons/Appointments.svg"></ion-icon>
+      <span class="order-id"
+        >{{moment.utc(appointments().date).local(appointments().time).fromNow()
+        }}</span
+      >
+    </div>
+
+    <div class="flex">
+      <!-- <ion-icon src="/icons/eyeBlueIcon.svg"></ion-icon> -->
+      <span class="order-id">{{ appointments().professionalName }}</span>
+    </div>
+  </div>
+
+  <div class="order-right">
+    <span class="order-amount">{{ appointments().appointmentType }}</span>
+
+    <ion-text class="order-status"> {{ appointments().status }} </ion-text>
+  </div>
+</div>

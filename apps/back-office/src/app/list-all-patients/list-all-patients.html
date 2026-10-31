@@ -1,0 +1,40 @@
+<div class="mt-1">
+  <p-table
+    #dt1
+    dataKey="id"
+    [lazy]="true"
+    [paginator]="totalRecords > 0"
+    [rows]="20"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[20, 50, 100]"
+    [value]="patients$ | async"
+  >
+    <ng-template #header>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Blood Group</th>
+        <th>Phone</th>
+        <th>Gender</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{item.firstName | titlecase}}</td>
+        <td>{{item.lastName | titlecase}}</td>
+        <td>{{item.email || 'N/A'}}</td>
+        <td>{{item.bloodGroup || 'N/A'}}</td>
+        <td>{{item.phone || 'N/A'}}</td>
+        <td>{{item.gender || 'N/A'}}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">
+          <div class="empty__table__text">There are no Patients yet</div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

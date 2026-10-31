@@ -1,0 +1,34 @@
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recording-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1.5px solid #ebebeb;
+  cursor: pointer;
+  outline: none;
+}
+
+.recording-card-name {
+  font-size: 15px;
+  font-weight: 400;
+  color: #2d2d2d;
+}
+
+.empty {
+  font-size: 14px;
+  color: #aaa;
+  text-align: center;
+  padding: 16px 0;
+}
+
+.play__icon {
+  color: #307d3d;
+}

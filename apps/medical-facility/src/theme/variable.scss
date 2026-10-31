@@ -1,0 +1,110 @@
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+
+@font-face {
+  font-family: 'montserrat';
+  src: url(../../../../libs/ui/assets/font/Montserrat/static/Montserrat-Regular.ttf);
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'montserrat';
+  src: url(../../../../libs/ui/assets/font/Montserrat/static/Montserrat-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'montserrat';
+  src: url(../../../../libs/ui/assets/font/Montserrat/static/Montserrat-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'montserrat';
+  src: url(../../../../libs/ui/assets/font/Montserrat/static/Montserrat-Bold.ttf);
+  font-weight: 700;
+}
+
+:root {
+  color-scheme: light !important;
+  --ion-font-family: 'mona';
+  --button-color: #307d3d;
+  --light-grey: #f6f6f6 !important;
+  --primary-color: #317e3d !important;
+  --secondary-color: #f3951f !important;
+}
+
+.button-inner {
+  --color: #307d3d;
+}
+
+body {
+  font-family: 'montserrat';
+  box-sizing: border-box;
+  font-weight: 400;
+  color: var(--text-color);
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--pageBg);
+}
+
+h4 {
+  font-family: 'montserrat';
+  word-break: break-word;
+  line-height: 1.8;
+  font-size: clamp(0.78rem, 2.5vw, 0.875rem);
+  font-weight: 700;
+}
+
+h3 {
+  font-family: 'montserrat';
+  word-break: break-word;
+  line-height: 1.8;
+  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  font-weight: 500;
+}
+
+h2 {
+  font-family: 'montserrat';
+  word-break: break-word;
+  line-height: 1.8;
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  font-weight: 500;
+}
+
+h1 {
+  font-family: 'montserrat';
+  word-break: break-word;
+  line-height: 1.8;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+}
+
+.pText {
+  font-family: 'montserrat';
+  font-size: clamp(0.78rem, 2.5vw, 0.813rem);
+  word-break: break-word;
+  font-weight: 300;
+}
+
+.pSubText {
+  font-family: 'montserrat';
+  font-weight: 300;
+  font-size: clamp(0.6rem, 2.5vw, 0.75rem);
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+p {
+  font-family: 'montserrat';
+  font-weight: 300;
+  font-size: clamp(0.75rem, 2.5vw, 0.8rem);
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+a {
+  font-family: 'montserrat';
+  font-weight: 300;
+  font-size: clamp(0.75rem, 2.5vw, 0.8rem);
+}

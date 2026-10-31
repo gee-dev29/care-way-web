@@ -1,0 +1,102 @@
+<ion-content fullscreen class="page" scrollY="false">
+  <div class="padding">
+    <div class="flex2">
+      <div class="link" tabindex="" (keyup.enter)="goBack()" (click)="goBack()">
+        <ion-icon class="arrow__icon" name="chevron-back"></ion-icon>
+      </div>
+      <h5>Medical Request details</h5>
+    </div>
+    <div class="card-container">
+      <div class="header">
+        <div class="tracking">
+          <ion-text class="tracker-id" [style.color]="trackColor"
+            >Tracking ID</ion-text
+          >
+          <ion-text class="id">{{ request.trackingId }}</ion-text>
+        </div>
+
+        <ion-text class="request">{{ request.type }}</ion-text>
+      </div>
+
+      <div class="info-box" [style.background]="cardBg">
+        <ion-text class="section-title">{{ request.testType }}</ion-text>
+
+        <div class="grid">
+          <div>
+            <ion-text class="label">Doctor’s Name</ion-text>
+            <ion-text class="value">{{ request.doctor }}</ion-text>
+          </div>
+
+          <div>
+            <ion-text class="label">Date</ion-text>
+            <ion-text class="value">{{ request.date }}</ion-text>
+          </div>
+
+          <div>
+            <ion-text class="label">Hospital</ion-text>
+            <ion-text class="value">{{ request.hospital }}</ion-text>
+          </div>
+
+          <div>
+            <ion-text class="label">Patient Name</ion-text>
+            <ion-text class="value">{{ request.patient }}</ion-text>
+          </div>
+        </div>
+      </div>
+
+      <div class="test">
+        <div class="flex">
+          <ion-text class="sub"><p>Product</p></ion-text>
+          <ion-text class="sub">{{ request.product }}</ion-text>
+        </div>
+        <div class="flex">
+          <ion-text class="sub"><p>Blood Type</p></ion-text>
+          <ion-text class="sub">{{ request.bloodType }}</ion-text>
+        </div>
+        <div class="flex">
+          <ion-text class="sub"><p>Quantity(pieces)</p></ion-text>
+          <ion-text class="sub">{{ request.quantity }}</ion-text>
+        </div>
+        @if (request.price) {
+        <div class="flex">
+          <ion-text class="sub"><p>Price</p></ion-text>
+          <ion-text class="sub">{{ request.price}}</ion-text>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="button">
+      @if (request.price) {
+      <ui-button
+        [label]="'Continue'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (click)="continue()"
+      ></ui-button>
+      } @else {
+      <ui-button
+        [label]="'Proceed with request'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (click)="proceed()"
+      ></ui-button>
+      }
+    </div>
+  </div>
+</ion-content>
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to send?'"
+  [open]="open"
+  [background]="background"
+  (dismiss)="dismiss(false)"
+  (no)="no()"
+  (next)="yes()"
+></ui-confirmation-modal>

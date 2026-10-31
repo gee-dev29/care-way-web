@@ -1,0 +1,86 @@
+<ion-content fullscreen id="screen" class="ion-padding">
+  <div class="page">
+
+
+    <div class="header">
+      <ion-icon src="/logo/backarrow.svg" class="back-icon" (click)="goBack()"></ion-icon>
+      <p class="title">Prescription Summary</p>
+    </div>
+
+
+    <div class="info-card">
+      <div class="row">
+        <div class="col">
+          <p class="label">Doctor’s Name</p>
+          <p class="value">Adefarati Joseph</p>
+        </div>
+
+        <div class="col right">
+          <p class="label">Date</p>
+          <p class="value">Oct 20, 2025</p>
+        </div>
+      </div>
+
+      <div class="row bottom-space">
+        <div class="col">
+          <p class="label">Patient Name</p>
+          <p class="value blue-text">Olivia Johnson</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="prescription-header">
+      <p class="header-text">Prescriptions</p>
+
+      <div class="add-container" tabindex="" (click)="addDrug()" (keyup.enter)="addDrug()">
+        <ion-icon class="prescription-icon" src="/logo/plus.svg"></ion-icon>
+        <p>Add</p>
+      </div>
+    </div>
+
+
+    <div class="drug-card">
+      <div class="drug-header">
+        <p>Drug</p>
+        <div class="edit" tabindex="" (click)="editDrug()" (keyup.enter)="editDrug()">
+          <ion-icon src="/logo/edit.svg"></ion-icon>
+          <span>Edit</span>
+        </div>
+      </div>
+
+      <div class="drug-body">
+        <div class="row-item">
+          <p class="left">Form</p>
+          <p class="right">Capsule</p>
+        </div>
+
+        <div class="row-item">
+          <p class="left">Active Ingredient</p>
+          <p class="right">Pregabalin</p>
+        </div>
+
+        <div class="row-item">
+          <p class="left">Product Name</p>
+          <p class="right">Pregabalin</p>
+        </div>
+
+        <div class="row-item no-border">
+          <p class="left bold">Frequently of Use</p>
+          <p class="right">One dose twice daily</p>
+        </div>
+      </div>
+    </div>
+
+
+     <ui-button
+        (Click)="requestForCosting()"
+        [label]="'Request For Costing'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'dark'"
+      ></ui-button>
+
+  </div>
+</ion-content>

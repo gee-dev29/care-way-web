@@ -1,0 +1,660 @@
+<ion-content fullscreen>
+  @if (appointment$ | async; as appointment){
+  <div id="padding">
+    <div class="header">
+      <div class="back">
+        <div class="left">
+          <ion-icon
+            src="/logo/backarrow.svg"
+            class="back-icon"
+            (click)="goBack()"
+          ></ion-icon>
+          <p class="title">Appointment</p>
+        </div>
+        @if ((appointment.status === appointmentStatus.Ready
+        ||appointment.status === appointmentStatus.Ongoing) &&
+        appointment.appointmentType === type.Virtual && professionalId.length) {
+        <button class="btnSolid" (click)="joinCall()">Join Call</button>
+        }@if (appointment.status === appointmentStatus.Completed &&
+        appointment.appointmentType === type.Virtual && professionalId.length) {
+        <button class="btnSolid" (click)="openCallRecordingModal()">
+          Call Recording
+        </button>
+        } @if (appointment.status ===
+        appointmentStatus.AwaitingHospitalConfirmation &&
+        appointment.appointmentType === type.Physical) {
+        <button class="btnSolid" (click)="assignDoctor()">Assign Doctor</button>
+        } @if (appointment.status === appointmentStatus.Confirmed){
+        <button class="btnSolid" (click)="setReminder(appointment)">
+          Set Reminder
+        </button>
+        }
+      </div>
+    </div>
+    <ui-view-appointment-card
+      [appointment$]="appointment$"
+      [statusFn]="getStatus(appointment?.status)"
+      [showDoctor]="true"
+    ></ui-view-appointment-card>
+    @if (appointment.address) {
+    <div class="card first">
+      <div class="item-left">
+        <span class="card-title">Hospital:</span> {{appointment?.hospitalName}}
+      </div>
+      @if (appointment?.appointmentType === 'Physical') {
+      <div class="item-left">
+        <span class="card-title">Address:</span>
+        {{appointment?.address?.address}}, {{appointment?.address?.street}},
+        {{appointment?.address?.city}}
+      </div>
+      }
+    </div>
+    } @if (memberDetails ; as member) {
+    <div class="card">
+      <div class="item-left">
+        <span class="card-title">Patient:</span> {{ member.firstName }}
+        {{member.lastName}}
+      </div>
+      <div class="item-left">
+        <span class="card-title">Gender:</span> {{ member?.gender ?? 'N/A' }} |
+        <span class="card-title">Age:</span> {{ member?.dob ? ageYears : 'N/A'}}
+        | <span class="card-title">Blood Group:</span> {{ member.bloodGroup ??
+        'N/A' }}
+      </div>
+    </div>
+    } @if (facilityType === 'Hospital') { @if (doctor$ | async; as doctor) {
+    <div class="card first">
+      <div class="item-left">
+        <span class="card-title">Doctor:</span> {{ doctor.firstName }}
+        {{doctor.lastName}}
+      </div>
+      <div class="item-left">
+        <span class="card-title">Gender:</span> {{ doctor?.gender ?? 'N/A' }} |
+        <span class="card-title">Cadre:</span> {{ doctor.cadre }}
+      </div>
+    </div>
+    } } @if(appointment.appointmentType === type.Physical &&
+    !appointment.isAppointmentPinValidated &&
+    router.url.includes('doctor-dashboard') ){
+    <div class="appointment-container ion-padding">
+      <header class="header">
+        <div class="title">Verify Appointment PIN</div>
+        <div></div>
+      </header>
+      <div class="pin-card">
+        <form [formGroup]="appointmentForm">
+          <ui-input
+            [control]="appointmentPin"
+            [color]="'dark'"
+            [bypass]="true"
+            [type]="'otp'"
+          >
+            <p class="instruction">
+              Enter the 4-digit appointment confirmation PIN to proceed.
+            </p>
+          </ui-input>
+        </form>
+      </div>
+      <div class="bts">
+        <ui-button
+          [label]="'Confirm'"
+          [width]="'full'"
+          [fill]="'solid'"
+          (Click)="verifyPin()"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading || (!appointmentForm.valid) || appointmentForm.value.appointmentPin?.length!==4"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+        ></ui-button>
+      </div>
+    </div>
+
+    }@else{
+    <ion-accordion-group>
+      <ion-accordion value="vitals">
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #f9fffa"
+        >
+          <ion-label>Vitals</ion-label>
+        </ion-item>
+        <div slot="content" class="vitals">
+          <ui-vitals
+            [items]="vitalItems"
+            (getItems)="getItems()"
+            (navigate)="navigate($event)"
+          ></ui-vitals>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+    <ion-accordion-group>
+      @if (medicalServices.length > 0) {
+      <ion-accordion value="medicalServices">
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #e9e9e9"
+        >
+          <ion-label
+            >In-house Medical Products & Services ({{ medicalServices.length
+            }})</ion-label
+          >
+        </ion-item>
+        <div slot="content" class="vitals">
+          @for (product of medicalServices; track $index) {
+          <div class="lab-card">
+            <div class="lab-card-header">
+              <h4>Medical Product</h4>
+              @if (product.status === DocumentStatus.Draft) {
+              <div class="actions">
+                <ion-img
+                  (click)="editMedicalService(product)"
+                  src="icons/white-pencil-icon.svg"
+                  class="edit-icon"
+                ></ion-img>
+                <ion-icon
+                  (click)="showDeleteMedicalServiceModal(product)"
+                  name="close-circle-outline"
+                  class="delete-icon"
+                ></ion-icon>
+              </div>
+              }
+            </div>
+            <div class="lab-card-body">
+              <div class="row">
+                <p class="label">Product Type</p>
+                <p class="value">{{ product.productType }}</p>
+              </div>
+              <div class="row">
+                <p class="label">Product Name</p>
+                <p class="value">{{ product.productName }}</p>
+              </div>
+              <div class="row">
+                <p class="label">Unit Price</p>
+                <p class="value">{{ product.unitPrice }}</p>
+              </div>
+              <div class="row">
+                <p class="label">Quantity</p>
+                <p class="value">{{ product.quantity }}</p>
+              </div>
+              <div class="row">
+                <p class="label">Delivery</p>
+                <p class="value">{{ product.requiresDelivery }}</p>
+              </div>
+              @if (product.status) {
+              <div class="row">
+                <p class="label">Status</p>
+                <p class="value">{{ product.status }}</p>
+              </div>
+              }
+            </div>
+          </div>
+          }
+          <ui-button
+            (Click)="requestMedicalServiceCost()"
+            [label]="'Send for Payment'"
+            [disabled]="!hasDraftMedicalServices || isLoading"
+            [loading]="isLoading"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+            [textColor]="'#FDFDFD'"
+          ></ui-button>
+        </div>
+      </ion-accordion>
+      }
+    </ion-accordion-group>
+    <ion-accordion-group>
+      @if (showPrescriptionSection) {
+      <ion-accordion>
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #d4d6ea"
+        >
+          <ion-label> Prescription ({{ prescriptionTotal }})</ion-label>
+        </ion-item>
+        <div slot="content" class="vitals">
+          <ui-prescription-card
+            [drug]="drugs"
+            [api]="api"
+            (requestCost)="requestCost($event, ReferralType.Pharmacy)"
+            [documentStatus]="DocumentStatus"
+            [isLoading]="isLoading"
+            [canAdd]="false"
+          ></ui-prescription-card>
+        </div>
+      </ion-accordion>
+      } @if (showLabTestSection) {
+      <ion-accordion>
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #d0eaff"
+        >
+          <ion-label>Lab Test ({{labTestTotal}})</ion-label>
+        </ion-item>
+        <div slot="content" class="lab__content__details">
+          <ui-lab-test-card
+            [labTests]="labTests"
+            (delete)="showDeleteLabModal()"
+            (edit)="showEditLabModal($event)"
+            [api]="api"
+            (requestCost)="requestCost($event, ReferralType.Laboratory)"
+            [isLoading]="isLoading"
+            [documentStatus]="DocumentStatus"
+          ></ui-lab-test-card>
+        </div>
+      </ion-accordion>
+      } @if (showDiagnosticSection) {
+      <ion-accordion>
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #ededc2"
+        >
+          <ion-label>Diagnostic ({{radTotal}})</ion-label>
+        </ion-item>
+        <div slot="content">
+          <div slot="content" class="lab__content__details">
+            <ui-rad-imaging-card
+              (delete)="showDeleteRadModal()"
+              (edit)="showEditRadModal($event)"
+              [rads]="rads"
+              [api]="api"
+              (requestCost)="requestCost($event, ReferralType.Radiology)"
+              [documentStatus]="DocumentStatus"
+              [isLoading]="isLoading"
+            ></ui-rad-imaging-card>
+          </div>
+        </div>
+      </ion-accordion>
+      } @if (showBloodBankSection) {
+      <ion-accordion>
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #f9d5d5"
+        >
+          <ion-label>Blood Bank ({{bloodBankTotal}})</ion-label>
+        </ion-item>
+        <div slot="content">
+          <div slot="content" class="lab__content__details">
+            <ui-blood-bank-card
+              (delete)="showDeleteBloodModal($event)"
+              (edit)="showEditBloodModal($event)"
+              [bloodBank]="bloodBank"
+              (requestCost)="requestCost($event, ReferralType.BloodBank)"
+              [documentStatus]="DocumentStatus"
+              [isLoading]="isLoading"
+            ></ui-blood-bank-card>
+          </div>
+        </div>
+      </ion-accordion>
+      }
+    </ion-accordion-group>
+    <div
+      tabindex=""
+      (keyup.enter)="showAddCategoryModal()"
+      (click)="showAddCategoryModal()"
+      class="add__lab__btn"
+    >
+      <ion-icon class="left__arrow" name="add-circle-outline"></ion-icon>
+      <p>Add Referrals</p>
+    </div>
+    } @if( appointment.status === appointmentStatus.Completed ){
+    <div class="follow-up">
+      <ui-button
+        (Click)="followUpRequest()"
+        [label]="'Follow up request'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+      ></ui-button>
+    </div>
+    }
+  </div>
+  }
+</ion-content>
+<ion-modal
+  #formModal
+  (didDismiss)="successModal = false; modalType = null"
+  [isOpen]="successModal"
+  [canDismiss]="true"
+>
+  <ng-template>
+    @if(modalType === 'lab'){
+    <form [formGroup]="labForm">
+      <div class="lab__content">
+        <h4>Lab Test</h4>
+        <form class="add__lab__form">
+          <ui-input
+            [label]="'Test Group'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isTestGroup"
+            [type]="'dropdown'"
+            [options]="testGroups"
+            (data)="isTestGroupClicked()"
+            (emitted)="offtestGroupClicked()"
+            [selectedText]="labForm.value.testGroup"
+            [selectedItem]="[labForm.value.testGroup]"
+            [control]="labTestGroup"
+          ></ui-input>
+          <ui-input
+            [label]="'Test Name'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isTestName"
+            [type]="'dropdown'"
+            [options]="testNames"
+            (data)="isTestNameClicked()"
+            (emitted)="offtestNameClicked()"
+            [selectedText]="labForm.value.testName"
+            [selectedItem]="[labForm.value.testName]"
+            [control]="labTestName"
+          ></ui-input>
+          <ui-button
+            [disabled]="!labForm.valid"
+            (Click)="closeLabModal()"
+            [label]="label"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+            [showImage]="false"
+          ></ui-button>
+        </form>
+      </div>
+    </form>
+    } @if(modalType === 'rad'){
+    <form [formGroup]="radForm">
+      <div class="lab__content">
+        <h4>Imaging/Radiology</h4>
+        <form class="add__lab__form" [formGroup]="radForm">
+          <ui-input
+            [label]="'Service Name'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isServiceName"
+            [type]="'dropdown'"
+            [options]="serviceNames"
+            (data)="isServiceNameClicked()"
+            (emitted)="offServiceNameClicked()"
+            [selectedText]="radForm.value.serviceName"
+            [selectedItem]="[radForm.value.serviceName]"
+            [control]="radServiceName"
+          ></ui-input>
+          <ui-button
+            [disabled]="!radForm.valid"
+            (Click)="closeRadModal()"
+            [label]="label"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+            [showImage]="false"
+          ></ui-button>
+        </form>
+      </div>
+    </form>
+    } @if(successModal && modalType === 'blood'){
+    <form [formGroup]="bloodForm">
+      <div class="blood__content">
+        <h4 class="header__text">Blood Bank</h4>
+        <form class="add__lab__form">
+          <div class="blood-form">
+            <ui-input
+              [label]="'Service Name'"
+              [shouldSearch]="true"
+              [isMultiselect]="false"
+              [isClicked]="isServiceName"
+              [type]="'dropdown'"
+              [options]="bloodProduct"
+              (data)="isServiceNameClicked()"
+              (emitted)="offServiceNameClicked()"
+              [selectedText]="bloodForm.value.serviceName"
+              [selectedItem]="[bloodForm.value.serviceName]"
+              [control]="serviceName"
+            ></ui-input>
+          </div>
+          <div class="blood-form2">
+            <ui-input
+              [control]="bloodType"
+              [label]="'Blood Group'"
+              [options]="bloodGroup"
+              [isMultiselect]="false"
+              [type]="'dropdown'"
+              [selectedText]="bloodForm.value.bloodGroup"
+              [selectedItem]="[bloodForm.value.bloodGroup]"
+              [shouldSearch]="true"
+              [isClicked]="isBloodGroup"
+              (data)="isBloodClicked()"
+            ></ui-input>
+          </div>
+          <div class="blood-form2">
+            <ui-input
+              [control]="bloodQty"
+              [label]="'Quantity (pieces)'"
+              [type]="'text'"
+            ></ui-input>
+          </div>
+          <ui-button
+            [disabled]="!bloodForm.valid"
+            (Click)="closeBloodModal()"
+            [label]="label"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+            [showImage]="false"
+          ></ui-button>
+        </form>
+      </div>
+    </form>
+    }
+  </ng-template>
+</ion-modal>
+
+<ion-modal
+  [isOpen]="confirmationModal"
+  (didDismiss)="confirmationModal = false"
+  #confirmation
+  id="confirm__modal"
+>
+  <ng-template>
+    <div class="confirm__wrapper">
+      <h2 class="text">Are you sure you want to delete this test?</h2>
+      <div class="btn__actions">
+        <ui-button
+          [width]="'full'"
+          [shape]="'round'"
+          [label]="'Yes, Confirm'"
+          [fill]="'solid'"
+          (Click)="deleteLabForm()"
+        ></ui-button>
+        <button (click)="cancelModal()" class="btn__two">Not Yet</button>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>
+
+<ion-modal
+  [isOpen]="confirmDeleteMedicalServiceModal"
+  (didDismiss)="confirmDeleteMedicalServiceModal = false"
+  #confirmDeleteMedicalService
+  id="confirm__medical__service__modal"
+>
+  <ng-template>
+    <div class="confirm__wrapper">
+      <h2 class="text">Are you sure you want to delete this medical product?</h2>
+      <div class="btn__actions">
+        <ui-button
+          [width]="'full'"
+          [shape]="'round'"
+          [label]="'Yes, Confirm'"
+          [fill]="'solid'"
+          (Click)="deleteMedicalService()"
+        ></ui-button>
+        <button (click)="cancelDeleteMedicalServiceModal()" class="btn__two">
+          Not Yet
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>
+<ion-modal
+  [isOpen]="selectCategoryModal"
+  (didDismiss)="selectCategoryModal = false"
+  [breakpoints]="[0, 1]"
+  [initialBreakpoint]="1"
+  [handle]="false"
+  #selectCategory
+  id="select__category__modal"
+>
+  <ng-template>
+    <div class="pre__wrapper">
+      <div class="modal__top__line"></div>
+      <div class="select__category__header">
+        <h5 class="presc__title">Referral Type</h5>
+      </div>
+      <div class="presc__list__wrapper">
+        @for (option of availableCategoryOptions; track option.value) {
+        <div
+          class="presc__list"
+          [class.selected]="selectedAddCategory === option.text"
+          tabindex=""
+          (keyup.enter)="selectAddCategory(option.text)"
+          (click)="selectAddCategory(option.text)"
+        >
+          <div class="category__icon__box">
+            @if (option.icon) {
+            <ion-icon [src]="option.icon"></ion-icon>
+            }
+          </div>
+          <p>{{option.text}}</p>
+        </div>
+        }
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>
+<ion-modal
+  [isOpen]="prescriptionModal"
+  (didDismiss)="prescriptionModal = false"
+  #prescription
+  id="prescription__modal"
+>
+  <ng-template>
+    <div class="pre__wrapper">
+      <div class="modal__top__line"></div>
+      <div
+        tabindex=""
+        (keyup.enter)="closePrescModal()"
+        (click)="closePrescModal()"
+      >
+        <ion-icon class="close__icon__wrapper" name="close-outline"></ion-icon>
+      </div>
+      <h5 class="presc__title">Category</h5>
+      <div class="presc__list__wrapper">
+        @for (item of categoryList; track $index) {
+        <div
+          class="presc__list"
+          tabindex=""
+          (keyup.enter)="category(item)"
+          (click)="category(item)"
+        >
+          <p>{{item.title}}</p>
+          <ion-icon
+            [name]=" item.checked ?'checkmark-circle' : 'ellipse-outline'"
+            style="font-size: 24px; color: #000"
+          ></ion-icon>
+        </div>
+        }
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>
+<ui-confirmation-modal
+  [heading]="'Whose address do you want to send Cost with?'"
+  [background]="'#307d3d'"
+  [open]="confirmSend"
+  [normal]="true"
+  (next)="sendCost('Patient')"
+  (no)="sendCost('Hospital')"
+  (dismiss)="confirmSend = false
+"
+>
+</ui-confirmation-modal>
+@if (callRecordingModal) {
+<ion-modal
+  [isOpen]="callRecordingModal"
+  (didDismiss)="callRecordingModal = false"
+  [canDismiss]="true"
+>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Call Recordings</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="callRecordingModal = false">
+            <ion-icon
+              name="close-outline"
+              slot="icon-only"
+              style="color: red"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ui-appointment-recording-card
+        [recordingUrls$]="recordingUrls$"
+      ></ui-appointment-recording-card>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+}
+
+<ion-modal
+  [isOpen]="followUpModal"
+  (didDismiss)="followUpModal = false"
+  #followUp
+  id="followUp__modal"
+>
+  <ng-template class="followUp__content">
+    <div class="">
+      <h2 class="text">Set Follow Up date & time</h2>
+      <div class="date-picker">
+        <ion-text class="date-title">Date</ion-text>
+        <div class="picker">
+          <ui-date-picker
+            [byPassDate]="true"
+            [control]="dateControl"
+          ></ui-date-picker>
+        </div>
+      </div>
+      <div class="date-picker">
+        <ion-text class="date-title">Time</ion-text>
+        <div class="picker">
+          <ui-time-picker [control]="timeControl"></ui-time-picker>
+        </div>
+      </div>
+      <div class="follow-up">
+        <ui-button
+          (Click)="setUpRequest()"
+          [label]="'Set Follow Up'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [disabled]="followUpLoading"
+          [backgroundColor]="'#307d3d'"
+        ></ui-button>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>

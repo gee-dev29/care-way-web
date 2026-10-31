@@ -1,0 +1,10 @@
+<router-outlet></router-outlet>
+@if (displayLayoutService.layout$ | async; as layout) { @if (layout ===
+PageLayout.Sidebar) {
+<ui-sidebar
+  [sidebarLinks]="sidebarItems"
+  [unit]="unit"
+  [userName]="userName"
+  (logOut)="logout()"
+></ui-sidebar>
+} }

@@ -1,0 +1,135 @@
+.udu__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.udu__modal {
+  width: 360px;
+  max-width: 90vw;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  font-family: montserrat, sans-serif;
+}
+
+.udu__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.udu__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.udu__close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #333;
+  padding: 4px;
+  display: flex;
+}
+
+.udu__label {
+  display: block;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.udu__file-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #d9dce1;
+  border-radius: 8px;
+  padding: 6px 6px 6px 14px;
+}
+
+.udu__file-name {
+  flex: 1;
+  font-size: 14px;
+  color: #1a1a1a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.udu__file-name--placeholder {
+  color: #9aa0a6;
+}
+
+.udu__browse-btn {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 6px;
+  background: #2e7d46;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 22px;
+  cursor: pointer;
+}
+
+.udu__browse-btn:hover {
+  background: #276b3c;
+}
+
+.udu__hint {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 10px 0 0;
+}
+
+.udu__error {
+  font-size: 12px;
+  color: #d93025;
+  margin: 8px 0 0;
+}
+
+.udu__preview {
+  margin-top: 16px;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.udu__preview img {
+  max-width: 140px;
+  max-height: 70px;
+  object-fit: contain;
+}
+
+.udu__upload-btn {
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  background: #2e7d46;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px;
+  cursor: pointer;
+}
+
+.udu__upload-btn:disabled {
+  background: #9fc4ab;
+  cursor: not-allowed;
+}
+
+.udu__upload-btn:not(:disabled):hover {
+  background: #276b3c;
+}

@@ -1,0 +1,151 @@
+<ion-content fullscreen>
+  <div id="home">
+    <div class="top__header">
+      <ion-icon
+        (click)="goToAppointmentDetails()"
+        class="left__arrow"
+        name="left-arrow"
+      ></ion-icon>
+
+      <p>Prescription Details</p>
+    </div>
+    @if ((prescriptionDetails$ | async); as prescriptionDetail) {
+    <div class="card">
+      <ion-card>
+        <ion-card-content>
+          <div class="top__card">
+            <div>
+              <ion-img
+                class="card__image"
+                src="/images/dr.Olarenwaju.svg"
+              ></ion-img>
+            </div>
+            <div>
+              <p class="card__title">
+                Dr. {{prescriptionDetail.professionalName}}
+              </p>
+              <p class="card__subTitle">
+                {{prescriptionDetail.specialization}}
+              </p>
+            </div>
+          </div>
+          <div class="middle__card">
+            <div class="top__middle__wrapper">
+              <div class="top__middle__content">
+                <ion-img src="/icons/blue-calendar.svg"></ion-img>
+                <p class="text">12 years Experience</p>
+              </div>
+              <div class="top__middle__content">
+                <ion-img src="/icons/blue-calendar.svg"></ion-img>
+                <p class="text">
+                  {{formatDateorTime(prescriptionDetail.date)}} |
+                  {{formatDateorTime(prescriptionDetail.time)}}
+                </p>
+              </div>
+            </div>
+            <div class="top__middle__content">
+              <ion-img src="/icons/blue-calendar.svg"></ion-img>
+              <p class="text">Video Consultation</p>
+            </div>
+            <div class="top__middle__content">
+              <ion-img src="/icons/blue-calendar.svg"></ion-img>
+              <p class="text">Fee Paid: 10,000</p>
+            </div>
+            <div class="top__middle__content">
+              <ion-img src="/icons/blue-calendar.svg"></ion-img>
+              <p class="text">
+                Payment Reference: <span class="span__text">#INV-092345</span>
+              </p>
+            </div>
+          </div>
+          <div class="notes__wrapper">
+            <p class="text">Doctor's Note</p>
+            <p>
+              “Patient presented mild chest tightness, no abnormal ECG activity
+              observed. Recommended routine exercise and follow-up in 6 months.”
+            </p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div class="card">
+      <ion-card>
+        <ion-card-content>
+          @if (uploadedDocuments?.length > 0){
+          <div class="image-uploaded">
+            <p class="card__title">Prescription</p>
+            @for (item of uploadedDocuments; track item?.name; let i = $index) {
+            <div class="file-item">
+              <div class="file-left">
+                <ion-img
+                  (click)="showUploadedImage(i)"
+                  [src]="item?.url"
+                  class="custom-icon"
+                >
+                </ion-img>
+                <span>{{item?.name}}.png</span>
+              </div>
+
+              <ion-icon name="close-circle" class="remove-icon"></ion-icon>
+            </div>
+            }
+          </div>
+          }
+          <ui-button
+            [label]="'Request for cost'"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+            [textColor]="'#FDFDFD'"
+            [showImage]="false"
+            (Click)="requestForCost()"
+          ></ui-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    }
+  </div>
+</ion-content>
+
+<ion-modal
+  #modal
+  trigger="trigger-modal"
+  [isOpen]="successModal"
+  (didDismiss)="successModal = false"
+>
+  <ng-template>
+    <div class="content__modal">
+      <div class="modal__top">
+        <ion-icon
+          (click)="goToPrescriptionDetails()"
+          name="left-arrow"
+          class="left__arrow"
+        ></ion-icon>
+
+        <p>Review Appointment</p>
+      </div>
+      <p class="modal__text">Tap to rate:</p>
+      <div class="star__wrapper">
+        <ion-img class="star__img" src="icons/yellow-5-stars.svg"></ion-img>
+      </div>
+      <ui-input-textarea [placeholder]="''" [label]="'Write review (optional)'">
+      </ui-input-textarea>
+      <button class="btn__submit">Submit</button>
+    </div>
+  </ng-template>
+</ion-modal>
+
+<ion-modal
+  [isOpen]="viewUploadImage"
+  (didDismiss)="viewUploadImage = false"
+  #confirmation
+  id="confirm__modal"
+>
+  <ng-template>
+    <div class="modal-card">
+      <ion-img [src]="imageView" class="preview-img"> </ion-img>
+    </div>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,39 @@
+ion-content {
+  --background: #fff !important;
+}
+
+#add__member {
+  margin-top: 80px !important;
+}
+
+.up {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.gender {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+.gender__based {
+  margin: 25px 0px;
+}
+
+.gender__based ion-text {
+  font-size: 19px;
+}
+
+form {
+  margin-top: 30px;
+}
+
+.ui__button {
+  margin-top: 30px;
+}

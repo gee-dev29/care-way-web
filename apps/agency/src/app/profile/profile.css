@@ -1,0 +1,134 @@
+.profile-content {
+  --background: #fff;
+  text-align: center;
+}
+
+.up {
+  margin-top: 100px !important;
+}
+
+.avatar-wrapper {
+  margin-top: 20px;
+}
+.text__avater {
+  background: #f9fffa;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 28px;
+  text-transform: uppercase;
+}
+
+.up {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 0 15px;
+  gap: 140px;
+  margin-top: 15px;
+}
+
+.up p {
+  color: #307d3d;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.avatar-border {
+  border: 2px solid #307d3d;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.avatar {
+  height: 130px;
+  width: 130px;
+}
+ion-img::part(image) {
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 21px;
+  font-weight: 500;
+  margin-top: 15px;
+  color: #000;
+}
+
+.verified__name {
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.verified {
+  color: #008000;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 22px;
+}
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 0px 18px;
+  margin-top: 20px;
+}
+
+.menu-row {
+  display: flex;
+  align-items: center;
+  padding: 22px 14px 22px 20px;
+  border-radius: 12px;
+  background: #c8eacd;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.menu-row ion-icon {
+  font-size: 22px;
+  margin-right: 14px;
+}
+
+.menu-row span {
+  flex: 1;
+  font-size: 16px;
+}
+.right {
+  display: flex;
+  align-items: center;
+}
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #000 !important;
+}
+.end-icon {
+  margin-left: auto;
+  font-size: 20px;
+  color: #000000 !important;
+}
+
+.danger ion-icon {
+  color: var(--ion-color-danger);
+}
+
+.badge {
+  background: #eee;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.profile__details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

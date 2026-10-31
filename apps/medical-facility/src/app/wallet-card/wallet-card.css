@@ -1,0 +1,53 @@
+.card-container {
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(to top right, #05032a, #0043a5);
+  color: #ffffff;
+  position: relative;
+  display: block;
+  z-index: 0;
+}
+.bottom-row {
+  z-index: 2;
+}
+
+.card-container::before {
+  content: '';
+  position: absolute;
+  background-image: url('/images/blue-wallet-card.png');
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  font-size: 1.4rem;
+  color: white;
+}
+
+.balance-title {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+.balance-amount {
+  margin-top: 8px;
+  font-size: 2rem;
+  height: 40px;
+  line-height: 40px;
+}
+.pharmacy-name {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.eye-icon {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  border-radius: 12px;
+  font-size: 1.4rem;
+}

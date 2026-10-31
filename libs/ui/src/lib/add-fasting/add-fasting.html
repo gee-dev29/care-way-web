@@ -1,0 +1,58 @@
+<ion-content
+  id="background-content"
+  class="no-bottom-space"
+  [fullscreen]="true"
+>
+  <div class="padding">
+    <ion-header id="prescription">
+      <div class="pricing-head">
+        <ion-icon
+          (click)="cancel()"
+          name="chevron-back-outline"
+          size="small"
+        ></ion-icon>
+        <ion-text class="pricing-title">Add Fasting</ion-text>
+      </div>
+    </ion-header>
+
+    <ion-list>
+      @if(module){
+      <p class="date">Select Date</p>
+      <ui-date-picker [control]="date"></ui-date-picker>
+      <p class="date two">Select Time</p>
+      <ui-time-picker [control]="time"></ui-time-picker>
+      }
+
+      <div class="height-box">
+        <span>mg/dL</span>
+        <ion-picker>
+          <ion-picker-column
+            name="decimal"
+            [value]="decimalValue"
+            (ionChange)="onIonChange($event)"
+          >
+            @for (opt of options; track opt.value) {
+            <ion-picker-column-option [value]="opt.value">
+              {{ opt.label }}
+            </ion-picker-column-option>
+            }
+          </ion-picker-column>
+        </ion-picker>
+      </div>
+
+      <div class="bts">
+        <ui-button
+          [label]="'Save'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [disabled]="!form.valid"
+          [loading]="loading"
+          (Click)="save()"
+        ></ui-button>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,18 @@
+<div class="p-float-label">
+  <p-select
+    [options]="options"
+    [placeholder]="label"
+    [(ngModel)]="selectedItem"
+    [formControl]="control"
+    [filter]="filter"
+    [optionValue]="value"
+    [showClear]="showClear"
+    [optionLabel]="key"
+    [readonly]="readOnly"
+    id="dropdown"
+    (onChange)="getDropdownData($event, label)"
+    class="w-full md:w-56"
+  ></p-select>
+  <!-- (onChange)="getDropdownData($event, label)" -->
+  <!-- <label htmlFor="dropdown">{{ label }}</label> -->
+</div>

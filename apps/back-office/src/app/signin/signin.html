@@ -1,0 +1,56 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<ui-authentication title="Welcome Back!" leftImage="/icons/signin-bg.svg">
+  <form [formGroup]="form">
+    <ui-input [type]="'email'" [label]="'Email'" [control]="email"></ui-input>
+    @if (showPasswordInput) {
+    <ui-input
+      [type]="'password'"
+      [label]="'Password'"
+      [control]="password"
+    ></ui-input
+    >}
+    <div>
+      @if (showSignInWithPassword) {
+      <p class="instruction">
+        Sign In With Password?
+        <span (click)="signInWithPassword()">Sign In</span>
+      </p>
+      } @if (showSetPassword) {
+      <p class="instruction">
+        You don't have a Password?
+        <span (click)="setPassword()">Set Password</span>
+      </p>
+      }
+    </div>
+    @if (showSignInButton) {
+    <div class="bts">
+      <ui-button
+        [label]="'Sign In'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [loading]="loading"
+        [disabled]="loading || (!form.value.password)"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (Click)="signIn()"
+      ></ui-button>
+    </div>
+    } @if (showGetOTPButton) {
+    <div class="bts">
+      <ui-button
+        [label]="'Get OTP'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [loading]="loading"
+        [disabled]="loading || (!form.valid)"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (Click)="getOTP()"
+      ></ui-button>
+    </div>
+    }
+  </form>
+</ui-authentication>

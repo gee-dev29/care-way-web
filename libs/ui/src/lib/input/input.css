@@ -1,0 +1,141 @@
+ion-item {
+  border-bottom: 0.5px solid black !important;
+  margin-bottom: 10px;
+}
+
+ion-item.item-disabled {
+  opacity: 0.6;
+  --background: #f3f4f6;
+  --color: #000000;
+}
+
+.gender ion-radio {
+  --size: 25px;
+  --color: #9ca3af;
+  --color-checked: #307d3d;
+}
+
+ion-select {
+  padding: 0.5rem;
+}
+
+.dropp {
+  display: block !important;
+  min-width: 100% !important;
+}
+
+::ng-deep .radio-group-wrapper {
+  display: flex !important;
+  gap: 20px !important;
+}
+
+.flexxer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.flex {
+  display: flex;
+  padding: 1px;
+  margin-bottom: 5px;
+  justify-content: space-between;
+}
+
+.flexxer p {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  font-size: 16px !important;
+  font-style: 600 !important;
+}
+
+.list-ios.list-inset {
+  margin: 0px !important;
+  background-color: transparent !important;
+}
+
+:host ion-item,
+:host ion-select,
+:host .list-ios,
+:host .list-md {
+  --background: transparent !important;
+  background: transparent !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+ion-input {
+  font-family: 'montserrat';
+  font-size: 16px !important;
+}
+
+:host ::ng-deep input.native-input:-webkit-autofill,
+:host ::ng-deep input.native-input:-webkit-autofill:hover,
+:host ::ng-deep input.native-input:-webkit-autofill:focus,
+:host ::ng-deep input.native-input:-webkit-autofill:active {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+ion-checkbox {
+  font-size: 16px;
+  font-family: 'montserrat';
+  font-weight: 500;
+}
+
+#select-items {
+  padding-left: 0px;
+  font-family: 'montserrat';
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.end__slot {
+  padding-right: 5px;
+  padding-top: 10px;
+}
+
+ion-textarea {
+  padding: 5px 0;
+}
+
+.textarea-bordered {
+  border: 1px solid #000000;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.input-otp-fill-outline.ion-color.sc-ion-input-otp-ios-h
+  .native-input.sc-ion-input-otp-ios,
+.input-otp-fill-solid.ion-color.sc-ion-input-otp-ios-h
+  .native-input.sc-ion-input-otp-ios:focus {
+  border-color: black !important;
+}
+
+.b {
+  color: #307d3d !important;
+}
+
+.cursor {
+  font-size: 16px;
+}
+
+.otp-label {
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+:host(.checkbox-label-placement-start) .checkbox-wrapper {
+  flex-direction: row;
+  gap: 100px;
+}
+
+.terms-condition {
+  color: blue;
+}
+ion-toggle {
+  --track-background: #e0ac08;
+  --track-background-checked: #307d3d;
+
+  --handle-background: #307d3d;
+  --handle-background-checked: #e0ac08;
+}

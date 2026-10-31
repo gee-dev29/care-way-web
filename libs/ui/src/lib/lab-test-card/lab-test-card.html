@@ -1,0 +1,54 @@
+@for (lab of labTests; track $index) {
+
+<div class="lab-card">
+  <div class="lab-card-header">
+    <h4>Lab Test</h4>
+
+    @if(lab.status === documentStatus.Draft && !module){
+    <div class="actions">
+      <ion-img
+        (click)="editLab(lab)"
+        src="icons/white-pencil-icon.svg"
+        class="edit-icon"
+      ></ion-img>
+      <ion-icon
+        (click)="deleteLab(lab)"
+        name="close-circle-outline"
+        class="delete-icon"
+      ></ion-icon>
+    </div>
+    }
+  </div>
+
+  <div class="lab-card-body">
+    @if (lab.testName) {
+    <div class="row">
+      <p class="label">Test Name</p>
+      <p class="value">{{ lab.testName }}</p>
+    </div>
+    @if (lab.testGroup) {
+    <div class="row">
+      <p class="label">Lab Group</p>
+      <p class="value">{{ lab.testGroup }}</p>
+    </div>
+    } } @if (lab.status) {
+    <div class="row">
+      <p class="label">Status</p>
+      <p class="value">{{ lab.status }}</p>
+    </div>
+    }
+  </div>
+</div>
+
+}
+<ui-button
+  (Click)="proceed()"
+  [label]="'Request Cost'"
+  [disabled]="disabled"
+  [width]="'full'"
+  [fill]="'solid'"
+  [shape]="'round'"
+  [backgroundColor]="'#307d3d'"
+  [showImage]="false"
+  [loading]="isLoading"
+></ui-button>

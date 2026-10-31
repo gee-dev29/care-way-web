@@ -1,0 +1,22 @@
+<div class="card-list">
+  @for (item of (recordingUrls$ | async); track item; let i = $index) {
+  <div
+    class="recording-card"
+    (click)="selectItem(item)"
+    (keyup.enter)="selectItem(item)"
+    tabindex="0"
+  >
+    <span class="recording-card-name">Track {{ i + 1 }}</span>
+    <ion-icon class="play__icon" name="play"></ion-icon>
+  </div>
+  } @empty {
+  <p class="empty">No items available.</p>
+  }
+</div>
+@if (isVideo && selectedRecordingUrl) { @defer (on immediate) {
+<ui-recording-player
+  [src]="selectedRecordingUrl"
+  [closeVideoIcon]="true"
+  (videoPlayer)="closeVideo()"
+/>
+} }

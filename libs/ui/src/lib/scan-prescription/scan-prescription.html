@@ -1,0 +1,63 @@
+<ion-content id="background-content" fullscreen>
+  @if (isSymptoms) {
+  <div class="header">
+    <div
+      class="up"
+      (keyup.enter)="goBack()"
+      tabindex="0"
+      role="button"
+      (click)="goBack()"
+    >
+      <ion-icon src="/logo/backarrow.svg"></ion-icon>
+      <ion-text>Back</ion-text>
+    </div>
+
+    @if(isSymptoms){
+    <div class="plus-icon">
+      <ion-icon name="add" (click)="openScanner()"></ion-icon>
+    </div>
+    }@else {
+    <div
+      class="up"
+      (keyup.enter)="skip()"
+      tabindex="0"
+      role="button"
+      (click)="skip()"
+    >
+      <ion-text>Skip</ion-text>
+      <ion-icon src="/logo/skip.svg"></ion-icon>
+    </div>
+    }
+  </div>
+  }
+
+  <div id="prescription" class="ion-padding">
+    <div class="container">
+      @if(isSymptoms){
+      <div
+        class="plus_icon_container"
+        tabindex="0"
+        (keyup.enter)="openScanner()"
+        (click)="openScanner()"
+      >
+        <ion-icon name="add"></ion-icon>
+      </div>
+      }@else {
+      <ion-text>
+        <h3>Scan prescription</h3>
+      </ion-text>
+      <div
+        tabindex="0"
+        (keyup.enter)="openScanner()"
+        class="camera-body"
+        (click)="openScanner()"
+      >
+        <ion-icon name="camera-outline"></ion-icon>
+      </div>
+      }
+      <ion-text>
+        <p>{{ isSymptoms ? 'Take Picture': 'Scan Prescription'}}</p>
+      </ion-text>
+    </div>
+  </div>
+</ion-content>

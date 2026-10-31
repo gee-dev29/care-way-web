@@ -1,0 +1,18 @@
+<div class="radio">
+    <p-radioButton
+      [value]="value"
+      [formControl]="control"
+      [inputId]="value"
+      
+    ></p-radioButton>
+    <label class="content__right" [for]="value">
+      <label [for]="value">{{ label }}</label>
+      <ng-template [ngIf]="showShare">
+        <div class="share">
+          <div class="pSubText">Share</div>
+          <div class="pSubText">{{ share }} %</div>
+        </div>
+      </ng-template>
+    </label>
+  </div>
+  

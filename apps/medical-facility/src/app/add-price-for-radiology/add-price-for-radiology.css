@@ -1,0 +1,35 @@
+ion-content {
+  --background: #f4f5fe !important;
+}
+
+.up {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  margin-top: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+ion-text {
+  font-weight: 500;
+  font-size: 18px;
+}
+#add__herbals {
+  background: #f4f5fe !important;
+  margin-top: 115px !important;
+  padding: 25px;
+}
+form {
+  margin-top: 30px;
+}
+.end {
+  padding-bottom: 100px !important;
+}
+.ui__button {
+  margin-top: 250px;
+}
+
+.input {
+  margin-bottom: 20px;
+}
+

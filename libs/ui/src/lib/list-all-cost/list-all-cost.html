@@ -1,0 +1,43 @@
+<div class="page ion-padding">
+  <div class="header">
+    <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+    <div class="title">
+      {{facilityType === 'Pharmacy' ? 'Pharmacy' : facilityType}} Requests
+    </div>
+    <div></div>
+  </div>
+
+  <!-- <div class="search__wrapper">
+      <ion-searchbar
+        class="custom-searchbar"
+        placeholder="Search patients"
+      ></ion-searchbar>
+    </div> -->
+  <div class="chips-container">
+    @for (status of statuses; track $index) {
+    <ion-chip
+      [outline]="selectedItem !== status"
+      (click)="selectStatus(status)"
+      [ngStyle]="{
+  'background-color': selectedItem === status ? '#307D3D' : 'transparent',
+  'color': selectedItem === status ? '#fff' : '#307D3D',
+  'border-color': '#307D3D'
+}"
+    >
+      {{ status }}
+    </ion-chip>
+    }
+  </div>
+
+  @for (item of (costRequests$ | async); track $index) {
+  <div class="cost">
+    <ui-medical-request-card
+      [request]="item"
+      [route]="item.route"
+      [background]="'#c8eacd'"
+    >
+    </ui-medical-request-card>
+  </div>
+
+  }
+</div>

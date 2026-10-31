@@ -1,0 +1,37 @@
+#background-content {
+  background: #fff !important;
+}
+.ion-padding {
+  margin-top: 80px;
+}
+.up {
+  display: flex;
+  gap: 13px 18px;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+ion-text p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+ion-list {
+  padding: 0 20px;
+  background: #fff !important;
+}
+
+ion-toggle {
+  background: #fff !important;
+  margin-bottom: 25px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'montserrat';
+  --track-background-checked: #307d3d;
+}
+ion-toggle {
+  --track-background: #e0ac08;
+  --track-background-checked: #307d3d;
+  --handle-background: #307d3d;
+  --handle-background-checked: #e0ac08;
+}

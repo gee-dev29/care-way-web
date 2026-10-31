@@ -1,0 +1,77 @@
+.ion-padding {
+  height: 100vh;
+  padding-top: 100px;
+}
+
+.ion-padding h1 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.bts {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.label {
+  text-align: center;
+  margin-top: 20px !important;
+  font-weight: 500;
+}
+
+.mv_down {
+  margin-top: 20px !important;
+}
+
+p {
+  font-size: 16px;
+  margin-top: 0px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15%;
+}
+
+form {
+  height: 35vh;
+}
+
+h1,
+p {
+  color: black;
+}
+
+p {
+  margin-bottom: 40px;
+}
+
+ion-img {
+  width: 40% !important;
+}
+
+.left__arrow {
+  font-size: 25px;
+}
+
+.recent {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 1px;
+}
+
+.left__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  margin-left: -10px;
+}
+
+form {
+  margin-bottom: 30%;
+}

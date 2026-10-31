@@ -1,0 +1,53 @@
+ion-header {
+  margin-top: 0px;
+}
+ion-item {
+  padding: 8px 1rem;
+  border: none !important;
+}
+ion-checkbox {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
+  font-family: 'montserrat';
+  font-weight: 500 !important;
+}
+ion-item {
+  --inner-padding-end: 0;
+
+  ion-checkbox {
+    width: 100%;
+    justify-content: space-between;
+
+    label {
+      flex: 1;
+      white-space: normal !important;
+    }
+  }
+}
+.labeller {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'montserrat';
+}
+.cancel {
+  font-size: 17px;
+  font-weight: 600;
+  font-family: 'montserrat';
+  padding-left: 10px;
+}
+ion-button {
+  font-size: 18px;
+  color: #307d3d;
+  --color: #307d3d;
+}
+ion-searchbar {
+  padding-top: 20px 10px !important;
+}
+.flexxer p {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  font-size: 16px !important;
+  font-style: 500 !important;
+}

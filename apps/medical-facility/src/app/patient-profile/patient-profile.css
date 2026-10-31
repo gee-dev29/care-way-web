@@ -1,0 +1,334 @@
+ion-content {
+  --background: #ffffff !important;
+}
+
+#padding {
+  padding: 15px;
+  padding-top: 105px;
+}
+
+
+
+.back-icon {
+  font-size: 22px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.patient-card {
+  background: #eff6f0;
+  border-radius: 30px;
+  padding: 20px;
+  border: 1px solid #e4e5ee;
+}
+
+.patient-card .label {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.sub-text {
+  font-size: 14px;
+  color: #6b6b6b;
+}
+
+.appointment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0 15px;
+}
+
+.apt {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.bts {
+  background: #eff6f0;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  background: #eff6f0;
+  padding: 6px;
+  border-radius: 14px;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.tab {
+  border: none;
+  padding: 8px 18px;
+  border-radius: 10px;
+  background: transparent;
+  font-size: 14px;
+}
+
+.tab.active {
+  background: black;
+  color: white;
+}
+
+.appointment-card {
+  background: #eff6f0;
+  border-radius: 20px;
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #e4e5ee;
+}
+
+.doctor-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.doc-name {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.doc-role {
+  font-size: 14px;
+  color: #6b6b6b;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.skeleton-card {
+  background: white;
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.sk-title {
+  width: 70%;
+  height: 14px;
+}
+
+.sk-sub {
+  width: 50%;
+  height: 12px;
+  margin-top: 8px;
+}
+
+.sk-time {
+  width: 80%;
+  height: 12px;
+  margin-top: 12px;
+}
+
+ion-modal {
+  --background: #f4f5fe;
+  --height: 250px;
+  align-items: end;
+}
+
+.content {
+  padding: 12px;
+}
+
+.card__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.details {
+  background-color: #fff;
+  width: 100%;
+  padding: 6px 24px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.small__curve {
+  border-radius: 10px;
+  margin: 20px 0px !important;
+  background: #e7f6e9 !important;
+}
+
+.leftter {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: left;
+}
+
+.leftter ion-img {
+  width: 20%;
+}
+
+.left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#confirm__modal {
+  --height: fit;
+  align-items: center;
+}
+
+.full-field {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.select-body {
+  margin-top: 10px !important;
+  font-weight: 500;
+  color: black;
+}
+
+.assign-doctor {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 10px 0 20px 10px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  color: #121212;
+  font-weight: 500;
+}
+
+.card .cardTitle {
+  font-size: 14px;
+  color: #121212;
+}
+
+.card .cardSub {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #6f786f;
+}
+
+.card .btnRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.card {
+  min-width: 260px;
+  background: #eef4ef;
+  border-radius: 18px;
+  padding: 14px;
+  margin-bottom: 20px;
+}
+
+.apptMeta {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+  color: #6f786f;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.apptMeta .metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.apptMeta .metaItem ion-icon {
+  font-size: 16px;
+  color: #6f786f;
+}
+
+.label {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #1f7a3f;
+}
+
+.complaint {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #121212;
+  line-height: 1.35;
+}
+
+.member-name {
+  font-weight: 500;
+}
+
+.apptTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #6f786f;
+  margin-top: 2px;
+}
+
+.status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f5a623;
+}
+
+.pill {
+  height: 35px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #9aa39a;
+  background: #fff;
+  color: #121212;
+  font-size: 14px;
+}
+
+.pill.active {
+  background: #2c7a3f;
+  border-color: #2c7a3f;
+  color: #fff;
+}

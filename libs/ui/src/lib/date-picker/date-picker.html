@@ -1,0 +1,31 @@
+@if (isGeneric) {
+<ion-datetime
+  id="datetime"
+  presentation="date"
+  [preferWheel]="true"
+  [formControl]="control"
+  (ionChange)="onDateTimeChange($event.detail.value)"
+  [min]="min"
+  [max]="max"
+></ion-datetime>
+} @else { @if (byPassDate) {
+<ion-datetime
+  id="datetime"
+  presentation="date"
+  [preferWheel]="true"
+  [formControl]="control"
+  (ionChange)="onDateTimeChange($event.detail.value)"
+  [min]="today"
+  [max]="tenYearsBefore"
+></ion-datetime>
+} @else {
+<ion-datetime
+  id="datetime"
+  presentation="date"
+  [preferWheel]="true"
+  [formControl]="control"
+  (ionChange)="onDateTimeChange($event.detail.value)"
+  [min]="tenYearsBefore"
+  [max]="today"
+></ion-datetime>
+} }

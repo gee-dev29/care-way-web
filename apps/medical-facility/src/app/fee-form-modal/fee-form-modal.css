@@ -1,0 +1,39 @@
+.fee-modal {
+  --width: 90%;
+  --max-width: 420px;
+  --height: auto;
+  --border-radius: 16px;
+  --box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  --backdrop-opacity: 0.45;
+}
+
+.modal-body {
+  padding: 24px 20px;
+  background: #ffffff;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.close-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #d9463e;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}

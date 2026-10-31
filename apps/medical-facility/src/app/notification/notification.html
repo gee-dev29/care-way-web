@@ -1,0 +1,51 @@
+<ion-content id="background-content" fullscreen>
+  <div id="home">
+    <div class="ion-padding">
+      <a
+        class="recent"
+        tabindex="0"
+        (keyup.enter)="goBack()"
+        (click)="goBack()"
+      >
+        <ion-icon id="left__arrow" name="left-arrow"></ion-icon>
+        <p class="id__plus">Notifications</p>
+      </a>
+    </div>
+
+    @if (notifications$ | async; as items) {
+      @if (items.length === 0) {
+        <div class="empty__notifications">
+          <ion-img src="logo/message.svg"></ion-img>
+          <h3 class="id__plus">No Notifications</h3>
+          <p>We'll let you know when there will be something to update you.</p>
+        </div>
+      } @else {
+        <ion-list class="card__wrapper" lines="none">
+          @for (item of items; track item.id) {
+            <ion-item
+              button
+              detail="false"
+              [class.unread]="!item.read"
+              (click)="viewNotification(item)"
+            >
+              <ion-avatar slot="start">
+                <ion-img [src]="item.icon"></ion-img>
+              </ion-avatar>
+
+              <ion-label class="ion-text-wrap">
+                @if (item.titleHighlight) {
+                  <h3 class="note">{{ item.titleHighlight }}</h3>
+                }
+                @if (item.message) {
+                  <p>{{ item.message }}</p>
+                }
+              </ion-label>
+
+              <ion-note slot="end">{{ item.time }}</ion-note>
+            </ion-item>
+          }
+        </ion-list>
+      }
+    }
+  </div>
+</ion-content>

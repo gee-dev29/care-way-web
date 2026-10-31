@@ -1,0 +1,147 @@
+<ion-content id="background-content" class="ion-padding" fullscreen>
+  <div id="home">
+    <div class="invite-header">
+      <ion-icon
+        name="chevron-back-outline"
+        class="back-icon"
+        (click)="routeTo()"
+      ></ion-icon>
+      <ion-text class="page-title">Invitation Details</ion-text>
+      <div></div>
+    </div>
+
+    @if (invite) {
+
+    <ion-card class="invite-card">
+      <ion-card-content>
+        <div class="invite-section">
+          <ion-text class="section-label">Hospital</ion-text>
+          <ion-text class="section-value"
+            >{{ invite.facilityName || 'N/A' }}</ion-text
+          >
+        </div>
+
+        <div class="invite-section">
+          <ion-text class="section-label">Virtual Consultation</ion-text>
+          <ion-text class="section-value"
+            >{{ invite.virtualConsultation ? 'Enabled' : 'Disabled' }}</ion-text
+          >
+        </div>
+
+        <div class="invite-section">
+          <ion-text class="section-label">Virtual Consultation Fee</ion-text>
+          <ion-text class="section-value"
+            >{{ invite.virtualConsultationFee | currency:'NGN':'symbol':'1.0-0'
+            }}</ion-text
+          >
+        </div>
+
+        <div class="invite-section">
+          <ion-text class="section-label">Virtual Hospital Fee</ion-text>
+          <ion-text class="section-value"
+            >{{ invite.virtualHospitalFee | currency:'NGN':'symbol':'1.0-0'
+            }}</ion-text
+          >
+        </div>
+
+        <div class="invite-section">
+          <ion-text class="section-label">Virtual Settlement</ion-text>
+          <ion-text class="section-value"
+            >{{ invite.virtualConsultationSettlement || 'N/A' }}</ion-text
+          >
+        </div>
+
+        <div class="invite-section">
+          <ion-text class="section-label">Physical Consultation Fee</ion-text>
+          <ion-text class="section-value"
+            >{{ invite.physicalConsultationFee | currency:'NGN':'symbol':'1.0-0'
+            }}</ion-text
+          >
+        </div>
+
+        <div class="invite-section">
+          <ion-text class="section-label">Physical Hospital Fee</ion-text>
+          <ion-text class="section-value"
+            >{{ invite.physicalHospitalFee | currency:'NGN':'symbol':'1.0-0'
+            }}</ion-text
+          >
+        </div>
+
+        <div class="invite-section">
+          <ion-text class="section-label">Physical Settlement</ion-text>
+          <ion-text class="section-value"
+            >{{ invite.physicalConsultationSettlement || 'N/A' }}</ion-text
+          >
+        </div>
+
+        <div class="invite-section">
+          <ion-text class="section-label">Status</ion-text>
+          <ion-text class="section-value">{{ selectedInvite.status}}</ion-text>
+        </div>
+        @if (selectedInvite?.status === 'Rejected') {
+        <div class="invite-section-reason">
+          <ion-text class="section-label">Reason For Rejection</ion-text>
+          <ion-text class="section-value-reason"
+            >{{ selectedInvite.reason || 'No reason provided' }}</ion-text
+          >
+        </div>
+        }
+      </ion-card-content>
+    </ion-card>
+
+    @if(selectedInvite?.status ==='Pending') {
+    <div class="actions-row">
+      <button class="btnSolid" (click)="confirmInvitation()">Accept</button>
+      <button class="btnOutline" (click)="reject()">Reject</button>
+    </div>
+    } } @else {
+    <div class="empty-state">
+      <ion-text>No invite details found.</ion-text>
+    </div>
+    }
+  </div>
+</ion-content>
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to accept the invitation?'"
+  [background]="'#307D3D'"
+  [open]="confirmModal"
+  (next)="confirmAccept()"
+  (no)="cancelAccept()"
+  (dismiss)="cancelAccept()"
+></ui-confirmation-modal>
+
+<ion-modal
+  class="reject-modal"
+  [isOpen]="rejectModal"
+  (didDismiss)="closeReject()"
+>
+  <ng-template>
+    <div class="reject-modal-body">
+      <div class="reject-modal-header">
+        <ion-text class="reject-modal-title">Reject Invitation</ion-text>
+        <ion-icon
+          name="close-outline"
+          class="reject-close-icon"
+          (click)="closeReject()"
+        ></ion-icon>
+      </div>
+
+      <ui-input-textarea
+        [control]="reasonControl"
+        [label]="'Reason for rejection'"
+      ></ui-input-textarea>
+
+      <ui-button
+        [label]="'Submit'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [loading]="rejecting"
+        [disabled]="rejecting || !reasonControl.value?.trim()"
+        (Click)="submitReject()"
+      ></ui-button>
+    </div>
+  </ng-template>
+</ion-modal>

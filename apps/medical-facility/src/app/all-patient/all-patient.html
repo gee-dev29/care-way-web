@@ -1,0 +1,112 @@
+<ion-content fullscreen id="background">
+  <div id="patient" class="ion-padding">
+    <div class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title">Patients</div>
+
+      @if (!isNurse) {
+      <ui-plus-icon-component
+        size="'small'"
+        (addIdentity)="addPatient()"
+      ></ui-plus-icon-component>
+      } @else {
+      <div></div>
+      }
+    </div>
+
+    <div class="search__wrapper">
+      <ion-searchbar
+        class="custom-searchbar"
+        placeholder="Search patients"
+        (ionInput)="searchbarInput($event)"
+      ></ion-searchbar>
+    </div>
+    @if (loaded){
+
+    <div class="patient-list">
+      @if (allMembers$ | async; as patients) {
+      @for (patient of patients; track $index) {
+      <div
+        class="patient-card"
+        tabindex=""
+        (keyup.enter)="viewPatient(patient.memberId)"
+        (click)="viewPatient(patient.memberId)"
+      >
+        <div>
+          <p class="label">{{patient.firstName}}{{" "}}{{patient.lastName}}</p>
+          <div class="sub-text">
+
+            <span>{{patient.gender}}</span>
+           @if(patient.dob !== null) {
+          |   <span>{{ calculateAge(patient.dob) }} years</span>
+            }
+
+           |  <span>Blood Group: {{patient.bloodGroup ?? 'NA'}}</span>
+          </div>
+        </div>
+        <div>
+          <ion-icon src="/logo/frontarrow.svg"></ion-icon>
+        </div>
+      </div>
+
+      } @if (patients.length === 0 && searchTerm.trim()) {
+      <div class="empty">
+        <div class="empty-icon">
+          <ion-icon name="search-outline"></ion-icon>
+        </div>
+        <span class="empty-title">No results found</span>
+        <span class="empty-text">
+          Nothing matches "{{ searchTerm.trim() }}". Try a different search.
+        </span>
+      </div>
+      } @if (patients.length === 0 && !searchTerm.trim()) {
+      <div class="empty">
+        <div class="empty-icon">
+          <ion-icon name="people-outline"></ion-icon>
+        </div>
+        <span class="empty-title">No patients yet</span>
+        <span class="empty-text">You have no patients to show.</span>
+      </div>
+      }
+      }
+    </div>
+
+    } @else {
+
+    <div class="content">
+      <div class="patients-list">
+        @for (p of patient; track $index) {
+        <div class="content">
+          <div class="patients-list">
+            @for (p of patient; track $index) {
+            <div class="patient-card">
+              <div>
+                <ion-skeleton-text
+                  animated
+                  style="width: 160px; height: 14px; margin-bottom: 8px"
+                ></ion-skeleton-text>
+
+                <ion-skeleton-text
+                  animated
+                  style="width: 220px; height: 12px"
+                ></ion-skeleton-text>
+              </div>
+
+              <div>
+                <ion-skeleton-text
+                  animated
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                ></ion-skeleton-text>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+
+        }
+      </div>
+    </div>
+
+    }
+  </div>
+</ion-content>

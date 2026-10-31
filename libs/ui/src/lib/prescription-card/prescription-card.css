@@ -1,0 +1,105 @@
+ion-content {
+  --background: transparent;
+}
+
+.drug-card {
+  background: white;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  margin-top: 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+ion-icon{
+  font-size: 22px;
+}
+
+.dropDown{
+  margin-top: 20px;
+}
+
+.dropDown ion-icon{
+  font-size: 20px;
+}
+
+.drug-header {
+  background: #307d3d;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.drug-header p {
+  font-weight: 600;
+}
+
+.top-action {
+  display: flex;
+  justify-content: flex-end;
+  margin: 16px 0;
+}
+
+.add-btn {
+  background: black;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.add-btn icon-icon {
+  font-size: 30px;
+  color: white;
+}
+
+.edit {
+  display: flex;
+  gap: 15px;
+}
+
+.edit ion-icon {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.drug-body {
+  padding: 15px 20px;
+}
+
+.row-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  font-size: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.row-item.no-border {
+  border-bottom: none;
+}
+
+.left {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.request-btn {
+  width: 100%;
+  padding: 18px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+}

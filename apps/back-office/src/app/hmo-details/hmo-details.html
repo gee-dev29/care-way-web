@@ -1,0 +1,137 @@
+<ui-page-body>
+  <div class="table__head">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">HMO</h2>
+    </div>
+    @if(activeTab === 0){
+    <ui-desktop-button
+      [label]="'Upload Logo'"
+      [primary]="false"
+      (Click)="showUpload()"
+    ></ui-desktop-button>
+    } @if(activeTab === 1){
+    <ui-desktop-button
+      [label]="'Create a Product'"
+      [primary]="true"
+      (Click)="showCreateProductModal()"
+    ></ui-desktop-button>
+    } @if(activeTab === 2){
+    <ui-desktop-button
+      [label]="'Add Hospital'"
+      [primary]="true"
+      (Click)="addHospital()"
+    ></ui-desktop-button>
+    }
+  </div>
+  <div>
+    <ui-tab
+      [tabs]="tabs"
+      [value]="activeTab"
+      (tabChange)="activeTab = $event"
+    ></ui-tab>
+  </div>
+  @if (activeTab === 0) {
+  <back-office-hmo-details-card
+    [hmoDetails$]="hmoDetails$"
+    (editHmoDetails)="editHmoDetails($event)"
+  ></back-office-hmo-details-card>
+  } @if (activeTab === 0) {
+  <ui-upload-card
+    [uploads$]="uploads$"
+    [showDelete]="true"
+    [primaryView]="false"
+  ></ui-upload-card>
+  } @if (activeTab === 1) {
+  <back-office-hmo-product-table
+    [hmoId]="hmoId"
+    [reloadProducts]="reloadProducts"
+    (productsLoaded)="productsLoaded()"
+    (editHmoProduct)="editHmoProduct($event)"
+  ></back-office-hmo-product-table>
+  } @if(activeTab === 2){
+  <back-office-hmo-hospital-table
+    [hmoId]="hmoId"
+  ></back-office-hmo-hospital-table>
+  }
+</ui-page-body>
+
+@if(isUploadLogo){
+<ui-desktop-upload
+  [isOpen]="true"
+  (closed)="isUploadLogo = false"
+  (upload)="uploadImage($event)"
+></ui-desktop-upload>
+} @if (isCreateProductModal) {
+<div class="modal__overlay" (click)="isCreateProductModal = false">
+  <div class="modal__container" (click)="$event.stopPropagation()">
+    <div class="modal__header">
+      <h2>{{ editingHmoProductId ? 'Edit Product' : 'Create Product' }}</h2>
+
+      <i class="pi pi-times" (click)="isCreateProductModal = false"> </i>
+    </div>
+
+    <form [formGroup]="form">
+      <div class="modal__body">
+        <div class="input__row">
+          <ui-desktop-input
+            [label]="'Name'"
+            [control]="productName"
+          ></ui-desktop-input>
+          <ui-desktop-input
+            [label]="'Price'"
+            [control]="price"
+            [type]="'number'"
+          ></ui-desktop-input>
+        </div>
+        <div class="input__row">
+          <ui-desktop-input
+            [label]="'Markup (%)'"
+            [control]="markUp"
+            [type]="'number'"
+          ></ui-desktop-input>
+          <ui-desktop-input
+            [label]="'Duration In Months'"
+            [control]="durationInMonths"
+            [type]="'number'"
+          ></ui-desktop-input>
+        </div>
+        <div class="input__row">
+          <ui-desktop-input
+            [label]="'No of Members'"
+            [control]="memberCount"
+            [type]="'number'"
+          ></ui-desktop-input>
+          <ui-desktop-input
+            [label]="'Waiting Period (In Days)'"
+            [control]="waitingPeriods"
+          ></ui-desktop-input>
+        </div>
+        <div class="input__row">
+          <ui-desktop-chips
+            [label]="'Inclusions'"
+            [control]="inclusions"
+          ></ui-desktop-chips>
+          <ui-desktop-chips
+            [label]="'Exclusions'"
+            [control]="exclusions"
+          ></ui-desktop-chips>
+        </div>
+      </div>
+    </form>
+    <ui-desktop-button
+      [label]="'Save'"
+      [primary]="true"
+      (Click)="saveProduct()"
+      [disabled]="!form.valid || loading"
+    ></ui-desktop-button>
+  </div>
+</div>
+}

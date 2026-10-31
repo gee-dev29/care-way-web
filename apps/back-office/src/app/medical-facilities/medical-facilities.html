@@ -1,0 +1,71 @@
+<p-table
+  #dt1
+  dataKey="id"
+  [lazy]="true"
+  [paginator]="true"
+  [rows]="20"
+  [totalRecords]="totalRecords"
+  [value]="medicalFacilities$ | async"
+  (onLazyLoad)="load($event)"
+  [rowsPerPageOptions]="[20, 50, 100]"
+>
+  <ng-template #header>
+    <tr>
+      <th>Facility Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Country</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>
+        <p-columnFilter
+          type="text"
+          field="name"
+          [showMenu]="false"
+        ></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter
+          type="text"
+          field="email"
+          [showMenu]="false"
+        ></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter
+          type="text"
+          field="phoneNumber"
+          [showMenu]="false"
+        ></p-columnFilter>
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.phoneNumber }}</td>
+      <td>{{ item.country }}</td>
+      <td>
+        <ui-desktop-button
+          [label]="'View'"
+          [primary]="true"
+          [size]="'small'"
+          (Click)="view(item)"
+        ></ui-desktop-button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="7">
+        <div class="empty__table__text">
+          There are no Medical facilities yet
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

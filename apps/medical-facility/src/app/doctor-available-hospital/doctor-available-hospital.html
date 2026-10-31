@@ -1,0 +1,125 @@
+<div class="hospitals">
+  @if (!isLoading) {
+
+  <div class="header">
+    <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+
+    <div class="title">Hospitals</div>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="searchWrap">
+    <ion-searchbar
+      placeholder="Search"
+      mode="ios"
+      show-clear-button="never"
+      class="search"
+      (ionInput)="onSearch($event)"
+    ></ion-searchbar>
+  </div>
+
+  <div class="list">
+    @for (h of filteredFacilities; track h.facilityId) {
+
+    <div
+      class="card"
+      tabindex="0"
+      (click)="openHospital(h)"
+      (keyup.enter)="openHospital(h)"
+    >
+      <div class="left">
+        <div class="top">
+          <p class="name">{{ h.facilityName }}</p>
+
+          <p class="sub">{{ h.status}}</p>
+        </div>
+        <p class="name">Specializations</p>
+        <div class="spec-wrapper" [class.expanded]="h.showAllSpecs">
+          @for(spec of getVisibleSpecs(h); track $index){
+          <li class="spec">{{ spec }}</li>
+          }
+        </div>
+
+        @if (h.specializations?.length > 5) {
+        <p class="view-more" (click)="toggleSpecs(h, $event)">
+          {{ h.showAllSpecs ? 'View less' : 'View All' }}
+        </p>
+        }
+      </div>
+    </div>
+
+    } @if (filteredFacilities.length === 0 && searchTerm.trim()) {
+    <div class="empty">
+      <div class="empty-icon">
+        <ion-icon name="search-outline"></ion-icon>
+      </div>
+      <span class="empty-title">No results found</span>
+      <span class="empty-text">
+        Nothing matches "{{ searchTerm.trim() }}". Try a different search.
+      </span>
+    </div>
+    } @if (filteredFacilities.length === 0 && !searchTerm.trim()) {
+    <div class="empty">
+      <div class="empty-icon">
+        <ion-icon name="business-outline"></ion-icon>
+      </div>
+      <span class="empty-title">No hospitals yet</span>
+      <span class="empty-text">You have no hospitals to show.</span>
+    </div>
+    }
+  </div>
+
+  } @else {
+
+  <div class="header">
+    <ion-button fill="clear" class="back">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <ion-skeleton-text
+      animated
+      style="width: 120px; height: 16px"
+    ></ion-skeleton-text>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="searchWrap">
+    <div class="searchSkeleton">
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 44px"
+      ></ion-skeleton-text>
+    </div>
+  </div>
+
+  <div class="list">
+    @for (_ of [1,2,3,4]; track _) {
+    <div class="card skCard">
+      <div class="left">
+        <ion-skeleton-text
+          animated
+          style="width: 140px; height: 14px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 130px; height: 12px; margin-top: 8px"
+        ></ion-skeleton-text>
+      </div>
+
+      <div class="right">
+        <ion-skeleton-text
+          animated
+          style="width: 110px; height: 12px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 90px; height: 12px; margin-top: 8px"
+        ></ion-skeleton-text>
+      </div>
+
+      <ion-skeleton-text animated class="skChev"></ion-skeleton-text>
+    </div>
+    }
+  </div>
+
+  }
+</div>

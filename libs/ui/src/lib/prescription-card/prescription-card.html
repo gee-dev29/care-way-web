@@ -1,0 +1,91 @@
+<div class="top-action">
+  @if (canAdd) {
+  <div class="add-btn" tabindex="" (keyup.enter)="add()" (click)="add()">
+    <ion-icon src="/logo/add-circle.svg"></ion-icon>
+    Add
+  </div>
+  }
+</div>
+@if (drug) { @for (d of drug; track $index;let i = $index) {
+<div class="drug-card">
+  <div class="drug-header">
+    <p>{{ d.type }}</p>
+    @if(d.status === documentStatus.Draft && !module){
+    <div class="edit">
+      <ion-icon src="/logo/edit.svg" (click)="edit(d)"></ion-icon>
+      <ion-icon src="/logo/close.svg" (click)="remove()"></ion-icon>
+    </div>
+    }
+  </div>
+  <div class="drug-body">
+    @if (d.form) {
+    <div class="row-item">
+      <p class="left">Form</p>
+      <p class="right">{{ d.form }}</p>
+    </div>
+    } @if (d.activeIngredient) {
+    <div class="row-item">
+      <p class="left">Active Ingredient</p>
+      <p class="right">{{ d.activeIngredient }}</p>
+    </div>
+    } @if (d.frequencyOfUse) {
+    <div class="row-item no-border">
+      <p class="left bold">Frequency of Use</p>
+      <p class="right">{{ d.frequencyOfUse }}</p>
+    </div>
+    } @if (d.durationType) {
+    <div class="row-item no-border">
+      <p class="left bold">Duration Type</p>
+      <p class="right">{{ d.durationType }}</p>
+    </div>
+    } @if (d.duration) {
+    <div class="row-item no-border">
+      <p class="left bold">Duration</p>
+      <p class="right">{{ d.duration }}</p>
+    </div>
+    } @if (d.strength) {
+    <div class="row-item no-border">
+      <p class="left bold">Strength</p>
+      <p class="right">{{ d.strength }}</p>
+    </div>
+    }@if (d.product) {
+    <div class="row-item no-border">
+      <p class="left bold">Product</p>
+      <p class="right">{{ d.product }}</p>
+    </div>
+    }@if (d.quantity) {
+    <div class="row-item no-border">
+      <p class="left bold">Quantity</p>
+      <p class="right">{{ d.quantity }}</p>
+    </div>
+    } @if (d.status) {
+    <div class="row-item no-border">
+      <p class="left bold">Status</p>
+      <p class="right">{{ d.status }}</p>
+    </div>
+    }
+    <div class="row-item no-border">
+      <p class="left">Frequency Of Use</p>
+      <div class="right">
+        <ion-icon
+          [name]="expandedIndex === i ? 'chevron-up' : 'chevron-down'"
+          (click)="showDropDown(i)"
+        ></ion-icon>
+      </div>
+    </div>
+  </div>
+  @if (expandedIndex===i) {
+  <ui-schedule-card [schedule]="d.schedule"></ui-schedule-card>
+  }
+</div>
+} }
+<ui-button
+  (Click)="sendRequest()"
+  [label]="'Request Cost'"
+  [disabled]="disabled "
+  [loading]="isLoading"
+  [width]="'full'"
+  [fill]="'solid'"
+  [shape]="'round'"
+  [backgroundColor]="'#307d3d'"
+></ui-button>

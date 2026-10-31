@@ -1,0 +1,267 @@
+<ui-page-body>
+  <div class="table__head">
+    <h2 class="title">Medical Facility</h2>
+    <ui-split-button
+      [label]="label"
+      [items]="items"
+      class="ml-auto"
+      (Change)="show()"
+    ></ui-split-button>
+  </div>
+  <ui-tab
+    [tabs]="tabs"
+    [value]="activeTab"
+    (tabChange)="setActiveTab($event)"
+  ></ui-tab>
+
+  <div class="ml-1">
+    @if (activeTab !== 0) {
+    <ui-page-highlight
+      [primaryDetailTitle]="'Facility:'"
+      [primaryDetail]="facilityName"
+      [secondaryDetailTitle]="'Email:'"
+      [secondaryDetail]="facilityEmail"
+    ></ui-page-highlight
+    >} @if (activeTab === 0) {
+    <div class="medical__main">
+      <div class="medical__left">
+        <ui-medical-facility-details-card
+          [medicalFacility$]="medicalFacility$"
+        ></ui-medical-facility-details-card>
+      </div>
+    </div>
+    } @if (activeTab === 1) {
+    <!-- for hospital -->
+    <div class="mt-1">
+      @if (activeTab === 1) {
+      <ui-hospital-category-details-card
+        [medicalFacilities$]="medicalFacilityDetails$"
+        [currentFacilityType]="tabToFacilityType[activeTab]"
+        [totalRecords]="totalRecords"
+        (viewDetails)="view($event)"
+      >
+      </ui-hospital-category-details-card>
+      }
+
+      <!-- add forms -->
+      <!-- <div class="medical__right">
+          @if (hospitalActiveTab === 0) { } @if (hospitalActiveTab === 1) {
+          <back-office-desktop-license
+            [hospitalId]="hospitalId"
+            [facilityType]="'Hospital'"
+            [api]="api"
+            (saved)="onLicenseSaved($event)"
+            (cancelled)="onCancel()"
+          ></back-office-desktop-license>
+
+          } @if (hospitalActiveTab === 2) {
+          <shared-add-bank-account-details
+            [facilityType]="'Hospital'"
+            [api]="api"
+            [hospitalId]="userTypeId"
+            (saved)="onBankSaved($event)"
+            (cancelled)="onCancel()"
+          ></shared-add-bank-account-details>
+          } @if (hospitalActiveTab === 3) {
+          <shared-add-address
+            [facilityType]="'Hospital'"
+            [api]="api"
+            [hospitalId]="userTypeId"
+            (saved)="onAddressesSaved($event)"
+            (cancelled)="onCancel()"
+          ></shared-add-address>
+          } @if (hospitalActiveTab === 4) {
+          <shared-add-patient-card-type
+            (saved)="onHospitalSaved($event)"
+            (cancelled)="onCancel()"
+          ></shared-add-patient-card-type>
+          }
+        </div> -->
+    </div>
+    } @if (activeTab === 2) {
+    <!-- for pharmacy -->
+    <div class="mt-1">
+      <div class="medical__main">
+        <div class="medical__left">
+          @if (activeTab === 2) {
+          <ui-hospital-category-details-card
+            [medicalFacilities$]="medicalFacilityDetails$"
+            [currentFacilityType]="tabToFacilityType[activeTab]"
+            [totalRecords]="totalRecords"
+            (viewDetails)="view($event)"
+          >
+          </ui-hospital-category-details-card>
+          }
+        </div>
+
+        <!-- add forms -->
+        <!-- <div class="medical__right">
+          @if (pharmacyActiveTab === 0) { } @if (pharmacyActiveTab === 1) {
+          <back-office-desktop-license
+            [hospitalId]="userTypeId"
+            [facilityType]="'Pharmacy'"
+            [api]="api"
+            (saved)="onLicenseSaved($event)"
+            (cancelled)="onCancel()"
+          ></back-office-desktop-license>
+          } @if (pharmacyActiveTab === 2) {
+          <shared-add-bank-account-details
+            [facilityType]="'Pharmacy'"
+            [api]="api"
+            [hospitalId]="userTypeId"
+            (saved)="onBankSaved($event)"
+            (cancelled)="onCancel()"
+          ></shared-add-bank-account-details>
+          } @if (pharmacyActiveTab === 3) {
+          <shared-add-address
+            [facilityType]="'Pharmacy'"
+            [api]="api"
+            [hospitalId]="userTypeId"
+            (saved)="onAddressesSaved($event)"
+            (cancelled)="onCancel()"
+          ></shared-add-address>
+          }
+        </div> -->
+      </div>
+    </div>
+    } @if (activeTab === 3) {
+    <!-- laboratory -->
+    <div class="mt-1">
+      <div class="medical__main">
+        <div class="medical__left">
+          @if (activeTab === 3) {
+          <ui-hospital-category-details-card
+            [medicalFacilities$]="medicalFacilityDetails$"
+            [currentFacilityType]="tabToFacilityType[activeTab]"
+            [totalRecords]="totalRecords"
+            (viewDetails)="view($event)"
+          >
+          </ui-hospital-category-details-card>
+          }
+        </div>
+
+        <!-- add forms -->
+        <!-- <div class="medical__right">
+          @if (laboratoryActiveTab === 0) { } @if (laboratoryActiveTab === 1) {
+          <back-office-desktop-license
+            [hospitalId]="hospitalId"
+            [facilityType]="'Laboratory'"
+            [api]="api"
+            (saved)="onLicenseSaved($event)"
+            (cancelled)="onCancel()"
+          ></back-office-desktop-license>
+          } @if (laboratoryActiveTab === 2) {
+          <shared-add-bank-account-details
+            [facilityType]="'Laboratory'"
+            [api]="api"
+            [hospitalId]="hospitalId"
+            (saved)="onBankSaved($event)"
+            (cancelled)="onCancel()"
+          ></shared-add-bank-account-details>
+          } @if (laboratoryActiveTab === 3) {
+          <shared-add-address
+            [facilityType]="'Laboratory'"
+            [api]="api"
+            [hospitalId]="hospitalId"
+            (saved)="onAddressesSaved($event)"
+            (cancelled)="onCancel()"
+          ></shared-add-address>
+          }
+        </div> -->
+      </div>
+    </div>
+    } @if (activeTab === 4) {
+    <!-- Blood Bank -->
+    <div class="mt-1">
+      <div class="medical__main">
+        <div class="medical__left">
+          @if (activeTab === 4) {
+          <ui-hospital-category-details-card
+            [medicalFacilities$]="medicalFacilityDetails$"
+            [currentFacilityType]="tabToFacilityType[activeTab]"
+            [totalRecords]="totalRecords"
+            (viewDetails)="view($event)"
+          >
+          </ui-hospital-category-details-card>
+          }
+        </div>
+
+        <!-- add forms -->
+        <!-- <div class="medical__right">
+          @if (bloodBankActiveTab === 0) { } @if (bloodBankActiveTab === 1) {
+          <back-office-desktop-license
+            [hospitalId]="userTypeId"
+            [facilityType]="'Blood Bank'"
+            [api]="api"
+            (saved)="onLicenseSaved($event)"
+            (cancelled)="onCancel()"
+          ></back-office-desktop-license>
+          } @if (bloodBankActiveTab === 2) {
+          <shared-add-bank-account-details
+            [facilityType]="'Blood Bank'"
+            [api]="api"
+            [hospitalId]="userTypeId"
+            (saved)="onBankSaved($event)"
+            (cancelled)="onCancel()"
+          ></shared-add-bank-account-details>
+          } @if (bloodBankActiveTab === 3) {
+          <shared-add-address
+            [facilityType]="'Blood Bank'"
+            [api]="api"
+            [hospitalId]="userTypeId"
+            (saved)="onAddressesSaved($event)"
+            (cancelled)="onCancel()"
+          ></shared-add-address>
+          }
+        </div> -->
+      </div>
+    </div>
+    }@if (activeTab === 5) {
+    <!-- Radiology -->
+    <div class="mt-1">
+      <div class="medical__main">
+        <div class="medical__left">
+          @if (activeTab === 5) {
+          <ui-hospital-category-details-card
+            [medicalFacilities$]="medicalFacilityDetails$"
+            [currentFacilityType]="tabToFacilityType[activeTab]"
+            [totalRecords]="totalRecords"
+            (viewDetails)="view($event)"
+          >
+          </ui-hospital-category-details-card>
+          }
+        </div>
+
+        <!-- add forms -->
+        <!-- <div class="medical__right">
+          @if (radiologyActiveTab === 0) { } @if (radiologyActiveTab === 1) {
+          <back-office-desktop-license
+            [hospitalId]="userTypeId"
+            [facilityType]="'Radiology'"
+            [api]="api"
+            (saved)="onLicenseSaved($event)"
+            (cancelled)="onCancel()"
+          ></back-office-desktop-license>
+          } @if (radiologyActiveTab === 2) {
+          <shared-add-bank-account-details
+            [facilityType]="'Radiology'"
+            [api]="api"
+            [hospitalId]="hospitalId"
+            (saved)="onBankSaved($event)"
+            (cancelled)="onCancel()"
+          ></shared-add-bank-account-details>
+          } @if (radiologyActiveTab === 3) {
+          <shared-add-address
+            [facilityType]="'Radiology'"
+            [api]="api"
+            [hospitalId]="userTypeId"
+            (saved)="onAddressesSaved($event)"
+            (cancelled)="onCancel()"
+          ></shared-add-address>
+          }
+        </div> -->
+      </div>
+    </div>
+    }
+  </div>
+</ui-page-body>

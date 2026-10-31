@@ -1,0 +1,70 @@
+<ion-content id="background-content" fullscreen>
+  @if (loaded) {
+  <div id="prescription" class="ion-padding">
+    <div class="recent">
+      <div class="header">
+        <ion-icon (click)="goBack()" slot="start" name="chevron-back-outline"></ion-icon>
+        <h4>Select Address</h4>
+      </div>
+      <div
+        (click)="addAddress()"
+        tabindex=""
+        (keyup)="addAddress()"
+        class="add-address"
+      >
+        <ion-icon slot="start" [src]="'icons/circlePlusB.svg'"></ion-icon>
+      </div>
+    </div>
+    @for (item of (myAddress$ | async); track $index) {
+    <ion-card class="small__curve">
+      <ion-card-content class="content" (click)="continue(item)">
+        <div class="location-wrapper">
+          <div class="location">
+            <ion-icon color="light" name="location"></ion-icon>
+          </div>
+          <p>{{item.address}}</p>
+        </div>
+
+        <ion-icon name="arrow-forward" color="dark" class="arrow"></ion-icon>
+      </ion-card-content>
+    </ion-card>
+    }
+
+    <!-- <div class="end">
+      <h4>Account Addresses</h4>
+    </div> -->
+  </div>
+
+  } @else {
+  <div id="prescription" class="ion-padding">
+    <div class="recent">
+      <p>
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 150px"
+        ></ion-skeleton-text>
+      </p>
+      <p>
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 100px"
+        ></ion-skeleton-text>
+      </p>
+    </div>
+
+    <ion-skeleton-text
+      class="small__curve"
+      [animated]="true"
+      style="width: 100%; height: 90px; margin-top: 15px"
+    >
+    </ion-skeleton-text>
+
+    <div class="end" style="margin-top: 25px">
+      <p>
+        <ion-skeleton-text [animated]="true" style="width: 180px">
+        </ion-skeleton-text>
+      </p>
+    </div>
+  </div>
+  }
+</ion-content>

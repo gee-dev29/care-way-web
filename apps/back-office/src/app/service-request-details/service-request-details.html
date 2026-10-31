@@ -1,0 +1,182 @@
+@if (serviceRequest$ | async; as serviceRequest) {
+<ui-page-body>
+  <div class="table__head mb-1">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">{{referralType}} Medical Request</h2>
+    </div>
+    @if (serviceRequest.status === serviceRequestStatus.Pending) {
+    <ui-desktop-button
+      [label]="'Send Request'"
+      [primary]="true"
+      [size]="'large'"
+      (Click)="openConnectFacilityTypesModal()"
+    ></ui-desktop-button>
+    }
+  </div>
+  <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+  <div class="ml-1">
+    @if (activeTab !== 0) {
+    <ui-page-highlight
+      [primaryDetailTitle]="'Request Code:'"
+      [primaryDetail]="serviceRequest.serviceRequestCode"
+      [secondaryDetailTitle]="'Member:'"
+      [secondaryDetail]="member"
+    ></ui-page-highlight
+    >} @if (activeTab === 0) {
+    <div class="main">
+      <div class="main__left">
+        <ui-service-request-details-card
+          [serviceRequest$]="serviceRequest$"
+          [member$]="member$"
+        ></ui-service-request-details-card>
+      </div>
+      <div class="main__right mt-2">
+        @if ((uploads$ | async)?.length > 0) {
+        <div class="table__head">
+          <h2 class="title">Attachments</h2>
+        </div>
+        <ui-upload-card [uploads$]="uploads$"></ui-upload-card>
+        }
+      </div>
+    </div>
+    <div class="mt-4">
+      @if (showReferralItems) {
+      <back-office-referral-items
+        [heading]="'Referral Items'"
+        [referralItems]="referralItems"
+        [totalRecords]="referralItemsTotalRecords"
+        [referralType]="referralType"
+        [isReferral]="referralType"
+      ></back-office-referral-items>
+      }
+    </div>
+    @if (activeTab === 0) {
+    <div class="mt-2">
+      <back-office-service-request-table
+        [connectedServiceRequests$]="connectedServiceRequests$"
+        [isSkeleton]="true"
+        [totalRecords]="connectedServiceRequestsTotalRecords"
+        [showAccept]="true"
+        [showFacilityName]="true"
+        [heading]="'Facility Requests'"
+        (acceptRequest)="openServiceRequestAcceptanceConfirmation($event)"
+        (viewCost)="viewCost($event)"
+        [referralType]="referralType"
+      ></back-office-service-request-table>
+    </div>
+    } } @if (activeTab === 1) {
+    <back-office-order-table
+      [serviceRequestId]="serviceRequestId"
+    ></back-office-order-table>
+    }
+  </div>
+</ui-page-body>
+} @if (connectFacilityTypesModal) {
+<ui-modal
+  [(visibility)]="connectFacilityTypesModal"
+  [selectedWidth]="'40vw'"
+  [header]="connectFacilityTypeHeading"
+>
+  <back-office-medical-facility-table
+    [facilityType]="facilityType"
+    [isSkeleton]="true"
+    (onRowSelect)="onRowSelect($event)"
+    (onRowUnselect)="onRowUnselect($event)"
+    (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event)"
+    (sendRequest)="proceed()"
+    [tableHeading]="referralTypeTableHeading + ' (' + selected.size + ' selected)'"
+    [disabled]="selected.size === 0"
+    [connectedRequests]="connectedServiceRequests$ | async"
+  ></back-office-medical-facility-table>
+</ui-modal>
+} @if (requestConfirmationModal) {<ui-modal
+  [(visibility)]="requestConfirmationModal"
+  [selectedWidth]="'40vw'"
+  [header]="'Request Instruction'"
+>
+  <div class="mb-2">
+    <form>
+      <ui-input-textarea
+        [label]="'Instruction'"
+        [control]="instruction"
+      ></ui-input-textarea>
+    </form>
+    <ui-desktop-button
+      [label]="'Send Request'"
+      [size]="'full'"
+      [primary]="true"
+      (Click)="sendRequest()"
+      [disabled]="!form.valid"
+    ></ui-desktop-button>
+  </div> </ui-modal
+>} @if (serviceRequestConfirmationModal) {<ui-confirmation-modal-desktop
+  [(visibility)]="serviceRequestConfirmationModal"
+  (proceed)="acceptRequest()"
+  [message]="confirmationMessage"
+  [loading]="loading"
+></ui-confirmation-modal-desktop
+>}
+
+<ui-modal
+  [(visibility)]="costModal"
+  [selectedWidth]="'60vw'"
+  [header]="'Cost from ' + costRequestFacilityName + ''"
+>
+  @if(costModal){ @if(costRequests$ | async; as groups) { @for(group of groups;
+  track group.activeIngredient ?? group.testGroup ?? group.serviceName) {
+  @if(group.activeIngredient) {
+  <h4 class="title">{{ group.activeIngredient }}</h4>
+  } @if(group.testGroup) {
+  <h4 class="title">{{ group.testGroup }}</h4>
+  } @if( group.activeIngredient || group.testGroup || group.serviceName) {
+  <h4 class="title">{{ group.serviceName }}</h4>
+  }@for(item of group.data; track item.costingId) {
+  <div class="content mb-1">
+    <div class="table__head">
+      <div class="grouped__btn gap">
+        <h4>{{ item.product }}</h4>
+        <h4>{{ item.testName }}</h4>
+        <h5>{{ item.bloodGroup }}</h5>
+        @if(!item.bloodGroup) {
+        <h4 class="title">{{ item.serviceName }}</h4>
+        } @if(item.type) {
+        <p>({{ item.type }})</p>
+        }
+      </div>
+      <div class="details">
+        <h4>{{ item.cost | currency: 'NGN ' }}</h4>
+      </div>
+    </div>
+    <div class="table__head">
+      <div class="details">
+        @if(item.bloodGroup){
+        <p class="pl">Quantity: {{ item.quantity }}</p>
+        }
+        <p>{{ item.strength }}</p>
+      </div>
+      <div class="details">
+        <p>{{ item.form }}</p>
+      </div>
+    </div>
+  </div>
+  } } } }
+  <div class="table__head pl-2 mb-3 bg">
+    <h2>Total</h2>
+    <h2>{{ costRequestTotal | currency: 'NGN ' }}</h2>
+  </div>
+  <ui-desktop-button
+    [size]="'full'"
+    [label]="'Accept'"
+    [primary]="true"
+    [disabled]="costRequestStatus !== this.serviceRequestStatus.Processed"
+    (Click)="openConfirmationFromCostModal()"
+  ></ui-desktop-button>
+</ui-modal>

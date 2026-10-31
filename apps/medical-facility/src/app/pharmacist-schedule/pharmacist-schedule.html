@@ -1,0 +1,15 @@
+<ion-content>
+  <ui-appointment-form
+    [title]="'Schedule Appointment'"
+    [date]="date"
+    [time]="time"
+    [noteLabel]="'Presenting Complaints'"
+    [note]="notes"
+    [doctors]="doctors"
+    (dateChange)="date = $event"
+    (noteChange)="notes = $event"
+    (timeChange)="time = $event"
+    (proceed)="proceed()"
+    (back)="goBack()"
+  ></ui-appointment-form>
+</ion-content>

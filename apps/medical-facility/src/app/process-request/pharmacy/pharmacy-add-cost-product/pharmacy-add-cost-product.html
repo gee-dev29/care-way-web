@@ -1,0 +1,179 @@
+<ion-content id="background-content" fullscreen>
+  <div id="add__member" class="ion-padding">
+    <div
+      class="up"
+      (keyup.enter)="goBack()"
+      tabindex="0"
+      role="button"
+      (click)="goBack()"
+    >
+      <ion-icon src="/logo/backarrow.svg"></ion-icon>
+      <ion-text class="title">Medical Request</ion-text>
+    </div>
+
+    <div class="container">
+      <div class="info-card">
+        <div class="column">
+          <div class="label">Form</div>
+          <div class="value">{{oneData?.form}}</div>
+        </div>
+
+        <div class="column">
+          <div class="label">Active ingredient</div>
+          <div class="value">{{oneData?.activeIngredient}}</div>
+        </div>
+      </div>
+
+      <div class="plus-button">
+        <ion-icon name="add-outline" (click)="showAddCostProduct()"></ion-icon>
+      </div>
+
+      @if(oneData?.products?.length > 0){
+      <div class="tablet-details-container">
+        <div class="outer-card">
+          @for(items of oneData?.products; track $index){
+
+          <div class="inner-card">
+            <div class="icons">
+              <ion-icon
+                name="create-outline"
+                aria-label="Edit"
+                (click)="onEdit(oneData.id, items.id)"
+              ></ion-icon>
+              <ion-icon
+                name="trash-outline"
+                aria-label="Delete"
+                (click)="toggleDeleteBtn(oneData.id, items.id)"
+              ></ion-icon>
+            </div>
+            <div class="drug-info">
+              <div class="drug-name">
+                {{items.product}}<br />
+                {{items.strength}}
+              </div>
+              <div class="class">
+                <ion-text class="drug-price">
+                  {{ items.cost | currency:"NGN" }}</ion-text
+                >
+                <ion-text class="drug-name">{{ oneData.form }}</ion-text>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+
+        <div class="ui__button">
+          <ui-button
+            (Click)="save()"
+            [label]="'Save'"
+            [disabled]="loading || oneData.products.length===0"
+            [loading]="loading"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+            [textColor]="'#FDFDFD'"
+            [showImage]="false"
+          ></ui-button>
+        </div>
+      </div>
+
+      }
+    </div>
+  </div>
+</ion-content>
+
+<ion-modal
+  [isOpen]="addCostProduct || editModal"
+  (didDismiss)="addCostProduct=false || editModal = false"
+  #confirmation
+  id="confirm__modal"
+>
+  <ng-template>
+    <div class="modal-card">
+      <form [formGroup]="form">
+        <ui-input
+          [label]="'Product Name'"
+          [control]="product"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [selectedText]="form.value.product"
+          [selectedItem]="[form.value.product]"
+          [isClicked]="greenBookOpen"
+          [type]="'dropdown'"
+          [options]="ingredients"
+          (data)="openIngredient()"
+          (emitted)="offIngredient();selectGreenBook()"
+        ></ui-input>
+        <!-- @if (greenBookOpen) {
+        <div class="modal-card-new">
+          @for (item of ingredients; track $index) {
+          <ion-radio
+            slot="end"
+            (click)="selectGreenBook(item.productName, item.strength)"
+            ><div class="word">{{item.productName}}</div>
+          </ion-radio>
+          }
+        </div>
+        } -->
+        <ui-input
+          [label]="'Strength'"
+          [control]="strength"
+          [type]="'text'"
+        ></ui-input>
+        <ui-input
+          [label]="'Quantity'"
+          [control]="quantity"
+          [type]="'number'"
+        ></ui-input>
+        <span>Unit of Measurement</span>
+        <ui-input
+          [type]="'checkbox'"
+          [options]="uoms"
+          [control]="uom"
+        ></ui-input>
+        <!-- @if(getUom){
+        <div class="modal-card-new">
+          @for (item of uoms; track $index) {
+          <ion-radio slot="end" (click)="selectUom(item.value)"
+            ><div class="word">{{item.text}}</div>
+          </ion-radio>
+          }
+        </div>
+        } -->
+
+        <ui-input
+          [label]="'Cost'"
+          [control]="cost"
+          [type]="'number'"
+        ></ui-input>
+
+        <div class="ui__button">
+          <ui-button
+            (Click)="addCostProduct?next():nextTwo()"
+            [label]="'Proceed'"
+            [disabled]="!form.valid || loading || form.value.quantity==='0' || form.value.cost==='0'"
+            [loading]="loading"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+            [textColor]="'#FDFDFD'"
+            [showImage]="false"
+          ></ui-button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</ion-modal>
+<ui-confirmation-modal
+  [heading]="'Are You Sure You Want To Delete?'"
+  [background]="'#307d3d'"
+  [open]="confirmSwitchModalOpen"
+  (next)="onDelete()"
+  (no)="confirmSwitchModalOpen = false
+"
+  (dismiss)="confirmSwitchModalOpen = false
+"
+>
+</ui-confirmation-modal>

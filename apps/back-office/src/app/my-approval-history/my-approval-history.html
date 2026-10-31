@@ -1,0 +1,98 @@
+<ui-page-body>
+  <div class="pb-2">
+    <div class="table__head" type="button">
+      <div>
+        <h2>My Approval History</h2>
+      </div>
+      <ui-desktop-button
+        [label]="'Export'"
+        [primary]="true"
+        [size]="'medium'"
+        (Click)="export()"
+      ></ui-desktop-button>
+    </div>
+  </div>
+  <p-table
+    #dt1
+    dataKey="approvalId"
+    [paginator]="true"
+    [lazy]="true"
+    (onLazyLoad)="load($event)"
+    [rows]="20"
+    [totalRecords]="totalRecords"
+    [value]="approvals$ | async"
+    [rowsPerPageOptions]="[20, 50, 100]"
+    [tableStyle]="{ 'min-width': '70rem' }"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>Approval Type</th>
+        <th>Description</th>
+        <th>Date of Request</th>
+        <th>SLA (in hours)</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter field="approvalType" matchMode="equals" [showMenu]="false">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="'Approval Type'"
+                  [options]="approvalTypes"
+                  [key]="'text'"
+                  [value]="'text'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByType($event)"
+                ></ui-input-drop-down>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="description"
+            [showMenu]="false"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter [showMenu]="false" type="date" field="date">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <p-datepicker
+                [ngModel]="value"
+                [readonlyInput]="true"
+                [showClear]="true"
+                [iconDisplay]="'input'"
+                (onSelect)="filterByDate($event)"
+                (onClear)="filterByDate(null)"
+                inputId="dateFilter"
+                dateFormat="dd-mm-yy"
+              />
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-columns="columns">
+      <tr>
+        <td>{{ item.approvalType }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.date | date : 'MMM dd, yyyy' }}</td>
+        <td>{{ item.slaInHours }}</td>
+        <td>{{ item.status }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ui-page-body>

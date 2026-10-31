@@ -1,0 +1,51 @@
+<div class="card__container">
+  @if (ad$ | async; as ad) {
+  <div class="title">
+    <h3>{{cardHeading}}</h3>
+    @if (ad.status === 'Draft' || ad.status === 'Rejected') {
+    <img src="/icons/pencilIcon.svg" alt="" (click)="edit.emit(ad)" />
+    }
+  </div>
+  <div class="card__wrapper">
+    <div class="content__top"></div>
+    <div class="content__bottom">
+      @if (ad.adOwner) {
+      <div class="content__body">
+        <p>Ad Owner</p>
+        <h5>{{ ad.adOwner }}</h5>
+      </div>
+      } @if (ad.destinationUrl) {
+      <div class="content__body">
+        <p>Destination URL</p>
+        <h5>{{ ad.destinationUrl }}</h5>
+      </div>
+      } @if (ad.durationInDays) {
+      <div class="content__body">
+        <p>Duration (days)</p>
+        <h5>{{ ad.durationInDays }}</h5>
+      </div>
+      } @if (ad.audience) {
+      <div class="content__body">
+        <p>Audience</p>
+        <h5>{{ ad.audience }}</h5>
+      </div>
+      } @if (ad.startDate) {
+      <div class="content__body">
+        <p>Start Date</p>
+        <h5>{{ ad.startDate | date : 'MMM, dd yyyy' }}</h5>
+      </div>
+      }
+      <div class="content__body">
+        <p>End Date</p>
+        <h5>{{ endDate | date : 'MMM, dd yyyy' }}</h5>
+      </div>
+      @if (ad.status) {
+      <div class="content__body">
+        <p>Status</p>
+        <h5>{{ ad.status }}</h5>
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>

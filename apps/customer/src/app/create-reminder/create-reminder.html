@@ -1,0 +1,233 @@
+<ion-content id="background-content" fullscreen>
+  <div id="add__patient" class="ion-padding">
+    <div class="pricing-head">
+      <div class="icon">
+        <ion-icon
+          (click)="goBack()"
+          name="chevron-back-outline"
+          size="small"
+        ></ion-icon>
+      </div>
+
+      <ion-text class="pricing-title">Set a Schedule</ion-text>
+    </div>
+    <div class="card__wrapper">
+      <form [formGroup]="form">
+        <ui-input
+          [label]="'Medication Name'"
+          [control]="medicationName"
+          [type]="'text'"
+        ></ui-input>
+        <ui-input
+          [label]="'Medication Strength'"
+          [control]="strength"
+          [type]="'text'"
+        ></ui-input>
+        <ui-input
+          [label]="'Frequency'"
+          [control]="frequency"
+          [type]="'dropdown'"
+          [options]="frequencyTypes"
+          [selectedText]="form.value.frequency"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [isClicked]="isFrequency"
+          (data)="isFrequencyClicked()"
+          (emitted)="offFrequencyClicked()"
+        ></ui-input>
+        @if(form.get('frequency')?.value === 'Cycle-Based Schedule') {
+        <div class="based">
+          <span>Every</span>
+          <ion-list>
+            <ion-item>
+              <ion-select aria-label="Favorite Fruit" value="Day">
+                <ion-select-option value="Day">Day</ion-select-option>
+                <ion-select-option value="Week">Week</ion-select-option>
+                <ion-select-option value="Month">Month</ion-select-option>
+                <ion-select-option value="Morning">Morning</ion-select-option>
+                <ion-select-option value="Afternoon"
+                  >Afternoon</ion-select-option
+                >
+                <ion-select-option value="Night">Night</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div>
+        } @if(form.get('frequency')?.value === 'At Regular Intervals') {
+        <div class="based">
+          <span>Interval</span>
+          <ion-list>
+            <ion-item>
+              <ion-select aria-label="Favorite Fruit" value="Every 3 Days">
+                <ion-select-option value="Every 3 Days"
+                  >Every 3 Days</ion-select-option
+                >
+                <ion-select-option value="Every 5 Days"
+                  >Every 5 Days</ion-select-option
+                >
+                <ion-select-option value="Every 6 Days"
+                  >Every 6 Days</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div>
+        } @if(form.get('frequency')?.value === 'Selected Days of the Week') {
+        <div class="based">
+          @for (item of [0, 1,2,3,4,5,6]; track $index) {
+          <ion-button
+            (click)="selectedDay = $index; selectDay(days[item].value)"
+            [ngClass]="{ 'selectedColor': $index === selectedDay, 'notColor':$index !== selectedDay }"
+            >{{days[item].text}}</ion-button
+          >
+          }
+        </div>
+        } @if(form.get('frequency')?.value !== 'As Needed') {
+        <div class="time-row">
+          <p class="time-label">Time</p>
+          @for (t of times; track $index) {
+          <div class="all__date">
+            <div class="list__time">
+              <ion-icon
+                name="remove-circle-outline"
+                (click)="removeTime($index)"
+              >
+              </ion-icon>
+              <span
+                tabindex=""
+                (keydown)="openTimePicker($index)"
+                (click)="openTimePicker($index)"
+              >
+                {{ t.time }}
+              </span>
+            </div>
+            <div
+              tabindex=""
+              (keydown)="openUnitPicker($index)"
+              (click)="openUnitPicker($index)"
+              class="list__time"
+            >
+              <span tabindex=""> {{ t.unit }} unit </span>
+              <ion-icon [src]="'icons/pencilIcon.svg'"> </ion-icon>
+            </div>
+          </div>
+          }
+
+          <div
+            class="list__time"
+            tabindex=""
+            (keydown)="addTime()"
+            (click)="addTime()"
+          >
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <span>Add a Time</span>
+          </div>
+        </div>
+        }
+
+        <ui-input-calendar
+          [readOnly]="true"
+          (emitDate)="setStartDate($event)"
+          [label]="'Start Date'"
+          [type]="'text'"
+          [control]="startDate"
+        ></ui-input-calendar>
+        <ui-input-calendar
+          [readOnly]="true"
+          (emitDate)="setEndDate($event)"
+          [label]="'End Date'"
+          [type]="'text'"
+          [control]="endDate"
+        ></ui-input-calendar>
+        <ui-input-textarea
+          [control]="note"
+          [label]="'Note'"
+        ></ui-input-textarea>
+      </form>
+      <ui-button
+        expand="block"
+        [label]="'Save'"
+        [width]="'full'"
+        [size]="'medium'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+      ></ui-button>
+    </div>
+    <div class="end"></div>
+  </div>
+</ion-content>
+
+<ion-modal
+  [isOpen]="isTimeModalOpen"
+  (didDismiss)="onTimeModalDismiss()"
+  [breakpoints]="[0, 0.4]"
+  [initialBreakpoint]="0.4"
+>
+  <ng-template>
+    <ion-content class="ion-padding">
+      <ion-datetime
+        presentation="time"
+        (ionChange)="onDateTimeChange($event.detail.value)"
+      ></ion-datetime>
+      <ion-button class="save-btn" expand="block" (click)="confirmTime()">
+        Confirm
+      </ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<!-- <ion-modal
+  [isOpen]="isUnitModalOpen"
+  (didDismiss)="onUnitModalDismiss()"
+  [breakpoints]="[0, 0.35]"
+  [initialBreakpoint]="0.35"
+>
+  <ng-template>
+    <ion-content class="ion-padding">
+      <h3 class="modal-title">Select Unit</h3>
+      <div class="unit-grid">
+        <ion-picker
+          [isOpen]="isUnitPickerOpen"
+          (didDismiss)="isUnitPickerOpen = false"
+          [columns]="unitPickerColumns"
+          [buttons]="unitPickerButtons"
+        >
+        </ion-picker>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal> -->
+
+<ion-modal
+  [isOpen]="isUnitPickerOpen"
+  [canDismiss]="true"
+  (didDismiss)="isUnitPickerOpen=false"
+  [breakpoints]="[0, 0.35]"
+  [initialBreakpoint]="0.35"
+>
+  <ng-template>
+    <ion-content class="ion-padding">
+      <h3 class="modal-title">Select Unit</h3>
+      <div class="unit-grid">
+        <ion-picker>
+          <ion-picker-column
+            (ionChange)="confirmUnit($event.detail.value)"
+            [value]="1"
+          >
+            @for (item of unitOptions; track $index) {
+            <ion-picker-column-option
+              (keyup)="confirmUnit(item)"
+              (click)="confirmUnit(item)"
+              (onChange)="confirmUnit(item)"
+              [value]="item"
+              >{{item}}</ion-picker-column-option
+            >
+            }
+          </ion-picker-column>
+        </ion-picker>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

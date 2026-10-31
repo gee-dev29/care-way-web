@@ -1,0 +1,41 @@
+<ion-content>
+  <div id="padding">
+    <div class="header">
+      @if(isMobile){
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      }
+      <h2 class="title">{{isProfile ? 'Profile' : 'Summary'}}</h2>
+    </div>
+    <div class="content">
+      <ui-rider-summary-card
+        [profile]="profile"
+        [license]="license"
+        [bank]="bank"
+        [riderId]="riderId"
+        [api]="api"
+        (edit)="edit($event)"
+      ></ui-rider-summary-card>
+    </div>
+    @if(!isProfile){
+
+    <div class="bts">
+      <ui-button
+        [label]="'Submit for Verification'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#27272A'"
+        [textColor]="'#FDFDFD'"
+        (Click)="proceed()"
+      ></ui-button>
+    </div>
+    }
+  </div>
+</ion-content>

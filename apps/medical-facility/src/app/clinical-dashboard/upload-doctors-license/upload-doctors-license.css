@@ -1,0 +1,13 @@
+#background-content {
+  --background: #fff !important;
+}
+#prescription {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  justify-content: space-between;
+  height: 100%;
+}
+.ion-padding2 {
+ margin-top: 80px !important;
+}

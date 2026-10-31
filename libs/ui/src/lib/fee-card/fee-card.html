@@ -1,0 +1,55 @@
+<div class="fee-card">
+  <div class="fee-card-header">
+    <ion-img
+      src="images/virtual-fee.png"
+      alt="virtual fee"
+      class="virtual-img"
+    />
+    <div class="facility-info">
+      <span class="facility-name"
+        >{{ (fee?.facilityName || fee?.hospitalName) | titlecase }}
+      </span>
+      <span class="facility-type">{{ fee?.facilityType }}</span>
+    </div>
+  </div>
+
+  <div class="fee-columns">
+    <div class="fee-column">
+      <span class="fee-column-title">Physical</span>
+      <div class="fee-row">
+        <span class="fee-label">Consultation</span>
+        <span class="fee-value"
+          >₦{{ fee?.physicalConsultationFee | number }}</span
+        >
+      </div>
+      <div class="fee-row">
+        <span class="fee-label">Hospital Commission</span>
+        <span class="fee-value">₦{{ fee?.physicalHospitalFee | number }}</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-label">Settlement</span>
+        <span class="fee-value">{{ fee?.physicalConsultationSettlement }}</span>
+      </div>
+    </div>
+
+    <div class="fee-divider"></div>
+
+    <div class="fee-column">
+      <span class="fee-column-title">Virtual</span>
+      <div class="fee-row">
+        <span class="fee-label">Consultation</span>
+        <span class="fee-value"
+          >₦{{ fee?.virtualConsultationFee | number }}</span
+        >
+      </div>
+      <div class="fee-row">
+        <span class="fee-label">Hospital Commission</span>
+        <span class="fee-value">₦{{ fee?.virtualHospitalFee | number }}</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-label">Settlement</span>
+        <span class="fee-value">{{ fee?.virtualConsultationSettlement }}</span>
+      </div>
+    </div>
+  </div>
+</div>

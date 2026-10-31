@@ -1,0 +1,115 @@
+<ion-content id="background-content" fullscreen>
+  @if (!loaded) {
+  <div class="up">
+    <div class="header">
+      <ion-skeleton-text
+        animated
+        style="width: 35%; height: 28px"
+      ></ion-skeleton-text>
+
+      <ion-skeleton-text
+        animated
+        style="width: 25%; height: 28px"
+      ></ion-skeleton-text>
+    </div>
+
+    <div class="top-section">
+      <ion-skeleton-text
+        animated
+        style="width: 50%; height: 120px; border-radius: 18px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 50%; height: 120px; border-radius: 18px"
+      ></ion-skeleton-text>
+    </div>
+
+    <ion-skeleton-text
+      animated
+      style="width: 100%; height: 100px; border-radius: 16px"
+    ></ion-skeleton-text>
+    <div class="info-card">
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 80px; border-radius: 18px"
+      ></ion-skeleton-text>
+    </div>
+    <div class="btn-container">
+      <ion-skeleton-text
+        animated
+        style="width: 90%; height: 60px; margin: auto; border-radius: 18px"
+      ></ion-skeleton-text>
+    </div>
+  </div>
+  } @if (loaded) {
+
+  <div class="up">
+    <div class="header">
+      <div
+        class="left"
+        (keyup.enter)="goBack()"
+        tabindex="0"
+        role="button"
+        (click)="goBack()"
+      >
+        <ion-icon src="/logo/backarrow.svg"></ion-icon>
+        <span>Symptoms Details</span>
+      </div>
+
+      <div
+        class="right"
+        (keyup.enter)="share()"
+        tabindex="0"
+        role="button"
+        (click)="share()"
+      >
+        <ion-icon src="/logo/share.svg"></ion-icon>
+        <span>Share</span>
+      </div>
+    </div>
+
+    <div class="top-section">
+      <div class="box blue-box">
+        <div class="label">
+          <ion-icon src="/logo/date.svg"></ion-icon>
+          <span>Date</span>
+        </div>
+        <div class="value">20 Oct 2025</div>
+      </div>
+
+      <div class="box dark-box">
+        <div class="label small">How long have you<br />had this symptom?</div>
+        <div class="value">1 - 6 Days</div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>Description of Symptoms</h3>
+      <p>Recent or new symptom – started within the past few days.</p>
+    </div>
+
+    <div class="info-card file-card">
+      <div class="file-left">
+        <ion-img src="/images/mary.png"></ion-img>
+      </div>
+      <div class="file-right">
+        <h4>Uploaded File</h4>
+        <p>symptoms.png</p>
+      </div>
+    </div>
+
+    <div class="btn-container">
+      <ui-button
+        [label]="'Schedule Appointment'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        [loading]="loading"
+        (Click)="continue()"
+      ></ui-button>
+    </div>
+  </div>
+  }
+</ion-content>

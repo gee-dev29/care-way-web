@@ -1,0 +1,29 @@
+.background {
+  background-color: #317e3d;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.big-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.big-icon ion-icon {
+  font-size: 30px;
+  color: #f9fffa !important;
+  font-weight: 500;
+}
+
+.small-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.small-icon ion-icon {
+  font-size: 20px;
+  --color: #f9fffa !important;
+}

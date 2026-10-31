@@ -1,0 +1,19 @@
+.gender__based ion-text {
+  font-weight: 300;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.bts {
+  margin-top: 2rem;
+}
+
+.paragraph span {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.instruction {
+  cursor: pointer;
+  text-decoration: underline;
+}

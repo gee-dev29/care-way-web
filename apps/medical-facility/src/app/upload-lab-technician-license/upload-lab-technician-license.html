@@ -1,0 +1,25 @@
+<ion-content id="background-content" fullscreen>
+  <div class="ion-padding2 ion-padding">
+    <ui-upload-component
+      [heading]="'Upload License'"
+      [label]="'Save Image'"
+      [route]="route"
+      [api]="api"
+      (back)="goBack($event)"
+      [referencedDocumentId]="referencedDocumentId"
+    ></ui-upload-component>
+  </div>
+  <div class="ion-padding">
+    <ui-button
+      expand="block"
+      label="Skip Now"
+      width="full"
+      size="medium"
+      fill="solid"
+      shape="round"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      (Click)="onSkip()"
+    ></ui-button>
+  </div>
+</ion-content>

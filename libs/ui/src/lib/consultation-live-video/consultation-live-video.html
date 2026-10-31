@@ -1,0 +1,32 @@
+<ion-content fullscreen>
+  <!-- Video Container -->
+  <div class="video-container" [class.swap]="isSwapped">
+    <video #remoteVideo autoplay playsinline></video>
+    <div class="remote-name">{{ remoteCallerName }}</div>
+    <video
+      #localVideo
+      autoplay
+      playsinline
+      muted
+      class="local-video"
+      (click)="swapView()"
+    ></video>
+  </div>
+
+  <!-- Call Controls -->
+  <div class="controls">
+    <ion-button color="light" (click)="toggleMic()">
+      <ion-icon
+        [name]="micEnabled ? 'mic-outline' : 'mic-off-outline'"
+      ></ion-icon>
+    </ion-button>
+
+    <ion-button color="danger" (click)="endCall()">
+      <ion-icon name="call-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button color="light" (click)="toggleCamera()">
+      <ion-icon name="camera-reverse-outline"></ion-icon>
+    </ion-button>
+  </div>
+</ion-content>

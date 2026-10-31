@@ -1,0 +1,167 @@
+<ion-content id="background-content" fullscreen>
+  @if (prescriptions$ | async; as prescription ) { @if (user!==null) {
+  <div class="push__down"></div>
+  }@else{
+  <div class="center">
+    <ion-img class="logo" src="/logo/healbridge.svg" alt="HealBridge"></ion-img>
+  </div>
+  }
+
+  <div id="prescription" class="ion-padding">
+    <div class="head">
+      <div class="pricing-head">
+        <div class="icon">
+          <ion-icon
+            (click)="goBack()"
+            name="chevron-back-outline"
+            size="small"
+          ></ion-icon>
+        </div>
+
+        <ion-text class="pricing-title">Order Summary</ion-text>
+      </div>
+    </div>
+    <ion-card class="card">
+      <ion-card-content>
+        <div class="orderDetail2">
+          <p class="heading">Help Requested by:</p>
+          <p class="heading">{{member?.firstName}} {{member?.lastName}}</p>
+          <p class="heading">{{prescription?.creator?.date|date}}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <div class="summary-container">
+      @for(item of prescription?.orderItems; let i = $index; track
+      item.orderItemId){
+
+      <ion-card class="p__4">
+        <ion-card-content>
+          <div class="flex">
+            <ion-text class="summary-details">
+              <span class="summary-details-name">{{ item?.product }} </span>
+
+              <span class="summary-details-name"
+                >{{ item.cost | currency: 'NGN' }}</span
+              >
+            </ion-text>
+            <div></div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      }
+
+      <hr class="hr" />
+
+      <ion-list class="transparent-bg">
+        <ion-grid>
+          <ion-row class="gapped-row">
+            <ion-col class="ion-text-start content-bold">Subtotal</ion-col>
+            <ion-col class="ion-text-end content-bold"
+              >{{prescription?.costSummary?.totalCost |
+              currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+          @if (prescription?.costSummary?.deliveryFee ) {
+          <ion-row class="gapped-row">
+            <ion-col class="ion-text-start ion-col">
+              <ion-icon class="img-col" src="/logo/deliveryBike.svg"></ion-icon>
+              Delivery</ion-col
+            >
+            <ion-col class="ion-text-end"
+              >{{prescription?.costSummary?.deliveryFee |
+              currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+          } @if (prescription?.costSummary?.serviceCharge) {
+          <ion-row class="gapped-row">
+            <ion-col class="ion-text-start ion-col">
+              <ion-icon
+                class="img-col"
+                src="/logo/serviceCharge.svg"
+              ></ion-icon>
+              Service Charge</ion-col
+            >
+            <ion-col class="ion-text-end"
+              >{{prescription?.costSummary?.serviceCharge |
+              currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+          }
+          <hr class="hr" />
+          <ion-row class="total">
+            <ion-col class="ion-text-start">Total</ion-col>
+            <ion-col class="ion-text-end"
+              >{{ prescription?.costSummary?.totalCost |
+              currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+      @if (prescription?.address?.address) {
+      <div>
+        <p>
+          <ion-text class="pricing-title">Delivery Address</ion-text>
+        </p>
+
+        <ion-list class="p-4" id="open-modal">
+          <ion-card-content class="flex pad-6">
+            <div class="delivery-address">
+              <ion-icon
+                class="address__icon"
+                src="/logo/deliveryAddress.svg"
+              ></ion-icon>
+              <div class="">
+                <ion-text
+                  ><span class="content-bold"
+                    >{{prescription?.address?.address}}</span
+                  >
+                  <br />
+                  {{prescription?.address?.city}},
+                  {{prescription?.address?.state}}</ion-text
+                >
+              </div>
+            </div>
+            <ion-icon src="/logo/addressHome.svg"></ion-icon>
+          </ion-card-content>
+        </ion-list>
+      </div>
+      } @if (shouldIShowPayButton()===true &&
+      prescription.status!==DocumentStatus.Cancelled) {
+      <div class="btn">
+        <ui-button
+          expand="block"
+          [label]="'Proceed to Payment'"
+          [width]="'full'"
+          [size]="'medium'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="continue()"
+        ></ui-button>
+        <ui-button
+          [label]="'Decline Help'"
+          [width]="'full'"
+          [size]="'medium'"
+          [fill]="'solid'"
+          [borderLine]="'#1E293B'"
+          [textColor]="'#1E293B'"
+          [backgroundColor]="'#F9FFFA'"
+          [shape]="'round'"
+          (Click)="declineHelp()"
+        ></ui-button>
+      </div>
+      }
+    </div>
+  </div>
+  }
+</ion-content>
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to decline the request?'"
+  [open]="declineModal"
+  [background]="'primary'"
+  (dismiss)="closeModal()"
+  (no)="closeModal()"
+  (next)="confirmIt()"
+></ui-confirmation-modal>

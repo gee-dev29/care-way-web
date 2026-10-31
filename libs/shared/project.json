@@ -1,0 +1,17 @@
+{
+  "name": "shared",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/src",
+  "prefix": "shared",
+  "targets": {
+    "test": {
+      "executor": "@angular/build:karma",
+      "options": {
+        "tsConfig": "libs/shared/tsconfig.spec.json",
+        "polyfills": ["zone.js", "zone.js/testing"]
+      }
+    }
+  },
+  "implicitDependencies": ["api"]
+}

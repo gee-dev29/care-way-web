@@ -1,0 +1,39 @@
+<div
+  class="wallet-card"
+  [style.background-color]="bgColor()"
+  [style.color]="textColor()"
+>
+  <div class="wallet-body">
+    <ion-text class="wallet-title">Wallet Balance</ion-text>
+
+    <div class="balance-row">
+      <ion-text class="balance">
+        {{ currency() }} @if(!isHidden()){
+        <ng-container> {{ formatBalance()}}</ng-container>
+        }@else {
+        <span> {{ maskedBalance() }} </span>
+        }
+      </ion-text>
+
+      <ion-icon
+        [name]="isHidden() ? 'eye-off-outline' : 'eye-outline'"
+        class="eye-icon"
+        (click)="toggleVisibility()"
+      ></ion-icon>
+    </div>
+  </div>
+
+  <ui-button
+    (click)="viewHistory.emit()"
+    [width]="'full'"
+    [fill]="'solid'"
+    [shape]="'round'"
+    [showImage]="true"
+    [image]="'/icons/wallet-arr-down-wh.svg'"
+    [slot]="'start'"
+    [backgroundColor]="btnColor()"
+    [textColor]="'#FDFDFD'"
+    [label]="'Wallet History'"
+  >
+  </ui-button>
+</div>

@@ -1,0 +1,132 @@
+<ion-content id="background-content" fullscreen>
+  @if(loaded){
+  <div #tabs id="home" class="wallet-card ion-padding">
+    @if (getAuth?.userType==="Medical Facility") {
+    <ui-wallet-card
+      [subtitle]="`${facilityTypeInfo?.name}`"
+      [bg]="'#317e3d'"
+      [color]="'white'"
+      [facilityType]="FacilityType.Pharmacy"
+      [balance]="balance"
+      [facilityId]="facilityId"
+    ></ui-wallet-card>
+    }
+    <div class="content">
+      @if((pharmacist$ | async)?.length > 0){
+      <ui-dashboard-identities-list-card
+        [cardHeading]="'Pharmacists'"
+        [identities$]="pharmacist$"
+        [identityType]="type.Pharmacist"
+        (addIdentity)="addPharm()"
+        [identitiesTotalRecords]="pharmacistTotalRecords"
+        (viewAll)="viewPharmacist()"
+      ></ui-dashboard-identities-list-card>
+      }@else {
+      <div tabindex="" (keyup.enter)="addPharm()" (click)="addPharm()">
+        <ui-add-new-entry-card [title]="'No Pharmacist At the Moment'">
+        </ui-add-new-entry-card>
+      </div>
+      }
+    </div>
+    <div class="cost mt-3 mb-3">
+      @if(requests?.length > 0){
+      <ui-medical-request-card
+        [request]="requests[0]"
+        [title]="'Medical Requests'"
+        (view)="viewAll()"
+        [route]="route"
+      >
+      </ui-medical-request-card>
+      }@else {
+      <ui-add-new-entry-card
+        [title]="'You Have No Request At the Moment'"
+        [state]="'empty'"
+      >
+      </ui-add-new-entry-card>
+      }
+    </div>
+    <div class="cost">
+      @if (orders?.length>0) {
+      <ui-fufil-card
+        [viewAllColor]="'#307D3D'"
+        [bg]="'#f6f6f6'"
+        (view)="viewAllOrder()"
+        (viewIt)="viewOneOrder($event)"
+        [order]="orders[0]"
+      ></ui-fufil-card>
+      }@else {
+      <ui-add-new-entry-card
+        [title]="'You Have No Order At the Moment'"
+        [state]="'empty'"
+      >
+      </ui-add-new-entry-card>
+      }
+    </div>
+  </div>
+  } @else {
+  <div class="wallet-card ion-padding">
+    <ion-skeleton-text
+      animated=""
+      style="width: 100%; height: 200px; border-radius: 12px"
+    ></ion-skeleton-text>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 16px;
+      "
+    >
+      <ion-skeleton-text
+        animated=""
+        style="width: 200px; height: 15px; border-radius: 12px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated=""
+        style="width: 80px; height: 15px; border-radius: 12px"
+      ></ion-skeleton-text>
+    </div>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+      "
+    >
+      @for(i of [1, 2, 3, 4]; track i){
+      <ion-skeleton-text
+        animated=""
+        style="width: 80px; height: 80px; border-radius: 100%"
+      ></ion-skeleton-text>
+      }
+    </div>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 16px;
+      "
+    >
+      <ion-skeleton-text
+        animated=""
+        style="width: 140px; height: 15px; border-radius: 12px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated=""
+        style="width: 50px; height: 15px; border-radius: 12px"
+      ></ion-skeleton-text>
+    </div>
+    <ion-skeleton-text
+      animated=""
+      style="width: 100%; height: 200px; border-radius: 12px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated=""
+      style="width: 100%; height: 200px; border-radius: 12px"
+    ></ion-skeleton-text>
+  </div>
+  }
+  <div class="end"></div>
+</ion-content>

@@ -1,0 +1,87 @@
+<div class="page">
+  <form class="ion-padding">
+    <div class="header">
+      @if(edit){
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      }
+      <ion-text color="black">
+        <h1>{{edit ? "Update" : "Onboard" }} Imaging and Radiology</h1>
+      </ion-text>
+    </div>
+
+    <div class="container">
+      <ui-input
+        [type]="'text'"
+        [label]="'Facility Name'"
+        [control]="name"
+        class="title-case"
+      ></ui-input>
+      <ion-card>
+        <ion-card-content>
+          <div
+            class="left"
+            tabindex=""
+            (keyup.enter)="selectType('diagnostic')"
+            (click)="selectType('diagnostic')"
+          >
+            <ion-text>DIAGNOSTIC RADIOLOGY</ion-text>
+            @if(!diagnostic){
+
+            <ion-icon name="chevron-down"></ion-icon>
+            } @else{
+            <ion-icon name="chevron-up"></ion-icon>
+
+            }
+          </div>
+        </ion-card-content>
+      </ion-card>
+      @if(diagnostic){ @for (item of diagnosticCategories; track $index) {
+      <ion-checkbox
+        [checked]="item.check"
+        (ionChange)="selectMyCategory('diagnostic', $index)"
+        >{{item.text}}</ion-checkbox
+      >
+      } }
+      <ion-card>
+        <ion-card-content>
+          <div
+            class="left"
+            tabindex=""
+            (keyup.enter)="selectType('interventional')"
+            (click)="selectType('interventional')"
+          >
+            <ion-text>INTERVENTIONAL RADIOLOGY</ion-text>
+            @if(!interventional){
+
+            <ion-icon name="chevron-down"></ion-icon>
+            } @else{
+            <ion-icon name="chevron-up"></ion-icon>
+
+            }
+          </div>
+        </ion-card-content>
+      </ion-card>
+      @if(interventional){ @for (item of interventionalCategories; track $index)
+      {
+      <ion-checkbox
+        [checked]="item.check"
+        (ionChange)="selectMyCategory('interventional', $index)"
+        >{{item.text}}</ion-checkbox
+      >
+      } }
+    </div>
+    <div class="bts">
+      <ui-button
+        [label]="label"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [loading]="loading"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        [disabled]="(!checkIfAnyIsEmpty('diagnostic') && !checkIfAnyIsEmpty('interventional')) || !name.valid || loading"
+        (Click)="proceed()"
+      ></ui-button>
+    </div>
+  </form>
+</div>

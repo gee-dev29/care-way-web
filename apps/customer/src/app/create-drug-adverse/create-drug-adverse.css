@@ -1,0 +1,122 @@
+#background-content {
+    background: #ffffff !important;
+  }
+  #order {
+    background: #ffffff !important;
+    margin-top: 80px !important;
+  }
+  .orderDetail__two div{
+    display: flex;
+    justify-content:space-between;
+    margin-bottom: 10px
+  }
+  .pricing-head {
+    display: flex;
+    gap: 20px;
+    /* align-items: center; */
+    margin-bottom: 10px;
+  }
+  .address__icon {
+    font-size: 30px;
+  }
+  .bts{
+    margin-top: 50vh;
+  }
+  .btn {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .product {
+    font-size: 17px;
+  }
+  .gapped-row {
+    margin-bottom: 7px;
+  }
+  
+  .p-4 {
+    padding: 8px 16px;
+    margin: 0px;
+    border-radius: 10px;
+    background: #e7f6e9;
+  }
+  .p-5 {
+    padding: 8px 16px;
+    margin: 0px;
+    border-radius: 10px;
+    background: #F6F6F6;
+  }
+  .logo{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    margin-top: -10px;
+  }
+  .logo div{
+    display: flex;
+    flex-direction: column;
+  
+  }
+  .logo span{
+    font-weight: 500;
+    color: black;
+    text-align: center;
+  }
+  .logo ion-icon{
+    font-size: 50px;
+  }
+  .p-5 ion-card-content{
+    padding-left: 0px;
+  }
+  .p-5 .product{
+    font-weight: 500;
+    color: black;
+  }
+  
+  .transparent-bg {
+    background-color: transparent;
+    padding: 8px 0px;
+  }
+  
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 8px;
+  }
+  
+  .content-bold {
+    font-weight: 700;
+    font-size: 15px;
+  }
+  
+  .hr {
+    width: 100%;
+    height: 1px;
+    background-color: #d1d1d1;
+  }
+  
+  .pricing-title {
+    font-weight: 600;
+    height: 30px;
+  }
+  
+  .total {
+    background-color: black;
+    color: white;
+    padding: 10px;
+  }
+  .summary-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  

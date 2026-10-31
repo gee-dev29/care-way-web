@@ -1,0 +1,145 @@
+<ion-content id="background-content" fullscreen>
+  @if (loaded) {
+  <div #tabs id="home" class="ion-padding mt-4">
+    @if (requests) {
+    <div class="cost">
+      <ui-medical-request-card
+        [request]="requests"
+        [title]="'Service Requests'"
+        (view)="viewAll('/dashboard/requests')"
+        (viewIt)="viewIt(requests)"
+      >
+      </ui-medical-request-card>
+    </div>
+    } @else {
+    <div
+      class="cost"
+      tabindex=""
+      (keyup.enter)="addNew('dashboard/prescription')"
+      (click)="addNew('dashboard/prescription')"
+    >
+      <ui-add-new-entry-card [title]="'New Request'"> </ui-add-new-entry-card>
+    </div>
+    }
+    <div class="mb-2">
+      @if (allData.length) { @for (order of allData; track $index) { @if (
+      $index===0 ) {
+      <ui-order-card
+        [order]="order"
+        [title]="'Recent Orders'"
+        (view)="viewAll('/dashboard/orders')"
+        (viewIt)="viewOrder($event)"
+      >
+      </ui-order-card>
+      } } }
+    </div>
+    @if (appointment !==null) {
+    <ui-appointment-card-primary
+      [appointment]="appointment"
+      [status]="status"
+      [statusFn]="getStatus(appointment?.status)"
+      (getStatus)="getStatus($event)"
+      (viewAppointment)="viewAppointment(appointment)"
+      (viewAll)="viewAllAppointments()"
+      [showHeading]="true"
+      [showDoctor]="true"
+    ></ui-appointment-card-primary>
+    } @else {
+    <div
+      class="sche"
+      tabindex=""
+      (keyup.enter)="addNew('dashboard/schedule-appointment')"
+      (click)="addNew('dashboard/schedule-appointment')"
+    >
+      <ui-add-new-entry-card [title]="'Schedule appointment'">
+      </ui-add-new-entry-card>
+    </div>
+    }
+    <ion-card class="black medium__curve">
+      <ion-card-content (click)="toVitals()">
+        <p>How are you feeling Today?</p>
+        <ion-img src="/logo/checkup.svg"></ion-img>
+      </ion-card-content>
+    </ion-card>
+    <div class="mb-3">
+      <ui-dashboard-identities-list-card
+        [identities$]="members$"
+        [cardHeading]="'Members'"
+        [identitiesTotalRecords]="membersTotalRecords"
+        (addIdentity)="addIdentity()"
+        [identityType]="type.Member"
+        (viewAll)="viewAllMembers()"
+      ></ui-dashboard-identities-list-card>
+    </div>
+  </div>
+  } @else {
+  <div #tabs id="home" class="ion-padding">
+    <div class="recent">
+      <p>
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 100px"
+        ></ion-skeleton-text>
+      </p>
+      <p>
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 80px"
+        ></ion-skeleton-text>
+      </p>
+    </div>
+    <ion-skeleton-text
+      class="small__curve"
+      [animated]="true"
+      style="width: 100%; height: 100px"
+    ></ion-skeleton-text>
+    <div class="recent go__down">
+      <p>
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 170px"
+        ></ion-skeleton-text>
+      </p>
+    </div>
+    <ion-skeleton-text
+      class="medium__curve"
+      [animated]="true"
+      style="width: 100%; height: 150px; margin-bottom: 25px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      class="medium__curve"
+      [animated]="true"
+      style="width: 100%; height: 150px; margin-bottom: 20px"
+    ></ion-skeleton-text>
+    <div class="recent go__down">
+      <p>
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 70px"
+        ></ion-skeleton-text>
+      </p>
+    </div>
+    <a routerLink="/dashboard/add-member">
+      <div class="new__member">
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 70px"
+        ></ion-skeleton-text>
+        <p>
+          <ion-skeleton-text
+            [animated]="true"
+            style="width: 50px; height: 50px; border-radius: 100%"
+          ></ion-skeleton-text>
+        </p>
+        <div>
+          <ion-skeleton-text
+            [animated]="true"
+            style="width: 40px"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+    </a>
+    <div class="end"></div>
+  </div>
+  }
+</ion-content>

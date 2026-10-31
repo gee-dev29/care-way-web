@@ -1,0 +1,108 @@
+<div class="profile-content">
+  <div class="title">
+    <h2>Profile</h2>
+  </div>
+
+  <div tabindex="" (keyup)="upload()" (click)="upload()" class="avatar-wrapper">
+    @if (profileInfoService?.picture!==null) {
+    <div class="avatar-border">
+      <ion-img class="avatar" [src]="profileInfoService?.picture"> </ion-img>
+    </div>
+    } @else {
+    <ion-avatar class="avatar-border text__avater">
+      <span
+        >{{profileInfoService.name[0]}} {{profileInfoService.name.split('
+        ')[1][0]}}
+      </span>
+    </ion-avatar>
+    }
+
+    <h3 class="name">{{profileInfoService?.name}}</h3>
+    <p class="verified">Verified</p>
+  </div>
+
+  <div class="menu-list">
+    <div
+      class="menu-row"
+      tabindex="0"
+      (keydown.enter)="goTo('doctor-details')"
+      (click)="goTo('doctor-details')"
+    >
+      <div class="right">
+        <ion-icon src="/logo/profile-icon.svg"></ion-icon>
+        <span>Personal</span>
+      </div>
+      <ion-icon class="end-icon" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+    <div
+      class="menu-row"
+      tabindex="0"
+      (keydown.enter)="goTo('notification-settings')"
+      (click)="goTo('notification-settings')"
+    >
+      <div class="right">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <span>Notification settings</span>
+      </div>
+      <ion-icon class="end-icon" name="chevron-forward-outline"></ion-icon>
+    </div>
+    <div
+      class="menu-row"
+      tabindex="0"
+      (keydown.enter)="goTo('list-all-professional-appointment-requests')"
+      (click)="goTo('list-all-professional-appointment-requests')"
+    >
+      <div class="right">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>Appointment Requests</span>
+      </div>
+      <ion-icon class="end-icon" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+    @if (canUseBiometric) { @if (showBiometric) {
+    <div
+      class="menu-row"
+      tabindex="0"
+      (keydown.enter)="biometricFunction('Disable Biometric')"
+      (click)="biometricFunction('Disable Biometric')"
+    >
+      <div class="right">
+        <ion-icon src="/logo/biometric.svg"></ion-icon>
+        <span>Disable Biometric</span>
+      </div>
+    </div>
+    } @else {
+    <div
+      class="menu-row"
+      tabindex="0"
+      (keydown.enter)="biometricFunction('Enable Biometric')"
+      (click)="biometricFunction('Enable Biometric')"
+    >
+      <div class="right">
+        <ion-icon src="/logo/biometric.svg"></ion-icon>
+        <span>Enable Biometric</span>
+      </div>
+    </div>
+    } }
+    <div
+      class="menu-row"
+      tabindex="0"
+      (keydown.enter)="logout()"
+      (click)="logout()"
+    >
+      <div class="right">
+        <ion-icon src="/logo/logout.svg"></ion-icon>
+        <span>Log out</span>
+      </div>
+    </div>
+  </div>
+</div>
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to disable biometric?'"
+  [background]="'#307D3D'"
+  [open]="prompt"
+  (next)="disable()"
+  (no)="closeConfirmationModal()"
+  (dismiss)="closeConfirmationModal()"
+></ui-confirmation-modal>

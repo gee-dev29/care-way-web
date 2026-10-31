@@ -1,0 +1,26 @@
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="open"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <div class="content">
+      <ion-img src="/logo/otpconfirm.svg"></ion-img>
+      <p>OTP Confirmed</p>
+      <span>Email Login successfully</span>
+    </div>
+    <div class="button">
+      <ui-button
+        (Click)="proceed()"
+        (Click)="modal.dismiss(null, 'cancel')"
+        [label]="'Continue'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'dark'"
+        [showImage]="false"
+      ></ui-button>
+    </div>
+  </ng-template>
+</ion-modal>

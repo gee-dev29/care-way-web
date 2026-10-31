@@ -1,0 +1,439 @@
+#background-content {
+  --background: #ffffff !important;
+}
+
+#home {
+  margin-top: 80px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  background-color: #ffffff;
+}
+
+.up {
+  margin-top: 10px;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.text__avater {
+  background: #6c63ff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.gp-big {
+  gap: 19px;
+}
+
+.mb-19 {
+  margin-bottom: 19px;
+}
+
+.mb {
+  margin-bottom: 3px;
+}
+
+.mb-5 {
+  margin-bottom: 5px;
+}
+
+.gap-xs {
+  gap: 10px;
+}
+
+.mb-12 {
+  margin-bottom: 12px;
+}
+
+.schedule {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+
+.patient {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: start;
+  text-align: start;
+  padding: 18px;
+  border-radius: 15px;
+}
+
+.line__divider {
+  background-color: #dbdbdb;
+  height: 1px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.patient-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  width: 100%;
+  border-bottom: 2px solid #5e5e5e2e;
+}
+
+.patient__wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.schedule-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.profile-name {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.profile-job {
+  font-size: 12px;
+  color: #5e5e5e;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-title {
+  font-size: 17px;
+  color: #0c0c0c;
+  font-weight: 500;
+}
+
+.view-all {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.profile-img1 {
+  height: 45px;
+  width: 45px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.order-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 14px;
+  box-shadow: none;
+  background: #fffffff2;
+  margin: 0 0 10px 0;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #e6e8ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
+
+.info .order-id {
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.datetime {
+  color: #777;
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+.right {
+  text-align: right;
+}
+
+.amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.status {
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  color: #f5a623;
+}
+
+.status.paid {
+  color: #0a7bff;
+}
+
+.status.delivered {
+  color: #1fb86e;
+}
+
+.status.cancelled {
+  color: #ff4b4a;
+}
+
+.end {
+  padding-bottom: 100px !important;
+}
+
+.patient-card {
+  border-radius: 30px;
+  border: 1px solid #e4e5ee;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.patient-card .label {
+  font-weight: 500;
+  color: black;
+}
+.sub-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 10px;
+  font-size: 14px;
+  margin-top: -6px;
+}
+.sub-text2 {
+  color: #5b5f5f;
+}
+.patient-card ion-icon {
+  background-color: #f2f2f2;
+  padding: 14px;
+  border-radius: 50%;
+}
+
+.flex__row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.img__icon {
+  width: 22px;
+  height: 22px;
+}
+
+.patient__details {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.patient__bottom {
+  display: flex;
+  flex-direction: column;
+  line-height: 1px;
+}
+ui-button {
+  --padding-top: 2px !important;
+  --padding-bottom: 2px !important;
+}
+
+.card {
+  min-width: 260px;
+  background: #eef4ef;
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.card.big {
+  min-width: unset;
+}
+
+.card .cardTitle {
+  font-size: 14px;
+  color: #121212;
+}
+
+.card .cardSub {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #6f786f;
+}
+
+.card .btnRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.btnSolid {
+  background: #1f7a3f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: 400;
+  font-size: 12px;
+  padding: 15px 20px;
+}
+
+.btnOutline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1f7a3f;
+  border-radius: 20px;
+  font-weight: 400;
+  font-size: 12px;
+  padding: 15px 20px;
+  border: 1px solid #1f7a3f;
+}
+
+.apptTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #6f786f;
+  margin-top: 2px;
+}
+
+.status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f5a623;
+}
+
+.apptMeta {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+  color: #6f786f;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.apptMeta .metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.apptMeta .metaItem ion-icon {
+  font-size: 16px;
+  color: #6f786f;
+}
+
+.label {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #1f7a3f;
+}
+
+.complaint {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #121212;
+  line-height: 1.35;
+}
+
+.tabs {
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.pill {
+  height: 35px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #9aa39a;
+  background: #fff;
+  color: #121212;
+  font-size: 14px;
+}
+
+.pill.active {
+  background: #2c7a3f;
+  border-color: #2c7a3f;
+  color: #fff;
+}
+
+.profile-image2 {
+  height: 60px;
+  width: 60px;
+  font-size: 25px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dbdbe0;
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+}
+
+ion-avatar {
+  height: 60px;
+  width: 60px;
+}
+
+.profile-group {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.mt-2 {
+  margin-top: 20px;
+}

@@ -1,0 +1,43 @@
+<div class="mt-1">
+  <p-table
+    #dt1
+    dataKey="id"
+    [lazy]="true"
+    [paginator]="totalRecords > 0"
+    [rows]="20"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[20, 50, 100]"
+    [value]="medicalProfessionalFees$ | async"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Hospital</th>
+        <th>Physical Consultation Fee</th>
+        <th>Virtual Consultation Fee</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{item.facilityName}}</td>
+        <td>{{(item.physicalConsultationFee | currency:'NGN ') || 'N/A'}}</td>
+        <td>{{(item.virtualConsultationFee | currency:'NGN ') || 'N/A'}}</td>
+        <td>
+          <ui-desktop-button
+            [label]="'Set Fee'"
+            [size]="'small'"
+            [primary]="true"
+            (click)="setFee(item)"
+          ></ui-desktop-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">
+          <div class="empty__table__text">There are no Doctor's Fees yet</div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

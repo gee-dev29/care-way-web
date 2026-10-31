@@ -1,0 +1,140 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.header .title {
+  font-size: 16px;
+  font-weight: 600;
+}
+.header .title-2 {
+  font-size: 16px;
+  font-weight: 500;
+}
+.green {
+  color: #317e3d;
+  padding-left: 1px;
+}
+.request-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 44px 18px 16px;
+  border-radius: 18px;
+  background: #317e3d;
+  color: #ffffff;
+  position: relative;
+  cursor: pointer;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.facility-name {
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail-grid {
+  display: flex;
+  justify-content: start;
+
+  gap: 10px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.92;
+  min-width: 0;
+}
+
+.detail-row ion-icon {
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.detail-row span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  right: 16px;
+}
+
+.arrow ion-icon {
+  font-size: 20px;
+}
+
+.status {
+  color: #f3951f;
+}
+
+.order-arrow {
+  margin-left: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  line-height: 0.5;
+  column-gap: 6px;
+  align-items: center;
+}
+
+.request-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.request-id {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.request-time {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1 !important;
+}
+
+.request-status {
+  font-size: 18px;
+  font-weight: 500;
+  color: #f3951f !important;
+  text-align: right;
+}
+
+.request-arrow {
+  margin-left: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.forward-icon {
+  font-size: 20px;
+}

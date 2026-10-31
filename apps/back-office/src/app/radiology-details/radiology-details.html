@@ -1,0 +1,48 @@
+<ui-page-body>
+  <div class="grouped__btn">
+    <img
+      class="left-arrow-icon"
+      (click)="goBack()"
+      src="icons/left-arrow-black.svg"
+      alt=""
+    />
+    <h2 class="title">Radiology Centre</h2>
+  </div>
+  <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+  <div class="mt-1">
+    @if(activeTab !== 0){
+    <ui-page-highlight
+      [primaryDetailTitle]="'Name:'"
+      [primaryDetail]="facilityName"
+      [secondaryDetailTitle]="'Address:'"
+      [secondaryDetail]="address"
+    ></ui-page-highlight>
+    } @if (activeTab === 0 ) {
+    <div>
+      <back-office-medical-facility-details-card
+        [medicalFacility$]="radiology$"
+        [cardHeading]="'Radiology Details'"
+      ></back-office-medical-facility-details-card>
+    </div>
+    } @if(activeTab === 0){
+    <div class="mt-2">
+      <back-office-bank-details-card
+        [cardHeading]="'Bank Details'"
+        [bank$]="bankDetails$"
+      ></back-office-bank-details-card>
+    </div>
+    } @if(activeTab === 0){
+    <div class="mt-2">
+      <back-office-license-details-card
+        [license$]="license$"
+      ></back-office-license-details-card>
+    </div>
+    } @if(activeTab === 1) {
+    <div class="mt-3">
+      <back-office-wallet
+      [beneficiaryId]="facilityId"
+      ></back-office-wallet>
+    </div>
+    }
+  </div>
+</ui-page-body>

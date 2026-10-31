@@ -1,0 +1,72 @@
+<div class="page">
+  <div class="page-inner">
+    <div class="center">
+      <ion-img src="/logo/healbridge.svg" alt="HealBridge"></ion-img>
+    </div>
+    <div class="ion-padding">
+      <ion-text color="black">
+        <h1>Create rider account</h1>
+      </ion-text>
+      <form [formGroup]="form">
+        <ui-input
+          [type]="'text'"
+          [label]="'First Name'"
+          [control]="firstName"
+        ></ui-input>
+        <ui-input
+          [type]="'text'"
+          [label]="'Last Name'"
+          [control]="lastName"
+        ></ui-input>
+        <ui-input
+          [type]="'email'"
+          [label]="'Email'"
+          [control]="email"
+        ></ui-input>
+        <ui-input
+          [type]="'phone'"
+          [label]="'Phone Number'"
+          [control]="phone"
+        ></ui-input>
+        <div class="gender__based">
+          <ion-text class="gender__text">Gender</ion-text>
+          <div class="gender">
+            <ui-input
+              [options]="genders"
+              [type]="'checkbox'"
+              [control]="gender"
+            ></ui-input>
+          </div>
+        </div>
+      </form>
+      <div class="toggle">
+        <ui-input
+          [type]="'switchbox'"
+          [label]="'I agree to the Terms & Privacy Policy'"
+          [control]="term"
+        ></ui-input>
+      </div>
+      <div class="bts">
+        <ui-button
+          [label]="signupLabel"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading || (!form.valid)"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="signup()"
+        ></ui-button>
+      </div>
+      <div class="bts">
+        <ion-text color="black">
+          <p class="label mv_down">
+            Already have an account?
+            <a routerLink="/login" class="cursor"><b>Sign In</b></a>
+          </p>
+        </ion-text>
+      </div>
+    </div>
+  </div>
+</div>

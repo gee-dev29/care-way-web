@@ -1,0 +1,248 @@
+.padding {
+  background: #f9fffa !important;
+  margin-top: 70px !important;
+}
+
+ion-header {
+  --shadow: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
+ion-content {
+  --background: #f9fffa !important;
+}
+.pricing-head {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: start;
+}
+
+.pricing-title {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.bts {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.address {
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.container {
+  padding: 20px;
+}
+
+:host .picker-before {
+  height: unset !important;
+}
+
+ion-picker-column {
+  height: auto;
+}
+
+ion-picker-column-option {
+  font-size: 40px;
+  color: black;
+  border-bottom: 2px solid blue;
+  height: 100%;
+}
+
+.label {
+  color: black;
+  font-size: 18px;
+  margin-bottom: 8px;
+  margin-left: 12px;
+}
+
+.input-box {
+  background: white;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid #e5e5e5;
+}
+
+.height-box {
+  background: #e7f6e9;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.unit-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.height-value {
+  font-size: 48px;
+  font-weight: bold;
+  color: #111;
+  margin: 10px 0;
+}
+
+ion-picker::part(content) {
+  height: 300px !important;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.cm-label {
+  font-size: 16px;
+}
+
+#add__bp {
+  background: #f9fffa !important;
+}
+
+ion-content {
+  --background: #f9fffa !important;
+}
+
+ion-picker {
+  overflow-y: scroll;
+}
+
+ion-picker {
+  --highlight-background: #f9fffa;
+  --highlight-border-radius: 50px;
+  --fade-background-rgb: transparent;
+}
+
+.date {
+  font-weight: 600;
+}
+
+.tow {
+  margin-top: 30px;
+}
+
+ion-picker-column {
+  height: auto;
+}
+
+ion-picker-column-option {
+  font-size: 40px;
+  color: black;
+  border-bottom: 2px solid #307d3d;
+  height: 100%;
+}
+
+.cancel,
+.save {
+  font-size: 18px;
+  color: #307d3d;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.container {
+  padding: 20px;
+}
+
+.label {
+  color: black;
+  font-size: 18px;
+  margin-bottom: 8px;
+  margin-left: 12px;
+}
+
+.redder {
+  color: #ed1f24;
+}
+
+.input-box {
+  background: white;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid #e5e5e5;
+}
+
+.severe {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.box {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+  background: #e7f6e9;
+  border-radius: 20px;
+}
+
+.height-box {
+  padding: 30px 25px;
+  text-align: center;
+}
+
+.unit-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.height-value {
+  font-size: 48px;
+  font-weight: bold;
+  color: #111;
+  margin: 10px 0;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.divider {
+  width: 1px;
+  height: 200px;
+  background-color: #ffffff;
+  margin-top: 100px;
+}
+
+.cm-label {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.picker-opts {
+  background: rgba(255, 255, 255, 0.6) !important;
+}

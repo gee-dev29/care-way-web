@@ -1,0 +1,70 @@
+.live-call {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.incall {
+  height: 50vh;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  z-index: 2;
+}
+
+.app {
+  flex: 1;
+  min-height: 0;
+  z-index: 1;
+  position: relative !important;
+}
+
+.embed-call ui-consultation-live-video {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.embed-call ::ng-deep ui-consultation-live-video .ion-page {
+  position: absolute !important;
+  inset: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.embed-call ::ng-deep ui-consultation-live-video ion-content {
+  position: absolute !important;
+  inset: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  --offset-top: 0px;
+  --offset-bottom: 0px;
+}
+
+.embed-call ::ng-deep ui-consultation-live-video ion-content::part(scroll) {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.embed-call ::ng-deep ui-consultation-live-video .video-container {
+  position: absolute !important;
+  inset: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.embed-call ::ng-deep ui-consultation-live-video video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.embed-call ::ng-deep ui-consultation-live-video .controls {
+  position: absolute !important;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: max-content;
+}

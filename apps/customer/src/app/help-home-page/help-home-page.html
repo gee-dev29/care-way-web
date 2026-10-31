@@ -1,0 +1,40 @@
+<div class="page">
+  <div class="center">
+    <ion-img class="logo" src="/logo/healbridge.svg" alt="HealBridge"></ion-img>
+  </div>
+  <form class="ion-padding">
+    <ion-text class="here" color="black">
+      <h4>
+        This is a help request from <br />
+        {{member?.firstName}} {{member?.lastName}}
+      </h4>
+    </ion-text>
+    <ion-text class="here" color="black">
+      <h4>Do you want to <br />proceed?</h4>
+    </ion-text>
+
+    <div class="bts ion-padding">
+      <ui-button
+        [label]="loginLabel"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (Click)="proceed('proceed')"
+        [loading]="loading"
+      ></ui-button>
+      <ui-button
+        [label]="'Cancel'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#F9FFFA'"
+        [textColor]="'#307D3D'"
+        [borderLine]="'1px solid #307D3D'"
+        (Click)="proceed('cancel')"
+        [loading]="loading"
+      ></ui-button>
+    </div>
+  </form>
+</div>

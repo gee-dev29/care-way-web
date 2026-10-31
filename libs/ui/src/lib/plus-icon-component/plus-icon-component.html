@@ -1,0 +1,10 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<div
+  class="background"
+  [class.big-icon]="size === 'big'"
+  [class.small-icon]="size === 'small'"
+  (click)="addIdentity.emit($event)"
+  (keyup)="addIdentity.emit($event)"
+>
+  <ion-icon src="/logo/plus.svg"></ion-icon>
+</div>

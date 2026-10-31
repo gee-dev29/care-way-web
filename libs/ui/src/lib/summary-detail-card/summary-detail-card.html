@@ -1,0 +1,56 @@
+<div class="summaray__wrapper">
+  <div class="top">
+    <div
+      tabindex=""
+      (keyup.enter)="goBack()"
+      (click)="goBack()"
+      class="icon__wrapper"
+    >
+      <ion-icon class="left__arrow" name="chevron-back-outline"></ion-icon>
+    </div>
+    <h5>Appointment</h5>
+  </div>
+  <div class="summary__details py">
+    <div class="top__details">
+      <div class="file__icon">
+        <ion-img src="icons/black-file.svg"></ion-img>
+      </div>
+      <h5>Appointment Details</h5>
+    </div>
+    <div class="content__wrapper">
+      <div class="content__details">
+        <p>Date</p>
+        <h5>December 11, 2025</h5>
+      </div>
+      <div class="content__details">
+        <p>Time</p>
+        <h5>12:45pm</h5>
+      </div>
+    </div>
+    <div class="content__details">
+      <p>Address</p>
+      <h5>No. 24, Agbabiaka Street, Ketu, Lagos</h5>
+    </div>
+    <div class="content__details">
+      <p>Notes</p>
+      <h5>
+        Please do not eat anything before your appointment, as fasting will help
+        ensure accurate results.
+      </h5>
+    </div>
+    <div class="content__details">
+      <p>Doctor</p>
+      <h5>Olanrewaju Adeoluwa</h5>
+    </div>
+  </div>
+  <div class="summary__details py">
+    <div class="content__details">
+      <p>Name: Olivia Johnson</p>
+      <h5>Female | Age: 42 | Blood Group: A+</h5>
+    </div>
+  </div>
+  <div class="details">
+    <p>Presenting Complaints</p>
+    <ui-input-textarea [label]="''" [type]="'text'"></ui-input-textarea>
+  </div>
+</div>

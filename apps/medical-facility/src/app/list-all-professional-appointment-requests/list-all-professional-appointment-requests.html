@@ -1,0 +1,206 @@
+<ion-content class="page-content">
+  @if (!isLoading) {
+  <div class="header">
+    <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+    <div class="title">Appointment Requests</div>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="searchWrap">
+    <ion-searchbar
+      placeholder="Search"
+      mode="ios"
+      show-clear-button="never"
+      class="search"
+      (ionInput)="onSearch($event)"
+    ></ion-searchbar>
+  </div>
+
+  <div class="tabs mb-3">
+    <button
+      class="pill"
+      [class.active]="activeTab === 'All'"
+      (click)="setTab('All')"
+    >
+      All
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Pending'"
+      (click)="setTab('Pending')"
+    >
+      Pending
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Accepted'"
+      (click)="setTab('Accepted')"
+    >
+      Accepted
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Declined'"
+      (click)="setTab('Declined')"
+    >
+      Declined
+    </button>
+  </div>
+
+  <div class="list">
+    @for (appointmentRequest of filteredAppointments(); track
+    appointmentRequest.appointmentRequestId) {
+    <div class="card big">
+      <div class="apptTop">
+        <div>
+          <div class="cardTitle">
+            Patient:
+            <span class="member-name"
+              >{{ appointmentRequest?.memberName }}</span
+            >
+          </div>
+          <!-- <div class="cardTitle">{{ appointmentRequest?.memberName }}</div> -->
+          <!-- <div class="cardSub">
+            {{ appointmentRequest?.gender }} | {{ appointmentRequest?.age }} years
+          </div> -->
+        </div>
+        <div class="status">
+          <span class="dot"></span>
+          <span>{{ appointmentRequest?.status }}</span>
+        </div>
+      </div>
+      <div class="apptMeta">
+        <div class="metaItem">
+          <ion-icon src="/icons/calender.svg"></ion-icon>
+          <span
+            >{{moment.utc(`${appointmentRequest?.appointment.date}
+            ${appointmentRequest?.appointment.time}`, 'YYYY-MM-DD HH:mm')
+            .local() .format('MMM D, YYYY h:mm A')}}</span
+          >
+        </div>
+        <div class="metaItem">
+          <ion-icon src="/icons/virtual.svg"></ion-icon>
+          <span>{{ appointmentRequest?.appointment.appointmentType }}</span>
+        </div>
+      </div>
+      <div class="label">Complaints</div>
+      <div class="complaint">
+        {{ appointmentRequest?.appointment.notes !=='' ?
+        appointmentRequest?.appointment.notes: 'N/A' }}
+      </div>
+      @if ( appointmentRequest.status ==='Pending') {
+      <div class="btnRow">
+        <div class="tabs">
+          <button
+            class="pill"
+            [class.active]="true"
+            [disabled]="appointmentRequest.status!=='Pending'"
+            (click)="acceptRequest(appointmentRequest)"
+          >
+            Accept
+          </button>
+          <button
+            class="pill"
+            [class.active]="activeTab === 'Declined'"
+            (click)="declineRequest(appointmentRequest.appointmentId)"
+          >
+            Decline
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+
+    } @if (hasMore) {
+    <ion-infinite-scroll [disabled]="!hasMore" (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="crescent"
+        loadingText="Loading more appointments..."
+      ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    } @if (totalRecords === 0) {
+    <div class="empty">You have no requests</div>
+    } @if (totalRecords > 0 && filteredAppointments().length === 0) {
+    <div class="empty">No requests match "{{ searchTerm.trim() }}"</div>
+    }
+  </div>
+
+  } @else {
+  <div class="header">
+    <ion-button fill="clear" class="back">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <ion-skeleton-text
+      animated
+      style="width: 120px; height: 16px"
+    ></ion-skeleton-text>
+    <div class="spacer"></div>
+  </div>
+  <div class="searchWrap">
+    <div class="searchSkeleton">
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 44px"
+      ></ion-skeleton-text>
+    </div>
+  </div>
+  <div class="tabs">
+    <ion-skeleton-text
+      animated
+      style="width: 92px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 102px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 102px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+  </div>
+
+  <div class="list">
+    @for (_ of [1,2,3,4]; track _) {
+    <div class="card skCard">
+      <div class="row">
+        <div class="left">
+          <ion-skeleton-text
+            animated
+            style="width: 160px; height: 14px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="width: 140px; height: 12px; margin-top: 8px"
+          ></ion-skeleton-text>
+        </div>
+        <ion-skeleton-text
+          animated
+          style="width: 80px; height: 12px"
+        ></ion-skeleton-text>
+      </div>
+      <div class="actions">
+        <ion-skeleton-text
+          animated
+          style="width: 96px; height: 36px; border-radius: 999px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 96px; height: 36px; border-radius: 999px"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+    }
+  </div>
+  }
+</ion-content>
+
+@if(confirmModal){
+<ui-confirmation-modal
+  [heading]="`Are you sure you want to ${statusClick} the appointment request?`"
+  [background]="'#307D3D'"
+  [open]="confirmModal"
+  (next)="confirmAccept()"
+  (no)="cancelAccept()"
+  (dismiss)="cancelAccept()"
+></ui-confirmation-modal>
+}

@@ -1,0 +1,27 @@
+<ion-content id="background-content" fullscreen>
+  <div
+    id="prescription"
+    class="ion-padding"
+    [style.margin-top.px]="module ? 70 : 20"
+  >
+    <div class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title">Glucose Type</div>
+      <div></div>
+    </div>
+    <ion-list class="">
+      <div class="subtitle">Which glucose level are you recording?</div>
+      <div class="glucose-list">
+        @for (item of glucoseDatas; track item.title; let i = $index) {
+        <ion-card class="glucose-card" (click)="navigateTo(item.title)">
+          <div class="left">
+            <div class="title">{{ item.title }}</div>
+            <div class="note">{{ item.subtitle }}</div>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="icon"></ion-icon>
+        </ion-card>
+        }
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,140 @@
+<ion-content class="ion-padding" fullscreen>
+  <div class="header" id="invite">
+    <button
+      type="button"
+      class="back-btn"
+      aria-label="Go back"
+      (click)="goBack()"
+    >
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </button>
+    <ion-text class="title">Invitations</ion-text>
+    <div class="header-spacer"></div>
+  </div>
+
+  <div class="filters" role="tablist" aria-label="Filter requests by status">
+    @for (filter of filters; track filter) {
+    <button
+      type="button"
+      role="tab"
+      class="filter-chip"
+      [class.active]="activeFilter === filter"
+      [attr.aria-selected]="activeFilter === filter"
+      (click)="setFilter(filter)"
+    >
+      <span class="filter-label">{{ filter }}</span>
+      @if (!loading) {
+      <span class="filter-count">{{ countFor(filter) }}</span>
+      }
+    </button>
+    }
+  </div>
+
+  <div class="cards">
+    @if (loading) { @for (skeleton of skeletons; track $index) {
+    <div class="request-card skeleton-card" aria-hidden="true">
+      <div class="card-top">
+        <ion-skeleton-text
+          [animated]="true"
+          class="skeleton-avatar"
+        ></ion-skeleton-text>
+        <div class="card-main">
+          <ion-skeleton-text
+            [animated]="true"
+            class="skeleton-line skeleton-line-lg"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            [animated]="true"
+            class="skeleton-line skeleton-line-sm"
+          ></ion-skeleton-text>
+        </div>
+        <ion-skeleton-text
+          [animated]="true"
+          class="skeleton-pill"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+    } } @else if (filteredRequests.length === 0) {
+    <div class="empty">
+      <div class="empty-icon">
+        <ion-icon name="mail-open-outline"></ion-icon>
+      </div>
+      <span class="empty-title">No Invitations Yet</span>
+      <span class="empty-text">
+        There are no {{ activeFilter === 'All' ? '' : (activeFilter | lowercase)
+        + ' ' }}invitations to show.
+      </span>
+    </div>
+    } @else { @for (request of filteredRequests; track request.connectionId) {
+    <article class="request-card" [class.is-rejected]="isRejected(request)">
+      <div class="card-top">
+        <div class="avatar" aria-hidden="true">
+          {{ initials(request?.memberName) ||
+          initials(request?.professionalName) }}
+        </div>
+
+        <div class="card-main">
+          <span class="recipient">
+            {{ request.memberName || request?.professionalName }}
+          </span>
+          <span class="connection-type"
+            >{{ request.connectionType === 'Professional' ? request.professionalType: 'Patient'
+            }}</span
+          >
+        </div>
+
+        <span
+          class="status"
+          [class.pending]="request.status === 'Pending'"
+          [class.approved]="request.status === 'Approved'"
+          [class.rejected]="request.status === 'Rejected'"
+        >
+          <span class="status-dot"></span>
+          {{ request.status === 'Approved' ? 'Accepted' : request.status }}
+        </span>
+      </div>
+
+      @if (isRejected(request)) {
+      <div class="rejection">
+        <ion-icon name="alert-circle-outline" class="rejection-icon"></ion-icon>
+        <div class="rejection-body">
+          <span class="rejection-label">Reason for rejection</span>
+          <span class="rejection-reason">
+            <li>{{ request.reason || 'No reason provided' }}</li>
+          </span>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <button
+          type="button"
+          class="resend-btn"
+          (click)="resendInvite(request)"
+        >
+          <ion-icon name="refresh-outline"></ion-icon>
+          Resend Invitation
+        </button>
+      </div>
+      }
+    </article>
+    } }
+  </div>
+</ion-content>
+
+<medical-facility-fee-form-modal
+  [isOpen]="isModalOpen"
+  [saving]="saving"
+  [fee]="selectedFee"
+  (dismiss)="closeModal()"
+  (save)="saveFee($event)"
+>
+</medical-facility-fee-form-modal>
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to resend this invitation?'"
+  [background]="'#307D3D'"
+  [open]="resendConfirmOpen"
+  (next)="confirmResend()"
+  (no)="closeResendConfirm()"
+  (dismiss)="closeResendConfirm()"
+></ui-confirmation-modal>

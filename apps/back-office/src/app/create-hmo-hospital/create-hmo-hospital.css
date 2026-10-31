@@ -1,0 +1,8 @@
+.page{
+    padding-right: 30%;
+}
+@media (max-width: 899px){
+    .page{
+        padding-right: 0 !important;
+    }
+}

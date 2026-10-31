@@ -1,0 +1,90 @@
+<ion-content id="background-content" fullscreen>
+  <div class="page ion-padding">
+    <div class="header">
+      <ion-icon
+        tabindex="0"
+        (keyup.enter)="back()"
+        (click)="back()"
+        class="left__arrow"
+        name="left-arrow"
+      ></ion-icon>
+      <div class="title">Who are you buying for?</div>
+      <div></div>
+    </div>
+
+    @if (memberCount) {
+    <p class="counter">Selected: {{ selectedIds.size }} / {{ memberCount }}</p>
+    } @if (!loaded) {
+    <div class="list">
+      @for (item of skeletons; track $index) {
+      <div class="row">
+        <ion-avatar>
+          <ion-skeleton-text
+            animated
+            style="width: 100%; height: 100%"
+          ></ion-skeleton-text>
+        </ion-avatar>
+        <div class="middle">
+          <ion-skeleton-text
+            animated
+            style="width: 150px; height: 14px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="width: 200px; height: 12px; margin-top: 8px"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+      }
+    </div>
+    } @else if (failed) {
+    <p class="empty">We couldn't load your members. Please try again.</p>
+    } @else if (!members.length) {
+    <p class="empty">You have no members yet. Add one to continue.</p>
+    } @else {
+    <div class="list">
+      @for (member of members; track $index) {
+      <div
+        class="row"
+        tabindex="0"
+        (keyup.enter)="toggle(member)"
+        (click)="toggle(member)"
+      >
+        @if (member.profilePicture) {
+        <ion-avatar>
+          <img [src]="member.profilePicture" [alt]="member.firstName" />
+        </ion-avatar>
+        } @else {
+        <ion-avatar class="text__avatar">
+          <span>{{ initials(member) }}</span>
+        </ion-avatar>
+        }
+
+        <div class="middle">
+          <p class="name">{{ member.firstName }} {{ member.lastName }}</p>
+          <p class="meta">
+            {{ member.gender }} @if (member.age !== undefined) { | Age: {{
+            member.age }} } @if (member.bloodGroup) { | Blood Group: {{
+            member.bloodGroup }} }
+          </p>
+        </div>
+
+        <ion-checkbox [checked]="isSelected(member)"></ion-checkbox>
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="cta">
+    <ui-button
+      [label]="'Proceed'"
+      [width]="'full'"
+      [shape]="'round'"
+      [disabled]="!canProceed"
+      [backgroundColor]="canProceed ? '#317E3D' : '#D9DDD9'"
+      [textColor]="canProceed ? '#fff' : '#8A928A'"
+      (Click)="proceed()"
+    ></ui-button>
+  </div>
+</ion-content>

@@ -1,0 +1,66 @@
+<p-table
+  #dt1
+  dataKey="id"
+  [lazy]="true"
+  [paginator]="true"
+  [rows]="20"
+  [totalRecords]="totalRecords"
+  [value]="medicalFacilities$ | async"
+  [rowsPerPageOptions]="[20, 50, 100]"
+>
+  <ng-template #header>
+    <tr>
+      <th>Name</th>
+      @if (currentFacilityType === type.Pharmacy) {
+      <th>Product Categories</th>
+      } @if (currentFacilityType === type.Hospital) {
+      <th>Category</th>
+      <th>Specializations</th>
+      } @if (currentFacilityType === type.Laboratory) {
+      <th>Specializations</th>
+      } @if (currentFacilityType === type.BloodBank) {
+      <th>Blood Products</th>
+      } @if (currentFacilityType === type.Radiology) {
+      <th>Specializations</th>
+      }
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.name | titlecase }}</td>
+      @if (currentFacilityType === type.Pharmacy) {
+      <td>{{ item.productCategories }}</td>
+      } @if (currentFacilityType === type.Hospital) {
+      <td>{{ item.category }}</td>
+      <td>{{ item.specializationNames }}</td>
+      } @if (currentFacilityType === type.Laboratory) {
+      <td>{{ item.specializationNames }}</td>
+      } @if (currentFacilityType === type.BloodBank) {
+      <td>{{ item.bloodProducts }}</td>
+      } @if (currentFacilityType === type.Radiology) {
+      <td>{{ item.specializationNames }}</td>
+      }
+      <td>{{ item.status }}</td>
+      <td>
+        <ui-desktop-button
+          [label]="'View'"
+          [primary]="true"
+          [size]="'small'"
+          (Click)="view(item)"
+        ></ui-desktop-button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="7">
+        <div class="empty__table__text">
+          There are no Medical Facilities yet
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

@@ -1,0 +1,218 @@
+<ui-page-body>
+  <div class="pb-2">
+    <div class="table__head" type="button">
+      <div>
+        <h2>My Pending Approvals</h2>
+      </div>
+      <div class="grouped__btn">
+        @if(showCheckbox){
+        <ui-desktop-button
+          [label]="'Approve ' + '(' + selected.size + ')'"
+          [size]="'medium'"
+          (Click)="openApprovalConfirmationModal()"
+          [primary]="true"
+          [disabled]="selected.size === 0"
+        ></ui-desktop-button>
+        } @if(showApprovalRejectionButton){
+        <ui-desktop-button
+          [label]="'Reject ' + '(' + selected.size + ')'"
+          [size]="'medium'"
+          (Click)="openRejectionModal()"
+          [primary]="true"
+          [disabled]="selected.size === 0"
+        ></ui-desktop-button>
+        }
+        <ui-desktop-button
+          [label]="'Export'"
+          [primary]="true"
+          [size]="'medium'"
+          (Click)="export()"
+        ></ui-desktop-button>
+      </div>
+    </div>
+  </div>
+  <p-table
+    #dt1
+    dataKey="approvalId"
+    [paginator]="true"
+    [lazy]="true"
+    (onLazyLoad)="load($event)"
+    [rows]="20"
+    [totalRecords]="totalRecords"
+    [value]="approvals$ | async"
+    [rowsPerPageOptions]="[20, 50, 100]"
+    [tableStyle]="{ 'min-width': '100rem' }"
+    (onRowSelect)="onRowSelect($event)"
+    (onRowUnselect)="onRowUnselect($event)"
+    (onHeaderCheckboxToggle)="onHeaderCheckboxToggle({$event, dt1})"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        @if(showCheckbox){
+        <th style="width: 5rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        }
+        <th>Approval Type</th>
+        <th>Description</th>
+        <th>Date of Request</th>
+        <th>SLA (in hours)</th>
+        <th>Age (in hours)</th>
+        @if(showViewButton){
+        <th></th>
+        }
+      </tr>
+      <tr>
+        @if(showCheckbox){
+        <th></th>
+        } 
+        
+        <th>
+          <p-columnFilter field="approvalType" matchMode="equals" [showMenu]="false">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="'Approval Type'"
+                  [options]="approvalTypes"
+                  [key]="'value'"
+                  [value]="'value'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByType($event)"
+                ></ui-input-drop-down>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="description"
+            [showMenu]="false"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter [showMenu]="false" type="date" field="date">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <p-datepicker
+                [ngModel]="value"
+                [readonlyInput]="true"
+                [showClear]="true"
+                [iconDisplay]="'input'"
+                (onSelect)="filterByDate($event)"
+                (onClear)="filterByDate(null)"
+                inputId="dateFilter"
+                dateFormat="dd-mm-yy"
+              />
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th></th>
+        <th></th>
+        @if(showViewButton){
+        <th></th>
+        }
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-columns="columns">
+      <tr>
+        @if(showCheckbox){
+        <td style="width: 5rem">
+          <p-tableCheckbox [value]="item"></p-tableCheckbox>
+        </td>
+        } 
+        <td>{{ item.approvalType }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.date | date : 'MMM dd, yyyy' }}</td>
+        <td>{{ item.slaInHours }}</td>
+        <td>{{ item.age }}</td>
+        <td>
+          <div class="grouped__btn">
+            <ui-desktop-button
+              [label]="'View'"
+              [size]="'small'"
+              (Click)="view(item)"
+              [primary]="true"
+            ></ui-desktop-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ui-page-body>
+<ui-confirmation-modal-desktop
+  [(visibility)]="bulkApprovalConfirmationModal"
+  (proceed)="checkOTPApproval(approvalStatusEnum.approval)"
+  [message]="approvalConfirmationMessage"
+></ui-confirmation-modal-desktop>
+<ui-modal
+  [(visibility)]="rejectionModal"
+  [header]="'Reason for Rejection'"
+  [selectedWidth]="'45vw'"
+>
+<ui-form-body  [columns]="'no-split'">
+    <ui-desktop-input
+      [size]="'small'"
+      [control]="reason"
+      [label]="'Reason'"
+    ></ui-desktop-input>
+    <div>
+      <ui-desktop-button
+        width="full"
+        label="Save"
+        [primary]="true"
+        [loading]="loading"
+        (Click)="checkOTPApproval(approvalStatusEnum.rejection)"
+        [disabled]="!reason.valid || loading"
+      ></ui-desktop-button>
+    </div>
+  </ui-form-body>
+</ui-modal>
+<ui-modal
+  [(visibility)]="otpApprovalModal"
+  [selectedWidth]="'30vw'"
+  [selectedHeight]="'15vw'"
+  [header]="'Enter OTP for Approval'"
+>
+  <div class="mt-2 gap-2 mx-auto">
+    <ui-form-body [columns]="'no-split'">
+      <ui-desktop-input
+        [label]="'OTP'"
+        [control]="otp"
+        [type]="'text'"
+        [maxlength]="'6'"
+      ></ui-desktop-input>
+      <div class="grid mx-auto w-70 gap-2 grid-cols-2">
+        <ui-desktop-button
+          width="full"
+          label="Cancel"
+          [size]="'medium'"
+          (Click)="closeOTPModal()"
+        ></ui-desktop-button>
+        <ui-desktop-button
+          width="full"
+          label="Approve"
+          [primary]="true"
+          [size]="'medium'"
+          [loading]="loading"
+          (Click)="getApprovalOtp()"
+          [disabled]="!otpApprovalForm.valid || loading"
+        ></ui-desktop-button>
+      </div>
+      <p class="paragraph">
+        Didn't get OTP?
+        <span (click)="generateOtp(otpStatus.resend)" class="instruction">
+          Resend OTP
+        </span>
+      </p>
+    </ui-form-body>
+  </div>
+</ui-modal>

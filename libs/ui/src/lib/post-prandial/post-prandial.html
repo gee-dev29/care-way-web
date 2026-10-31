@@ -1,0 +1,157 @@
+<ion-content
+  id="background-content"
+  class="no-bottom-space"
+  [fullscreen]="true"
+  fullscreen
+>
+  @if (loaded) {
+  <div id="prescription">
+    <div class="toolbar">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <ion-skeleton-text
+          animated
+          style="width: 24px; height: 24px; border-radius: 50%"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 100px; height: 20px"
+        ></ion-skeleton-text>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <ion-skeleton-text
+          animated
+          style="width: 24px; height: 24px; border-radius: 50%"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 100px; height: 20px"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+    <div class="subtitle">
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 25px; margin: auto"
+      ></ion-skeleton-text>
+    </div>
+
+    <div class="reading-list">
+      <ion-skeleton-text
+        animated
+        style="
+          width: 100%;
+          height: 120px;
+          border-radius: 12px;
+          margin-bottom: 14px;
+        "
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="
+          width: 100%;
+          height: 120px;
+          border-radius: 12px;
+          margin-bottom: 14px;
+        "
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 120px; border-radius: 12px"
+      ></ion-skeleton-text>
+    </div>
+  </div>
+
+  } @if ((postPrandial$ | async); as posts) {
+  <div id="prescription" class="ion-padding">
+    <ion-list class="ion-list">
+      <div class="toolbar">
+        <div class="pricing-head">
+          <div class="icon">
+            <ion-icon
+              (click)="goBack()"
+              name="chevron-back-outline"
+              size="small"
+            ></ion-icon>
+          </div>
+
+          <ion-text class="pricing-title rm-bg">Post-Prandial</ion-text>
+        </div>
+
+        <div
+          class="add-reading"
+          tabindex="0"
+          (keyup.enter)="addPostPrandial()"
+          (click)="addPostPrandial()"
+        >
+          <ion-icon class="reading-icon" src="/logo/addReadings.svg"></ion-icon>
+          <ion-text class="pricing-title"> Add readings</ion-text>
+        </div>
+      </div>
+      @if(posts.length > 0){
+      <div class="subtitle">
+        Track your readings daily to notice trends after meals.
+      </div>
+      }
+    </ion-list>
+
+    <div class="reading-list">
+      @for(group of posts; track group.vitalRecordId){
+
+      <div class="group">
+        <div class="group-header">
+          <ion-text>{{ group.date }} • {{ group.time }}</ion-text>
+
+          @if(group.readings?.length > 1){
+          <ion-icon
+            class="reading-icon"
+            name="chevron-up-outline"
+            [class.rotated]="group.expanded"
+            (click)="toggleGroup(group)"
+          ></ion-icon>
+          }
+        </div>
+
+        @if(group.expanded || group.readings?.length === 1){ @for(reading of
+        group.readings; track reading){
+
+        <ion-card class="reading-card">
+          <div class="circle">
+            <div class="progress"></div>
+            <div class="center-text">
+              <div class="number">{{reading.record }}</div>
+              <div class="unit">mg/dL</div>
+            </div>
+          </div>
+
+          <div class="details">
+            <div class="row">
+              <ion-icon src="logo/date-today.svg"></ion-icon>
+              <span>{{newDateFormat( group?.date, group?.time) }}</span>
+            </div>
+
+            <div class="row">
+              <ion-icon src="logo/alarm.svg"></ion-icon>
+              <span>{{ group.time }}</span>
+            </div>
+
+            <div class="row">
+              <span
+                class="status__color"
+                [ngClass]="getPostprandialColor(reading.status)"
+              >
+                {{ reading.status }}
+              </span>
+            </div>
+          </div>
+        </ion-card>
+
+        <!--  -->
+        } }
+      </div>
+
+      }
+    </div>
+  </div>
+
+  }
+</ion-content>

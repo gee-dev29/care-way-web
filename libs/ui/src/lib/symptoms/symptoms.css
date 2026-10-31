@@ -1,0 +1,99 @@
+ion-item {
+  border-bottom: 0.5px solid black !important;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+:host ion-item,
+:host ion-select,
+:host .list-ios,
+:host .list-md {
+  --background: transparent !important;
+  background: transparent !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+#prescription {
+  --background: #f9fffa !important;
+}
+.up {
+  margin: 17px !important;
+}
+.header {
+  margin-top: 115px !important;
+}
+
+ion-picker {
+  --background: #e7f6e9;
+  --fade-background-rgb: 231, 246, 233;
+  --border-radius: 10px;
+  --highlight-background: #f9fffa;
+  --highlight-border-radius: 48px;
+  min-width: 100%;
+  margin-top: 20px;
+}
+
+.sub-head {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
+}
+.sub-head ion-icon {
+  font-size: 22px;
+}
+.sub-head ion-text {
+  font-size: 22px;
+}
+
+.header h1 {
+  font-size: 32px;
+  font-weight: 500;
+  color: #0f0f0f;
+  margin-bottom: 4px;
+}
+
+.select-body {
+  margin-top: 10px !important;
+}
+
+.date-picker .date-title {
+  font-weight: 600;
+}
+
+.header p {
+  color: black;
+  margin-bottom: 50px;
+}
+
+.full-field {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-box,
+.select-box,
+.description-box {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  border: 2px solid white;
+}
+
+.select-box {
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.description-box {
+  min-height: 110px;
+  color: #4b4b4b;
+  font-size: 15px;
+}
+
+.btn-container {
+  margin-top: 50px;
+  padding-bottom: 100px;
+}

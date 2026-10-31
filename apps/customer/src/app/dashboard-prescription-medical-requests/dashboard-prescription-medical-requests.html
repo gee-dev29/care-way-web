@@ -1,0 +1,149 @@
+<ion-content id="background-content" class="ion-padding" fullscreen>
+  <div #tabs id="medical-requests">
+    <div class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title">Medical Requests</div>
+      <a tabindex="" (keydown)="goto()" (click)="goto()">
+        <div>
+          <ui-plus-icon-component [size]="'small'"></ui-plus-icon-component>
+        </div>
+      </a>
+    </div>
+
+    <div class="tabs">
+      @if (showPharmacyTab) {
+      <button
+        class="tab"
+        [class.active]="activeTab === 'pharmacy'"
+        (click)="setTab('pharmacy', 'Pharmacy')"
+      >
+        Pharmacy
+      </button>
+      }
+
+      @if (showLabTestTab) {
+      <button
+        class="tab"
+        [class.active]="activeTab === 'labtest'"
+        (click)="setTab('labtest', 'Laboratory')"
+      >
+        Lab Test
+      </button>
+      }
+
+      @if (showRadiologyTab) {
+      <button
+        class="tab"
+        [class.active]="activeTab === 'radiology'"
+        (click)="setTab('radiology', 'Radiology')"
+      >
+        Radiology
+      </button>
+      }
+
+      @if (showBloodBankTab) {
+      <button
+        class="tab"
+        [class.active]="activeTab === 'bloodbank'"
+        [class.bloodbank-active]="activeTab === 'bloodbank'"
+        (click)="setTab('bloodbank', 'Blood Bank')"
+      >
+        Blood Bank
+      </button>
+      }
+    </div>
+
+    <div class="status-filters">
+      <button
+        class="status-btn"
+        [class.active]="activeStatus === 'All'"
+        [class.bloodbank-active]="activeTab === 'bloodbank' && activeStatus === 'All'"
+        (click)="setStatus('All')"
+      >
+        All
+      </button>
+      <button
+        class="status-btn"
+        [class.active]="activeStatus === DocumentStatus.Draft"
+        [class.bloodbank-active]="activeTab === 'bloodbank' && activeStatus === 'Draft'"
+        (click)="setStatus('Draft')"
+      >
+        Draft
+      </button>
+      <button
+        class="status-btn"
+        [class.active]="activeStatus === DocumentStatus.Pending"
+        [class.bloodbank-active]="activeTab === 'bloodbank' && activeStatus === 'Pending'"
+        (click)="setStatus('Pending')"
+      >
+        Pending
+      </button>
+
+      <button
+        class="status-btn"
+        [class.active]="activeStatus === DocumentStatus.Processed"
+        [class.bloodbank-active]="activeTab === 'bloodbank' && activeStatus === 'Processed'"
+        (click)="setStatus('Processed')"
+      >
+        Processed
+      </button>
+
+      <button
+        class="status-btn"
+        [class.active]="activeStatus === DocumentStatus.Ordered"
+        [class.bloodbank-active]="activeTab === 'bloodbank' && activeStatus === 'Ordered'"
+        (click)="setStatus('Ordered')"
+      >
+        Ordered
+      </button>
+
+      <button
+        class="status-btn"
+        [class.active]="activeStatus === DocumentStatus.Cancelled"
+        [class.bloodbank-active]="activeTab === 'bloodbank' && activeStatus === 'Cancelled'"
+        (click)="setStatus('Cancelled')"
+      >
+        Cancelled
+      </button>
+
+      <button
+        class="status-btn"
+        [class.active]="activeStatus === DocumentStatus.Accepted"
+        [class.bloodbank-active]="activeTab === 'bloodbank' && activeStatus === 'Accepted'"
+        (click)="setStatus('Accepted')"
+      >
+        Accepted
+      </button>
+    </div>
+    <div class="requests">
+      @for(item of allRequests; track item;){
+
+      <ui-medical-request-card
+        [request]="item"
+        (viewIt)="navigateTo(item)"
+        [background]="'#c8eacd'"
+      >
+      </ui-medical-request-card>
+      }@if (hasMore) {
+      <ion-infinite-scroll
+        [disabled]="!hasMore"
+        (ionInfinite)="loadMore($event)"
+      >
+        <ion-infinite-scroll-content
+          loadingSpinner="crescent"
+          loadingText="Loading more requests..."
+        ></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+      }
+    </div>
+  </div>
+</ion-content>
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to delete this request?'"
+  [background]="'#307D3D'"
+  [open]="requestModal"
+  (next)="cancelRequest()"
+  (no)="closeRequestModal()"
+  (dismiss)="closeRequestModal()"
+></ui-confirmation-modal>

@@ -1,0 +1,154 @@
+<ion-content id="background-content">
+  @if (loaded) {
+  <div id="home" class="ion-padding">
+    @if (getAuth?.userType==="Medical Facility") {
+    <ui-wallet-card
+      [bg]="'#317e3d'"
+      [color]="'white'"
+      [subtitle]="`${facilityTypeInfo?.name}`"
+      [facilityType]="facilityType"
+      [balance]="balance"
+      [facilityId]="facilityId"
+    ></ui-wallet-card>
+    }
+
+    <div class="content">
+      <!-- <ui-doctors-profile
+        [viewAllColor]="'#000'"
+        [title]="'Manage Blood Bank Staff'"
+        [label1]="'Add'"
+        [label2]="'BB Staff'"
+        [doctorsList]="labTechLists"
+        (view)="allPharm()"
+        (routeTo)="addPharm()"
+        [addRecord]="addRecord"
+      ></ui-doctors-profile> -->
+      @if((labTechLists$ | async)?.length > 0){
+      <ui-dashboard-identities-list-card
+        [cardHeading]="'Blood Bank Staff'"
+        [identities$]="labTechLists$"
+        [identityType]="type.LabTechnician"
+        (addIdentity)="addLabTech()"
+        [identitiesTotalRecords]="labTechTotalRecords"
+        (viewAll)="viewLabTech()"
+        `
+      ></ui-dashboard-identities-list-card>
+      }@else {
+      <div tabindex="" (keyup.enter)="addLabTech()" (click)="addLabTech()">
+        <ui-add-new-entry-card [title]="'No Blood Bank Staff At the Moment'">
+        </ui-add-new-entry-card>
+      </div>
+      }
+    </div>
+
+    <div class="cost">
+      <!-- <ui-cost-card
+        [viewAllColor]="'#EF0000'"
+        [bg]="'#FFF3F3'"
+        [route]="route"
+        (viewAll)="viewAll()"
+        [costRequest]="costRequests"
+        [bdColor]="'0.5px solid #FEC6C6'"
+      ></ui-cost-card> -->
+      @if(costRequests?.length > 0){
+      <ui-medical-request-card
+        [request]="costRequests[0]"
+        [title]="'Medical Requests'"
+        (view)="viewAll()"
+        [route]="route"
+      >
+      </ui-medical-request-card>
+      } @else {
+      <ui-add-new-entry-card
+        [title]="'You Have No Request At the Moment'"
+        [state]="'empty'"
+      >
+      </ui-add-new-entry-card>
+      }
+    </div>
+    <div class="cost">
+      @if (orders?.length > 0) {
+      <ui-fufil-card
+        [viewAllColor]="'#307D3D'"
+        [bg]="'#f6f6f6'"
+        (view)="viewAllOrder()"
+        (viewIt)="viewOneOrder($event)"
+        [order]="orders[0]"
+      ></ui-fufil-card>
+      } @else {
+      <ui-add-new-entry-card
+        [title]="'You Have No Order At the Moment'"
+        [state]="'empty'"
+      >
+      </ui-add-new-entry-card>
+      }
+    </div>
+  </div>
+  } @else {
+  <div id="home" class="ion-padding">
+    <ion-skeleton-text
+      animated=""
+      style="width: 100%; height: 200px; border-radius: 12px"
+    ></ion-skeleton-text>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 16px;
+      "
+    >
+      <ion-skeleton-text
+        animated=""
+        style="width: 200px; height: 15px; border-radius: 12px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated=""
+        style="width: 80px; height: 15px; border-radius: 12px"
+      ></ion-skeleton-text>
+    </div>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+      "
+    >
+      @for(i of [1, 2, 3, 4]; track i){
+      <ion-skeleton-text
+        animated=""
+        style="width: 80px; height: 80px; border-radius: 100%"
+      ></ion-skeleton-text>
+      }
+    </div>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 16px;
+      "
+    >
+      <ion-skeleton-text
+        animated=""
+        style="width: 140px; height: 15px; border-radius: 12px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated=""
+        style="width: 50px; height: 15px; border-radius: 12px"
+      ></ion-skeleton-text>
+    </div>
+    <ion-skeleton-text
+      animated=""
+      style="width: 100%; height: 200px; border-radius: 12px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated=""
+      style="width: 100%; height: 200px; border-radius: 12px"
+    ></ion-skeleton-text>
+  </div>
+  }
+
+  <div class="end"></div>
+</ion-content>

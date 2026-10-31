@@ -1,0 +1,63 @@
+@if (queries$ | async; as queries) { @if (queries.length) {
+<div class="card__container">
+  <div class="card__header">
+    <h3>{{ cardHeading }}</h3>
+    <span class="count">{{ queries.length }}</span>
+  </div>
+  <ul class="query__list">
+    @for (item of queries; track item.queryId ?? $index) {
+    <li class="query">
+      <div class="query__meta">
+        <span class="name">{{ item.staffName || 'Unknown staff' }}</span>
+        @if (item.queryDate) {
+        <span class="date"> {{ formatDate(item.queryDate) }} </span>
+        }
+      </div>
+      <p class="query__text">{{ item.query }}</p>
+      @if (item.response) {
+      <div class="response">
+        <div class="query__meta">
+          <span class="label">Response</span>
+          @if (item.responseDate) {
+          <span class="date"> {{ formatDate(item.responseDate) }} </span>
+          }
+        </div>
+        <p class="query__text">{{ item.response }}</p>
+      </div>
+      } @else if (respondingId === item.queryId) {
+      <div class="response__form">
+        <textarea
+          pTextarea
+          rows="3"
+          [formControl]="response"
+          placeholder="Write your response"
+        ></textarea>
+        <div class="grouped__btn">
+          <ui-desktop-button
+            [label]="'Cancel'"
+            (Click)="cancelResponse()"
+          ></ui-desktop-button>
+          <ui-desktop-button
+            [label]="'Send Response'"
+            [primary]="true"
+            [loading]="loading"
+            [disabled]="response.invalid || loading"
+            (Click)="respondToQuery()"
+          ></ui-desktop-button>
+        </div>
+      </div>
+      } @else {
+      <div class="query__footer">
+        <span class="tag">Awaiting response</span>
+        @if (item.queryId) {
+        <button type="button" class="link" (click)="openResponse(item.queryId)">
+          Respond
+        </button>
+        }
+      </div>
+      }
+    </li>
+    }
+  </ul>
+</div>
+} }

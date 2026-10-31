@@ -1,0 +1,159 @@
+<div class="toolbar">
+  <div class="left-toolbar">
+    <ion-icon src="/logo/backarrow.svg" (click)="back.emit(route)"></ion-icon>
+  </div>
+  <ion-text>{{heading}} {{headerTitle}}</ion-text>
+  @if(heading === 'Symptoms'){
+  <div class="skip" tabindex="" (keyup.enter)="skip()" (click)="skip()">
+    <span>Skip</span>
+  </div>
+  }@else{
+
+  <div class="plus-icon">
+    <ion-icon name="add" (click)="upload()"></ion-icon>
+  </div>
+  }
+</div>
+
+@if(plus){
+
+<div class="center_upload">
+  <div
+    class="plus_icon_container"
+    (click)="upload()"
+    tabindex=""
+    (keyup)="upload()"
+  >
+    <ion-icon name="add"></ion-icon>
+  </div>
+  <ion-text class="upload_text">Add Symptoms Image</ion-text>
+</div>
+
+}@else {
+<div class="upload__logo">
+  <ion-img (click)="upload()" src="/logo/upload.svg"></ion-img>
+  <p>{{name}}</p>
+</div>
+
+}
+<div class="skip">
+  <ui-button
+    [label]="'Skip'"
+    [width]="'full'"
+    [fill]="'solid'"
+    [shape]="'round'"
+    [loading]="loading"
+    [disabled]="loading"
+    [backgroundColor]="'#307d3d'"
+    [textColor]="'#FDFDFD'"
+    (Click)="skipIt()"
+  ></ui-button>
+</div>
+@if (open) {
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="open"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header">
+        <ion-text class="title">{{label}}</ion-text>
+        <ion-icon
+          (click)="close()"
+          class="closeIcon"
+          src="/logo/closeblue.svg"
+        ></ion-icon>
+      </div>
+      <ion-card-content>
+        <ion-text class="desc"> </ion-text>
+        <div class="images">
+          <div
+            tabindex=""
+            (keyup.enter)="takePicture()"
+            (click)="takePicture()"
+          >
+            <ion-img src="/logo/cameraImage.svg"></ion-img>
+            <ion-text>Camera</ion-text>
+          </div>
+          <div tabindex="" (keyup.enter)="pickFile()" (click)="pickFile()">
+            <ion-img src="/logo/fileImage.svg"></ion-img>
+            <ion-text>File</ion-text>
+          </div>
+          <div
+            tabindex=""
+            (keyup.enter)="choosePhoto()"
+            (click)="choosePhoto()"
+          >
+            <ion-img src="/logo/gallaryImage.svg"></ion-img>
+            <ion-text>Gallery</ion-text>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+} @if (dataUrl.length>0) {
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="displayFile"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+        <ion-icon
+          (click)="closeSave()"
+          class="closeIcon"
+          src="/logo/closered.svg"
+        ></ion-icon>
+      </div>
+      <ion-card-content class="apply__gap">
+        @if (dataUrl) { @if(dataUrl.includes('https')){
+        <div class="preview-container">
+          <iframe [src]="dataUrl | safe" class="preview-img"></iframe>
+        </div>
+        } @else{
+        <div class="preview-container">
+          @if(isPdf){
+          <iframe [src]="dataUrl | safe" class="preview-img"></iframe>
+          }@else{
+          <image-cropper
+            [imageBase64]="dataUrl"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="210 / 297"
+            [autoCrop]="false"
+            [cropperStaticWidth]="420"
+            [cropperStaticHeight]="594"
+            [cropperMinWidth]="420"
+            [cropperMinHeight]="594"
+            [cropperMaxWidth]="420"
+            [cropperMaxHeight]="594"
+            [onlyScaleDown]="true"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+          ></image-cropper>
+          }
+        </div>
+        }
+
+        <ui-button
+          [label]="'Save Upload'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="uploadFile()"
+        ></ui-button>
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+}

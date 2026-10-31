@@ -1,0 +1,86 @@
+<ion-content class="profile-content">
+  <!-- <ion-header id="prescription"> -->
+    <div class="up">
+      <ion-icon
+        (click)="back()"
+        name="chevron-back-outline"
+        size="small"
+      ></ion-icon>
+      <ion-text class="title" color="black">Profile</ion-text>
+    </div>
+  <!-- </ion-header> -->
+
+  <div tabindex="" (keyup)="upload()" (click)="upload()" class="avatar-wrapper">
+    @if (profileInfoService?.loggedInPicture!==null) {
+    <div class="avatar-border">
+      <ion-img class="avatar" [src]="profileInfoService?.loggedInPicture"> </ion-img>
+    </div>
+    } @else {
+    <ion-avatar class="avatar-border text__avater">
+      <span
+        >{{profileInfoService.loggedInName[0]}} {{profileInfoService.loggedInName.split('
+        ')[1][0]}}
+      </span>
+    </ion-avatar>
+    }
+    <div class="profile__details">
+      <div class="name">{{profileInfoService?.loggedInName}}</div>
+      <div class="verified__name">{{profileInfoService?.loggedInEmail}}</div>
+      <div class="verified">Verified</div>
+    </div>
+  </div>
+
+  <div class="menu-list">
+    <div
+      class="menu-row"
+      tabindex="0"
+      (keydown.enter)="goTo('profile-information')"
+      (click)="goTo('profile-information')"
+    >
+      <div class="right">
+        <ion-icon src="/logo/profile-icon.svg"></ion-icon>
+        <span>Personal</span>
+      </div>
+      <ion-icon class="end-icon" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+    <div
+      class="menu-row"
+      tabindex="0"
+      (keydown.enter)="goTo('notification-settings')"
+      (click)="goTo('notification-settings')"
+    >
+      <div class="right">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <span>Notification settings</span>
+      </div>
+      <ion-icon class="end-icon" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+    <div
+      class="menu-row"
+      tabindex="0"
+      (keydown.enter)="goTo('security')"
+      (click)="goTo('security')"
+    >
+      <div class="right">
+        <ion-icon src="/logo/password.svg"></ion-icon>
+        <span>Security settings</span>
+      </div>
+      <ion-icon class="end-icon" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+    <div
+      class="menu-row"
+      tabindex="0"
+      (keydown.enter)="goTo('referral')"
+      (click)="goTo('referral')"
+    >
+      <div class="right">
+        <ion-icon name="gift-outline"></ion-icon>
+        <span>Refer a friend</span>
+      </div>
+      <ion-icon class="end-icon" name="chevron-forward-outline"></ion-icon>
+    </div>
+  </div>
+</ion-content>

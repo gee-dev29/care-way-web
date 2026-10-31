@@ -1,0 +1,60 @@
+<ion-content class="ion-padding">
+  <div #tabs id="prescription">
+    <div>
+      <div class="header">
+        <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+        <ion-text class="pricing-title">{{heading}}</ion-text>
+        <div></div>
+      </div>
+
+      <form class="form-wrapper" [formGroup]="form">
+        <ui-input
+          [control]="form.controls['firstName']"
+          [label]="'First Name'"
+          [type]="'text'"
+        ></ui-input>
+        <ui-input
+          [control]="form.controls['lastName']"
+          [label]="'Last Name'"
+          [type]="'text'"
+        ></ui-input>
+        <div class="gender__based">
+          <ion-text class="gender__text">Gender</ion-text>
+          <div class="gender">
+            <ui-input
+              [options]="genders"
+              [type]="'checkbox'"
+              [control]="form.controls['gender']"
+            ></ui-input>
+          </div>
+        </div>
+        <ui-input
+          label="Email"
+          type="email"
+          [control]="form.controls['email']"
+          [readOnly]="edit"
+        ></ui-input>
+        <ui-input
+          label="Phone number"
+          [control]="form.controls['phone']"
+        ></ui-input>
+      </form>
+
+      <div class="btn-margin">
+        <ui-button
+          expand="block"
+          [label]="label"
+          [width]="'full'"
+          size="medium"
+          [fill]="'solid'"
+          shape="round"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [loading]="loading"
+          (Click)="submit()"
+          [disabled]="!form.valid || loading"
+        ></ui-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

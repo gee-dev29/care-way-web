@@ -1,0 +1,17 @@
+<ui-page-body>
+  <div class="table__head">
+    <h2 class="title">Customers</h2>
+    <ui-desktop-button
+      [label]="'Export'"
+      [size]="'large'"
+      [primary]="true"
+      (Click)="export()"
+    ></ui-desktop-button>
+  </div>
+  <back-office-user-table
+    [user$]="customers$"
+    [totalRecords]="totalRecords"
+    (onLoad)="load($event)"
+    (viewDetails)="view($event)"
+  ></back-office-user-table>
+</ui-page-body>

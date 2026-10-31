@@ -1,0 +1,312 @@
+<ion-content>
+  <ion-header collapse="fade" class="mobile-header">
+    <ion-toolbar>
+      <div class="up">
+        <div class="left">
+          <div class="center">
+            <ion-img
+              src="/logo/HealaBridge_Nurse_Logo.svg"
+              alt="HealBridge"
+            ></ion-img>
+          </div>
+        </div>
+        <div class="user">
+          <div
+            class="ion-tab-buttonn prescription"
+            tabindex="1"
+            (keyup.enter)="route($event)"
+            (click)="route($event)"
+          >
+            <ion-icon class="notif" src="/icons/notification.svg"></ion-icon>
+            @if (unreadNotificationCount > 0) {
+              <ion-badge color="danger">{{ unreadNotificationCount }}</ion-badge>
+            }
+          </div>
+          <div
+            class="avatar-wrapper"
+            tabindex="0"
+            (keypress)="goToProfile()"
+            (click)="goToProfile()"
+          >
+            @if (profileInfoService?.picture?.length) {
+            <ion-avatar class="avatar-border">
+              <ion-img
+                class="avatar"
+                [src]="profileInfoService?.picture"
+              ></ion-img>
+            </ion-avatar>
+            } @else {
+            <ion-avatar class="avatar-border text__avater">
+              <span>{{ profileInfoService?.name?.[0] }}</span>
+            </ion-avatar>
+            } @if (facilities.length) {
+            <ion-icon
+              src="/icons/swap-horizontal-outline.svg"
+              class="swap-icon"
+              name="swap-horizontal-outline"
+              tabindex="0"
+              (click)="openFacilityModal($event)"
+              (keydown.enter)="openFacilityModal($event)"
+            ></ion-icon>
+            }
+          </div>
+        </div>
+      </div>
+    </ion-toolbar>
+
+    <ion-modal
+      [isOpen]="isFacilityModalOpen"
+      [initialBreakpoint]="1"
+      [breakpoints]="[0, 1]"
+      (didDismiss)="isFacilityModalOpen = false"
+    >
+      <ng-template>
+        <div></div>
+        <div class="block">
+          @for (item of facilities; track item.connectionId) {
+          <div
+            tabindex="0"
+            class="acct-box"
+            (click)="setActiveFacility(item)"
+            (keydown.enter)="setActiveFacility(item)"
+            [class.active]="item.facilityTypeId === activeFacilityTypeId"
+          >
+            <div class="icon-con">
+              <ion-icon src="/icons/hospital.svg"></ion-icon>
+            </div>
+            <ion-text class="acct-text">{{ item.facilityTypeName }}</ion-text>
+          </div>
+          }
+        </div>
+      </ng-template>
+    </ion-modal>
+  </ion-header>
+  <ion-header collapse="fade" class="desktop-header">
+    <ion-toolbar>
+      <div class="up">
+        <div
+          class="user"
+          tabindex="0"
+          (keypress)="goToProfile()"
+          (click)="goToProfile()"
+        >
+          <div class="avatar-wrapper">
+            @if (profileInfoService?.picture?.length) {
+            <ion-avatar class="profile__pic">
+              <img [src]="profileInfoService?.picture" alt="" />
+            </ion-avatar>
+            } @else {
+            <ion-avatar class="avatar-border text__avater">
+              <span>{{ profileInfoService?.name?.[0] }}</span>
+            </ion-avatar>
+            } @if (facilities.length) {
+            <ion-icon
+              src="/icons/swap-horizontal-outline.svg"
+              class="swap-icon"
+              name="swap-horizontal-outline"
+              tabindex="0"
+              (click)="openFacilityModal($event)"
+              (keydown.enter)="openFacilityModal($event)"
+            ></ion-icon>
+            }
+          </div>
+
+          <div class="greeting__container">
+            <p class="greeting">
+              Hi, {{ profileInfoService?.name?.split(' ')[0] }} 👋
+            </p>
+          </div>
+        </div>
+
+        <div class="left">
+          <div
+            class="ion-tab-buttonn"
+            tabindex="1"
+            (keyup.enter)="route($event)"
+            (click)="route($event)"
+          >
+            <ion-icon class="notif" name="notifications-outline"></ion-icon>
+            @if (unreadNotificationCount > 0) {
+              <ion-badge color="danger">{{ unreadNotificationCount }}</ion-badge>
+            }
+          </div>
+        </div>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+
+  @if (isMobile) {
+  <ion-tabs class="mobile-tabs">
+    <!-- <ion-router-outlet></ion-router-outlet> -->
+
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button
+        [routerLink]="['/nurse-dashboard', professionalId]"
+        routerLinkActive="tab-selected"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <ion-icon src="/icons/Home.svg"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button
+        [routerLink]="['/nurse-dashboard', professionalId, 'nurse-appointments']"
+        routerLinkActive="tab-selected"
+      >
+        <ion-icon src="/icons/Appointments.svg"></ion-icon>
+        <ion-label>Appointments</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button
+        [routerLink]="['/nurse-dashboard', professionalId, 'patients']"
+        routerLinkActive="tab-selected"
+      >
+        <ion-icon src="/icons/Patients.svg"></ion-icon>
+        <ion-label>Patients</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button
+        [routerLink]="['/nurse-dashboard', professionalId, 'doctors']"
+        routerLinkActive="tab-selected"
+      >
+        <ion-icon src="/icons/Doctor.svg"></ion-icon>
+        <ion-label>Doctors</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button
+        [routerLink]="['/nurse-dashboard', professionalId, 'nurse-profile']"
+        routerLinkActive="tab-selected"
+      >
+        <ion-icon src="/icons/Category.svg"></ion-icon>
+        <ion-label>Profile</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  } @else {
+  <div class="desktop-layout">
+    <div class="desktop-sidebar">
+      <div class="desktop-sidebar-inner">
+        <div>
+          <div class="desktop-logo">
+            <img src="/logo/HealaBridge_Nurse_Logo.svg" alt="HealBridge" />
+          </div>
+
+          <div class="desktop-nav">
+            <ul>
+              <li>
+                <div
+                  class="desktop-link"
+                  [class.activeLink]="isActive('/nurse-dashboard/' + professionalId)"
+                  tabindex="0"
+                  (keyup.enter)="navigate('/nurse-dashboard/' + professionalId)"
+                  (click)="navigate('/nurse-dashboard/' + professionalId)"
+                >
+                  <img src="/logo/home.svg" alt="" />
+                  <p>Dashboard</p>
+                </div>
+              </li>
+
+              <li>
+                <div
+                  class="desktop-link"
+                  [class.activeLink]="isActive('/nurse-dashboard/' + professionalId + '/nurse-appointments')"
+                  tabindex="0"
+                  (keyup.enter)="navigate('/nurse-dashboard/' + professionalId + '/nurse-appointments')"
+                  (click)="navigate('/nurse-dashboard/' + professionalId + '/nurse-appointments')"
+                >
+                  <img src="/logo/schedule.svg" alt="" />
+                  <p>Appointments</p>
+                </div>
+              </li>
+
+              <li>
+                <div
+                  class="desktop-link"
+                  [class.activeLink]="isActive('/nurse-dashboard/' + professionalId + '/patients')"
+                  tabindex="0"
+                  (keyup.enter)="navigate('/nurse-dashboard/' + professionalId + '/patients')"
+                  (click)="navigate('/nurse-dashboard/' + professionalId + '/patients')"
+                >
+                  <img src="/icons/Patients.svg" alt="" />
+                  <p>Patients</p>
+                </div>
+              </li>
+
+              <li>
+                <div
+                  class="desktop-link"
+                  [class.activeLink]="isActive('/nurse-dashboard/' + professionalId + '/doctors')"
+                  tabindex="0"
+                  (keyup.enter)="navigate('/nurse-dashboard/' + professionalId + '/doctors')"
+                  (click)="navigate('/nurse-dashboard/' + professionalId + '/doctors')"
+                >
+                  <img src="/icons/Doctor.svg" alt="" />
+                  <p>Doctors</p>
+                </div>
+              </li>
+
+              <li>
+                <div
+                  class="desktop-link"
+                  [class.activeLink]="isActive('/nurse-dashboard/' + professionalId + '/nurse-available-invitations')"
+                  tabindex="0"
+                  (keyup.enter)="navigate('/nurse-dashboard/' + professionalId + '/nurse-available-invitations')"
+                  (click)="navigate('/nurse-dashboard/' + professionalId + '/nurse-available-invitations')"
+                >
+                  <ion-icon src="/icons/invite.svg"></ion-icon>
+                  <p>Invitations</p>
+                </div>
+              </li>
+
+              <li>
+                <div
+                  class="desktop-link"
+                  [class.activeLink]="isActive('/nurse-dashboard/' + professionalId + '/nurse-profile')"
+                  tabindex="0"
+                  (keyup.enter)="navigate('/nurse-dashboard/' + professionalId + '/nurse-profile')"
+                  (click)="navigate('/nurse-dashboard/' + professionalId + '/nurse-profile')"
+                >
+                  <img src="/logo/profile-icon.svg" alt="" />
+                  <p>Profile</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="desktop-logout-wrap">
+          <div class="desktop-logout">
+            <div class="desktop-logout-user">
+              @if (profileInfoService?.picture?.length) {
+              <ion-avatar class="desktop-avatar">
+                <img [src]="profileInfoService?.picture" alt="" />
+              </ion-avatar>
+              } @else {
+              <div class="desktop-initials">
+                {{ profileInfoService?.name?.[0] }}
+              </div>
+              }
+
+              <div class="desktop-logout-name">
+                <p>{{ profileInfoService?.name }}</p>
+              </div>
+            </div>
+
+            <div>
+              <ion-icon
+                name="power-outline"
+                class="desktop-power"
+                (click)="logout()"
+              ></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="desktop-router-shell">
+      <ion-router-outlet></ion-router-outlet>
+    </div>
+  </div>
+  }
+</ion-content>

@@ -1,0 +1,70 @@
+.card__wrapper {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 32px;
+  padding: 12px;
+  position: relative;
+}
+.top {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1px;
+}
+.btn__wrapper {
+  display: flex;
+  align-items: center;
+}
+.midddle__content {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 0;
+}
+.date {
+  color: rgba(91, 95, 95, 1);
+}
+.py {
+  margin-top: -30px;
+}
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn__one {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.btn__wrpper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: rgba(0, 97, 239, 1);
+  color: #fff;
+  width: 120px;
+  font-size: 14px;
+  border-radius: 32px;
+  position: absolute;
+  bottom: 6%;
+  right: 20px;
+}
+.extend {
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: rgba(0, 97, 239, 1);
+  color: #fff;
+  font-size: 14px;
+  border-radius: 32px;
+}
+.video__icon {
+  width: 24px;
+}
+.btnFollow {
+  display: flex;
+  justify-content: space-between;
+}

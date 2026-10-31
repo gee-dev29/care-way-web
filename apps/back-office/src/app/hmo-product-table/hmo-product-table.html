@@ -1,0 +1,72 @@
+<div class="mt-1">
+  <p-table
+    #dt1
+    dataKey="id"
+    [lazy]="true"
+    [paginator]="true"
+    [rows]="20"
+    [totalRecords]="totalRecords"
+    [value]="hmoProduct$ | async"
+    (onLazyLoad)="load($event)"
+    [rowsPerPageOptions]="[20, 50, 100]"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>No. of Members</th>
+        <th>Markup(%)</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="productName"
+            [showMenu]="false"
+          ></p-columnFilter>
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.productName }}</td>
+        <td>{{ item.price | currency: 'NGN ' }}</td>
+        <td>{{ item.memberCount }}</td>
+        <td>{{ item.markUp }}</td>
+        <td>
+          <div class="grouped__btn">
+            <ui-desktop-button
+              [label]="'View'"
+              [primary]="true"
+              [size]="'small'"
+              (Click)="view(item)"
+            ></ui-desktop-button>
+            @if(item.status === 'Draft'){
+            <ui-desktop-button
+              [label]="'Edit'"
+              [primary]="false"
+              [size]="'small'"
+              (Click)="edit(item)"
+            ></ui-desktop-button>
+            }
+          </div>
+        </td>
+        <td></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">
+          <div class="empty__table__text">There are no HMO Products yet</div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

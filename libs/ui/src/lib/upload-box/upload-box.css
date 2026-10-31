@@ -1,0 +1,119 @@
+.upload__box__label {
+  font-family: montserrat;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.upload__box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 140px;
+  border: 2.5px dashed var(--surface-d);
+  border-radius: 10px;
+  background-color: var(--surface-b);
+  color: var(--text-color-secondary);
+  cursor: pointer;
+  text-align: center;
+  padding: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.upload__box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+
+  background:
+    repeating-linear-gradient(90deg, var(--surface-d) 0 10px, transparent 10px 18px) top/200% 2.5px no-repeat,
+    repeating-linear-gradient(180deg, var(--surface-d) 0 10px, transparent 10px 18px) right/2.5px 200% no-repeat,
+    repeating-linear-gradient(270deg, var(--surface-d) 0 10px, transparent 10px 18px) bottom/200% 2.5px no-repeat,
+    repeating-linear-gradient(0deg, var(--surface-d) 0 10px, transparent 10px 18px) left/2.5px 200% no-repeat;
+
+  animation: borderClockwise 60s linear infinite;
+}
+
+.upload__box:hover {
+  border-color: transparent;
+}
+
+.upload__box:hover::before {
+  opacity: 1;
+}
+
+@keyframes borderClockwise {
+  from {
+    background-position:
+      0 0,
+      100% 0,
+      100% 100%,
+      0 100%;
+  }
+  to {
+    background-position:
+      200% 0,
+      100% 200%,
+      -200% 100%,
+      0 -200%;
+  }
+}
+
+.upload__box--has-file {
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.upload__box img {
+  width: 20px;
+  height: 20px;
+}
+
+.upload__box__preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.upload__box .upload__box__preview img.upload__box__thumbnail {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+i{
+  color: red;
+}
+.upload__box__filename {
+  word-break: break-word;
+  text-align: left;
+}
+
+.delete__icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.delete__icon img {
+  width: 60px;
+  height: 60px;
+}

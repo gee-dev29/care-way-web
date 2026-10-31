@@ -1,0 +1,62 @@
+<ion-content id="background-content" fullscreen>
+
+  @if (!loaded) {
+    <div class="ion-padding">
+      <div class="header"></div>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <ion-skeleton-text animated style="width: 30%; height: 35px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 25%; height: 35px;"></ion-skeleton-text>
+      </div>
+
+      <div style="margin-top: 25px;">
+        <ion-skeleton-text animated style="width: 100%; height: 90px; border-radius: 12px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 100%; height: 90px; border-radius: 12px; margin-top: 15px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 100%; height: 90px; border-radius: 12px; margin-top: 15px;"></ion-skeleton-text>
+      </div>
+    </div>
+
+  }
+
+  @if (loaded) {
+    <div class="ion-padding">
+      <div class="header">
+        <ion-text><p>Symptoms</p></ion-text>
+        <ui-button
+          [label]="'+ Add Symtoms'"
+          [width]="'fit'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'primary'"
+          (Click)="addSymptoms()"
+        ></ui-button>
+      </div>
+
+     <div class="card-body">
+  @for (item of symptoms; track $index) {
+    <div class="card" tabindex="0" (keyup.enter)="continue()" (click)="continue()">
+      <div class="icon">
+        <ion-img src="/images/vector.jpg"></ion-img>
+      </div>
+
+      <div class="content">
+        <p>{{ item.name }}</p>
+        <div class="date">
+          <ion-icon src="/logo/date-today.svg"></ion-icon>
+          <span>{{ item.date }}</span>
+          <ion-icon src="/logo/alarm.svg"></ion-icon>
+          <span>{{ item.time }}</span>
+        </div>
+      </div>
+
+      <div class="continue">
+        <ion-icon src="/logo/frontarrow.svg"></ion-icon>
+      </div>
+    </div>
+  }
+</div>
+
+    </div>
+  }
+
+</ion-content>

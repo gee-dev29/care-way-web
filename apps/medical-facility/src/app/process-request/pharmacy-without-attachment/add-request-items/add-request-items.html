@@ -1,0 +1,74 @@
+<ion-content id="background-content" fullscreen>
+  <div id="add__member" class="ion-padding">
+    <div
+      class="up"
+      (keyup.enter)="goBack()"
+      tabindex="0"
+      role="button"
+      (click)="goBack()"
+    >
+      <ion-icon src="/logo/backarrow.svg"></ion-icon>
+      <ion-text class="title">Medical Request</ion-text>
+    </div>
+
+    <form [formGroup]="form">
+      <ui-input
+        [label]="'Active ingredients'"
+        [control]="form.get('activeIngredient')"
+        [type]="'text'"
+        [disabled]="isDisabled"
+        (data)="openIngredient()"
+        (keyupData)="openIngredient();checkIngrdient($event)"
+      ></ui-input>
+      <ui-input
+        [label]="'Form'"
+        [shouldSearch]="true"
+        [isMultiselect]="false"
+        [selectedText]="form.value.form"
+        [selectedItem]="[form.value.form]"
+        [isClicked]="isForm"
+        [type]="'dropdown'"
+        [options]="drugForms"
+        (data)="isFormClicked()"
+        (emitted)="offFormClicked()"
+        [control]="tabletForm"
+      ></ui-input>
+      @if (greenBookOpen) {
+      <div class="modal-card-new">
+        @for (item of ingredients; track $index) {
+        <ion-radio slot="end" (click)="selectGreenBook(item.text)"
+          ><div class="word">{{item.text}}</div>
+        </ion-radio>
+        }
+      </div>
+      }
+
+      <div class="gender__based">
+        <ion-text class="gender__text">Available ?</ion-text>
+        <div class="gender">
+          <ui-input
+            [options]="available"
+            [control]="availability"
+            [type]="'checkbox'"
+          ></ui-input>
+        </div>
+      </div>
+
+      <div class="ui__button">
+        <ui-button
+          (Click)="next()"
+          [label]="'Proceed'"
+          [disabled]="form.invalid"
+          [loading]="loading"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [showImage]="false"
+        ></ui-button>
+      </div>
+    </form>
+    <div class="end"></div>
+  </div>
+</ion-content>

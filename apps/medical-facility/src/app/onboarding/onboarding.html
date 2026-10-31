@@ -1,0 +1,121 @@
+<ion-content>
+  <div class="page">
+    <form class="ion-padding">
+      <ion-text color="black">
+        <h1>Onboarding.</h1>
+      </ion-text>
+      <div class="container">
+        @for (item of facilityCategories; track $index) {
+        <ion-card>
+          <ion-card-content>
+            <div
+              class="left"
+              tabindex=""
+              (keyup.enter)="selectType(item)"
+              (click)="selectType(item)"
+            >
+              <div
+                class="contentFlex"
+                [style.backgroundColor]="getIconBg(item.text)"
+              >
+                <div class="iconBox">
+                  @switch (item.text) { @case (FacilityTypes.Pharmacy) {
+                  <ion-icon src="/icons/pharmIcon.svg"></ion-icon>
+                  } @case (FacilityTypes.Hospital) {
+                  <ion-icon src="/icons/hospitalIcon.svg"></ion-icon>
+                  } @case (FacilityTypes.Laboratory) {
+                  <ion-icon src="/icons/laboratory.svg"></ion-icon>
+                  } @case (FacilityTypes.Radiology) {
+                  <ion-icon src="/icons/radiology.svg"></ion-icon>
+                  } @default {
+                  <ion-icon src="/icons/bloodbank.svg"></ion-icon>
+                  } }
+                </div>
+
+                @if (item.check) {
+                <ion-checkbox
+                  (click)="prevent($event)"
+                  [checked]="true"
+                ></ion-checkbox>
+                }
+              </div>
+              <ion-text>{{item.text}}</ion-text>
+            </div>
+          </ion-card-content>
+        </ion-card>
+        }
+      </div>
+      <div class="bts">
+        <ui-button
+          [label]="'Proceed'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="proceed()"
+          [disabled]="checkIfAnyIsEmpty()===false"
+        ></ui-button>
+      </div>
+    </form>
+  </div>
+</ion-content>
+<ion-modal
+  [isOpen]="isFacilityModalOpen"
+  [initialBreakpoint]="2"
+  [breakpoints]="[1, 0]"
+  (didDismiss)="isFacilityModalOpen = false"
+>
+  <div class="block">
+    <div class="centeralized">
+      <div class="icon-con" [ngStyle]="{ 'background-color': '#EFE3EE' }">
+        @switch (selected) { @case (FacilityTypes.Pharmacy) {
+        <ion-icon src="/icons/pharmIcon.svg"></ion-icon>
+        } @case (FacilityTypes.Hospital) {
+        <ion-icon src="/icons/hospitalIcon.svg"></ion-icon>
+        } @case (FacilityTypes.Laboratory) {
+        <ion-icon src="/icons/laboratory.svg"></ion-icon>
+        } @case (FacilityTypes.Radiology) {
+        <ion-icon src="/icons/radiology.svg"></ion-icon>
+        } @default {
+        <ion-icon src="/icons/bloodbank.svg"></ion-icon>
+        } }
+      </div>
+      <h4>{{selected}}</h4>
+    </div>
+    <div
+      tabindex=""
+      (keypress)="extraOnboarding()"
+      (click)="extraOnboarding()"
+      class="justify-left cursor"
+    >
+      <h2>All Onboarded</h2>
+      <ui-plus-icon-component [size]="'small'"></ui-plus-icon-component>
+    </div>
+    @for (item of accounts; track item.id) {
+    <div
+      tabindex="0"
+      class="acct-box"
+      (click)="selectAFacilityType(item)"
+      (keydown)="selectAFacilityType(item)"
+    >
+      <div class="icon-con" [ngStyle]="{ 'background-color': '#EFE3EE' }">
+        @switch (item.facilityType) { @case (FacilityTypes.Pharmacy) {
+        <ion-icon src="/icons/pharmIcon.svg"></ion-icon>
+        } @case (FacilityTypes.Hospital) {
+        <ion-icon src="/icons/hospitalIcon.svg"></ion-icon>
+        } @case (FacilityTypes.Laboratory) {
+        <ion-icon src="/icons/laboratory.svg"></ion-icon>
+        } @case (FacilityTypes.Radiology) {
+        <ion-icon src="/icons/radiology.svg"></ion-icon>
+        } @default {
+        <ion-icon src="/icons/bloodbank.svg"></ion-icon>
+        } }
+      </div>
+      <ion-text class="acct-text"> {{ item.name }} </ion-text>
+
+      <ion-checkbox class="acct-checkbox" [checked]="item.check"></ion-checkbox>
+    </div>
+    }
+  </div>
+</ion-modal>

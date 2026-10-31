@@ -1,0 +1,78 @@
+<ion-content id="background-content" fullscreen>
+  <div id="add__patient" class="ion-padding">
+    <div
+      class="up"
+      (keyup.enter)="goBack()"
+      tabindex="0"
+      role="button"
+      (click)="goBack()"
+    >
+      <ion-icon src="/logo/backarrow.svg"></ion-icon>
+      <ion-text>Add Patient</ion-text>
+    </div>
+    <form [formGroup]="form">
+      <ui-input
+        [label]="'First Name'"
+        [control]="firstName"
+        [type]="'text'"
+      ></ui-input>
+      <ui-input
+        [label]="'Last Name'"
+        [control]="lastName"
+        [type]="'text'"
+      ></ui-input>
+      <div class="gender__based">
+        <ion-text class="gender__text">Gender</ion-text>
+        <div class="gender">
+          <ui-input
+            [options]="genders"
+            [control]="gender"
+            [type]="'checkbox'"
+          ></ui-input>
+        </div>
+      </div>
+      <ui-input [label]="'Email'" [control]="email" [type]="'email'" (onIonChange)="getEmail($event)"></ui-input>
+      <ui-input
+        [label]="'Phone Number'"
+        [control]="phone"
+        [type]="'phone'"
+      ></ui-input>
+      <!-- <ui-input [label]="'Address'" [type]="'text'" [control]=""></ui-input> -->
+       @if(doesUserExist) {
+      <ui-input-calendar
+        [readOnly]="true"
+        [label]="'Date of Birth'"
+        [type]="'text'"
+        [control]="dob"
+      ></ui-input-calendar>
+      <ui-input
+        [label]="'Blood Group'"
+        [shouldSearch]="true"
+        [isMultiselect]="false"
+        [selectedText]="form.value.bloodGroup"
+        [isClicked]="isBlood"
+        [type]="'dropdown'"
+        [options]="bloodGroups"
+        (data)="isBloodClicked()"
+        (emitted)="offBloodClicked()"
+        [control]="bloodGroup"
+      ></ui-input>
+      }
+      <div class="ui__button">
+        <ui-button
+          (Click)="next()"
+          [label]="label"
+          [disabled]="loading ||  !form.valid "
+          [loading]="loading"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [showImage]="false"
+        ></ui-button>
+      </div>
+    </form>
+    <div class="end"></div>
+  </div>
+</ion-content>

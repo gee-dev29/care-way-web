@@ -1,0 +1,47 @@
+/* :host ::ng-deep .p-tablist {
+  display: flex;
+  gap: 0.25rem;
+  background: #f2f2f2 !important;
+  padding: 6px;
+  border-radius: 999px;
+  width: 100%;
+  margin-bottom: 20px !important;
+}
+
+:host ::ng-deep .p-tab {
+  border-radius: 999px;
+  padding: 0.4rem 1.2rem;
+  background: transparent;
+  border: none;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  color: var(--text-color) !important;
+}
+
+:host ::ng-deep .p-tab:not(.p-tab-active):hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+:host ::ng-deep .p-tab.p-tab-active {
+  background: #ffffff;
+  color: #111827;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+:host ::ng-deep .p-tabs .p-tablist,
+.p-tabs .p-tab {
+  border: none !important;
+}
+
+:host ::ng-deep .p-tabpanels {
+  margin-top: 1rem;
+}
+
+:host ::ng-deep .p-tablist-tab-list {
+  border: none !important;
+}
+
+:host ::ng-deep .p-tabpanels {
+  background: none;
+  color: #000000;
+} */

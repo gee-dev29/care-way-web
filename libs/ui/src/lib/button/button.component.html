@@ -1,0 +1,26 @@
+<ion-button
+  [shape]="shape"
+  [fill]="fill"
+  [size]="size"
+  [expand]="width"
+  [disabled]="disabled"
+  (click)="Click.emit($event)"
+  [style.--background]="backgroundColor"
+  [style.--background-hover]="backgroundColor"
+  [style.--background-activated]="backgroundColor"
+  [style.--background-focused]="backgroundColor"
+  [style.--border-color]="borderLine"
+  [style.--border-width]="'1px'"
+  [style.--border-style]="'solid'"
+  [style.--color]="textColor"
+>
+  @if ( showIcon ) {
+  <ion-icon [slot]="slot" [src]="icon" [name]="icon"></ion-icon>
+  } @if ( showImage ) {
+  <ion-img src="{{ image }}" alt="HealBridge"></ion-img>
+  }
+  <p>{{ label }}</p>
+  @if(loading){
+  <ion-spinner class="spinner" name="lines-sharp-small"></ion-spinner>
+  }
+</ion-button>

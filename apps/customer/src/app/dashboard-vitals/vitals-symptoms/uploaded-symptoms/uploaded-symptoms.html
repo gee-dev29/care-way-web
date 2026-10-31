@@ -1,0 +1,103 @@
+<ion-content id="background-content" fullscreen>
+  <div id="prescription" class="ion-padding">
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
+        <div class="left-toolbar">
+          <ion-icon src="/logo/backarrow.svg" (click)="navigateTo()"></ion-icon>
+
+          <ion-text>Uploaded Symptoms</ion-text>
+        </div>
+
+        <ion-buttons slot="end">
+          <ion-button (click)="navigateTo()" fill="clear">
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <span class="add-text">Add</span>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <div class="image-grid">
+      <!-- -->
+      @for (item of prescriptions; track item?.name) {
+      <div class="image-card">
+        <div class="remove-btn">
+          <ion-icon
+            (click)="showDeleteLabModal()"
+            name="close-circle-outline"
+          ></ion-icon>
+        </div>
+        <ion-img
+          class="image-placeholder"
+          [src]="item.url"
+          tabindex=""
+          (click)="viewAttachment(item.url)"
+          (keydown)="viewAttachment(item.url)"
+        ></ion-img>
+      </div>
+      }
+    </div>
+
+    <div class="button-wrapper">
+      <ui-button
+        [label]="btnLabel"
+        [width]="'full'"
+        [loading]="loading"
+        [disabled]="loading"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (click)="openModal()"
+      >
+      </ui-button>
+    </div>
+  </div>
+</ion-content>
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="displayFile"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+        <ion-icon
+          (click)="closeSave()"
+          class="closeIcon"
+          src="/logo/closered.svg"
+        ></ion-icon>
+      </div>
+      <ion-card-content class="apply__gap">
+        @if (dataUrl) {
+        <div class="preview-container">
+          <iframe [src]="dataUrl | safe" class="preview-img"></iframe>
+        </div>
+
+        <!-- <ui-button
+          [label]="'Save Upload'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="uploadFile()"
+        ></ui-button> -->
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to delete this post?'"
+  [open]="confirmationModal"
+  [background]="'primary'"
+  (dismiss)="dismiss(false)"
+  (no)="dismiss(false)"
+  (next)="dismiss(true)"
+></ui-confirmation-modal>

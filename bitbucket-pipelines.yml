@@ -1,0 +1,88 @@
+image: atlassian/default-image:5
+clone:
+  depth: full
+pipelines:
+  branches:
+    develop:
+      - step:
+          name: Node Installation
+          deployment: staging
+          caches:
+            - node
+          script:
+            - npm install --legacy-peer-deps
+          artifacts:
+            - node_modules/**
+      - parallel:
+          - step:
+              name: Deploy Customer
+              script:
+                - npx nx run customer:build
+                - rm .gitignore
+                - git rm -r apps libs
+                - mv dist/apps/customer/browser custom-app/
+                - git add custom-app
+                - git commit -m "commit the build result"
+                - git remote add staging dokku@test.healbridge.app:customer
+                - git push staging develop --force
+                - ssh dokku@test.healbridge.app cleanup
+          - step:
+              name: Deploy Medical Facility
+              script:
+                - npx nx run medical-facility:build
+                - rm .gitignore
+                - git rm -r apps libs
+                - mv dist/apps/medical-facility/browser custom-app/
+                - git add custom-app
+                - git commit -m "commit the build result"
+                - git remote add staging dokku@test.healbridge.app:facility
+                - git push staging develop --force
+                - ssh dokku@test.healbridge.app cleanup
+          - step:
+              name: Deploy Agency
+              script:
+                - npx nx run agency:build
+                - rm .gitignore
+                - git rm -r apps libs
+                - mv dist/apps/agency/browser custom-app/
+                - git add custom-app
+                - git commit -m "commit the build result"
+                - git remote add staging dokku@test.healbridge.app:agency
+                - git push staging develop --force
+                - ssh dokku@test.healbridge.app cleanup
+          - step:
+              name: Deploy Rider
+              script:
+                - npx nx run rider:build
+                - rm .gitignore
+                - git rm -r apps libs
+                - mv dist/apps/rider/browser custom-app/
+                - git add custom-app
+                - git commit -m "commit the build result"
+                - git remote add staging dokku@test.healbridge.app:rider
+                - git push staging develop --force
+                - ssh dokku@test.healbridge.app cleanup
+          - step:
+              name: Deploy Back-Office
+              script:
+                - npx nx run back-office:build
+                - rm .gitignore
+                - git rm -r apps libs
+                - mv dist/apps/back-office/browser custom-app/
+                - git add custom-app
+                - git commit -m "commit the build result"
+                - git remote add staging dokku@test.healbridge.app:bo
+                - git push staging develop --force
+                - ssh dokku@test.healbridge.app cleanup
+          # - step:
+          #     name: Deploy Website
+          #     script:
+          #       - npx nx run website:build
+          #       - rm .gitignore
+          #       - git rm -r apps libs
+          #       - mv dist/apps/web/browser custom-app/
+          #       - git add custom-app
+          #       - git commit -m "commit the build result"
+          #       - git remote add staging dokku@test.healbridge.app:website
+          #       - git push staging develop --force
+          #       - ssh dokku@test.healbridge.app cleanup

@@ -1,0 +1,64 @@
+<div class="content__wrapper">
+  <div class="page__header">
+    <ion-icon
+      class="left__arrow"
+      name="chevron-back-outline"
+      (click)="goBack()"
+    ></ion-icon>
+
+    <h5 class="page__heading">{{heading}}</h5>
+    <p></p>
+  </div>
+  <div class="middle">
+    <form [formGroup]="form" class="form__wrapper">
+      <div class="form__top">
+        <div class="form__inputs">
+          <ui-input
+            [control]="firstName"
+            [label]="'First Name'"
+            [type]="'text'"
+          ></ui-input>
+          <ui-input
+            [control]="lastName"
+            [label]="'Last Name'"
+            [type]="'text'"
+          ></ui-input>
+          <ui-input
+            [control]="phone"
+            [label]="'Phone No'"
+            [type]="'text'"
+          ></ui-input>
+          <ui-input
+            [control]="email"
+            [label]="'Email'"
+            [type]="'email'"
+          ></ui-input>
+          <div class="gender__based">
+            <ion-text class="gender__text">Gender</ion-text>
+            <div class="gender">
+              <ui-input
+                [options]="genders"
+                [type]="'checkbox'"
+                [control]="gender"
+              ></ui-input>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn__wrapper">
+        <ui-button
+          [disabled]="(!form.valid) || loading"
+          (Click)="proceed()"
+          [label]="'Continue'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [showImage]="false"
+          [loading]="loading"
+        ></ui-button>
+      </div>
+    </form>
+  </div>
+</div>

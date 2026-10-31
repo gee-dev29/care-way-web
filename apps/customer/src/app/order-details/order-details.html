@@ -1,0 +1,576 @@
+<ion-content id="background-content" fullscreen>
+  @if (order$ | async; as order ) {
+  <div id="order" class="ion-padding">
+    <div class="head">
+      <div class="pricing-head">
+        <div class="icon">
+          <ion-icon
+            (click)="goBack()"
+            name="chevron-back-outline"
+            size="small"
+          ></ion-icon>
+        </div>
+
+        <ion-text class="pricing-title">Order Summary</ion-text>
+      </div>
+      @if(serviceRequest?.status===DocumentStatus.Ordered &&
+      order.status===DocumentStatus.Pending){
+      <ion-icon
+        (click)="onReset()"
+        class="refresh"
+        name="refresh-circle-outline"
+      ></ion-icon>
+      }
+    </div>
+    @if (order.status===DocumentStatus.Cancelled) {
+    <p class="order__cancelled">! Order has been cancelled</p>
+    }
+    <ion-card class="card">
+      <ion-card-content>
+        @if (order.status===DocumentStatus.Delivered &&
+        facilityType===FacilityType.Pharmacy) {
+        <div class="orderDetail__two">
+          <div>
+            <p class="heading">Tracking ID</p>
+            <h4 class="detail">#{{order?.orderCode}}</h4>
+          </div>
+          <div>
+            <p class="heading">Order Date</p>
+            <h4 class="detail">{{order?.creator?.date | date}}</h4>
+          </div>
+          <div>
+            <p class="heading">Total Amount</p>
+            <h4 class="detail">
+              {{ order?.costSummary?.totalCost | currency:"NGN"}}
+            </h4>
+          </div>
+          <div>
+            <p class="heading">Date Delivered</p>
+            <h4 class="detail">{{order?.creator?.date | date}}</h4>
+          </div>
+          @if(order?.fulfilmentPin!==null){
+          <div>
+            <p class="heading">Fulfillment PIN</p>
+            <h4 class="detail">{{order?.fulfilmentPin}}</h4>
+          </div>
+          } @if(order?.deliveryPin){
+
+          <div>
+            <p class="heading">Delivery PIN</p>
+            <h4 class="detail">{{order?.deliveryPin}}</h4>
+          </div>
+          }
+        </div>
+
+        } @else{
+        <div class="orderDetail">
+          <div>
+            <p class="heading">Order Code</p>
+            <h4 class="detail">#{{order?.orderCode}}</h4>
+          </div>
+          <div>
+            <p class="heading">Order Date</p>
+            <h4 class="detail">{{order?.creator?.date | date}}</h4>
+          </div>
+          <div>
+            <p class="heading">Total Amount</p>
+            <h4 class="detail">
+              {{ order?.costSummary?.totalCost | currency:"NGN"}}
+            </h4>
+          </div>
+          @if(order?.fulfilmentPin!==null){
+          <div>
+            <p class="heading">Fulfillment PIN</p>
+            <h4 class="detail">{{order?.fulfilmentPin}}</h4>
+          </div>
+          } @if(order?.deliveryPin){
+
+          <div>
+            <p class="heading">Delivery PIN</p>
+            <h4 class="detail">{{order?.deliveryPin}}</h4>
+          </div>
+          }
+        </div>
+        }
+      </ion-card-content>
+    </ion-card>
+    <div class="summary-container">
+      @for(item of order?.items; let i = $index; track item.orderItemId){
+      <div class="product-item">
+        <div class="product-info">
+          <h3>
+            {{item?.activeIngredient??item.serviceName??item.testName}}
+            @if(item?.form??item?.bloodGroup){
+            ({{item?.form??item?.bloodGroup}}) } {{item?.testGroup}}
+            <span class="dosage">{{item?.strength}}</span>
+          </h3>
+          <p class="subtitle">{{item?.product??item.quantity}}</p>
+          <p class="price">{{item?.cost | currency:"NGN"}}</p>
+        </div>
+        <div class="product-actions">
+          @if (serviceRequest?.status===DocumentStatus.Ordered &&
+          order.status===DocumentStatus.Pending) {
+
+          <ion-icon
+            class="ion-icon"
+            (click)="onTrash(item.orderItemId)"
+            name="trash-outline"
+            color="danger"
+          ></ion-icon>
+          } @if(item?.quantity){
+          <span class="quantity"
+            >{{item?.quantity}} {{item?.uom==="Packets"?'Packs':'Pcs'}}</span
+          >
+          } @if (order.referralType===FacilityType.Pharmacy ||
+          order.referralType===FacilityType.BloodBank &&
+          (order.status===DocumentStatus.Delivered)) { @if
+          (item?.uploads?.length===0) { } @else {
+          <div class="icons">
+            <ion-icon
+              (click)="showUploadedImage(index)"
+              [src]="'/icons/attachmentSlide.svg'"
+            ></ion-icon>
+          </div>
+          } } @else { }
+        </div>
+      </div>
+      @if (order.referralType===FacilityType.Pharmacy && item.usage!==null) {
+      <div class="use">
+        <div class="dflex">
+          <span>Usage Instruction:</span>
+          <span>{{item.usage}}</span>
+        </div>
+      </div>
+      } @if (order.referralType===FacilityType.Laboratory ||
+      order.referralType===FacilityType.Radiology &&
+      (order.status===DocumentStatus.Delivered)) { @if
+      (item?.uploads?.length===0) { } @else{
+      <div class="section-title">Test Results</div>
+      <div class="attachments-card">
+        @for (newItem of item?.uploads; track newItem) {
+        <div class="attachment-icon">
+          <ion-icon
+            name="attach-outline"
+            (click)="showUploadedAttachment(newItem.url)"
+          ></ion-icon>
+        </div>
+        }
+      </div>
+      } } @if (order.status===DocumentStatus.Delivered &&
+      facilityType===FacilityType.Pharmacy) {
+      <div class="logo">
+        <div>
+          <ion-icon
+            (click)="createDrugAdverse(item)"
+            [src]="'icons/adr.svg'"
+          ></ion-icon>
+          <span>ADR</span>
+        </div>
+        <div>
+          <ion-icon
+            (click)="createDrugSchedule(item)"
+            [src]="'icons/schedule.svg'"
+          ></ion-icon>
+          <span>Schedule</span>
+        </div>
+      </div>
+
+      <hr class="hr" />
+      <div>
+        <h4>Adverse Drug Reaction</h4>
+        <h5>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis enim
+          veniam est saepe quas deleniti nihil accusamus, repudiandae in
+          cupiditate dolores a debitis assumenda officia excepturi laborum quam
+          adipisci nam.
+        </h5>
+      </div>
+      } } @if (order.status===DocumentStatus.Delivered &&
+      facilityType===FacilityType.Pharmacy) { }@else {
+      <hr class="hr" />
+
+      <ion-list class="transparent-bg">
+        <ion-grid>
+          <ion-row class="gapped-row">
+            <ion-col class="ion-text-start content-bold">Subtotal</ion-col>
+            <ion-col class="ion-text-end content-bold"
+              >{{order?.costSummary.itemsCost| currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+          @if (facilityType!==FacilityType.Laboratory &&
+          facilityType!==FacilityType.Radiology) {
+          <ion-row class="gapped-row">
+            <ion-col class="ion-text-start ion-col">
+              <ion-icon class="img-col" src="/logo/deliveryBike.svg"></ion-icon>
+              Delivery</ion-col
+            >
+            <ion-col class="ion-text-end"
+              >{{order?.costSummary?.deliveryFee | currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+          }
+          <ion-row class="gapped-row">
+            <ion-col class="ion-text-start ion-col">
+              <ion-icon
+                class="img-col"
+                src="/logo/serviceCharge.svg"
+              ></ion-icon>
+              Service Charge</ion-col
+            >
+            <ion-col class="ion-text-end"
+              >{{order?.costSummary?.serviceCharge | currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+          <hr class="hr" />
+          <ion-row class="total">
+            <ion-col class="ion-text-start">Total</ion-col>
+            <ion-col class="ion-text-end"
+              >{{ order?.costSummary?.totalCost | currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+      } @if (order.status===DocumentStatus.Delivered &&
+      facilityType===FacilityType.Pharmacy) {
+      <ion-card class="medium__curve change__color">
+        <ion-card-content class="drugs">
+          <div class="timeline-wrapper">
+            <div class="up timeline-title">
+              <div class="upper">
+                <ion-icon src="/logo/bus.svg"></ion-icon>
+                <ion-text>Order Timeline</ion-text>
+              </div>
+              <span>
+                <!-- <ion-icon
+                    class="drug-toggle"
+                    (click)="onToggle()"
+                    [name]="expanded ? 'chevron-up-outline' : 'chevron-down-outline'"
+                  ></ion-icon> -->
+              </span>
+            </div>
+            <!-- @if (expanded) { -->
+            <div class="timeline">
+              @if (getTimeLineData('Fulfilment Created'); as history) {
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/arrow.svg"></ion-icon>
+                  </div>
+
+                  <div class="step-text">
+                    <h4 class="desc">order Created</h4>
+
+                    <p class="date">{{history?.createdOn| date}}</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">
+                    {{history?.createdOn| date | date:"h:mm a"}}
+                  </p>
+                </div>
+              </div>
+              } @if (getTimeLineData('Shipped'); as history) {
+              <div class="line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/green-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Shipped</h4>
+                    <p class="date">{{history?.createdOn | date}}</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">{{history?.createdOn | date:"h:mm a"}}</p>
+                </div>
+              </div>
+              } @else{
+              <div class="grey line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/grey-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Waiting For Shipment</h4>
+                    <!-- <p class="date">{{history?.createdOn | date}}</p> -->
+                  </div>
+                </div>
+                <div class="time">
+                  <!-- <p class="date">{{history?.createdOn | date:"h:mm a"}}</p> -->
+                </div>
+              </div>
+              } @if (getTimeLineData('Delivered'); as history) {
+              <div class="line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/green-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Delivered</h4>
+                    <p class="date">{{history?.createdOn | date}}</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">{{history?.createdOn | date:"h:mm a"}}</p>
+                </div>
+              </div>
+              } @else{
+              <div class="grey line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/grey-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Customer waiting for Delivery</h4>
+                    <!-- <p class="date">{{history?.createdOn | date}}</p> -->
+                  </div>
+                </div>
+                <div class="time">
+                  <!-- <p class="date">{{history?.createdOn | date:"h:mm a"}}</p> -->
+                </div>
+              </div>
+              }
+            </div>
+            <!-- } -->
+          </div>
+        </ion-card-content>
+      </ion-card>
+      } @if (facilityType!==FacilityType.Laboratory &&
+      facilityType!==FacilityType.Radiology) {
+      <div>
+        <p>
+          <ion-text class="pricing-title">Delivery Address</ion-text>
+        </p>
+
+        <ion-list class="p-4">
+          <ion-card-content class="flex pad-6" (click)="navigateTo(order)">
+            <div class="delivery-address">
+              <ion-icon
+                class="address__icon"
+                src="/logo/deliveryAddress.svg"
+              ></ion-icon>
+              <div class="">
+                <ion-text
+                  ><span class="content-bold">{{order?.address?.address}}</span>
+                  <br />
+                  {{order?.address?.city}}, {{order?.address?.state}}</ion-text
+                >
+              </div>
+            </div>
+            <ion-icon src="/logo/addressHome.svg"></ion-icon>
+          </ion-card-content>
+        </ion-list>
+      </div>
+      } @if(shouldIShowPayButton()===true &&
+      order.status!==DocumentStatus.Cancelled){
+      <div class="btn">
+        <ui-button
+          expand="block"
+          [label]="'Proceed to Payment'"
+          [width]="'full'"
+          [size]="'medium'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [loading]="loading"
+          [textColor]="'#FDFDFD'"
+          (Click)="routeToCard()"
+        ></ui-button>
+        <ui-button
+          [label]="'Ask Family & Friends'"
+          [width]="'full'"
+          [size]="'medium'"
+          [fill]="'solid'"
+          [borderLine]="'#1E293B'"
+          [textColor]="'#1E293B'"
+          [showIcon]="true"
+          [backgroundColor]="'#F9FFFA'"
+          [icon]="'return-up-forward-outline'"
+          [shape]="'round'"
+          (Click)="sharePaymentLink()"
+        ></ui-button>
+      </div>
+      } @if (( order?.status !== DocumentStatus.Pending && order?.status !==
+      DocumentStatus.Delivered ) ||
+      order.status===DocumentStatus.Fulfilment_Created ||
+      order.status===DocumentStatus.Shipped) {
+      <ion-card class="medium__curve">
+        <ion-card-content class="drugs">
+          <div class="timeline-wrapper">
+            <div class="up timeline-title">
+              <div class="upper">
+                <ion-icon src="/logo/bus.svg"></ion-icon>
+                <ion-text>Order Timeline</ion-text>
+              </div>
+              <span>
+                <ion-icon
+                  class="drug-toggle"
+                  (click)="onToggle()"
+                  [name]="expanded ? 'chevron-up-outline' : 'chevron-down-outline'"
+                ></ion-icon>
+              </span>
+            </div>
+            @if (expanded) {
+            <div class="timeline">
+              @if (getTimeLineData('Fulfilment Created'); as history) {
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/arrow.svg"></ion-icon>
+                  </div>
+
+                  <div class="step-text">
+                    <h4 class="desc">order Created</h4>
+
+                    <p class="date">{{history?.createdOn| date}}</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">
+                    {{history?.createdOn| date | date:"h:mm a"}}
+                  </p>
+                </div>
+              </div>
+              } @if (getTimeLineData('Shipped'); as history) {
+              <div class="line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/green-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Shipped</h4>
+                    <p class="date">{{history?.createdOn | date}}</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">{{history?.createdOn | date:"h:mm a"}}</p>
+                </div>
+              </div>
+              } @else{
+              <div class="grey line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/grey-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Waiting For Shipment</h4>
+                    <!-- <p class="date">{{history?.createdOn | date}}</p> -->
+                  </div>
+                </div>
+                <div class="time">
+                  <!-- <p class="date">{{history?.createdOn | date:"h:mm a"}}</p> -->
+                </div>
+              </div>
+              } @if (getTimeLineData('Delivered'); as history) {
+              <div class="line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/green-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Delivered</h4>
+                    <p class="date">{{history?.createdOn | date}}</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">{{history?.createdOn | date:"h:mm a"}}</p>
+                </div>
+              </div>
+              } @else{
+              <div class="grey line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/grey-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Customer waiting for Delivery</h4>
+                    <!-- <p class="date">{{history?.createdOn | date}}</p> -->
+                  </div>
+                </div>
+                <div class="time">
+                  <!-- <p class="date">{{history?.createdOn | date:"h:mm a"}}</p> -->
+                </div>
+              </div>
+              }
+            </div>
+            }
+          </div>
+        </ion-card-content>
+      </ion-card>
+      }
+    </div>
+  </div>
+  }
+</ion-content>
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to remove this item?'"
+  [open]="deleteModal"
+  [background]="'primary'"
+  (dismiss)="closeModal()"
+  (no)="closeModal()"
+  (next)="confirmSwitch()"
+></ui-confirmation-modal>
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to reset this order?'"
+  [open]="deleteOrder"
+  [background]="'primary'"
+  (dismiss)="closeReset()"
+  (no)="closeReset()"
+  (next)="confirmDelete()"
+></ui-confirmation-modal>
+<ion-modal #modal3 [isOpen]="viewAttach" [canDismiss]="true">
+  <ng-template>
+    <ion-card class="medium__curve2">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+        <div class="buttons">
+          @if((index>0)){
+          <ion-icon (click)="back()" name="chevron-back-outline"></ion-icon>
+          } @if (uploads.length>1) {
+          <ion-icon (click)="next()" name="chevron-forward-outline"></ion-icon>
+          }
+        </div>
+      </div>
+      <ion-card-content class="apply__gap">
+        @if (imageView) {
+        <div class="preview-container">
+          <div
+            class="image-scroll-area"
+            #scrollArea
+            (wheel)="onWheelZoom($event)"
+            (touchstart)="onTouchStart($event)"
+            (touchmove)="onTouchMove($event)"
+            (touchend)="onTouchEnd($event)"
+          >
+            <img
+              #previewImg
+              [src]="imageView"
+              alt="Preview"
+              class="preview-img"
+              [style.transform]="'scale(' + zoomLevel + ')'"
+              [style.transform-origin]="transformOrigin"
+            />
+          </div>
+        </div>
+        <ui-button
+          [label]="'Close'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="closeSave()"
+        ></ui-button>
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>

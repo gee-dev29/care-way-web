@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/lib",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "sourceMap": true,
+    "types": [],
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts", "../ui/src/lib/safe-pipe.spec.ts", "../ui/src/lib/safe-pipe.ts", "../ui/src/lib/save-upload.service.ts", "../ui/src/lib/save-upload.service.spec.ts"],
+  "exclude": ["**/*.spec.ts"]
+}

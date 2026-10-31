@@ -1,0 +1,27 @@
+<ion-content id="background-content" fullscreen>
+  <div id="prescription">
+    <ion-header class="ion-no-border">
+      <div class="top-bar">
+        <ion-icon
+          name="chevron-back-outline"
+          class="back-icon"
+          tabindex="0"
+          (keyup.enter)="back()"
+          (click)="back()"
+        ></ion-icon>
+        <ion-text class="title">Get cost for</ion-text>
+      </div>
+    </ion-header>
+
+    <ion-list>
+      <div class="list-container">
+        @for (option of options; track $index) {
+        <ui-cost-option-card
+          [option]="option"
+          (navigateTo)="navigateTo($event)"
+        ></ui-cost-option-card>
+        }
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

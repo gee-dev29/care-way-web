@@ -1,0 +1,370 @@
+.section-body {
+  width: 100%;
+  padding-bottom: 30px;
+  overflow-x: scroll;
+  margin-top: 80px;
+  padding: 0 25px !important;
+}
+
+.reject-modal {
+  --width: 90%;
+  --max-width: 420px;
+  --height: auto;
+  --border-radius: 16px;
+  --box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  --backdrop-opacity: 0.45;
+}
+
+.reject-modal-body {
+  padding: 24px 20px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reject-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reject-modal-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.reject-close-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #d9463e;
+}
+
+.section {
+  margin: 20px 0;
+}
+
+.section .sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0 10px 0;
+}
+
+.section .sectionHead h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #121212;
+}
+
+.sectionHead .link {
+  font-size: 13px;
+  color: #1f7a3f;
+  cursor: pointer;
+}
+
+.cardsRow {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 14px;
+  padding-bottom: 8px;
+}
+
+.cardsRow::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  width: 100%;
+  background: #eef4ef;
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.card.big {
+  min-width: unset;
+}
+
+.card .cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card .cardTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #121212;
+}
+
+.card .cardStatus {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f3951f;
+  white-space: nowrap;
+}
+
+.card .cardSub {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #6f786f;
+}
+
+.card .btnRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  align-items: center;
+}
+
+.tabs {
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.pill {
+  height: 35px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #9aa39a;
+  background: #fff;
+  color: #121212;
+  font-size: 14px;
+}
+
+.pill.active {
+  background: #2c7a3f;
+  border-color: #2c7a3f;
+  color: #fff;
+}
+
+.btnSolid {
+  background: #1f7a3f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 10px 18px;
+}
+
+.btnOutline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1f7a3f;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 10px 18px;
+  border: 1px solid #1f7a3f;
+}
+
+.apptTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #6f786f;
+  margin-top: 2px;
+}
+
+.status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f5a623;
+}
+
+.apptMeta {
+  display: flex;
+  gap: 18px;
+  margin-top: 14px;
+  color: #6f786f;
+  font-size: 12px;
+  font-weight: 500;
+  flex-direction: column;
+}
+
+.apptMeta .metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.apptMeta .metaItem ion-icon {
+  font-size: 16px;
+  color: #6f786f;
+}
+
+.label {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #1f7a3f;
+}
+
+.complaint {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #121212;
+  line-height: 1.45;
+}
+
+.mb-4 {
+  margin-bottom: 40px;
+}
+
+.inviteCard {
+  background: #e8f3ea;
+  border: 1px solid #cfe3d3;
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inviteCard.is-rejected {
+  border-color: #cfe3d3;
+}
+
+.card-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.card-main .name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #121212;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inviteStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.05);
+  color: #6f786f;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.inviteStatus.pending {
+  background: #fdf1de;
+  color: #a76c11;
+}
+
+.inviteStatus.approved {
+  background: #d9ecdd;
+  color: #2c7a3f;
+}
+
+.inviteStatus.rejected {
+  background: #fbe4e3;
+  color: #d9463e;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+  color: #6f786f;
+}
+
+.card-meta > ion-icon {
+  flex: 0 0 auto;
+  font-size: 14px;
+}
+
+.meta-strong {
+  font-weight: 600;
+  color: #121212;
+}
+
+.meta-sep {
+  opacity: 0.5;
+}
+
+.meta-muted {
+  color: #6f786f;
+}
+
+.rejection {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid #cfe3d3;
+}
+
+.rejection-icon {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  font-size: 16px;
+  color: #d9463e;
+}
+
+.rejection-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rejection-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #121212;
+}
+
+.rejection-reason {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #121212;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

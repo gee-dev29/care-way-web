@@ -1,0 +1,88 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 50px 24px 16px;
+  border-radius: 18px;
+  background: var(--light-grey);
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.item-right {
+  text-align: left;
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.item-left {
+  text-align: left;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  right: 16px;
+}
+
+.arrow ion-icon {
+  font-size: 20px;
+}
+
+.status {
+  color: #f3951f;
+}
+
+.forward-icon {
+  font-size: 20px;
+}
+
+ion-icon {
+  font-size: 15px;
+  color: var(--primary-color) !important;
+}
+
+.view__all {
+  cursor: pointer;
+}
+
+.item-left {
+  text-align: left;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.doctor-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.cadre-badge {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(48, 125, 61, 0.12);
+  color: var(--primary-color);
+}

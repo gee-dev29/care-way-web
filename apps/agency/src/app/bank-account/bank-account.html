@@ -1,0 +1,57 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="home" class="mt-4 page-layout">
+    <div class="left__wrapper">
+      <ion-icon
+        class="left__arrow"
+        name="chevron-back-outline"
+        (click)="navigateTo('/dashboard/profile')"
+      ></ion-icon>
+      <ion-text color="black"> Bank Account Details </ion-text>
+    </div>
+    @if (bank$ | async; as bank) {
+    <div class="profile-card content">
+      <div class="profile-header">
+        <div class="left">
+          <ion-icon src="/icons/edit.svg"></ion-icon>
+          <span>Bank Account Details</span>
+        </div>
+        <span
+          class="edit"
+          tabindex=""
+          (keyup.enter)="editBank(bank)"
+          (click)="editBank(bank)"
+          >Edit</span
+        >
+      </div>
+      <div class="profile-body">
+        @if(bank?.accountName){
+        <div class="row">
+          <span class="label">Account Name:</span>
+          <span class="value">{{bank?.accountName}}</span>
+        </div>
+        } @if(bank?.accountNumber){
+        <div class="row">
+          <span class="label">Account No:</span>
+          <span class="value">{{bank?.accountNumber}}</span>
+        </div>
+        } @if(bank?.bank){
+        <div class="row">
+          <span class="label">Bank:</span>
+          <span class="value">{{bank?.bank}}</span>
+        </div>
+        }
+      </div>
+    </div>
+    }@else{
+    <div
+      class="mt-3"
+      tabindex=""
+      (keyup.enter)="addNew('/dashboard/add-bank-agency')"
+      (click)="addNew('/dashboard/add-bank-agency')"
+    >
+      <ui-add-new-entry-card [title]="'Add Bank Account'">
+      </ui-add-new-entry-card>
+    </div>
+    }
+  </div>
+</ion-content>

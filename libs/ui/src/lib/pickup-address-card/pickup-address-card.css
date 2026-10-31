@@ -1,0 +1,154 @@
+body {
+  background: #f6f6fa;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #121212;
+  margin-bottom: 12px;
+}
+
+.total {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.card-box {
+  background: #f6f6fa;
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 100%;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.icon {
+  font-size: 22px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+}
+.green {
+  font-size: 30px;
+}
+.content {
+  width: 100%;
+}
+
+.content h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.sub {
+  margin: 5px 0;
+  color: #4a4a4b;
+}
+
+ion-icon {
+  font-size: 25px;
+}
+
+.label {
+  color: #4a4a4b;
+  margin-bottom: 5px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #4a4a4b;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f5a623;
+  flex-shrink: 0;
+}
+
+.footer {
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #4a4a4b;
+  cursor: pointer;
+}
+
+.footer-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-right ion-icon {
+  font-size: 16px;
+  color: #4a4a4b;
+}
+
+.items {
+  margin-top: 4px;
+}
+
+.drug {
+  padding: 14px 0;
+  border-top: 1px solid #e5e5e8;
+}
+
+.drug:last-child {
+  padding-bottom: 0;
+}
+
+.drug-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.drug-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #121212;
+}
+
+.drug-name .strength {
+  margin-left: 4px;
+  font-weight: 400;
+  color: #8a8a8a;
+}
+
+.qty {
+  font-size: 14px;
+  font-weight: 600;
+  color: #121212;
+  white-space: nowrap;
+}
+
+.ingredient {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #8a8a8a;
+}

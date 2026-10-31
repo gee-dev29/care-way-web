@@ -1,0 +1,19 @@
+<div class="vitals">
+  @for (item of items; track $index) {
+  <div
+    class="vital-card"
+    tabindex="0"
+    (keyup.enter)="navigate.emit(item.url)"
+    (click)="navigate.emit(item.url)"
+  >
+    <ion-icon
+      [src]="item.icon"
+      class="vital-icon"
+      [style.--icon-bg]="item.bg"
+    ></ion-icon>
+    <ion-text class="title">{{ item.title }}</ion-text>
+    <ion-text class="subtitle"> {{ item.value$ | async }} </ion-text>
+    <ion-text class="subtitle"> {{ item.subtitle$ | async }} </ion-text>
+  </div>
+  }
+</div>

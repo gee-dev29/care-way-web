@@ -1,0 +1,61 @@
+.lab-card {
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.lab-card-header {
+  background: #307d3d;
+  color: #fff;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lab-card-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  font-size: 18px;
+}
+
+.edit-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.delete-icon {
+  font-size: 24px;
+}
+
+.lab-card-body {
+  padding: 14px 16px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.row.column {
+  flex-direction: column;
+}
+
+.label {
+  font-size: 14px;
+  color: #8b8b8b;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+}

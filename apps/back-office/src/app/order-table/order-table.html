@@ -1,0 +1,108 @@
+<div class="table__head">
+  <h2 class="title">{{heading}}</h2>
+</div>
+<div class="mt-1">
+  <p-table
+    dataKey="dt1"
+    [lazy]="true"
+    [rows]="20"
+    [paginator]="true"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[20, 50, 100]"
+    (onLazyLoad)="load($event)"
+    [value]="orders$ | async"
+    [tableStyle]="{ 'min-width': '86rem' }"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Order Code</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Age</th>
+        <th>Cost</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th style="width: 9vw">
+          <p-column-filter field="orderCode" type="text" [showMenu]="false">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <ui-desktop-input
+                [label]="' '"
+                [type]="'text'"
+                (keyup.enter)="filterByOrderNumber($event)"
+                (input)="onInputChange($event)"
+              ></ui-desktop-input>
+            </ng-template>
+          </p-column-filter>
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>
+          <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="'Status'"
+                  [options]="statuses"
+                  [key]="'text'"
+                  [value]="'text'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByStatus($event)"
+                ></ui-input-drop-down>
+                <div class="p-float-label"></div>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.orderCode }}</td>
+        <td>
+          {{ moment(item.creator.date).local().format('ddd MMM DD, YYYY') }}
+        </td>
+        <td>
+          {{moment.utc(`${item.creator.date} ${item.creator.time}`, 'YYYY-MM-DD
+          HH:mm').local() .format('h:mm A')}}
+        </td>
+        <td>
+          {{ moment(item.creator.date + ' ' + item.creator.time, 'YYYY-MM-DD
+          HH:mm').fromNow()}}
+        </td>
+        <td>{{ item.costSummary.totalCost | currency: 'NGN ' }}</td>
+        <td>{{item.address.address}}</td>
+        <td>{{item.address.city}}</td>
+        <td>{{item.address.state}}</td>
+        <td>{{ item.status || 'N/A' }}</td>
+        <td>
+          <ui-desktop-button
+            [label]="'View'"
+            [primary]="true"
+            [size]="'small'"
+            (Click)="view(item)"
+          ></ui-desktop-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

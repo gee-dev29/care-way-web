@@ -1,0 +1,49 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="prescription" class="ion-padding">
+    <div>
+      <div class="pricing-head">
+        <div class="icon">
+          <ion-icon
+            (click)="goBack()"
+            name="chevron-back-outline"
+            size="small"
+          ></ion-icon>
+        </div>
+
+        <ion-text class="pricing-title">Summary Details</ion-text>
+      </div>
+
+      <ui-summary-detalils-card-one
+        [icon]="'/icons/hospital.svg'"
+        title="Doctor Details"
+        [isEdit]="true"
+        [items]="doctorDetails"
+        (edit)="editDetails('detail')"
+      ></ui-summary-detalils-card-one>
+      <ui-summary-detalils-card-one
+        [icon]="'/icons/license.svg'"
+        title="Doctor License Details"
+        [isEdit]="true"
+        [items]="licenseDetails"
+        [showLicenseEye]="true"
+        (onEyeClick)="previewLicense()"
+        (edit)="editDetails('license')"
+      >
+        ></ui-summary-detalils-card-one
+      >
+    </div>
+
+    <div class="btn-margin">
+      <ui-button
+        expand="block"
+        label="Send Invitation"
+        width="full"
+        size="medium"
+        fill="solid"
+        shape="round"
+        backgroundColor="dark"
+        (Click)="sendVerification()"
+      ></ui-button>
+    </div>
+  </div>
+</ion-content>

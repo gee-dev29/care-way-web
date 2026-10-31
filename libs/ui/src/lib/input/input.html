@@ -1,0 +1,206 @@
+@switch (type) { @case ('password') {
+<ion-item>
+  <ion-input
+    type="password"
+    [label]="label"
+    labelPlacement="stacked"
+    [formControl]="control"
+    [value]="control.value"
+    (ionFocus)="focused.emit()"
+    (ionBlur)="blurred.emit()"
+    (ionInput)="writeValue($event.target.value)"
+  >
+    <ion-input-password-toggle
+      color="success"
+      slot="end"
+    ></ion-input-password-toggle>
+  </ion-input>
+</ion-item>
+} @case ('number') {
+<ion-item>
+  <ion-input
+    [label]="label"
+    labelPlacement="stacked"
+    type="text"
+    placeholder=""
+    [formControl]="control"
+    id="number"
+    [currency]="currency"
+    inputmode="decimal"
+    [value]="displayValue"
+    (ionInput)="onInput($event)"
+  >
+    @if (prefix) {
+    <ion-text slot="start"> {{ prefix }} </ion-text>
+    } @if (suffix) {
+    <ion-text slot="end"> {{ suffix }} </ion-text>
+    }
+  </ion-input>
+</ion-item>
+} @case ('phone') {
+<ion-item>
+  <ion-input
+    [label]="label"
+    labelPlacement="stacked"
+    type="tel"
+    placeholder=""
+    [formControl]="control"
+    [value]="control.value"
+    (ionInput)="writeValue($event.target.value)"
+  >
+  </ion-input>
+</ion-item>
+} @case ('email') {
+<ion-item [disabled]="disabled">
+  <ion-input
+    type="email"
+    [label]="label"
+    labelPlacement="stacked"
+    [value]="control.value"
+    [readonly]="readOnly"
+    [formControl]="control"
+    (ionInput)="writeValue($event.target.value); keyupData.emit($event.target.value); handleInput($event)"
+  >
+  </ion-input>
+</ion-item>
+} @case ('switchbox') {
+<ion-toggle
+  [formControl]="control"
+  [checked]="control.value"
+  aria-label="Dark toggle"
+  labelPlacement="end"
+  (ionChange)="writeValue($event.detail.checked)"
+>
+  @if(label.includes('Terms & Privacy Policy')) {
+  <a tabindex="" (keyup)="data.emit()" routerLink="/signup" class="cursor"
+    >I agree to the <b class="terms-condition">Terms & Privacy Policy</b></a
+  >
+  }@else{
+  <span>{{label}}</span>
+  }
+</ion-toggle>
+<br /><br />
+} @case ('otp') {
+<ion-input-otp
+  length="4"
+  [color]="color"
+  (ionComplete)="ionComplete.emit()"
+  [formControl]="control"
+  (ionInput)="writeValue($event.target.value)"
+>
+  <ng-content></ng-content>
+  @if (bypass===false) {
+  <div class="otp-label">
+    {{label}}
+    <a tabindex="" (keyup)="data.emit()" (click)="data.emit()" class="cursor"
+      ><b class="b">Resend the code</b></a
+    >
+  </div>
+  }
+</ion-input-otp>
+} @case ('dropdown') { @if (shouldSearch) {
+<ion-list
+  [inset]="true"
+  (keydown.enter)="!readOnly && data.emit()"
+  (click)="!readOnly && data.emit()"
+>
+  <ion-item
+    class="dropp"
+    [button]="true"
+    [detail]="false"
+    id="select-items"
+    [disabled]="readOnly"
+  >
+    <div class="flexxer">
+      <div class="flex">
+        <div slot="start" id="select-items">{{ label }}</div>
+        <div slot="end" class="end__slot">
+          <ion-icon src="/logo/downarrow.svg"></ion-icon>
+        </div>
+      </div>
+      <p>{{selectedText}}</p>
+    </div>
+  </ion-item>
+</ion-list>
+<ion-modal [isOpen]="isClicked" [canDismiss]="canDismiss" #modal>
+  <ng-template>
+    <ui-typeahead
+      class="ion-page"
+      [title]="title"
+      [items]="options"
+      [label]="label"
+      [isMultiselect]="isMultiselect"
+      [selectedItems]="selectedItem"
+      (selectionCancel)="cancel()"
+      (selectionCancel)="emitted.emit()"
+      (selectionCancel)="modal.dismiss()"
+      (selectionChange)="optionSelectionChanged($event)"
+      (selectionChange)="emitted.emit($event)"
+      (selectionChange)="modal.dismiss()"
+      [isItemObject]="isItemObject"
+      [requiredGroups]="requiredGroups"
+      [emptyGroupMessage]="emptyGroupMessage"
+    ></ui-typeahead>
+  </ng-template>
+</ion-modal>
+} @else {
+<ion-list>
+  <ion-item>
+    <ion-select
+      [label]="label"
+      [multiple]="isMultiselect"
+      labelPlacement="stacked"
+      interface="popover"
+      [value]="control.value"
+      toggleIcon="chevron-down-outline"
+      (ionChange)="writeValue($event.detail.value); keyupData.emit($event.detail.value)"
+    >
+      @for (item of options; track $index) {
+      <ion-select-option [value]="item.value">{{item.text}}</ion-select-option>
+      }
+    </ion-select>
+  </ion-item>
+</ion-list>
+} } @case ('checkbox') {
+<ion-radio-group
+  class="gender"
+  [formControl]="control"
+  (ionChange)="writeValue($event.detail.value); keyupData.emit($event.detail.value)"
+>
+  @for (item of options; track $index) {
+  <ion-radio
+    [ngClass]="{'radio-checked':item.value===control.value}"
+    [value]="item.value"
+    labelPlacement="end"
+  >
+    {{ item.text }}
+  </ion-radio>
+  <br />
+  }
+</ion-radio-group>
+
+<br />
+} @case ('check') {
+<ion-checkbox
+  labelPlacement="end"
+  [checked]="control.value"
+  [formControl]="control"
+  (ionChange)="writeValue($event.detail.checked)"
+>
+  {{ label }}
+</ion-checkbox>
+
+<br />
+} @default {
+<ion-item>
+  <ion-input
+    [label]="label"
+    labelPlacement="stacked"
+    [value]="control.value"
+    [formControl]="control"
+    (ionFocus)="data.emit()"
+    (ionInput)="writeValue($event.target.value); keyupData.emit($event.target.value); handleInput($event)"
+  >
+  </ion-input>
+</ion-item>
+} }

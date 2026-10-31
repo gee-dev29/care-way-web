@@ -1,0 +1,108 @@
+#profile-content {
+  --background: #f4f5fe;
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+/* Photo Section */
+.photo-section {
+  margin-top: 120px;
+  text-align: center;
+}
+
+.photo-container {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-img::part(image) {
+  border-radius: 50%;
+}
+
+.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  color: var(--ion-color-danger);
+}
+
+.delete ion-icon {
+  font-size: 20px;
+  margin-right: 6px;
+}
+
+/* Profile Card */
+.profile-card {
+  border: 1px solid #3b82f6;
+  border-radius: 24px;
+  padding: 16px;
+  background: linear-gradient(135deg, #f7f8fc, #e9ecf5);
+  margin: 20px;
+}
+
+/* Header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title-wrap ion-icon {
+  font-size: 22px;
+}
+
+.title-wrap h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #000;
+}
+
+.edit-btn {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  color: #2563eb;
+  font-size: 16px;
+}
+
+/* Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px 18px;
+  margin-top: 10px;
+}
+
+.info-item {
+  text-align: left;
+}
+
+.info-item.full {
+  grid-column: span 2;
+}
+
+.info-item label {
+  display: block;
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.info-item p {
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #111827;
+}

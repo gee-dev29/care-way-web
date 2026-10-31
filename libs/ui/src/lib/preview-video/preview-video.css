@@ -1,0 +1,79 @@
+#preview__video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: black;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.center-play,
+.bottom-pause {
+  position: absolute;
+  z-index: 10;
+  color: white;
+}
+
+.center-play ion-icon {
+  font-size: 80px;
+  opacity: 0.9;
+}
+
+.bottom-pause ion-icon {
+  font-size: 60px;
+  opacity: 0.9;
+}
+.pause-circle-outline {
+  color: #fff;
+}
+.top-back {
+  top: 0px;
+  left: 0px;
+  padding: 40px 10px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 1px 0px 30px rgba(0, 0, 0, 0.4);
+}
+
+.center-play {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(232, 44, 44, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  height: 70px;
+  width: 70px;
+}
+
+.center-play ion-icon {
+  font-size: 30px;
+}
+
+.bottom-pause {
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.left__arrow {
+  color: #fff;
+}

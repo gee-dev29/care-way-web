@@ -1,0 +1,189 @@
+<ion-content class="page-content ion-padding">
+  @if (!isLoading) {
+  <div class="header">
+    <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+    <div class="title">Appointments</div>
+    <a routerLink="/dashboard/schedule-appointment">
+      <div>
+        <ui-plus-icon-component [size]="'small'"></ui-plus-icon-component>
+      </div>
+    </a>
+  </div>
+  <div class="searchWrap">
+    <ion-searchbar
+      placeholder="Search"
+      mode="ios"
+      show-clear-button="never"
+      class="search"
+    ></ion-searchbar>
+  </div>
+  <div class="tabs">
+    <button
+      class="pill"
+      [class.active]="activeTab === 'All'"
+      (click)="setTab('All')"
+    >
+      All
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Pending'"
+      (click)="setTab('Pending')"
+    >
+      Pending
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Confirmed'"
+      (click)="setTab('Confirmed')"
+    >
+      Confirmed
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Paid'"
+      (click)="setTab('Paid')"
+    >
+      Paid
+    </button>
+
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Ready'"
+      (click)="setTab( 'Ready')"
+    >
+      Ready
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Ongoing'"
+      (click)="setTab( 'Ongoing')"
+    >
+      Ongoing
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Completed'"
+      (click)="setTab( 'Completed')"
+    >
+      Completed
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Cancelled'"
+      (click)="setTab('Cancelled')"
+    >
+      Cancelled
+    </button>
+  </div>
+  <div class="list">
+    @for (appointment of allAppointments; track appointment.appointmentId) {
+    <ui-appointment-card-primary
+      [appointment]="appointment"
+      [status]="status"
+      [statusFn]="getStatus(appointment?.status)"
+      (getStatus)="getStatus($event)"
+      (viewAppointment)="viewAppointment(appointment)"
+      [showDoctor]="true"
+    ></ui-appointment-card-primary>
+    } @if (allAppointments.length === 0) {
+    <div class="empty">You have no appointments</div>
+    }
+  </div>
+  <ion-infinite-scroll [disabled]="!hasMore" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Loading more appointments..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  } @else {
+  <div class="header">
+    <ion-button fill="clear" class="back">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <ion-skeleton-text
+      animated
+      style="width: 120px; height: 16px"
+    ></ion-skeleton-text>
+    <div class="spacer"></div>
+  </div>
+  <div class="searchWrap">
+    <div class="searchSkeleton">
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 44px"
+      ></ion-skeleton-text>
+    </div>
+  </div>
+  <div class="tabs">
+    <ion-skeleton-text
+      animated
+      style="width: 92px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 102px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 102px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+  </div>
+
+  <div class="list">
+    @for (_ of [1,2,3,4]; track _) {
+    <div class="card skCard">
+      <div class="item-left">
+        <ion-skeleton-text
+          animated
+          style="width: 16px; height: 16px; border-radius: 4px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 90px; height: 12px"
+        ></ion-skeleton-text>
+      </div>
+      <div class="item-right">
+        <ion-skeleton-text
+          animated
+          style="width: 16px; height: 16px; border-radius: 4px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 70px; height: 12px"
+        ></ion-skeleton-text>
+      </div>
+      <div class="item-left">
+        <ion-skeleton-text
+          animated
+          style="width: 120px; height: 12px"
+        ></ion-skeleton-text>
+      </div>
+      <div class="item-right status">
+        <ion-skeleton-text
+          animated
+          style="width: 60px; height: 12px"
+        ></ion-skeleton-text>
+      </div>
+      <div class="arrow">
+        <ion-skeleton-text
+          animated
+          style="width: 16px; height: 16px; border-radius: 50%"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+    }
+  </div>
+  }
+</ion-content>
+
+@if(appointmentCancellationConfirmationModal){
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to cancel this appointment?'"
+  [background]="'#307D3D'"
+  [open]="appointmentCancellationConfirmationModal"
+  (next)="cancelMedicalAppointment()"
+  (no)="closeConfirmationModal()"
+  (dismiss)="closeConfirmationModal()"
+></ui-confirmation-modal>
+}

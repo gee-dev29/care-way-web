@@ -1,0 +1,72 @@
+.content__wrapper {
+  padding: 15px 0px;
+}
+.left__arrow {
+  font-size: 1.5rem;
+}
+.page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 80px;
+  padding: 0 4px;
+}
+.back__btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.text {
+  font-size: 1rem;
+  margin: 0;
+}
+.page__heading {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+}
+.img__wrapper {
+  width: 200px;
+}
+.img {
+  width: 100%;
+}
+.gender__based {
+  margin: 5px 0px;
+}
+
+.gender__based ion-text {
+  font-weight: 300;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.gender {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+.middle {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+}
+.form__wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+.btn__wrapper {
+  width: 100%;
+  margin-top: 25px;
+  padding: 0 10px;
+}

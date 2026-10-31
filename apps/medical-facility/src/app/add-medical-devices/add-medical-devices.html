@@ -1,0 +1,82 @@
+<div id="background-content" fullscreen>
+  <div id="add__medicaldevices" class="ion-padding">
+    <div
+      class="up"
+      (keyup.enter)="goBack()"
+      tabindex="0"
+      role="button"
+      (click)="goBack()"
+    >
+      <ion-icon src="/logo/backarrow.svg"></ion-icon>
+      <ion-text>Add Medical Devices</ion-text>
+    </div>
+
+    <div class="card__wrapper">
+      <form [formGroup]="form">
+        <div class="input">
+          <ui-input
+            [label]="'Active Ingredient'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isActiveIngredient"
+            [type]="'dropdown'"
+            [options]="activeIngredients"
+            (data)="isActiveIngredientClicked()"
+            (emitted)="offActiveIngredientClicked()"
+            [selectedText]="form.value.activeIngredient"
+            [selectedItem]="[form.value.activeIngrident]"
+            [control]="activeIngredient"
+          ></ui-input>
+        </div>
+        <div class="input">
+          <ui-input
+            [label]="'Form'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isForm"
+            [type]="'dropdown'"
+            [options]="forms"
+            (data)="isFormClicked()"
+            (emitted)="offFormClicked()"
+            [selectedText]="form.value.form"
+            [selectedItem]="[form.value.form]"
+            [control]="formSelected"
+          ></ui-input>
+        </div>
+        <div class="input">
+          <ui-input
+            [label]="'Product Name'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isProductName"
+            [type]="'dropdown'"
+            [options]="productNames"
+            (data)="isProductNameClicked()"
+            (emitted)="offProductNameClicked()"
+            [selectedText]="form.value.product"
+            [selectedItem]="[form.value.product]"
+            [control]="productName"
+          ></ui-input>
+        </div>
+        <div class="input">
+          <ui-input [label]="'Quantities'" [control]="quantities"></ui-input>
+        </div>
+        <div class="ui__button">
+          <ui-button
+            (Click)="next()"
+            [label]="label"
+            [disabled]="loading || (!form.valid)"
+            [loading]="loading"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+            [showImage]="false"
+          ></ui-button>
+        </div>
+      </form>
+
+      <div class="end"></div>
+    </div>
+  </div>
+</div>

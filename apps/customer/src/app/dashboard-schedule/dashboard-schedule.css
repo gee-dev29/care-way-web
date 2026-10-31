@@ -1,0 +1,138 @@
+ion-icon {
+  margin-bottom: 10px !important;
+  font-size: 22px;
+}
+ion-tab-bar {
+  height: 70px !important;
+}
+ion-content {
+  --background: #f9fffa !important;
+}
+ion-card {
+  margin: 0px;
+}
+ion-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7%;
+}
+.sched {
+  flex-direction: column;
+  gap: 20px;
+}
+.sched p {
+  font-weight: 700;
+  text-align: center;
+}
+.black {
+  background-color: black;
+  margin-top: 20px;
+}
+.black ion-card-content {
+  display: flex;
+  justify-content: space-between;
+}
+.black p {
+  font-size: 30px;
+  color: white;
+  width: 60%;
+}
+.black ion-img {
+  width: 35%;
+}
+.id {
+  font-weight: 700;
+  font-size: 12px;
+}
+.id__plus {
+  font-weight: 700;
+  font-size: 14px;
+  color: black;
+}
+.date {
+  font-size: 12px;
+}
+
+.leftter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.leftter ion-img {
+  width: 20%;
+}
+
+.pending {
+  color: #ffa500;
+  text-align: end;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+.recent {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.go__down {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.recent p,
+.recent a {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+.new__member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+}
+.new__member ion-img {
+  width: 55px;
+}
+.new__member p {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+.new__member div {
+  font-size: 10px;
+  text-align: center;
+  width: 100%;
+  font-weight: 500;
+}
+.small__curve {
+  border-radius: 10px;
+}
+.medium__curve {
+  border-radius: 24px;
+}
+#background-content {
+  background: #f4f5fe !important;
+}
+#schedule {
+  background: #f4f5fe !important;
+  margin-top: 115px !important;
+}
+
+.end{
+  padding-bottom: 100px !important;
+}

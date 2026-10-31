@@ -1,0 +1,42 @@
+@if (!option) {
+<div class="cost-card skeleton-card">
+  <div class="left">
+    <div class="icon-box">
+      <ion-skeleton-text
+        animated
+        style="width: 24px; height: 24px; border-radius: 6px"
+        a
+      ></ion-skeleton-text>
+    </div>
+
+    <ion-skeleton-text
+      animated
+      style="width: 80px; height: 14px"
+    ></ion-skeleton-text>
+  </div>
+
+  <ion-skeleton-text
+    animated
+    style="width: 16px; height: 16px"
+  ></ion-skeleton-text>
+</div>
+
+} @else {
+
+<div
+  class="cost-card"
+  tabindex="0"
+  (keyup.enter)="navigateTo.emit(option.type)"
+  (click)="navigateTo.emit(option.type)"
+>
+  <div class="left">
+    <div class="icon-box">
+      <ion-icon [src]="option.img"></ion-icon>
+    </div>
+    <p>{{ option.name }}</p>
+  </div>
+
+  <ion-icon name="chevron-forward-outline" class="forward-icon"></ion-icon>
+</div>
+
+}

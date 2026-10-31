@@ -1,0 +1,150 @@
+<ui-page-body>
+  @if((orderDetails$ | async); as orderDetails){
+  <div class="table__head">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">Order</h2>
+    </div>
+    @if(orderDetails.referralType === showAssignRider.BloodBank ||
+    orderDetails.referralType === showAssignRider.Pharmacy){
+    <ui-desktop-button
+      [label]="'Assign Rider'"
+      [primary]="true"
+      (Click)="assignRiderModal()"
+      [disabled]="orderDetails.status !== DocumentStatus.Fulfilment_Created || orderDetails.riderId !== null"
+    ></ui-desktop-button>
+    }
+  </div>
+  }
+  <div class="mt-1">
+    <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+  </div>
+  <div class="ml-1">
+    @if (activeTab === 0) {
+    <div>
+      <ui-order-details-card
+        [memberName]="memberName"
+        [orders$]="orderDetails$"
+      ></ui-order-details-card>
+    </div>
+    } @if(activeTab === 0){
+    <div>
+      @if(riderDetails$ | async){
+      <ui-rider-details-card
+        [details$]="riderDetails$"
+        [cardHeading]="'Rider Details'"
+        [totalRecords]="totalRecords"
+      ></ui-rider-details-card>
+      }
+    </div>
+    } @if(activeTab ===0){
+    <back-office-referral-items
+      [heading]="'Order Items'"
+      [referralItems]="orderItems"
+      [totalRecords]="orderItemsTotalRecords"
+      [referralType]="referralType"
+    ></back-office-referral-items>
+    }
+  </div>
+</ui-page-body>
+<ui-modal
+  [header]="'Assign Rider'"
+  [selectedWidth]="'60vw'"
+  [visibility]="riderModal"
+  (visibilityChange)="riderModal = $event"
+>
+  <div class="modal__container">
+    <div class="table__head">
+      <h2 class="title">Riders</h2>
+      <ui-desktop-button
+        [label]="'Proceed'"
+        [size]="'large'"
+        [primary]="true"
+        (click)="proceed()"
+        [disabled]="selected.size !== 1"
+      ></ui-desktop-button>
+    </div>
+    <div class="modal__body">
+      <p-table
+        dataKey="userId"
+        [paginator]="true"
+        [lazy]="true"
+        [rows]="20"
+        [paginator]="true"
+        [totalRecords]="totalRecords"
+        [rowsPerPageOptions]="[20, 50, 100]"
+        (onLazyLoad)="load($event)"
+        [value]="riders$ | async"
+        (onRowSelect)="onRowSelect($event)"
+        (onRowUnselect)="onRowUnselect($event)"
+      >
+        <ng-template #header>
+          <tr>
+            <th></th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th></th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="firstName"
+                [showMenu]="false"
+              ></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="lastName"
+                [showMenu]="false"
+              ></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="email"
+                [showMenu]="false"
+              ></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="phone"
+                [showMenu]="false"
+              ></p-columnFilter>
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-item>
+          <tr>
+            <td style="width: 3rem">
+              <p-tableCheckbox [value]="item"></p-tableCheckbox>
+            </td>
+            <td>{{ item.firstName | titlecase}}</td>
+            <td>{{item.lastName | titlecase}}</td>
+            <td>{{ item.email}}</td>
+            <td>{{ item.phone}}</td>
+            <td></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</ui-modal>
+<ui-confirmation-modal-desktop
+  [message]="'Are you sure you want to assign this rider?'"
+  [(visibility)]="confirmationModal"
+  (proceed)="selectRider()"
+></ui-confirmation-modal-desktop>

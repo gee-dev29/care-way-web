@@ -1,0 +1,107 @@
+.fit {
+  width: fit-content;
+}
+
+.full {
+  width: 100%;
+}
+
+.storybook-button--small {
+  font-size: 0.625rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.storybook-button--medium {
+  font-size: 0.75rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.storybook-button--full {
+  font-size: 0.813rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 10px;
+  width: 100%;
+}
+
+.storybook-button--large {
+  font-family: 'montserrat';
+  font-size: 0.813rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.storybook-button-button {
+  font-family: 'montserrat';
+  font-weight: 400;
+  border: 0;
+  border-radius: 0.3em;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  border-radius: 20px;
+}
+
+.storybook-button--primary {
+  font-family: 'montserrat';
+  color: white;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.storybook-button--primary:hover {
+  color: white;
+  border: 1px solid var(--primary-color);
+}
+
+.storybook-button--secondary {
+  color: var(--primary-color);
+  background: none;
+  border: 1px solid var(--primary-color);
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.storybook-button--secondary:hover {
+  color: var(--primary-color);
+  background: var(--primary-color-light);
+  border: 1px solid var(--primary-color);
+}
+
+:disabled {
+  background: #ff00005f;
+  border-color: #ff00005f;
+  cursor: default;
+}
+
+:disabled:hover {
+  background: #ff00005f;
+  border-color: #ff00005f;
+}

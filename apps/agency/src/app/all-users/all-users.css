@@ -1,0 +1,186 @@
+#home {
+  background: #fff !important;
+  margin-top: 85px !important;
+}
+
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  color: #121212;
+  font-weight: 600;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+
+.header ion-icon {
+  cursor: pointer;
+}
+.tab-bar-wrapper {
+  overflow-x: auto;
+  padding: 14px;
+  scrollbar-width: none;
+}
+
+.tab-bar-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  width: max-content;
+}
+
+.tab-btn {
+  background: transparent;
+  border: 1.5px solid transparent;
+  border-radius: 999px; /* pill shape */
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.tab-btn:hover {
+  color: #111827;
+  background-color: #f0fdf4;
+}
+
+.tab-btn.active {
+  color: #2e7d32;
+  font-weight: 600;
+  border-color: #2e7d32;
+  background-color: #f0fdf4;
+  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.15);
+}
+
+.request-card {
+  display: grid;
+  grid-template-columns: 185px 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  row-gap: 12px;
+  padding: 24px 50px 24px 16px;
+  border-radius: 18px;
+  background: #e3f5e5;
+  position: relative;
+}
+
+.item-right {
+  text-align: right;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.item-left {
+  text-align: left;
+  font-weight: 600;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  right: 12px;
+}
+
+.arrow ion-icon {
+  font-size: 20px;
+}
+
+.status {
+  color: #307d3d;
+}
+
+.order-arrow {
+  margin-left: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  line-height: 0.5;
+  column-gap: 6px;
+  align-items: center;
+}
+
+.request-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.request-id {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.request-time {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1 !important;
+}
+
+.request-status {
+  font-size: 18px;
+  font-weight: 500;
+  color: #f3951f !important;
+  text-align: right;
+}
+
+.request-arrow {
+  margin-left: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.forward-icon {
+  font-size: 20px;
+}
+
+.empty {
+  text-align: center;
+  color: #6f786f;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.empty-state ion-icon {
+  font-size: 52px;
+  color: #c7d9c9;
+}
+
+.empty-state p {
+  font-size: 14px;
+  color: #9ca3af;
+  font-weight: 500;
+  margin: 0;
+}

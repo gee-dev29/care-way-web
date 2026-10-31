@@ -1,0 +1,100 @@
+<ion-content fullscreen>
+  <div id="home" class="ion-padding">
+    <div class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title2">Blood Request Summary</div>
+      <div></div>
+    </div>
+    @if (request$ | async; as request) {
+    <div class="page-container">
+      <div class="info-card">
+        <div class="info-row">
+          <div class="label">Request No:{{" "}}</div>
+          <div class="value muted">{{request?.serviceRequestCode}}</div>
+        </div>
+
+        <div class="info-row right">
+          <div class="value muted">
+            {{moment.utc(request?.creator?.date).local().fromNow()}}
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="column">
+          <div class="label">Patient</div>
+          <div class="value">
+            {{request?.member?.firstName}} {{" "}}{{request?.member?.lastName}}
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="label">Gender</div>
+          <div class="value">{{request?.member?.gender}}</div>
+        </div>
+
+        <div class="column">
+          <div class="label">Age</div>
+          <div class="value">{{request?.member?.age}}</div>
+        </div>
+      </div>
+
+      <div class="section-title">Requested Items</div>
+      @if(dataForCosting.length > 0){ @for(item of dataForCosting; track item){
+      <div class="outer-card">
+        <!-- <div
+          class="available-items"
+          tabindex=""
+          (keyup)="addCostProduct()"
+          (click)="addCostProduct()"
+        >
+          <ion-text class="variants" tabindex="">
+            {{item?.serviceName}}</ion-text
+          >
+
+          <ion-text class="act">
+            <span>{{item?.bloodGroup}}</span>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </ion-text>
+        </div> -->
+      </div>
+      } } @for(values of data | keyvalue; track values.key; let i = $index){ @if
+      (i===0) {
+      <div class="section-title">{{'Available'}}</div>
+      } @for(items of values?.value?.items; track $index){
+      <div class="inner-card">
+        <div class="drug-info">
+          <div class="drug-name">
+            {{items?.bloodGroup}}<br />
+            <span> ({{items?.quantity}})</span>
+          </div>
+          <div class="class">
+            <div class="costs">
+              <ion-text class="drug-price">
+                {{ items?.cost | currency:"NGN" }}</ion-text
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      } } @if((data | keyvalue);as exist){ @if ( exist?.length) { @if
+      (request.status===documentStatus.Pending) {
+
+      <div class="ui__button">
+        <ui-button
+          (Click)="sendCost()"
+          [label]="'Send Cost'"
+          [loading]="loading"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [showImage]="false"
+        ></ui-button>
+      </div>
+      } } }
+    </div>
+    }
+  </div>
+</ion-content>

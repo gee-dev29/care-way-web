@@ -1,0 +1,70 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="home" class="ion-padding mt-4 page-layout">
+    <ui-reuseable-wallet-card
+      [balance]="balance"
+      currency="NGN"
+      (viewHistory)="navigateTo()"
+    ></ui-reuseable-wallet-card>
+
+    @if (requests) {
+    <div class="cost">
+      <agency-med-facility-home-card
+        [request]="requests"
+        [title]="'Medical Facilities'"
+        (view)="routeTo('/dashboard/med-facilities')"
+        (viewIt)="viewIt(requests)"
+        [totalRecords]="requestTotalRecords"
+      >
+      </agency-med-facility-home-card>
+    </div>
+    } @else {
+    <div class="cost">
+      <ui-add-new-entry-card
+        [title]="'No Medical Facilities 
+         yet'"
+        [state]="'empty'"
+      >
+      </ui-add-new-entry-card>
+    </div>
+    }
+
+    <div>
+      <div class="header">
+        <div class="title">
+          Customers<span class="green">({{ usersTotalRecord }})</span>
+        </div>
+        <div
+          class="title-2"
+          tabindex=""
+          (keyup.enter)="routeTo('dashboard/all-customers')"
+          (click)="routeTo('dashboard/all-customers')"
+        >
+          View all
+        </div>
+      </div>
+
+      @if((users$ | async)?.length ){
+
+      <ion-card class="team-card">
+        @for(users of (users$ | async); track $index) {
+        <div class="team-item">
+          <div class="avatar">
+            <span class="initials">
+              {{ getInitials(users.firstName, users.lastName) }}
+            </span>
+          </div>
+          <p class="name">{{ users.lastName }}</p>
+        </div>
+        }
+      </ion-card>
+
+      } @else {
+      <ui-add-new-entry-card
+        [title]="'No referred Customer yet'"
+        [state]="'empty'"
+      >
+      </ui-add-new-entry-card>
+      }
+    </div>
+  </div>
+</ion-content>

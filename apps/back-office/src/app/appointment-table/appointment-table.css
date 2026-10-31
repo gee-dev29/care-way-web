@@ -1,0 +1,3 @@
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  width: fit-content !important;
+}

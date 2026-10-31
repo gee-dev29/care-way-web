@@ -1,0 +1,164 @@
+<div class="section-body">
+@if (!isLoading) {
+  <div class="section">
+    @if (appointment) {
+    <div class="sectionHead">
+      <h3>Upcoming Appointments</h3>
+      <a class="link" tabindex="0" (keyup.enter)="viewAllAppointments()" (click)="viewAllAppointments()">
+        View all
+      </a>
+    </div>
+    <ui-appointment-card-primary
+      [appointment]="appointment"
+      [statusFn]="appointment.status"
+      (viewAppointment)="viewAppointment(appointment)"
+      [showPatient]="true"
+    ></ui-appointment-card-primary>
+    } @else {
+    <ui-add-new-entry-card [title]="'No Appointment Available'" [state]="'empty'"> </ui-add-new-entry-card>
+    }
+  </div>
+
+  <div class="section">
+    @if (invitations.length > 0) {
+    <div class="sectionHead">
+      <h3>Invitations</h3>
+      <p class="link" tabindex="0" (keyup.enter)="viewAllInvitations()" (click)="viewAllInvitations()">
+        View all
+      </p>
+    </div>
+    } @if (invitations.length > 0) {
+    <div class="cardsRow">
+      @for (inv of invitations; track $index) {
+      <div class="inviteCard" [class.is-rejected]="isRejected(inv)">
+        <div class="card-top">
+          <div class="card-main">
+            <span class="name">{{ inv?.facilityTypeName }}</span>
+          </div>
+
+          <span
+            class="inviteStatus"
+            [class.pending]="isPending(inv)"
+            [class.approved]="inv?.status === 'Approved'"
+            [class.rejected]="isRejected(inv)"
+          >
+            <span class="status-dot"></span>
+            {{ statusLabel(inv) }}
+          </span>
+        </div>
+
+        <div class="card-meta">
+          <ion-icon name="time-outline"></ion-icon>
+          <span class="meta-strong">{{ relativeTime(inv?.date) }}</span>
+          <span class="meta-sep">•</span>
+          <span class="meta-muted">{{ absoluteTime(inv?.date) }}</span>
+        </div>
+
+        @if (isRejected(inv)) {
+        <div class="rejection">
+          <ion-icon name="alert-circle-outline" class="rejection-icon"></ion-icon>
+          <div class="rejection-body">
+            <span class="rejection-label">Reason for rejection</span>
+            <span class="rejection-reason">{{ inv?.reason || 'No reason provided' }}</span>
+          </div>
+        </div>
+        }
+
+        @if (isPending(inv)) {
+        <div class="actions">
+          <button class="btnSolid" (click)="confirmInvitation(inv)">Accept</button>
+          <button class="btnOutline" (click)="rejectInvite(inv)">Reject</button>
+        </div>
+        }
+      </div>
+      }
+    </div>
+    } @else {
+    <ui-add-new-entry-card [title]="'You Have No Invitation Yet'" [state]="'empty'"> </ui-add-new-entry-card>
+    }
+  </div>
+} @else {
+  <div class="section">
+    <div class="sectionHead">
+      <ion-skeleton-text animated style="width: 180px; height: 16px"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 55px; height: 14px"></ion-skeleton-text>
+    </div>
+    <div class="card big">
+      <div class="apptTop">
+        <div style="flex: 1">
+          <ion-skeleton-text animated style="width: 140px; height: 16px"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 120px; height: 12px; margin-top: 8px"></ion-skeleton-text>
+        </div>
+        <ion-skeleton-text animated style="width: 80px; height: 14px"></ion-skeleton-text>
+      </div>
+      <div class="apptMeta">
+        <ion-skeleton-text animated style="width: 140px; height: 12px"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 140px; height: 12px"></ion-skeleton-text>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sectionHead">
+      <ion-skeleton-text animated style="width: 100px; height: 16px"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 55px; height: 14px"></ion-skeleton-text>
+    </div>
+    <div class="cardsRow">
+      @for (_ of [1, 2]; track _) {
+      <div class="card">
+        <ion-skeleton-text animated style="width: 140px; height: 16px"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 170px; height: 12px; margin-top: 8px"></ion-skeleton-text>
+        <div class="btnRow">
+          <ion-skeleton-text animated style="width: 84px; height: 32px; border-radius: 16px"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 84px; height: 32px; border-radius: 16px"></ion-skeleton-text>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+}
+</div>
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to accept the invitation?'"
+  [background]="'#307D3D'"
+  [open]="confirmModal"
+  (next)="confirmAccept()"
+  (no)="cancelAccept()"
+  (dismiss)="cancelAccept()"
+></ui-confirmation-modal>
+
+<ion-modal
+  class="reject-modal"
+  [isOpen]="rejectModal"
+  (didDismiss)="closeReject()"
+>
+  <ng-template>
+    <div class="reject-modal-body">
+      <div class="reject-modal-header">
+        <ion-text class="reject-modal-title">Reject Invitation</ion-text>
+        <ion-icon
+          name="close-outline"
+          class="reject-close-icon"
+          (click)="closeReject()"
+        ></ion-icon>
+      </div>
+
+      <ui-input-textarea
+        [control]="reasonControl"
+        [label]="'Reason for rejection'"
+      ></ui-input-textarea>
+
+      <ui-button
+        [label]="'Submit'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [loading]="rejecting"
+        [disabled]="rejecting || !reasonControl.value?.trim()"
+        (Click)="submitReject()"
+      ></ui-button>
+    </div>
+  </ng-template>
+</ion-modal>

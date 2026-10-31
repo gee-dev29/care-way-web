@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="dater">
+    <div>Date & Time</div>
+  </div>
+  <ion-datetime-button datetime="datetime"></ion-datetime-button>
+</div>
+
+<ion-modal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime
+      id="datetime"
+      presentation="date-time"
+      [preferWheel]="true"
+      [formControl]="control"
+      (ionChange)="onDateTimeChange($event.detail.value)"
+    ></ion-datetime>
+  </ng-template>
+</ion-modal>

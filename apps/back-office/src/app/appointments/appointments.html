@@ -1,0 +1,14 @@
+<ui-page-body>
+  <div class="table__head">
+    <h2 class="title">Appointments</h2>
+    <ui-desktop-button
+      [label]="'Export'"
+      [primary]="true"
+      (click)="export()"
+    ></ui-desktop-button>
+  </div>
+  <back-office-appointment-table
+    [showPatient]="true"
+    (viewAppointment)="view($event)"
+  ></back-office-appointment-table>
+</ui-page-body>

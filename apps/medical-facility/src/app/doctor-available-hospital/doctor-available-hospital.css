@@ -1,0 +1,170 @@
+.hospitals {
+  padding: 0 4% !important;
+  overflow-x: auto;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 90px;
+}
+
+.header .back {
+  width: 44px;
+  height: 44px;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  border-radius: 999px;
+}
+
+.header .back ion-icon {
+  font-size: 20px;
+  color: #121212;
+}
+
+.header .title {
+  text-align: center;
+  font-size: 18px;
+  color: #121212;
+}
+
+.header .spacer {
+  width: 44px;
+  height: 44px;
+}
+
+.searchWrap {
+  margin-top: 12px;
+}
+
+.searchWrap .search {
+  --background: #eef4ef;
+  --border-radius: 999px;
+  --box-shadow: none;
+  --placeholder-color: #9aa39a;
+  --icon-color: #9aa39a;
+  --clear-button-color: transparent;
+}
+
+.searchWrap .searchSkeleton {
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.list {
+  margin-top: 14px;
+  display: grid;
+  gap: 14px;
+}
+
+.card {
+  background: #c8eacd;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card .left .name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #121212;
+  line-height: 0.4;
+}
+.left {
+  width: 100%;
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.spec {
+  margin-left: 15px;
+}
+.card .left .sub {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--secondary-color);
+}
+
+.card .chev {
+  font-size: 16px;
+  color: #6f786f;
+}
+
+.skCard {
+  cursor: default;
+}
+
+.skChev {
+  width: 16px;
+  height: 16px;
+  border-radius: 6px;
+  justify-self: end;
+}
+
+.spec-wrapper {
+  overflow: hidden;
+  max-height: 180px;
+  transition: max-height 0.35s ease-in-out;
+}
+
+.spec-wrapper.expanded {
+  max-height: 1000px;
+}
+
+.view-more {
+  margin-left: 15px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--secondary-color);
+  cursor: pointer;
+  width: fit-content;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 44px 24px;
+  text-align: center;
+  color: #6f786f;
+}
+
+.empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 6px;
+  border-radius: 999px;
+  background: #e8f3ea;
+  color: #2c7a3f;
+}
+
+.empty-icon ion-icon {
+  font-size: 26px;
+}
+
+.empty-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.empty-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6f786f;
+  max-width: 260px;
+}

@@ -1,0 +1,154 @@
+ion-content {
+  --background: #f9fffa !important;
+}
+
+#home {
+  background: #f9fffa !important;
+  margin-top: 70px !important;
+}
+.top__header,
+a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 5px;
+}
+.card__title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #000;
+}
+
+.notes__wrapper {
+  padding: 10px 0;
+}
+.top__card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+}
+.text {
+  color: #000;
+  margin-top: 2px;
+}
+.middle__card {
+  padding: 5px 0;
+}
+.top__middle__content {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  gap: 5px;
+}
+.top__middle__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 5px;
+}
+.span__text {
+  color: #515151;
+}
+.pres__content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #e7f6e9;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+.gallery__img {
+  width: 40px;
+}
+
+ion-card {
+  background: #e7f6e9;
+}
+
+.card-content-ios {
+  padding-inline-start: 12px;
+}
+
+.content__modal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 10px;
+}
+.modal__top {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 40px 0 10px;
+}
+.star__img {
+  width: 220px;
+  margin: auto;
+}
+.modal__text {
+  font-weight: 500;
+  color: #000;
+  font-size: 14px;
+}
+.btn__submit {
+  background-color: #000;
+  color: white;
+  width: 100%;
+  padding: 20px;
+  font-size: 14px;
+  border-radius: 32px;
+  margin: 10px 0;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+.file-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.custom-icon {
+  width: 40px;
+  height: 25px;
+}
+
+.remove-icon {
+  font-size: 22px;
+  color: #e74c3c;
+}
+
+.image-uploaded {
+  margin-bottom: 15px;
+}
+
+#confirm__modal {
+  --height: fit;
+  --background: none;
+  align-items: center;
+}
+
+.modal-card {
+  border-radius: 20px;
+  padding: 5px;
+  text-align: center;
+  background-color: white;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.modal-card .preview-img {
+  width: 100%;
+  height: 100%;
+}

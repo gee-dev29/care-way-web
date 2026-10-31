@@ -1,0 +1,8 @@
+<ion-content id="background-content" class="ion-padding" [fullscreen]="true">
+  <ui-wallet-flow
+    [type]="flowType"
+    [data]="data"
+    [loading]="isLoading"
+    (back)="routeTo()"
+  ></ui-wallet-flow>
+</ion-content>

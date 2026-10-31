@@ -1,0 +1,72 @@
+ion-content {
+  --background: white !important;
+}
+.up {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  margin-top: 20px;
+  cursor: pointer;
+}
+ion-text {
+  font-size: 15px;
+  font-weight: 500;
+}
+.leftter {
+  font-weight: 500;
+  color: black;
+}
+#background-content {
+  background: white !important;
+}
+
+/* .gender__based {
+  margin: 5px 0px;
+}
+
+.gender__based ion-text {
+  font-weight: 300;
+  font-size: 13px;
+  font-weight: 400;
+} */
+/* 
+.gender {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+} */
+
+#add__member {
+  background: white !important;
+  margin-top: 70px !important;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 24px;
+}
+.end {
+  padding-bottom: 100px !important;
+}
+
+/* .gender__based {
+  margin: 5px 0px;
+} */
+
+/* .gender__based ion-text {
+  font-weight: 300;
+  font-size: 13px;
+  font-weight: 400;
+} */
+
+.gender {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.ui__button {
+  margin-top: 30px;
+}

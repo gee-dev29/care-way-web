@@ -1,0 +1,358 @@
+:host {
+  --hb-green: #307d3d;
+  --hb-green-soft: #e8f3ea;
+  --hb-green-line: #cfe3d3;
+  --hb-amber: #e8a13a;
+  --hb-red: #d9463e;
+  --hb-ink: #1a1a1a;
+  --hb-ink-muted: #6f786f;
+  --hb-surface: #ffffff;
+}
+
+/* Header */
+#invite {
+  margin-top: 80px !important;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--hb-ink);
+  cursor: pointer;
+  transition: background 0.15s ease-in-out;
+}
+
+.back-btn:active {
+  background: var(--hb-green-soft);
+}
+
+.back-btn ion-icon {
+  font-size: 22px;
+}
+
+.header .title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--hb-ink);
+}
+
+.header-spacer {
+  width: 40px;
+  height: 40px;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+  margin-bottom: 20px;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--hb-green-line);
+  background: var(--hb-surface);
+  color: var(--hb-green);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease-in-out, color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+
+.filter-chip.active {
+  background: var(--hb-green);
+  color: #ffffff;
+  border-color: var(--hb-green);
+}
+
+.filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--hb-green-soft);
+  color: var(--hb-green);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.filter-chip.active .filter-count {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 32px;
+}
+
+.request-card {
+  background: var(--hb-green-soft);
+  border: 1px solid var(--hb-green-line);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.request-card.is-rejected {
+  /* background: var(--hb-surface); */
+  border: 1px solid var(--hb-green-line);
+}
+
+.card-top {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--hb-green);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.recipient {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--hb-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.connection-type {
+  font-size: 12px;
+  color: var(--hb-ink-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Status pill */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--hb-ink-muted);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.status.pending {
+  background: #fdf1de;
+  color: #f3951f;
+}
+
+.status.approved {
+  background: #d9ecdd;
+  color: var(--hb-green);
+}
+
+.status.rejected {
+  background: #fbe4e3;
+  color: var(--hb-red);
+}
+
+.rejection {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--hb-green-soft);
+}
+
+.rejection-icon {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  font-size: 16px;
+  color: var(--hb-red);
+}
+
+.rejection-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rejection-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--hb-ink);
+}
+
+.rejection-reason {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--hb-ink);
+  overflow-wrap: anywhere;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.resend-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: none;
+  background: var(--hb-green);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.resend-btn:active {
+  opacity: 0.85;
+}
+
+.resend-btn ion-icon {
+  font-size: 15px;
+}
+
+/* Empty state */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 6px;
+  border-radius: 999px;
+  background: var(--hb-green-soft);
+  color: var(--hb-green);
+}
+
+.empty-icon ion-icon {
+  font-size: 26px;
+}
+
+.empty-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--hb-ink);
+}
+
+.empty-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--hb-ink-muted);
+  max-width: 260px;
+}
+
+.skeleton-card {
+  background: var(--hb-surface);
+  border-color: #ececec;
+}
+
+.skeleton-card ion-skeleton-text {
+  --border-radius: 6px;
+  margin: 0;
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  --border-radius: 999px;
+}
+
+.skeleton-line {
+  height: 12px;
+}
+
+.skeleton-line-lg {
+  width: 60%;
+}
+
+.skeleton-line-sm {
+  width: 35%;
+  height: 10px;
+  margin-top: 6px;
+}
+
+.skeleton-pill {
+  width: 64px;
+  height: 24px;
+  --border-radius: 999px;
+}

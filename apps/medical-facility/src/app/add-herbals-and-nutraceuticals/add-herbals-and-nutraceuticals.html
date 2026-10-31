@@ -1,0 +1,142 @@
+<ion-content id="background-content" fullscreen>
+  <div id="add__herbals" class="ion-padding">
+    <div
+      class="up"
+      (keyup.enter)="goBack()"
+      tabindex="0"
+      role="button"
+      (click)="goBack()"
+    >
+      <ion-icon src="/logo/backarrow.svg"></ion-icon>
+      <ion-text>Add Herbal & Nutraceuticals</ion-text>
+    </div>
+
+    <div class="card__wrapper">
+      <form [formGroup]="herbalForm">
+        <div class="input">
+          <ui-input
+            [label]="'Active Ingredient'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isActiveIngredient"
+            [type]="'dropdown'"
+            [options]="activeIngredients"
+            (data)="isActiveIngredientClicked()"
+            (emitted)="offActiveIngredientClicked()"
+            [selectedText]="herbalForm.value.activeIngredient"
+            [selectedItem]="[herbalForm.value.activeIngrident]"
+            [control]="activeIngredient"
+          ></ui-input>
+        </div>
+        <div class="input">
+          <ui-input
+            [label]="'Form'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isForm"
+            [type]="'dropdown'"
+            [options]="form"
+            (data)="isFormClicked()"
+            (emitted)="offFormClicked()"
+            [selectedText]="herbalForm.value.form"
+            [selectedItem]="[herbalForm.value.form]"
+            [control]="formSelected"
+          ></ui-input>
+        </div>
+        <div class="input">
+          <ui-input
+            [label]="'Strength'"
+            [control]="strength"
+            [type]="'text'"
+            (data)="checkStrength('')"
+            (keyupData)="checkStrength($event)"
+          ></ui-input>
+        </div>
+
+        @if (isStrengthOpen && availableStrength.length > 0) {
+        <div class="modal-card-new">
+          @for (item of availableStrength; track $index) {
+          <ion-radio slot="end" (click)="selectProductStrength(item.strength)">
+            <div class="word">{{ item.strength }}</div>
+          </ion-radio>
+          }
+        </div>
+        }
+
+        <div class="input">
+          <ui-input
+            [label]="'Frequency of Use'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isFrequency"
+            [type]="'dropdown'"
+            [options]="frequency"
+            (data)="isStrengthClicked()"
+            (emitted)="offStrengthClicked()"
+            [control]="frequencyOfUse"
+            [selectedText]="herbalForm.value.frequencyOfUse"
+            [selectedItem]="[herbalForm.value.frequencyOfUse]"
+          ></ui-input>
+        </div>
+        <div class="picker">
+          <div class="tabs-container">
+            <div class="tabs">
+              @for(tab of tabs; track tab; let i = $index) {
+              <ion-text
+                class="tab"
+                [class.active]="activeTabIndex === i"
+                (click)="setTab(tab)"
+              >
+                {{ tab }}
+              </ion-text>
+              }
+            </div>
+          </div>
+          @if (activeTabIndex === 0) {
+
+          <ion-picker>
+            <ion-picker-column
+              [value]="duration"
+              (ionChange)="onDayChange($event)"
+            >
+              @for (opt of dayOptions; track opt.value) {
+              <ion-picker-column-option [value]="opt.value">
+                {{ opt.label }}
+              </ion-picker-column-option>
+              }
+            </ion-picker-column>
+          </ion-picker>
+          }@else if (activeTabIndex === 1) {
+
+          <ion-picker>
+            <ion-picker-column
+              [value]="duration"
+              (ionChange)="onMonthChange($event)"
+            >
+              @for (opt of monthOptions; track opt.value) {
+              <ion-picker-column-option [value]="opt.value">
+                {{ opt.label }}
+              </ion-picker-column-option>
+              }
+            </ion-picker-column>
+          </ion-picker>
+          }
+        </div>
+        <div class="ui__button">
+          <ui-button
+            (Click)="next()"
+            [label]="label"
+            [disabled]="loading || (!herbalForm.valid)"
+            [loading]="loading"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+          ></ui-button>
+        </div>
+      </form>
+
+      <div class="end"></div>
+    </div>
+  </div>
+</ion-content>

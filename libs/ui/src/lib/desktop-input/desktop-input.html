@@ -1,0 +1,87 @@
+<ng-template [ngSwitch]="type" [ngIf]="type">
+  <p-floatlabel variant="on">
+    <div *ngSwitchCase="'password'">
+      <div class="form__group">
+        <span class="p-float-label">
+          <p-password
+            [toggleMask]="visibility"
+            [formControl]="control"
+            id="password"
+          ></p-password>
+          <label htmlFor="password">{{ label }}</label>
+        </span>
+      </div>
+    </div>
+    <div *ngSwitchCase="'number'">
+      <div class="form__group">
+        <span class="p-float-label">
+          <p-inputNumber
+            inputId="minmaxfraction"
+            [suffix]="suffix"
+            [prefix]="prefix"
+            [formControl]="control"
+            id="number"
+            [mode]="mode"
+            [max]="max"
+            [currency]="currency"
+            [min]="0"
+            [maxFractionDigits]="minFractionDigits"
+            (keyup)="getValue($event)"
+          >
+          </p-inputNumber>
+          <label htmlFor="number">{{ label }}</label>
+        </span>
+      </div>
+    </div>
+    <div *ngSwitchCase="'email'">
+      <div class="form__group">
+        <span class="p-float-label">
+          <input pInputText [formControl]="control" type="email" id="email" [pSize]="size" />
+          <label htmlFor="email">{{ label }}</label>
+        </span>
+      </div>
+    </div>
+    <div *ngSwitchCase="'checkbox'">
+      <!-- [label]="label" -->
+      <p-checkbox
+        [binary]="true"
+        [formControl]="control"
+        (onChange)="getDropdownData($event, label)"
+        [readonly]="readOnly"
+      ></p-checkbox>
+    </div>
+    <div *ngSwitchCase="'multiselect'">
+      <div class="form__group">
+        <span class="p-float-label">
+          <p-multiSelect
+            [options]="multiselectOptions"
+            [formControl]="control"
+            [optionLabel]="optionLabel"
+            [optionValue]="optionValue"
+            [filter]="filter"
+            display="chip"
+          ></p-multiSelect>
+          <label htmlFor="multiselect">{{ label }}</label>
+        </span>
+      </div>
+    </div>
+    <div *ngSwitchDefault>
+      <div class="form__group">
+        <span class="p-float-label">
+          <input
+            type="text"
+            [readOnly]="readOnly"
+            [formControl]="control"
+            pInputText
+            id="text"
+            (keyup)="getValue($event)"
+            [maxlength]="maxlength"
+            [pSize]="size"
+          />
+          <label htmlFor="text">{{ label }}</label>
+        </span>
+      </div>
+    </div>
+  </p-floatlabel>
+  </ng-template>
+  

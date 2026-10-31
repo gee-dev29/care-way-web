@@ -1,0 +1,180 @@
+@if(profile){
+<div class="profile-card">
+  <div class="profile-header">
+    <div class="left">
+      <ion-icon src="/icons/edit.svg"></ion-icon>
+      <span>Rider Profile</span>
+    </div>
+    <span
+      class="edit"
+      tabindex=""
+      (keyup.enter)="edit.emit('profile')"
+      (click)="edit.emit('profile')"
+      >Edit</span
+    >
+  </div>
+
+  <div class="profile-body">
+    @if(profile.firstName || profile.lastName){
+    <div class="row">
+      <span class="label">Name:</span>
+      <span class="value">{{ profile.firstName }} {{ profile.lastName }}</span>
+    </div>
+    }
+
+    @if(profile.email){
+    <div class="row">
+      <span class="label">Email:</span>
+      <span class="value">{{ profile.email }}</span>
+    </div>
+    }
+
+    @if(profile.phone){
+    <div class="row">
+      <span class="label">Phone Number:</span>
+      <span class="value">{{ profile.phone }}</span>
+    </div>
+    }
+
+    @if(profile.city){
+    <div class="row">
+      <span class="label">City of Operation:</span>
+      <span class="value">{{ profile.city }}</span>
+    </div>
+    }
+  </div>
+</div>
+}
+
+@if(license){
+<div class="profile-card content">
+  <div class="profile-header">
+    <div class="left">
+      <ion-icon src="/icons/edit.svg"></ion-icon>
+      <span>Rider License Details</span>
+    </div>
+    <span
+      class="edit"
+      tabindex=""
+      (keyup.enter)="edit.emit(license)"
+      (click)="edit.emit(license)"
+      >Edit</span
+    >
+  </div>
+
+  <div class="profile-body">
+    @if(license.licenseNumber){
+    <div class="row">
+      <span class="label">Driver License No.</span>
+      <span class="value">{{license.licenseNumber}}</span>
+    </div>
+    }
+    @if(license.issueDate){
+    <div class="row">
+      <span class="label">License Start Date</span>
+      <span class="value">{{license.issueDate | date }}</span>
+    </div>
+    }
+
+    @if(license.expiryDate){
+    <div class="row">
+      <span class="label">License Expiry Date</span>
+      <span class="value">{{license.expiryDate | date }}</span>
+    </div>
+    }
+
+    @if(license.referencedDocumentId){
+    <div class="row mt-2">
+      <span class="label">Rider License</span>
+      <ion-icon
+        tabindex=""
+        (keyup)="viewLicense(license.referencedDocumentId)"
+        (click)="viewLicense(license.referencedDocumentId)"
+        src="/icons/eyeGreenIcon.svg"
+        class="value"
+        (click)="eyeClicked()"
+      ></ion-icon>
+    </div>
+    }
+  </div>
+</div>
+}
+
+@if(bank !== null){
+<div class="profile-card content">
+  <div class="profile-header">
+    <div class="left">
+      <ion-icon src="/icons/edit.svg"></ion-icon>
+      <span>Bank Account Details</span>
+    </div>
+    <span
+      class="edit"
+      tabindex=""
+      (keyup.enter)="edit.emit(bank)"
+      (click)="edit.emit(bank)"
+      >Edit</span
+    >
+  </div>
+
+  <div class="profile-body">
+    @if(bank?.accountName){
+    <div class="row">
+      <span class="label">Account Name:</span>
+      <span class="value">{{bank?.accountName}}</span>
+    </div>
+    }
+
+    @if(bank?.accountNumber){
+    <div class="row">
+      <span class="label">Account No:</span>
+      <span class="value">{{bank?.accountNumber}}</span>
+    </div>
+    }
+
+    @if(bank?.bank){
+    <div class="row">
+      <span class="label">Bank:</span>
+      <span class="value">{{bank?.bank}}</span>
+    </div>
+    }
+  </div>
+</div>
+}@else{
+<div
+  class="content"
+  tabindex=""
+  (keyup.enter)="addNew('/dashboard/add-bank-rider')"
+  (click)="addNew('/dashboard/add-bank-rider')"
+>
+  <ui-add-new-entry-card [title]="'Add Bank Account'">
+  </ui-add-new-entry-card>
+</div>
+}
+
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="displayFile"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+        <ion-icon
+          (click)="closeSave()"
+          class="closeIcon"
+          src="/logo/closered.svg"
+        ></ion-icon>
+      </div>
+
+      <ion-card-content class="apply__gap">
+        @if (picture) {
+        <div class="preview-container">
+          <ion-img [src]="picture" class="preview-img"></ion-img>
+        </div>
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>

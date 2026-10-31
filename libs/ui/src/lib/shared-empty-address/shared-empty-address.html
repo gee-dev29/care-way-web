@@ -1,0 +1,78 @@
+<form class="ion-padding">
+  <div class="upper">
+    <div
+      class="left__wrapper"
+      tabindex=""
+      (keypress)="goback()"
+      (click)="goback()"
+    >
+      <ion-icon class="left__arrow" name="left-arrow"></ion-icon>
+    </div>
+    <ion-text color="black" class="left-title">
+      Add Address for {{facilityType}}
+    </ion-text>
+    @if(address.length > 0) {
+    <a class="right" tabindex="" (keyup)="addMore()" (click)="addMore()">
+      <ui-plus-icon-component [size]="'small'"></ui-plus-icon-component>
+    </a>
+    }@else {
+    <div></div>
+    }
+  </div>
+
+  @if(address.length > 0) {
+  <div class="container-address">
+    @for (item of address; track $index) {
+    <ion-card
+      tabindex=""
+      (keyup)="selectCard(item, $index)"
+      (click)="selectCard(item, $index)"
+    >
+      <ion-card-content>
+        <div class="contentFlex">
+          <ion-icon src="/icons/locationIcon.svg"></ion-icon>
+        </div>
+        <div class="banker">{{item.address}}</div>
+        <ion-radio [checked]="item.check"></ion-radio>
+      </ion-card-content>
+    </ion-card>
+    }
+  </div>
+
+  } @else {
+
+  <div class="container">
+    <div
+      [ngStyle]="{
+  'background-color':
+    facilityType === FacilityType?.Laboratory ? '#D1E0EC' :
+    facilityType === FacilityType?.Pharmacy   ? '#F1ECF1' :
+    facilityType === FacilityType?.Hospital   ? '#E5E7F6' :
+    facilityType === FacilityType?.Radiology   ? '#FBFBD8' :
+    '#F4E7E7'
+}"
+      class="rounded"
+      tabindex=""
+      (keyup)="addMore()"
+      (click)="addMore()"
+    >
+      <ion-icon src="/icons/plus-icon.svg"></ion-icon>
+    </div>
+    <p>Add Address</p>
+  </div>
+  } @if(address.length > 0) {
+  <div class="bts">
+    <ui-button
+      [label]="label"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [loading]="loading"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      (Click)="proceed()"
+      [disabled]="addressSelected.length===0"
+    ></ui-button>
+  </div>
+  }
+</form>

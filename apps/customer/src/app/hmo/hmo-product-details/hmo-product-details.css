@@ -1,0 +1,113 @@
+#background-content {
+  --background: #fff !important;
+}
+
+.page {
+  margin-top: 80px;
+  padding-bottom: 120px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  text-align: center;
+  font-size: 16px;
+  color: #121212;
+  font-weight: 600;
+}
+
+.left__arrow {
+  font-size: 22px;
+  color: #121212;
+  cursor: pointer;
+}
+
+.provider {
+  background: #317e3d;
+  border-radius: 16px;
+  padding: 16px;
+  color: #fff;
+}
+
+.provider__label {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.provider__value {
+  margin: 4px 0 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.provider__value:last-child {
+  margin-bottom: 0;
+}
+
+.panel {
+  background: #eef4f0;
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 12px;
+}
+
+.stat__label {
+  margin: 0;
+  font-size: 12px;
+  color: #6f786f;
+}
+
+.stat__value {
+  margin: 4px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #121212;
+}
+
+.section {
+  margin: 20px 0 10px;
+  font-size: 13px;
+  color: #121212;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background: #fff;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 11px;
+  color: #121212;
+}
+
+.cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px;
+  background: #fff;
+}
+
+.empty {
+  text-align: center;
+  color: #6f786f;
+  font-size: 13px;
+  margin-top: 40px;
+}

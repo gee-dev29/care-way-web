@@ -1,0 +1,141 @@
+.all__pharm {
+  margin-top: 80px;
+}
+.top__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+.left {
+  display: flex;
+  width: auto;
+}
+.ptag {
+  font-size: 16px;
+}
+.email {
+  font-size: 14px;
+}
+.top,
+.link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 0px;
+}
+.top__two {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.pharm__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0px 0;
+}
+.pharm__details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  width: 100%;
+  border: 1px solid #05032a1a !important;
+  border-radius: 20px;
+  padding: 18px 10px;
+}
+.middle {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+  gap: 5px;
+  align-items: start;
+  justify-content: center;
+}
+.middle2 {
+  word-break: break-all;
+  font-size: 0.9rem;
+}
+
+.p {
+  font-weight: 500;
+  font-size: 17px;
+}
+
+ion-avatar {
+  height: 60px;
+  width: 60px;
+}
+
+.text__avater {
+  background: #6c63ff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.avatar-border {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.right__arrow {
+  font-size: 30px;
+}
+
+searchbar-ios-h {
+  min-height: 52px;
+  background: transparent;
+}
+
+ion-searchbar {
+  --background: white;
+}
+:host ::ng-deep .searchbar-search-icon {
+  margin-left: 10px !important;
+}
+
+:host ::ng-deep .searchbar-input-container.sc-ion-searchbar-ios {
+  width: 100% !important;
+  min-height: 50px !important;
+  background-color: transparent !important;
+  --background: transparent !important;
+  border: 1px solid black !important;
+  border-radius: 20px !important;
+  padding-left: 20px !important;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  color: #121212;
+  font-weight: 500;
+}
+
+.schedule-appointment-plus-icon {
+  background: #317e3d !important;
+  border-radius: 999px;
+  padding: 10px;
+}

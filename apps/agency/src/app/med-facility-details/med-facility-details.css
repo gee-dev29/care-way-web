@@ -1,0 +1,141 @@
+#home {
+  background: #fff !important;
+  margin-top: 90px !important;
+}
+
+.title {
+  text-align: center;
+  font-size: 19px;
+  color: #160904;
+  font-weight: 600;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  margin-left: 16px;
+}
+
+.header ion-icon {
+  font-size: 20px;
+}
+.medcare-content {
+  --background: #f9fafb;
+}
+
+.tab-bar-wrapper {
+  overflow-x: auto;
+  padding: 16px 16px 0;
+  scrollbar-width: none;
+}
+
+.tab-bar-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  width: max-content;
+  border-bottom: 1.5px solid #e5e7eb;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -1.5px;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: #2e7d32;
+  border-radius: 2px 2px 0 0;
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+.tab-btn.active {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.tab-btn.active::after {
+  transform: scaleX(1);
+}
+
+.tab-btn:hover:not(.active) {
+  color: #111827;
+}
+
+/* ── Tab Content ───────────────────────────────────────────────── */
+.tab-content {
+  padding: 20px 16px;
+}
+
+/* ── Section Header ────────────────────────────────────────────── */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.view-all-btn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+}
+
+.view-all-btn:hover {
+  color: #2e7d32;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 0;
+  color: #6b7280;
+}
+
+.empty-state ion-icon {
+  font-size: 40px;
+  margin-bottom: 8px;
+  display: block;
+  margin-inline: auto;
+  opacity: 0.4;
+}
+
+.empty-state p {
+  font-size: 14px;
+  text-transform: capitalize;
+}

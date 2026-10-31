@@ -1,0 +1,50 @@
+@if (appointment) { @if (showHeading) {
+<div class="header">
+  <div>Appointments</div>
+  <div
+    class="view__all"
+    tabindex=""
+    (keyup.enter)="viewAll.emit()"
+    (click)="viewAll.emit()"
+  >
+    View all
+  </div>
+</div>
+}
+<div
+  class="card"
+  tabindex="0"
+  (keyup.enter)="onViewAppointment($event, appointment)"
+  (click)="onViewAppointment($event, appointment)"
+  [style.background]="background"
+  [style.color]="background ? '#ffffff':'#000'"
+>
+  <div class="item-left">
+    <ion-icon src="/icons/calendar-clear.svg"></ion-icon>
+    {{ moment(appointment?.date + 'T' + appointment?.time +
+    'Z').local().fromNow()}}
+  </div>
+  <div class="item-right">
+    <ion-icon
+      [src]="
+      appointment?.appointmentType === type.Physical
+        ? '/icons/location.svg'
+        : '/icons/laptop.svg'
+    "
+    ></ion-icon
+    >{{ appointment?.appointmentType }}
+  </div>
+  @if (showDoctor) {
+  <div class="item-left">
+    {{ appointment?.professionalName ? "Doctor " +
+    appointment?.professionalName.trim().split(' ')[0] : 'Doctor: N/A'}}
+  </div>
+  } @if (showPatient) {
+  <div class="item-left">Patient: {{ appointment?.memberName}}</div>
+  }
+  <div class="item-right status">{{ statusFn }}</div>
+  <div class="arrow">
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </div>
+</div>
+}

@@ -1,0 +1,101 @@
+#background-content {
+  background: #f4f5fe !important;
+}
+#prescription {
+  margin-top: 70px !important;
+}
+ion-card {
+  margin: 0;
+}
+
+.summary-temp {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: center;
+}
+
+.summary-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: black;
+}
+
+.degree {
+  font-size: 31px;
+  font-weight: 500;
+  color: var(--ion-color-dark);
+}
+
+.toggle {
+  margin-top: 4px;
+  margin-bottom: -20px;
+}
+
+.mtop {
+  margin-top: 10px;
+}
+.status {
+  font-size: 15px;
+  font-weight: 600;
+}
+/* .status-danger {
+  color: var(--ion-color-danger);
+}
+.status-normal {
+  font-size: 28px;
+  font-weight: 600;
+  color: #2ecc71;
+} */
+
+.temp-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  margin-bottom: 14px;
+}
+
+ion-card {
+  background: #e7f6e9 !important;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.temperature {
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: black;
+}
+
+.range {
+  margin-top: 2px;
+  font-size: 0.78rem;
+  color: #666;
+}
+
+.label {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.status-col {
+  text-align: right;
+}
+
+.status-badge {
+  background: #2ecc71;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+.date {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: #666;
+}

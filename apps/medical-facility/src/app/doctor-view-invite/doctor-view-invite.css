@@ -1,0 +1,144 @@
+#background-content {
+  --background: #ffffff !important;
+}
+
+#home {
+  margin-top: 80px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  background-color: #ffffff;
+}
+
+.invite-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  margin-bottom: 20px;
+}
+
+.back-icon {
+  font-size: 24px;
+  color: #111827;
+  cursor: pointer;
+}
+
+.page-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.invite-card {
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  background-color: #e3f5e5;
+  margin: 0px;
+}
+
+.invite-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.invite-section-reason {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.invite-section:last-child {
+  border-bottom: none;
+}
+
+.section-label {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.section-value {
+  font-size: 14px;
+  color: #111827;
+  font-weight: 600;
+  text-align: right;
+}
+
+.section-value-reason {
+  font-size: 14px;
+  color: #111827;
+  font-weight: 600;
+  text-align: left;
+}
+
+.actions-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btnSolid,
+.btnOutline {
+  flex: 1;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.btnSolid {
+  background: #307d3d;
+  color: #ffffff;
+}
+
+.btnOutline {
+  background: #ffffff;
+  color: #307d3d;
+  border: 1px solid #307d3d;
+}
+
+.reject-modal {
+  --width: 90%;
+  --max-width: 420px;
+  --height: auto;
+  --border-radius: 16px;
+  --box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  --backdrop-opacity: 0.45;
+}
+
+.reject-modal-body {
+  padding: 24px 20px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reject-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reject-modal-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.reject-close-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #d9463e;
+}
+
+.empty-state {
+  margin-top: 24px;
+  text-align: center;
+  color: #6b7280;
+}

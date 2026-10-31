@@ -1,0 +1,109 @@
+#background-content {
+  background: #fff !important;
+}
+#prescription {
+  background: #fff !important;
+  margin-top: 80px !important;
+}
+
+.symptoms-page {
+  --background: #f9fffa;
+}
+.left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.header ion-text {
+  font-size: 22px;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+}
+
+.add-btn {
+  background-color: #2e7d32;
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  padding: 8px 14px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.add-btn .plus {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.symptoms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.symptom-card {
+  background-color: #eaf6eb;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+.icon-box {
+  width: 60px;
+  height: 60px;
+  background-color: #f9fffa;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14px;
+}
+
+.icon-box ion-icon {
+  font-size: 25px;
+}
+
+.info {
+  flex: 1;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 6px;
+}
+
+.meta {
+  display: flex;
+  gap: 14px;
+  font-size: 13px;
+  color: #6b6b6b;
+}
+
+.meta div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.meta img {
+  width: 14px;
+  height: 14px;
+}
+.arrow ion-icon {
+  color: #000;
+  font-size: 22px;
+}

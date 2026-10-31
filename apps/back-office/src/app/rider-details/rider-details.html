@@ -1,0 +1,56 @@
+<ui-page-body>
+  <div class="table__head">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">Rider</h2>
+    </div>
+  </div>
+  <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+  @if (activeTab !== 0) {
+  <ui-page-highlight
+    [primaryDetailTitle]="'Rider:'"
+    [primaryDetail]="riderName | titlecase"
+    [secondaryDetailTitle]="'Phone:'"
+    [secondaryDetail]="riderPhone"
+  ></ui-page-highlight
+  >}
+  <div class="ml-1">
+    @if(activeTab === 0){
+    <ui-rider-details-card
+      [cardHeading]="'Rider Details'"
+      [details$]="riderDetails$"
+      [totalRecords]="totalRecords"
+    ></ui-rider-details-card>
+    } @if(activeTab === 0){
+    <back-office-bank-details-card
+      [cardHeading]="'Bank Details'"
+      [bank$]="bankDetails$"
+    ></back-office-bank-details-card>
+    } @if(activeTab === 0){
+    <back-office-license-details-card
+      [license$]="license$"
+    ></back-office-license-details-card>
+    } @if(activeTab === 1){
+    <back-office-order-table [riderId]="riderId"></back-office-order-table>
+    }@if(activeTab === 2){
+    <div>
+      @if ((uploads$ | async)?.length > 0) {
+      <ui-upload-card [uploads$]="uploads$"></ui-upload-card>
+      }
+    </div>
+    } @if(activeTab === 3){
+    <div class="mt-1">
+      <back-office-wallet
+      [beneficiaryId]="riderId"
+      ></back-office-wallet>
+    </div>
+    }
+  </div>
+</ui-page-body>

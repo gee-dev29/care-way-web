@@ -1,0 +1,47 @@
+<div class="center">
+  <ion-img src="/logo/healbridge.svg" alt="HealBridge"></ion-img>
+</div>
+<div class="ion-padding">
+  <div class="upper">
+    <div class="left__wrapper" tabindex="">
+      <ion-icon class="left__arrow" name="left-arrow"></ion-icon>
+      <ion-text color="black">
+        <h1>Address</h1>
+      </ion-text>
+    </div>
+    <a class="right" tabindex="" (keyup)="addMore()" (click)="addMore()">
+      <ion-icon src="/icons/more.svg"></ion-icon>
+      <ion-text>Add More</ion-text>
+    </a>
+  </div>
+
+  <div class="container">
+    @for (item of address; track $index) {
+    <ion-card
+      tabindex=""
+      (keyup)="selectCard(item, $index)"
+      (click)="selectCard(item, $index)"
+    >
+      <ion-card-content>
+        <ion-icon src="/icons/locationIcon.svg"></ion-icon>
+        <div class="banker">{{item.address | slice:0:24}}...</div>
+        <ion-checkbox [checked]="item.check"></ion-checkbox>
+      </ion-card-content>
+    </ion-card>
+    }
+  </div>
+
+  <div class="bts">
+    <ui-button
+      [label]="label"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [loading]="loading"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      (Click)="proceed()"
+      [disabled]="addressSelected.length===0"
+    ></ui-button>
+  </div>
+</div>

@@ -1,0 +1,155 @@
+<div class="content">
+  <div class="header">
+    <img
+      class="left-arrow-icon"
+      tabindex="0"
+      (keyup.enter)="back()"
+      (click)="back()"
+      src="icons/left-arrow-black.svg"
+      alt=""
+    />
+
+    <p class="title">Upload</p>
+
+    <div
+      class="skip-btn"
+      tabindex="0"
+      (keyup.enter)="skip()"
+      (click)="skip()"
+    >
+      Skip
+    </div>
+  </div>
+
+  <div tabindex="0" (keyup.enter)="openModal()" (click)="openModal()">
+    <ui-add-new-entry-card
+      [state]="'upload'"
+      [heading]="'Upload Driver License'"
+      [title]="'Upload Document'"
+    ></ui-add-new-entry-card>
+  </div>
+</div>
+
+@if (open) {
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="open"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header2">
+        <ion-text class="title">Upload Driver License</ion-text>
+        <ion-icon
+          (click)="close()"
+          class="closeIcon"
+          src="/logo/closeblue.svg"
+        ></ion-icon>
+      </div>
+
+      <ion-card-content>
+        <ion-text class="desc">
+          The license photo must not be larger than 50 kilobytes (kb) in size
+        </ion-text>
+
+        <div class="images">
+          <div
+            tabindex="0"
+            (keyup.enter)="takePicture()"
+            (click)="takePicture()"
+          >
+            <ion-img src="/logo/cameraImage.svg"></ion-img>
+            <ion-text>Camera</ion-text>
+          </div>
+
+          <div
+            tabindex="0"
+            (keyup.enter)="pickFile()"
+            (click)="pickFile()"
+          >
+            <ion-img src="/logo/fileImage.svg"></ion-img>
+            <ion-text>File</ion-text>
+          </div>
+
+          <div
+            tabindex="0"
+            (keyup.enter)="choosePhoto()"
+            (click)="choosePhoto()"
+          >
+            <ion-img src="/logo/gallaryImage.svg"></ion-img>
+            <ion-text>Gallery</ion-text>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+}
+
+@if (dataUrl.length > 0) {
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="displayFile"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+
+        <ion-icon
+          (click)="closeSave()"
+          class="closeIcon"
+          src="/logo/closered.svg"
+        ></ion-icon>
+      </div>
+
+      <ion-card-content class="apply__gap">
+        @if (dataUrl) {
+
+        @if(dataUrl.includes('https')) {
+        <div class="preview-container">
+          <iframe [src]="dataUrl | safe" class="preview-img"></iframe>
+        </div>
+        }
+
+        @else {
+        <div class="preview-container">
+          <image-cropper
+            [imageBase64]="dataUrl"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="210 / 297"
+            [autoCrop]="false"
+            [cropperStaticWidth]="420"
+            [cropperStaticHeight]="594"
+            [cropperMinWidth]="420"
+            [cropperMinHeight]="594"
+            [cropperMaxWidth]="420"
+            [cropperMaxHeight]="594"
+            [onlyScaleDown]="true"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+          ></image-cropper>
+        </div>
+        }
+
+        <ui-button
+          [label]="'Save Upload'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="uploadFile()"
+        ></ui-button>
+
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+}

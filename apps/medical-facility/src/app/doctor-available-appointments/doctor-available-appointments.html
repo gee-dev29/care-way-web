@@ -1,0 +1,213 @@
+<div class="appointments">
+  @if (!isLoading) {
+  <div class="header">
+    <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+    <div class="titleWrap">
+      <div class="sectionTitle">Appointments</div>
+    </div>
+  </div>
+  <div class="searchWrap">
+    <ion-searchbar
+      placeholder="Search"
+      mode="ios"
+      show-clear-button="never"
+      class="search"
+      (ionInput)="onSearch($event)"
+    ></ion-searchbar>
+  </div>
+  <div class="tabs">
+    <button
+      class="pill"
+      [class.active]="activeTab === 'All'"
+      (click)="setTab('All')"
+    >
+      All
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === MedicalAppointmentStatus.Confirmed"
+      (click)="setTab( MedicalAppointmentStatus.Confirmed)"
+    >
+      Confirmed
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === MedicalAppointmentStatus.Ready"
+      (click)="setTab( MedicalAppointmentStatus.Ready)"
+    >
+      Ready
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === MedicalAppointmentStatus.Ongoing"
+      (click)="setTab( MedicalAppointmentStatus.Ongoing)"
+    >
+      Ongoing
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === MedicalAppointmentStatus.Completed"
+      (click)="setTab( MedicalAppointmentStatus.Completed)"
+    >
+      Completed
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === MedicalAppointmentStatus.CustomerCancelled"
+      (click)="setTab(MedicalAppointmentStatus.CustomerCancelled)"
+    >
+      Cancelled
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === MedicalAppointmentStatus.HospitalCancelled"
+      (click)="setTab(MedicalAppointmentStatus.HospitalCancelled)"
+    >
+      Declined
+    </button>
+  </div>
+  @if (activeTab === 'All') { }
+  <div class="list">
+    @for (appointment of filteredAppointments(); track appointment.appointmentId) {
+    <ui-appointment-card-primary
+      [appointment]="appointment"
+      [statusFn]="getStatus(appointment?.status)"
+      (getStatus)="getStatus($event)"
+      (viewAppointment)="viewAppointment(appointment)"
+      [showPatient]="true"
+    ></ui-appointment-card-primary>
+    } @if (hasMore && !searchTerm.trim()) {
+    <ion-infinite-scroll [disabled]="!hasMore" (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="crescent"
+        loadingText="Loading more appointments..."
+      ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    } @if (totalRecords === 0) {
+    <div class="empty">You have no appointments</div>
+    } @if (totalRecords > 0 && filteredAppointments().length === 0) {
+    <div class="empty">No appointments match "{{ searchTerm.trim() }}"</div>
+    }
+  </div>
+  } @else {
+  <div class="header">
+    <ion-button fill="clear" class="back">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <div class="titleWrap">
+      <ion-skeleton-text
+        animated
+        style="width: 160px; height: 16px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 140px; height: 12px; margin-top: 6px"
+      ></ion-skeleton-text>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="addressPill">
+    <ion-skeleton-text
+      animated
+      style="width: 100%; height: 18px"
+    ></ion-skeleton-text>
+  </div>
+  <div class="sectionTitle">
+    <ion-skeleton-text
+      animated
+      style="width: 120px; height: 16px"
+    ></ion-skeleton-text>
+  </div>
+
+  <div class="searchWrap">
+    <div class="searchSkeleton">
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 44px"
+      ></ion-skeleton-text>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <ion-skeleton-text
+      animated
+      style="width: 92px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 110px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 92px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 110px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+  </div>
+
+  <div class="list">
+    @for (_ of [1,2,3]; track _) {
+    <div class="card skCard">
+      <div class="topRow">
+        <div class="left">
+          <ion-skeleton-text
+            animated
+            style="width: 120px; height: 14px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="width: 110px; height: 12px; margin-top: 8px"
+          ></ion-skeleton-text>
+        </div>
+        <ion-skeleton-text
+          animated
+          style="width: 80px; height: 12px"
+        ></ion-skeleton-text>
+      </div>
+
+      <div class="infoRow skInfo">
+        <ion-skeleton-text
+          animated
+          style="width: 140px; height: 12px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 140px; height: 12px"
+        ></ion-skeleton-text>
+      </div>
+
+      <ion-skeleton-text
+        animated
+        style="width: 90px; height: 12px; margin-top: 10px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 44px; margin-top: 8px"
+      ></ion-skeleton-text>
+
+      <div class="actions">
+        <ion-skeleton-text
+          animated
+          style="width: 140px; height: 38px; border-radius: 999px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 140px; height: 38px; border-radius: 999px"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+    }
+  </div>
+  }
+
+  <ui-confirmation-modal
+    [heading]="'Are you sure you want to confirm the appointment?'"
+    [background]="'#307D3D'"
+    [open]="confirmModal"
+    (next)="confirmAccept()"
+    (no)="cancelAccept()"
+    (dismiss)="cancelAccept()"
+  ></ui-confirmation-modal>
+</div>

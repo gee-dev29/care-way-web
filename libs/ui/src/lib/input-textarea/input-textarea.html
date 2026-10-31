@@ -1,0 +1,10 @@
+<ion-item>
+  <ion-label position="stacked">{{label}}</ion-label>
+  <ion-textarea
+    [formControl]="control"
+    [placeholder]="placeholder"
+    rows="3"
+    [value]="control.value"
+    (ionInput)="writeValue($event.target.value)"
+  ></ion-textarea>
+</ion-item>

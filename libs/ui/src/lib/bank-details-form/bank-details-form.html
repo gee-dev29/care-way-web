@@ -1,0 +1,44 @@
+<ion-content id="background-content">
+  <div class="top">
+    <p tabindex="" (keyup.enter)="goBack()" (click)="goBack()" class="link">
+      <ion-icon class="left__arrow" name="chevron-back-outline"></ion-icon>
+    </p>
+    <h5>{{heading}}</h5>
+  </div>
+
+  <div class="form__wrapper">
+    <h5>{{title}}</h5>
+    <p>{{subTitle}}</p>
+    <form [formGroup]="form">
+      <ui-input
+        [control]="accountNumber"
+        [label]="labelAccountNumber"
+        [type]="'text'"
+        (emitted)="handleAccountNumber($event)"
+      ></ui-input>
+      <ui-input
+        (emitted)="handleBank($event)"
+        [control]="bank"
+        [label]="labelBankName"
+        [type]="'text'"
+      ></ui-input>
+      <ui-input
+        (emitted)="handleAccountName($event)"
+        [control]="accountName"
+        [label]="labelAccountName"
+        [type]="'text'"
+      ></ui-input>
+      <div class="btn__wrapper">
+        <ui-button
+          [label]="label"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'dark'"
+          (Click)="proceed()"
+          [disabled]="!form.valid"
+        ></ui-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

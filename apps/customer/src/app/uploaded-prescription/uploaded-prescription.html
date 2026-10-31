@@ -1,0 +1,244 @@
+<ion-content id="background-content" fullscreen>
+  <div id="prescription" class="ion-padding">
+    @if (serviceRequest$ | async; as serviceRequest) {
+    <div class="toolbar">
+      <div class="left-toolbar">
+        <ion-icon src="/logo/backarrow.svg" (click)="goBack()"></ion-icon>
+
+        <div class="title">
+          {{headerTitle===costFlow.LABTEST?ReferralType.Laboratory:headerTitle===costFlow.BLOODBANK?ReferralType.BloodBank:headerTitle
+          | titlecase}} Medical Request
+        </div>
+      </div>
+      @if(serviceRequest.status===DocumentStatus.Draft){
+      <div class="plus-icon">
+        <ion-icon name="add" (click)="addMore()"></ion-icon>
+      </div>
+      }
+    </div>
+
+    <div class="request-card">
+      <div class="defined">
+        <div class="request-icon">
+          <ion-icon name="document-text-outline"></ion-icon>
+        </div>
+        <div>
+          <div class="request-id">
+            Request Code: {{serviceRequest?.serviceRequestCode}}
+          </div>
+          <div class="request-date">
+            {{moment.utc(serviceRequest?.creator?.date).local().fromNow()}}
+          </div>
+        </div>
+      </div>
+      <div>
+        <p
+          [ngClass]="{'draft':serviceRequest.status===DocumentStatus.Draft,'pending':serviceRequest.status===DocumentStatus.Pending,'processed':serviceRequest.status===DocumentStatus.Processed, 'declined':serviceRequest.status===DocumentStatus.Declined}"
+          class="status__text"
+        >
+          {{serviceRequest.status}}
+        </p>
+      </div>
+    </div>
+    @if(serviceRequest?.referralIds===null){
+    <div class="image-grid">
+      @for (item of serviceRequest?.uploads; track item?.id) {
+      <div class="image-card">
+        <div
+          class="remove-btn"
+          tabindex=""
+          (keydown)="showDeleteLabModal(item)"
+          (click)="showDeleteLabModal(item)"
+        >
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </div>
+        <img
+          tabindex=""
+          (click)="viewAttachment(item.url)"
+          (keydown)="viewAttachment(item.url)"
+          class="image-placeholder attach"
+          [src]="item.url"
+          alt=""
+        />
+      </div>
+      }
+    </div>
+    } @if (serviceRequest?.referralIds===null &&
+    serviceRequest.status===DocumentStatus.Draft &&
+    serviceRequest?.uploads.length===0) {
+    <div class="wrap__plus">
+      <div class="plus_icon_container">
+        <ion-icon (click)="addMore()" name="add"></ion-icon>
+      </div>
+    </div>
+    <h4>Upload Prescription</h4>
+    } @if (serviceRequest?.address?.address!==null) {
+    <div class="address-card">
+      <div class="address-icon">
+        <ion-icon [src]="'/icons/locationIcon.svg'"></ion-icon>
+      </div>
+      <ion-text>{{serviceRequest?.address?.address}}</ion-text>
+    </div>
+    }
+
+    <!--for attached documents  -->
+    @for (attachment of attachments; track attachment.title) {
+    <div class="attachment-section">
+      <div class="attachment-header">
+        <div class="attachment-title">{{ attachment.title }}</div>
+        <div class="attachment-subtitle">{{ attachment.subtitle }}</div>
+      </div>
+
+      <div class="attachment-card">
+        @for (item of attachment.items; track item.brand) {
+        <div class="medicine-row">
+          <div class="medicine-left">
+            <div class="medicine-name">
+              {{ item.name }}
+              <span class="medicine-form">{{ item.form }}</span>
+            </div>
+            <div class="medicine-brand">{{ item.brand }}</div>
+          </div>
+
+          <div class="medicine-right">
+            <div class="medicine-strength">{{ item.strength }}</div>
+            <div class="medicine-price">{{ item.price }}</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        }
+      </div>
+    </div>
+    } @if (serviceRequest?.uploads.length && (
+    serviceRequest.status===DocumentStatus.Draft)) {
+    <div class="button-wrapper">
+      <ui-button
+        [label]="serviceRequest?.address?.address===null?'Proceed':'Request Cost'"
+        [width]="'full'"
+        [loading]="loading"
+        [disabled]="loading"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (click)="openModal(serviceRequest?.address?.address===null?'Proceed':'Request Cost')"
+      >
+      </ui-button>
+    </div>
+    } }
+  </div>
+</ion-content>
+@if (open) {
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="open"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header">
+        <ion-text class="title">Upload Pharmacy Request</ion-text>
+        <ion-icon
+          (click)="close()"
+          class="closeIcon"
+          src="/logo/closeblue.svg"
+        ></ion-icon>
+      </div>
+      <ion-card-content>
+        <ion-text class="desc"></ion-text>
+        <div class="images">
+          <div
+            tabindex=""
+            (keyup.enter)="takePicture()"
+            (click)="takePicture()"
+          >
+            <ion-img src="/logo/cameraImage.svg"></ion-img>
+            <ion-text>Camera</ion-text>
+          </div>
+          <div tabindex="" (keyup.enter)="pickFile()" (click)="pickFile()">
+            <ion-img src="/logo/fileImage.svg"></ion-img>
+            <ion-text>File</ion-text>
+          </div>
+          <div
+            tabindex=""
+            (keyup.enter)="choosePhoto()"
+            (click)="choosePhoto()"
+          >
+            <ion-img src="/logo/gallaryImage.svg"></ion-img>
+            <ion-text>Gallery</ion-text>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+} @if (dataUrl.length>0) {
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="displayFile"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+        <ion-icon
+          (click)="closeSave()"
+          class="closeIcon"
+          src="/logo/closered.svg"
+        ></ion-icon>
+      </div>
+      <ion-card-content class="apply__gap">
+        @if (dataUrl) { @if(dataUrl.includes('https')){
+        <div class="preview-container">
+          <iframe [src]="dataUrl | safe" class="preview-img"></iframe>
+        </div>
+        } @else{
+        <div class="preview-container">
+          <image-cropper
+            [imageBase64]="dataUrl"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="210 / 297"
+            [autoCrop]="false"
+            [cropperStaticWidth]="420"
+            [cropperStaticHeight]="594"
+            [cropperMinWidth]="420"
+            [cropperMinHeight]="594"
+            [cropperMaxWidth]="420"
+            [cropperMaxHeight]="594"
+            [onlyScaleDown]="true"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+          ></image-cropper>
+        </div>
+        } @if(dataUrl.includes('https')===false){
+        <ui-button
+          [label]="'Save Upload'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="uploadFile()"
+        ></ui-button>
+        } }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+}
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to remove this attachment?'"
+  [background]="'#307D3D'"
+  [open]="confirmationModal"
+  (next)="deleteAttachement()"
+  (no)="closeDeleteModal()"
+  (dismiss)="closeDeleteModal()"
+>
+</ui-confirmation-modal>

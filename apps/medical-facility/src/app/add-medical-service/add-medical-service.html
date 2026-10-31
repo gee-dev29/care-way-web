@@ -1,0 +1,103 @@
+<ion-content id="background-content" fullscreen>
+  <div id="add__medical-service" class="ion-padding">
+    <div
+      class="up"
+      tabindex="0"
+      role="button"
+      (click)="back()"
+      (keyup.enter)="back()"
+    >
+      <ion-icon name="left-arrow"></ion-icon>
+      <ion-text>Add Medical Service</ion-text>
+    </div>
+
+    <div class="card__wrapper">
+      <form [formGroup]="form">
+        <div class="input">
+          <ui-input
+            [label]="'Product Type'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isProductType"
+            type="dropdown"
+            [options]="productTypes"
+            [selectedText]="productType.value"
+            [control]="productType"
+            (data)="isProductTypeClicked()"
+            (emitted)="offProductTypeClicked(); onProductTypeSelected($event)"
+          ></ui-input>
+        </div>
+
+        @if (isAppointmentReferral) {
+        <div class="input">
+          <ui-input
+            [label]="'Product Name'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isProductName"
+            [isItemObject]="true"
+            type="dropdown"
+            [options]="productOptions"
+            [selectedText]="productName.value"
+            [selectedItem]="[productName.value]"
+            [control]="productName"
+            (data)="isProductNameClicked()"
+            (emitted)="offProductNameClicked(); selectMedicalProduct($event)"
+          ></ui-input>
+        </div>
+        } @else {
+        <div class="input">
+          <ui-input
+            [label]="'Product Name'"
+            [type]="'text'"
+            [control]="productName"
+          ></ui-input>
+        </div>
+        }
+
+        @if (isAppointmentReferral) {
+        <div class="input">
+          <ui-input
+            [label]="'Quantity'"
+            [type]="'text'"
+            [control]="quantity"
+          ></ui-input>
+        </div>
+        }
+
+        <div class="input">
+          <ui-input
+            [label]="'Unit Price'"
+            [type]="'number'"
+            [prefix]="'₦'"
+            [control]="unitPrice"
+          ></ui-input>
+        </div>
+
+        <div class="input delivery__row">
+          <ion-text>Delivery</ion-text>
+          <ion-checkbox
+            [formControl]="requiresDelivery"
+            aria-label="Delivery"
+          ></ion-checkbox>
+        </div>
+
+        <div class="ui__button">
+          <ui-button
+            (Click)="save()"
+            [label]="label"
+            [disabled]="loading || !form.valid"
+            [loading]="loading"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+            [textColor]="'#ffffff'"
+          ></ui-button>
+        </div>
+      </form>
+
+      <div class="end"></div>
+    </div>
+  </div>
+</ion-content>

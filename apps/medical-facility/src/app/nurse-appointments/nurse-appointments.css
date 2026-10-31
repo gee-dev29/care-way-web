@@ -1,0 +1,152 @@
+.appointments {
+  padding: 0 4% !important;
+  overflow-x: auto;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 90px;
+}
+
+.back {
+  width: 44px;
+  height: 44px;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  border-radius: 999px;
+}
+
+.back ion-icon {
+  font-size: 20px;
+  color: #121212;
+}
+
+.titleWrap {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  color: #121212;
+}
+
+.spacer {
+  width: 44px;
+  height: 44px;
+}
+
+.searchWrap {
+  margin-top: 12px;
+}
+
+.search {
+  --background: #eef4ef;
+  --border-radius: 999px;
+  --box-shadow: none;
+  --placeholder-color: #9aa39a;
+  --icon-color: #9aa39a;
+  --clear-button-color: transparent;
+}
+
+.search::part(container) {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.search::part(input) {
+  padding-left: 8px;
+}
+
+.searchSkeleton {
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+  align-items: center;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.pill {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #9aa39a;
+  background: #fff;
+  color: #121212;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.pill.active {
+  background: #2c7a3f;
+  border-color: #2c7a3f;
+  color: #fff;
+}
+
+.list {
+  margin-top: 12px;
+  display: grid;
+  gap: 16px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 44px 24px;
+  text-align: center;
+  color: #6f786f;
+}
+
+.empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 6px;
+  border-radius: 999px;
+  background: #e8f3ea;
+  color: #2c7a3f;
+}
+
+.empty-icon ion-icon {
+  font-size: 26px;
+}
+
+.empty-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.empty-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6f786f;
+  max-width: 260px;
+}
+
+.skCard {
+  cursor: default;
+}
+
+.skInfo {
+  justify-content: space-between;
+}

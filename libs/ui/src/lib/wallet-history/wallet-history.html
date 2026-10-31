@@ -1,0 +1,84 @@
+<div #tabs id="home" class="mt-4 page-layout">
+  <div class="header">
+    <div class="flex-gap">
+      <ion-icon (click)="back.emit()" name="chevron-back-outline"></ion-icon>
+      <div class="title">Wallet History</div>
+    </div>
+  </div>
+
+  <ui-reuseable-wallet-card
+    [balance]="balance"
+    [currency]="currency"
+    [showHistory]="false"
+  ></ui-reuseable-wallet-card>
+
+  <ui-button
+    [width]="'full'"
+    [shape]="'round'"
+    [label]="'Make Withdrawal'"
+    [backgroundColor]="'#307d3d'"
+    [textColor]="'#FDFDFD'"
+    (click)="withdraw.emit()"
+  ></ui-button>
+
+  <div class="tab-bar-wrapper">
+    <div class="tab-bar">
+      @for(tab of tabsText; track $index) {
+      <ion-text
+        class="tab-btn"
+        [class.active]="activeTab === tab.key"
+        (click)="setActiveTab(tab.key)"
+      >
+        {{ tab.label }}
+      </ion-text>
+      }
+    </div>
+  </div>
+
+  <div class="orders-list">
+    @if (filteredOrders.length > 0) { @for (order of filteredOrders; track
+    order.referenceId) {
+    <div
+      class="order-card"
+      :key="order.referenceId"
+      (click)="viewOrder.emit(order)"
+      tabindex="0"
+      (keyup.enter)="viewOrder.emit(order)"
+    >
+      <div class="order-left">
+        <div class="order-title">{{ order.subType}}</div>
+        <!-- <div class="order-title">{{ order.description?.split(',')[0] }}</div> -->
+        <div class="order-time">
+          {{ moment.utc(order.date, 'YYYY-MM-DD HH:mm:ss').local().fromNow() }}
+        </div>
+      </div>
+      <div class="order-right">
+        <div class="order-amounts">
+          <div class="order-amount">
+            {{ currency }} {{ order.amount | number: '1.2-2' }}
+          </div>
+          <div class="order-status" [class]="statusClass(order.type)">
+            {{ statusLabel(order.type) }}
+          </div>
+        </div>
+        <ion-icon class="order-arrow" name="chevron-forward-outline"></ion-icon>
+      </div>
+    </div>
+    } } @else {
+    <div class="empty-state">
+      <ion-icon name="document-outline"></ion-icon>
+      <p>No orders for {{ activeTab }}</p>
+    </div>
+    }
+    <!--  -->
+    @if (hasMore) {
+    <ion-infinite-scroll
+      [disabled]="!hasMore"
+      (ionInfinite)="loadMore($event)"
+      loadingText="Loading more transaction..."
+    >
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    }
+  </div>
+</div>

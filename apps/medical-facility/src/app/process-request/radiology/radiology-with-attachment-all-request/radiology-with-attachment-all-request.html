@@ -1,0 +1,161 @@
+<ion-content id="background-content" fullscreen>
+  <div id="home" class="ion-padding">
+    <div class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title2">Medical Request Summary</div>
+      <div></div>
+    </div>
+
+    @if (request$ | async; as request) {
+
+    <div class="page-container">
+      <div class="info-card">
+        <div class="info-row">
+          <div class="label">Request No.</div>
+          <div class="value muted">{{request?.serviceRequestCode}}</div>
+        </div>
+
+        <div class="info-row right">
+          <div class="value muted">
+            {{moment.utc(request?.creator?.date).local().fromNow()}}
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="column">
+          <div class="label">Patient</div>
+          <div class="value">
+            {{request?.member?.firstName}} {{" "}}{{request?.member?.lastName}}
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="label">Gender</div>
+          <div class="value">{{request?.member.gender}}</div>
+        </div>
+
+        <div class="column">
+          <div class="label">Age</div>
+          <div class="value">{{request?.member.age}}</div>
+        </div>
+      </div>
+
+      @if (referralIds!==null) {
+      <div class="section-title">Requested Items</div>
+
+      @if (dataForCosting.length > 0) { @for (item of dataForCosting; track
+      item) {
+      <div class="outer-card">
+        <div
+          class="available-items"
+          [class.disabled-item]="isItemAlreadyAdded(item.serviceName)"
+          [attr.tabindex]="isItemAlreadyAdded(item.serviceName) ? -1 : 0"
+          (click)="!isItemAlreadyAdded(item.serviceName) && addCostProductTwo(item.serviceName)"
+          (keyup.enter)="!isItemAlreadyAdded(item.serviceName) && addCostProductTwo(item.serviceName)"
+        >
+          <div class="act">
+            <ion-text>{{ item?.serviceName }}</ion-text>
+
+            @if (isItemAlreadyAdded(item.serviceName)) {
+            <ion-text class="added-text">Added</ion-text>
+            } @else {
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            }
+          </div>
+        </div>
+      </div>
+
+      } } } @else {
+      <div class="section-title">Attachments</div>
+      <div class="l">
+        @for (item of request.uploads; track $index) {
+        <div class="attachment-icon">
+          <ion-icon
+            name="attach-outline"
+            (click)="showUploadedAttachment(item.url)"
+          ></ion-icon>
+        </div>
+        }
+      </div>
+      @if (request.status===documentStatus.Pending) {
+      <div class="add-button">
+        <ion-icon name="add-outline" (click)="addCostProduct()"></ion-icon>
+      </div>
+      } } @for(values of data | keyvalue; track values.key; let i = $index){ @if
+      (i===0) {
+      <div class="section-title">{{'Available'}}</div>
+      } @for(items of values?.value?.items; track $index){
+      <div class="inner-card">
+        <div class="drug-info">
+          <div class="drug-name">{{items?.serviceName}}<br /></div>
+          <div class="class">
+            <div class="costs">
+              <ion-text class="drug-price">
+                {{ items?.cost | currency:"NGN" }}</ion-text
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      } } @if((data | keyvalue);as exist){ @if ( exist?.length) { @if
+      (request.status===documentStatus.Pending) {
+
+      <div class="ui__button">
+        <ui-button
+          (Click)="sendCost()"
+          [label]="'Send Cost'"
+          [loading]="loading"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [showImage]="false"
+        ></ui-button>
+      </div>
+      } } }
+    </div>
+
+    }
+  </div>
+</ion-content>
+
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="viewCostAttachment"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+        <ion-icon
+          (click)="closeSave()"
+          class="closeIcon"
+          src="/logo/closered.svg"
+        ></ion-icon>
+      </div>
+      <ion-card-content class="apply__gap">
+        @if (imageView) {
+        <div class="preview-container">
+          <iframe [src]="imageView | safe" class="preview-img"></iframe>
+        </div>
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+<ui-confirmation-modal
+  [heading]="'Are You Sure You Want to send Cost?'"
+  [background]="'#307d3d'"
+  [open]="confirmSend"
+  (next)="sendCost()"
+  (no)="confirmSend = false; loading=false
+  "
+  (dismiss)="confirmSend = false;loading=false
+  "
+>
+</ui-confirmation-modal>

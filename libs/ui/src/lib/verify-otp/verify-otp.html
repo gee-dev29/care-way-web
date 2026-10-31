@@ -1,0 +1,37 @@
+<ion-content fullscreen class="auth-content">
+  <div class="page" [ngStyle]="bgColor ? {'background-color': bgColor} : null">
+    <div class="center">
+      <ion-img src="/logo/healbridge.svg" alt="HealBridge"></ion-img>
+    </div>
+
+    <div class="ion-padding">
+      <ion-text>
+        <p class="label2">Validate OTP</p>
+      </ion-text>
+      <ion-text color="black">
+        <p class="label__new">Enter the 4-digit code sent to {{email}}.</p>
+      </ion-text>
+      <form [formGroup]="form">
+        <ui-input
+          [label]="'Didn’t get a code?'"
+          (data)="resendOtp()"
+          [type]="'otp'"
+          (ionComplete)="verify()"
+          [control]="otp"
+        >
+          <div class="bts">
+            <ui-button
+              [label]="label"
+              [width]="'full'"
+              [fill]="'solid'"
+              [shape]="'round'"
+              [loading]="loading"
+              [disabled]="loading || (!form.valid)"
+              [backgroundColor]="'#307d3d'"
+              [textColor]="'#FDFDFD'"
+            ></ui-button></div
+        ></ui-input>
+      </form>
+    </div>
+  </div>
+</ion-content>

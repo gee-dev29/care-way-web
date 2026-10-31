@@ -1,0 +1,126 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="prescription" class="ion-padding">
+    <div class="pricing-head">
+      <ion-text (click)="goBack()" class="icon__text">
+        <ion-icon class="left__arrow" name="chevron-back-outline"></ion-icon>
+      </ion-text>
+      <div>
+        <ion-text class="pricing-title"> {{ facilityType}} Request </ion-text>
+
+        <!-- <ion-text class="pricing-sub-text">
+          View available prescription by price range
+        </ion-text> -->
+      </div>
+    </div>
+    @if (totalNoOfFacilities>1) {
+    <div class="toggle">
+      <div class="flexxer">
+        <ion-button
+          (click)="changeTab('Price')"
+          [ngClass]="{ 'selected': selected === 'Price', 'ordinary': selected === 'Facility'}"
+          >PRICE RANGE</ion-button
+        >
+        <ion-button
+          (click)="changeTab('Facility')"
+          [ngClass]="{ 'selected': selected === 'Facility', 'ordinary': selected === 'Price' }"
+          >FACILITIES</ion-button
+        >
+      </div>
+    </div>
+    } @switch (selected) { @case ("Price") {
+    <div class="card-content">
+      <!-- Lower limit -->
+      <ion-card color="light" class="p-4 limit-card-wrapper">
+        <div class="mb--5">
+          <ion-text class="limit-title">Price Range</ion-text>
+        </div>
+
+        <ion-card-content (click)="view('lower')" class="limit-card">
+          <div class="limit-card-price">
+            <div class="limit-card-content">
+              <div class="limit-card-price-content">
+                <ion-icon
+                  src="/logo/pricingLimit.svg"
+                  alt="price-range"
+                ></ion-icon>
+                <div class="limit-card-price-content-texts">
+                  <div>
+                    <p class="titlePrice">Cheapest Price</p>
+                    <p class="price-value">
+                      {{ totalAmountLower | currency: 'NGN' }}
+                    </p>
+                  </div>
+                  <div class="arrow">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ion-card-content>
+        <ion-card-content (click)="view('upper')" class="limit-card">
+          <div class="limit-card-price">
+            <div class="limit-card-content">
+              <div class="limit-card-price-content">
+                <ion-icon
+                  src="/logo/pricingLimit.svg"
+                  alt="price-range"
+                ></ion-icon>
+                <div class="limit-card-price-content-texts">
+                  <div>
+                    <p class="titlePrice">Highest Price</p>
+                    <p class="price-value">
+                      {{ totalAmountUpper | currency: 'NGN' }}
+                    </p>
+                  </div>
+                  <div class="arrow">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    } @default {
+    <div class="card-content">
+      <!-- Lower limit -->
+      <ion-card color="light" class="p-4 limit-card-wrapper">
+        <div class="mb--5">
+          <ion-text class="limit-title">Facilities</ion-text>
+        </div>
+
+        @for (limitDatas of groupedDrugs | keyvalue; track limitDatas.key; let i
+        = $index) {
+        <ion-card-content (click)="viewIt(limitDatas.key)" class="limit-card">
+          <div class="limit-card-price">
+            <div class="limit-card-content">
+              <div class="limit-card-price-content">
+                <ion-icon
+                  src="/logo/pricingLimit.svg"
+                  alt="price-range"
+                ></ion-icon>
+                <div class="limit-card-price-content-texts">
+                  <div>
+                    <p class="titlePrice">
+                      {{limitDatas?.value[0].creator.name}}
+                    </p>
+                    <p class="price-value">
+                      {{ sumPrices(limitDatas?.value) | currency: 'NGN' }}
+                    </p>
+                  </div>
+                  <div class="arrow">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ion-card-content>
+        }
+      </ion-card>
+    </div>
+    } }
+  </div>
+</ion-content>

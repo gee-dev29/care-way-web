@@ -1,0 +1,64 @@
+<ion-content fullscreen>
+  <div id="add__member" class="ion-padding">
+    <div class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title2">Blood Bank Cost Request</div>
+      <div></div>
+    </div>
+
+    <form [formGroup]="form">
+      <ui-input
+        [label]="'Service Name'"
+        [shouldSearch]="true"
+        [isMultiselect]="false"
+        [selectedText]="form.value.serviceName"
+        [isClicked]="isServiceName"
+        [type]="'dropdown'"
+        [options]="serviceNames"
+        (data)="isServiceNameClicked()"
+        (emitted)="offServiceNameClicked()"
+        [control]="form.get('serviceName')"
+      ></ui-input>
+      <ui-input
+        [label]="'Blood Group'"
+        [shouldSearch]="true"
+        [isMultiselect]="false"
+        [selectedText]="form.value.bloodGroup"
+        [isClicked]="isBloodGroup"
+        [type]="'dropdown'"
+        [options]="bloodGroups"
+        (data)="isBloodGroupClicked()"
+        (emitted)="offBloodGroupClicked()"
+        [control]="form.get('bloodGroup')"
+      ></ui-input>
+
+      <ui-input
+        [label]="'Quantity'"
+        [control]="form.get('quantity')"
+        [type]="'text'"
+        [min]="min"
+      ></ui-input>
+      <ui-input
+        [label]="'Cost'"
+        [control]="form.get('cost')"
+        [type]="'number'"
+        [min]="min"
+      ></ui-input>
+
+      <div class="ui__button">
+        <ui-button
+          (Click)="next()"
+          [label]="'Proceed'"
+          [disabled]="form.invalid"
+          [loading]="loading"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [showImage]="false"
+        ></ui-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

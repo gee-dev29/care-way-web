@@ -1,0 +1,138 @@
+#background-content {
+  background: #f4f5fe !important;
+}
+#prescription {
+  margin-top: 80px !important;
+}
+
+.summary-temp {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  align-items: center;
+}
+canvas {
+  /* width: 100% !important; */
+  height: 300px !important;
+}
+.vitals-card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+ion-card {
+  background: #e7f6e9;
+}
+
+.section {
+  display: flex;
+
+  flex-direction: column;
+  flex: 1;
+  text-align: center;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+}
+
+.value {
+  font-size: 44px;
+  font-weight: 500;
+  color: black;
+  margin: 5px 0;
+}
+
+.status {
+  font-size: 15px;
+  color: black !important;
+}
+
+.status.normal {
+  color: #1cb34f;
+}
+
+.divider {
+  width: 1px;
+  height: 80px;
+  background: #000;
+}
+
+.summary-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+}
+
+.degree {
+  font-size: 40px;
+  font-weight: 500;
+  color: var(--ion-color-dark);
+}
+
+.toggle {
+  margin-top: 4px;
+  margin-bottom: -20px;
+}
+
+.summary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.temp-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  margin-bottom: 14px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.temperature {
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: black;
+}
+
+.range {
+  margin-top: 2px;
+  font-size: 0.78rem;
+  color: #666;
+}
+
+.status-col {
+  text-align: right;
+}
+
+.status-badge {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+.date {
+  margin-top: 6px;
+  font-size: 0.55rem;
+  color: #000000b2;
+}
+
+.unit {
+  background-color: #b5bdb9;
+  border-radius: 5px;
+  padding: 2px 3px;
+  font-size: 15px;
+  color: black;
+}

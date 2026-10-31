@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="top">
+    <div class="card-heading">
+      {{cardHeading()}} ({{identitiesTotalRecords()}})
+    </div>
+    <div
+      class="view__all"
+      tabindex=""
+      (click)="viewAll.emit()"
+      (keyup)="viewAll.emit()"
+    >
+      View all
+    </div>
+  </div>
+  @if (!(identities$ | async)?.length) {
+  <div class="bottom">
+    @for (item of [1,2,3,4]; track $index) {
+    <div class="identity skeleton-identity">
+      <ion-skeleton-text
+        animated
+        style="width: 40px; height: 40px; border-radius: 50%"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 60px; height: 12px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 40px; height: 10px"
+      ></ion-skeleton-text>
+    </div>
+    }
+    <ion-skeleton-text
+      animated
+      style="width: 40px; height: 40px; border-radius: 50%"
+    ></ion-skeleton-text>
+  </div>
+  } @else {
+  <div class="bottom">
+    @for (identity of (identities$ | async); track $index) {
+    <div class="identity" tabindex="">
+      @if (identityType() === type.Member || identityType() === type.Patient) {
+      @if (identity?.profilePicture && identity?.profilePicture!==null) {
+      <ion-avatar>
+        <img [src]="identity?.profilePicture" alt="" />
+      </ion-avatar>
+      } @else {
+      <ion-avatar>
+        <img alt="" src="/logo/avatar.svg" />
+      </ion-avatar>
+      } } @if (identityType() === type.Doctor || identityType() ===
+      type.Nurse || identityType() === type.Pharmacist || identityType() ===
+      type.Radiologist || identityType() === type.LabTechnician ||
+      identityType() === type.LaboratoryStaff) { @if (identity.professionalUpload !==null) {
+      <ion-avatar>
+        <img [src]="identity?.professionalUpload" alt="" />
+      </ion-avatar>
+      } @else {
+      <ion-avatar>
+        <img alt="" src="/logo/avatar.svg" />
+      </ion-avatar>
+      } } @if (identityType() === type.Hospital){
+      <div class="avatar">
+        <span>{{ identity?.facilityName?.charAt(0) }}</span>
+      </div>
+      } @if (identityType() === type.Pharmacist || identityType() ===
+      type.LaboratoryStaff || identityType() === type.LabTechnician ||
+      identityType() === type.Radiologist) { @if (identity?.lastName?.length >
+      5) {
+      <p class="name">{{ identity?.lastName | titlecase | slice:0:5 }}...</p>
+      } @else {
+      <p class="name">{{ identity?.lastName | titlecase }}</p>
+      } } @if (identityType() === type.Member || identityType() ===
+      type.Patient) { @if (identity?.firstName?.length>5) {
+      <p class="name">{{identity?.firstName | titlecase |slice:0:5}}...</p>
+      } @else {
+      <p class="name">{{identity?.firstName | titlecase}}</p>
+      } } @if (identityType() === type.Doctor) { @if
+      (identity?.lastName?.length>5) {
+      <p class="name">Dr. {{identity?.lastName | titlecase |slice:0:5}}...</p>
+      } @else {
+      <p class="name">Dr. {{identity?.lastName | titlecase}}</p>
+      } } @if (identityType() === type.Nurse) { @if
+      (identity?.lastName?.length>5) {
+      <p class="name">Nurse {{identity?.lastName | titlecase |slice:0:5}}...</p>
+      } @else {
+      <p class="name">Nurse {{identity?.lastName | titlecase}}</p>
+      } }@if (identityType() === type.Hospital) {
+      <p class="name">{{identity?.facilityName| titlecase |slice:0:10}}..</p>
+      } @if (identityType() === type.Member) {
+      <p>({{identity?.relationship}})</p>
+      } @if (identityType() === type.Doctor) {
+      <p>({{identity?.cadre}})</p>
+      }
+    </div>
+    <!-- <div
+      class="identity"
+      tabindex=""
+      (keydown)="memberProfile(identity.memberId)"
+      (click)="memberProfile(identity.memberId)"
+    >
+      @if (identity.profilePicture!==null) {
+      <ion-avatar>
+        <img [src]="identity.profilePicture" alt="" />
+      </ion-avatar>
+      } @else {
+      <ion-avatar>
+        <img alt="" src="/logo/avatar.svg" />
+      </ion-avatar>
+      }
+      <p class="member-name">{{identity.firstName | titlecase}}</p>
+      <p>({{identity.relationship}})</p>
+    </div> -->
+    } @if(identityType() !== type.Hospital){
+    <div class="identity">
+      <ui-plus-icon-component
+        [size]="'big'"
+        (addIdentity)="addIdentity.emit()"
+      ></ui-plus-icon-component>
+    </div>
+    }
+  </div>
+  }
+</div>

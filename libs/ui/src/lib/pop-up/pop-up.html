@@ -1,0 +1,35 @@
+<ion-modal trigger="open-modal" [isOpen]="open">
+  <ng-template>
+    <div class="content">
+      <ion-icon
+        class="close__icon"
+        name="close"
+        (click)="cancell.emit()"
+      ></ion-icon>
+      <p class="pop__up__tittle">Are you sure you want to cancel this order?</p>
+    </div>
+    <div class="button__wrapper">
+      <ui-button
+        (click)="continue.emit()"
+        [label]="'Yes, Confirm'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [showImage]="false"
+        [width]="'full'"
+        [shape]="'round'"
+        [fill]="'solid'"
+      ></ui-button>
+      <ui-button
+        (click)="cancell.emit()"
+        [label]="'Not yet'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [showImage]="false"
+        [backgroundColor]="'light'"
+        [width]="'full'"
+        [shape]="'round'"
+        [fill]="'solid'"
+      ></ui-button>
+    </div>
+  </ng-template>
+</ion-modal>

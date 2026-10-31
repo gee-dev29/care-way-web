@@ -1,0 +1,312 @@
+.page {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  background-color: #f4f5fe;
+  overflow-y: auto;
+  margin-top: 60px;
+}
+.end{
+  margin-bottom: 100px;
+}
+.blood-bank-body {
+  background-color: #ffebeb;
+}
+.radiology-body {
+  background-color: #ffffee;
+}
+.pharmacy-body {
+  background-color: #f4f5fe;
+}
+.laboratory-body {
+  background-color: #f4f5fe;
+}
+.hospital-body {
+  background-color: #f4f5fe;
+}
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+}
+.like__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+ion-text {
+  font-size: 22px;
+  font-weight: 500;
+}
+.categories {
+  font-size: 16px;
+  color: #0c0416;
+}
+.inside {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+.pencil {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+}
+.pencil ion-icon {
+  font-size: 18px;
+}
+.list {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.list ion-icon {
+  font-size: 24px;
+}
+.list ion-text {
+  font-size: 15px;
+  color: #000000;
+  font-weight: 500;
+}
+.catHolder {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.catHolder ion-icon {
+  font-size: 24px;
+}
+.btn__wrapper,
+a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 5px;
+}
+
+.bottom__header {
+  position: relative;
+  padding-top: 70px;
+}
+.address {
+  margin-top: -2px;
+}
+.bank {
+  --background: #fff7f7;
+  padding: 20px 20px;
+  border-radius: 14px;
+  height: auto;
+  border: 4px solid #ffffff;
+}
+.license {
+  --background: #f1e9eb;
+  padding: 20px 20px;
+  border-radius: 14px;
+  height: auto;
+  border: 4px solid #e7e8ec;
+}
+
+.bank {
+  --background: #ffff;
+}
+.medium__curve {
+  border-radius: 10px;
+}
+.profile__wrapper {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 160px;
+  height: 160px;
+}
+.title {
+  font-weight: 500;
+  color: #000;
+  line-height: 25px;
+}
+.apply__gap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.text__avater {
+  background: #6c63ff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.avatar-border {
+  border: 2px solid #307d3d;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.avatar {
+  height: 130px;
+  width: 130px;
+}
+.header__two {
+  display: flex;
+  padding: 5%;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__two ion-text {
+  font-size: 1.25rem;
+}
+
+.preview-container {
+  width: 100%;
+  height: 70vh;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gender {
+  display: flex;
+  flex-direction: column;
+  line-height: 13px;
+}
+.gender .title {
+  line-height: 0;
+}
+.top__header {
+  padding: 12px 10px;
+}
+.profile__wrapper ion-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 12px solid #f4f5fe;
+}
+.lab {
+  filter: invert(0) brightness(4.2);
+}
+
+.pharmacy {
+  --background: #dcbef0;
+}
+.hospital {
+  --background: #cad0ff;
+}
+.laboratory {
+  --background: #bedbf6;
+}
+.blood-bank {
+  --background: #fcdbdb;
+  border: 2px solid #f2c7c7;
+}
+.radiology {
+  --background: #e1e3eb;
+}
+
+.small__curve {
+  border-radius: 15px;
+  padding: 60px 20px 20px;
+  position: relative;
+  z-index: 1;
+}
+.small__curve ion-img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.px {
+  padding-left: 50px;
+}
+
+.img {
+  margin-bottom: 5px;
+}
+
+.license-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.info-row {
+  margin-bottom: 18px;
+}
+
+.info-label {
+  color: #0e0e0eb2;
+  font-size: 15px;
+  width: 80%;
+}
+
+.info-value {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 4px;
+  color: #000000;
+}
+.license-row ion-icon {
+  font-size: 24px;
+}
+
+.blood-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 500;
+}
+.profile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.value {
+    font-size: 15px;
+  margin-top: 4px;
+  color: #000000;
+  font-weight: 500;
+  text-align: right;
+}
+.bank-label{
+  color: #0e0e0eb2;
+  font-size: 15px;
+}
+.spec {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.value {
+  text-align: left;
+}

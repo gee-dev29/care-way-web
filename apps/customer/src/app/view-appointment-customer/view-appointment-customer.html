@@ -1,0 +1,311 @@
+<ion-content fullscreen>
+  <div id="padding">
+    <div class="header">
+      <div class="back">
+        <div class="left">
+          <ion-icon
+            src="/logo/backarrow.svg"
+            class="back-icon"
+            (click)="goBack()"
+          ></ion-icon>
+          <p class="title">Appointment</p>
+        </div>
+        @if (appointment$ | async; as appointment){ @if ((appointment.status ===
+        appointmentStatus.Ready || appointment.status ===
+        appointmentStatus.Ongoing) && appointment.appointmentType === 'Virtual')
+        {
+        <button class="btnSolid" (click)="joinCall()">Join Call</button>
+        } @if (appointment.status === appointmentStatus.Completed &&
+        appointment.appointmentType === appointmentType.Virtual) {
+        <button class="btnSolid" (click)="openCallRecordingModal()">
+          Call Recording
+        </button>
+        } @if (appointment?.status ===
+        appointmentStatus.AwaitingCustomerPayment) {
+        <button class="btnSolid" (click)="proceedToPayment(appointment)">
+          Payment
+        </button>
+        } @if (appointment.status === appointmentStatus.DoctorAvailable &&
+        appointment.appointmentType === appointmentType.Virtual) {
+        <button class="btnSolid" (click)="openBookAppointmentModal()">
+          Book Appointment
+        </button>
+        } @if (appointment.status === appointmentStatus.Confirmed){
+        <button class="btnSolid" (click)="setReminder(appointment)">
+          Set Reminder
+        </button>
+        } }
+      </div>
+    </div>
+    <ui-view-appointment-card
+      [appointment$]="appointment$"
+      [statusFn]="getStatus(appointment?.status)"
+      [showDoctor]="true"
+    ></ui-view-appointment-card>
+    @if (appointment$ | async; as appointment){ @if (appointment.appointmentType
+    === 'Physical') {
+    <div class="card-body">
+      <div class="card first">
+        <div class="item-left">
+          <span class="card-title">Hospital:</span>
+          {{appointment?.hospitalName}}
+        </div>
+        <div class="item-left">
+          <span class="card-title">Address:</span>
+          {{appointment?.address?.address}}, {{appointment?.address?.street}},
+          {{appointment?.address?.city}}
+        </div>
+      </div>
+    </div>
+    } } @if (doctor$ | async; as doctor) {
+    <div class="card">
+      <div class="item-left">
+        <span class="card-title">Doctor:</span> {{ doctor.firstName }}
+        {{doctor.lastName}}
+      </div>
+      <div class="item-left">
+        <span class="card-title">Gender:</span> {{ doctor?.gender ?? 'N/A' }} |
+        <span class="card-title">Cadre:</span> {{ doctor.cadre }}
+      </div>
+    </div>
+    } @if (appointment$ | async; as appointment){ @if (appointment.status ===
+    appointmentStatus.Confirmed || appointment.status ===
+    appointmentStatus.Ready) {
+    <ion-accordion-group>
+      <ion-accordion value="vitals">
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #f9fffa"
+        >
+          <ion-label>Vitals</ion-label>
+        </ion-item>
+        <div slot="content" class="vitals">
+          <ui-vitals [items]="vitalItems" (getItems)="getItems()"></ui-vitals>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+    <ion-accordion-group>
+      @if (showMedicalServiceSection) {
+      <ion-accordion value="medicalServices">
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #e9e9e9"
+        >
+          <ion-label
+            >Medical Products & Services ({{ medicalServices.length
+            }})</ion-label
+          >
+        </ion-item>
+        <div slot="content" class="vitals">
+          @for (product of medicalServices; track $index) {
+          <div class="lab-card">
+            <div class="lab-card-header">
+              <h4>Medical Product</h4>
+            </div>
+            <div class="lab-card-body">
+              <div class="row">
+                <p class="label">Product Type</p>
+                <p class="value">{{ product.productType }}</p>
+              </div>
+              <div class="row">
+                <p class="label">Product Name</p>
+                <p class="value">{{ product.productName }}</p>
+              </div>
+              <div class="row">
+                <p class="label">Unit Price</p>
+                <p class="value">{{ product.unitPrice }}</p>
+              </div>
+              <div class="row">
+                <p class="label">Quantity</p>
+                <p class="value">{{ product.quantity }}</p>
+              </div>
+              <div class="row">
+                <p class="label">Delivery</p>
+                <p class="value">{{ product.requiresDelivery }}</p>
+              </div>
+              @if (product.status) {
+              <div class="row">
+                <p class="label">Status</p>
+                <p class="value">{{ product.status }}</p>
+              </div>
+              }
+            </div>
+          </div>
+          }
+        </div>
+      </ion-accordion>
+      } @if (showPrescriptionSection) {
+      <ion-accordion>
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #d4d6ea"
+        >
+          <ion-label> Prescription ({{ prescriptionTotal }})</ion-label>
+        </ion-item>
+        <div slot="content" class="vitals">
+          <ui-prescription-card
+            [drug]="drugs"
+            [api]="api"
+            (requestCost)="requestCost($event, ReferralType.Pharmacy)"
+            [documentStatus]="DocumentStatus"
+            [isLoading]="isLoading"
+            [canAdd]="false"
+          ></ui-prescription-card>
+        </div>
+      </ion-accordion>
+      } @if (showLabTestSection) {
+      <ion-accordion>
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #d0eaff"
+        >
+          <ion-label>Lab Test ({{labTestTotal}})</ion-label>
+        </ion-item>
+        <div slot="content" class="lab__content__details">
+          <ui-lab-test-card
+            [labTests]="labTests"
+            [api]="api"
+            (requestCost)="requestCost($event, ReferralType.Laboratory)"
+            [isLoading]="isLoading"
+            [documentStatus]="DocumentStatus"
+          ></ui-lab-test-card>
+        </div>
+      </ion-accordion>
+      } @if (showDiagnosticSection) {
+      <ion-accordion>
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #ededc2"
+        >
+          <ion-label>Radiology / Imaging ({{radTotal}})</ion-label>
+        </ion-item>
+        <div slot="content">
+          <div slot="content" class="lab__content__details">
+            <ui-rad-imaging-card
+              [rads]="rads"
+              [api]="api"
+              (requestCost)="requestCost($event, ReferralType.Radiology)"
+              [documentStatus]="DocumentStatus"
+              [isLoading]="isLoading"
+            ></ui-rad-imaging-card>
+          </div>
+        </div>
+      </ion-accordion>
+      } @if (showBloodBankSection) {
+      <ion-accordion>
+        <ion-item
+          slot="header"
+          class="accordion-header"
+          style="--background: #f9d5d5"
+        >
+          <ion-label>Blood Bank ({{bloodBankTotal}})</ion-label>
+        </ion-item>
+        <div slot="content">
+          <div slot="content" class="lab__content__details">
+            <ui-blood-bank-card
+              [bloodBank]="bloodBank"
+              (requestCost)="requestCost($event, ReferralType.BloodBank)"
+              [documentStatus]="DocumentStatus"
+              [isLoading]="isLoading"
+            ></ui-blood-bank-card>
+          </div>
+        </div>
+      </ion-accordion>
+      }
+    </ion-accordion-group>
+    }}
+  </div>
+  @if (appointmentConfirmationModal) {
+  <ui-confirmation-modal-secondary
+    [confirmationMessage]="confirmationMessage"
+    [open]="appointmentConfirmationModal"
+    [loading]="isLoading"
+    [background]="'primary'"
+    (dismiss)="closeModal()"
+    (no)="closeModal()"
+    (next)="bookAppointment()"
+  ></ui-confirmation-modal-secondary
+  >}
+</ion-content>
+<ui-confirmation-modal
+  [heading]="'Whose address do you want to send Cost with?'"
+  [background]="'#307d3d'"
+  [open]="confirmSend"
+  [normal]="true"
+  (next)="sendCost('Patient')"
+  (no)="sendCost('Hospital')"
+  (dismiss)="confirmSend = false
+"
+>
+</ui-confirmation-modal>
+@if (callRecordingModal) {
+<ion-modal
+  [isOpen]="callRecordingModal"
+  (didDismiss)="callRecordingModal = false"
+  [canDismiss]="true"
+>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Call Recordings</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="callRecordingModal = false">
+            <ion-icon
+              name="close-outline"
+              slot="icon-only"
+              style="color: red"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ui-appointment-recording-card
+        [recordingUrls$]="recordingUrls$"
+      ></ui-appointment-recording-card>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+} @if (bookAppointmentModal) {
+<ion-modal
+  [isOpen]="bookAppointmentModal"
+  (didDismiss)="bookAppointmentModal = false"
+  [canDismiss]="true"
+>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Book Appointment</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="bookAppointmentModal = false">
+            <ion-icon
+              name="close-outline"
+              slot="icon-only"
+              style="color: red"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <p class="modal-subtitle">
+        Choose a doctor's available slot below to book your appointment.
+      </p>
+      @for (appointment of acceptedAppointmentRequests$ | async; track
+      appointment) {
+      <ui-doctors-appointment-availability-card
+        [appointment]="appointment"
+        (selectAppointment)="showAppointmentConfirmation($event)"
+      ></ui-doctors-appointment-availability-card>
+      } @empty {
+      <p class="empty-state">No available appointments at this time.</p>
+      }
+    </ion-content>
+  </ng-template>
+</ion-modal>
+}

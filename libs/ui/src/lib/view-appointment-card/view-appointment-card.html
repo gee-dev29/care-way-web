@@ -1,0 +1,69 @@
+<div class="card">
+  @if (( appointment$ | async); as appointment) {
+  <div class="row">
+    <span class="label">Date:</span>
+    <span class="value"
+      >{{newDateFormat(appointment?.date, appointment?.time)}}
+    </span>
+  </div>
+  <div class="divide"></div>
+  <div class="row">
+    <span class="label">Time:</span>
+    <span class="value"
+      >{{moment.utc(`${appointment.date} ${appointment.time}`, 'YYYY-MM-DD
+      HH:mm') .local() .format('h:mm A')}}</span
+    >
+  </div>
+  <div class="divide"></div>
+  <div class="row">
+    <span class="label">Appointment Type:</span>
+    <span class="value">{{appointment?.appointmentType}}</span>
+  </div>
+   <div class="divide"></div>
+  @if(module === 'Customer'){
+ 
+  @if(appointment?.appointmentPin) {
+  <div class="row">
+    <span class="label">Appointment PIN:</span>
+    <span class="value">{{appointment?.appointmentPin}}</span>
+  </div>
+  <div class="divide"></div>
+  } }
+
+  <div class="row">
+    <span class="label">Status:</span>
+    <span class="value">{{statusFn}}</span>
+  </div>
+  <div class="divide"></div>
+
+  <div class="section">
+    <span class="label">Presenting Complaints</span>
+    <p class="value">{{appointment?.notes ? appointment?.notes : 'N/A'}}</p>
+  </div>
+  } @else {
+  <div class="row">
+    <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+  </div>
+  <div class="divide"></div>
+  <div class="row">
+    <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 35%"></ion-skeleton-text>
+  </div>
+  <div class="divide"></div>
+  <div class="row">
+    <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+  </div>
+  <div class="divide"></div>
+  <div class="section">
+    <ion-skeleton-text
+      animated
+      style="width: 60%; height: 16px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 95%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+  </div>
+  }
+</div>

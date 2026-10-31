@@ -1,0 +1,17 @@
+<ion-content>
+  <ui-appointment-form
+    [title]="'Follow-up Request'"
+    [date]="date"
+    [noteLabel]="'Presenting Complaints'"
+    [note]="notes"
+    [doctors]="doctors"
+    [timeSlots]="timeSlots"
+    [selectedTime]="selectedTime"
+    [showSpecialization]="false"
+    (dateChange)="date = $event"
+    (noteChange)="notes = $event"
+    (selectTime)="selectedTime = $event"
+    (proceed)="proceed()"
+    (back)="goBack()"
+  ></ui-appointment-form>
+</ion-content>

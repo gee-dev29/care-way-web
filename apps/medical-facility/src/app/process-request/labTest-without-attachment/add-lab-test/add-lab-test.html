@@ -1,0 +1,63 @@
+<ion-content fullscreen>
+  <div id="add__member" class="ion-padding">
+    <div
+      class="up"
+      (keyup.enter)="goBack()"
+      tabindex="0"
+      role="button"
+      (click)="goBack()"
+    >
+      <ion-icon src="/logo/backarrow.svg"></ion-icon>
+      <ion-text class="title">Medical Request</ion-text>
+    </div>
+
+    <form [formGroup]="form">
+      <ui-input
+        [label]="'Test Group'"
+        [shouldSearch]="true"
+        [isMultiselect]="false"
+        [isClicked]="isTestGroup"
+        [type]="'dropdown'"
+        [options]="testGroups"
+        (data)="isTestGroupClicked()"
+        (emitted)="offtestGroupClicked()"
+        [selectedText]="form.get('testGroup')?.value"
+        [selectedItem]="form.get('testGroup')?.value"
+        [control]="form.get('testGroup')"
+      ></ui-input>
+      <ui-input
+        [label]="'Test Name'"
+        [shouldSearch]="true"
+        [isMultiselect]="false"
+        [isClicked]="isTestName"
+        [type]="'dropdown'"
+        [options]="testNames"
+        (data)="isTestNameClicked()"
+        (emitted)="offtestNameClicked()"
+        [selectedText]="form.get('testName')?.value"
+        [selectedItem]="form.get('testName')?.value"
+        [control]="form.get('testName')"
+      ></ui-input>
+      <ui-input
+        [label]="'Cost'"
+        [control]="form.get('cost')"
+        [type]="'number'"
+      ></ui-input>
+
+      <div class="ui__button">
+        <ui-button
+          (Click)="next()"
+          [label]="'Proceed'"
+          [disabled]="form.invalid"
+          [loading]="loading"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [showImage]="false"
+        ></ui-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,21 @@
+<div
+  class="order-card"
+  (click)="openOrder.emit(order())"
+  (keyup.enter)="openOrder.emit(order())"
+  role="button"
+  tabindex="0"
+>
+  <div class="order-left">
+    <span class="order-id">#{{ order().orderCode }}</span>
+    <span class="order-time"
+      >{{moment( order()?.orderItems[0]?.creator?.date
+      ).local().fromNow()}}</span
+    >
+  </div>
+
+  <div class="order-right">
+    <span class="order-amount">NGN{{totalCost}}</span>
+
+    <ion-text class="order-status"> {{ order().status }} </ion-text>
+  </div>
+</div>

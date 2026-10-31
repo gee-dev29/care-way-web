@@ -1,0 +1,17 @@
+<ion-content [style.--background]="bg" fullscreen>
+  <div #tabs id="more" class="ion-padding">
+    <ui-more-menu-page
+      [title]="'More Menu'"
+      [otherMenus]="moreMenu"
+      (back)="back()"
+      [api]="api"
+      [auth]="auth"
+      [facilityTypeService]="facilityTypeService"
+      [profileInfoService]="profileInfoService"
+      [toast]="toast"
+      [appModule]="'facility'"
+      (triggerBiometric)="reload()"
+    ></ui-more-menu-page>
+    <div class="end"></div>
+  </div>
+</ion-content>

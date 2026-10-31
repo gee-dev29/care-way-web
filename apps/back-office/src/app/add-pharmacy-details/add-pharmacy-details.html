@@ -1,0 +1,82 @@
+<div class="category-container">
+  <h2 class="title">Onboard Pharmacy</h2>
+  <p class="subtitle">Select the category of your activities</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="left">
+        <img class="icon" src="icons/drugs.svg" alt="" />
+        <label for="drugs">Do you sell drugs?</label>
+      </div>
+      <p-checkbox
+        name="categories"
+        value="Drugs"
+        inputId="drugs"
+        [(ngModel)]="categories"
+      ></p-checkbox>
+    </div>
+
+    <div class="card">
+      <div class="left">
+        <img class="icon" src="icons/drugs.svg" alt="" />
+        <label for="vaccines">
+          Do you offer vaccines <br />
+          and biologics?
+        </label>
+      </div>
+      <p-checkbox
+        name="categories"
+        value="Vaccines and Biologics"
+        inputId="vaccines"
+        [(ngModel)]="categories"
+      ></p-checkbox>
+    </div>
+
+    <div class="card">
+      <div class="left">
+        <img class="icon" src="icons/drugs.svg" alt="" />
+        <label for="devices">Do you supply medical devices?</label>
+      </div>
+      <p-checkbox
+        name="categories"
+        value="Medical Devices"
+        inputId="devices"
+        [(ngModel)]="categories"
+      ></p-checkbox>
+    </div>
+
+    <div class="card">
+      <div class="left">
+        <img class="icon" src="icons/drugs.svg" alt="" />
+        <label for="herbal">
+          Do you offer herbal and nutraceutical products?
+        </label>
+      </div>
+      <p-checkbox
+        name="categories"
+        value="Herbals and Nutraceuticals"
+        inputId="herbal"
+        [(ngModel)]="categories"
+      ></p-checkbox>
+    </div>
+  </div>
+
+  <div class="actions">
+    <ui-desktop-button
+      [label]="'Cancel'"
+      [width]="'full'"
+      [primary]="false"
+      [size]="'large'"
+      (Click)="cancel()"
+    ></ui-desktop-button>
+
+    <ui-desktop-button
+      [label]="'Save'"
+      [width]="'full'"
+      [primary]="true"
+      [size]="'large'"
+      [disabled]="loading || categories.length === 0"
+      (Click)="next()"
+    ></ui-desktop-button>
+  </div>
+</div>

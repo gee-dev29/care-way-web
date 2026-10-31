@@ -1,0 +1,18 @@
+:host ion-item,
+:host ion-select,
+:host .list-ios,
+:host .list-md {
+  --background: transparent !important;
+  background: transparent !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+ion-item {
+  border-bottom: 0.5px solid black !important;
+  margin-bottom: 10px;
+}
+
+ion-label {
+  font-size: 1rem !important;
+}

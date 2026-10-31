@@ -1,0 +1,44 @@
+<ion-content id="background-content" fullscreen>
+  <div class="page ion-padding">
+    <div class="header">
+      <p class="title">Transactions</p>
+      <div></div>
+    </div>
+
+    <div class="searchWrap">
+      <ion-searchbar
+        (ionInput)="search($event)"
+        class="custom-searchbar"
+        [placeholder]="'Search'"
+        class="search"
+      ></ion-searchbar>
+    </div>
+
+    <div class="chips-container">
+      @for (status of statuses; track $index) {
+      <ion-chip
+        [outline]="selectedItem !== status"
+        (click)="selectStatus(status)"
+        [ngStyle]="{
+      'background-color': selectedItem === status ? '#307D3D' : 'transparent',
+      color: selectedItem === status ? '#fff' : '#000',
+      'border-color': selectedItem !== status ? '#000' : '#007BFF'
+    }"
+      >
+        {{ status }}
+      </ion-chip>
+      }
+    </div>
+    @for (transaction of transactions; track $index) {
+    <div class="order">
+      <ui-transaction-card
+        [transaction]="transaction"
+        (viewIt)="route($event)"
+        [background]="'#c8eacd'"
+      >
+      </ui-transaction-card>
+    </div>
+
+    }
+  </div>
+</ion-content>

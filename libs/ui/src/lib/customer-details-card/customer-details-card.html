@@ -1,0 +1,41 @@
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>{{cardHeading}}</h3>
+      </div>
+    </div>
+    <div class="content__bottom">
+      @if (customer$ | async; as customer) {
+      <div class="content__bottom">
+        @if (customer.firstName) {
+        <div class="content__body">
+          <p>First Name</p>
+          <h5>{{ customer.firstName }}</h5>
+        </div>
+        } @if (customer.lastName) {
+        <div class="content__body">
+          <p>Last Name</p>
+          <h5>{{ customer.lastName }}</h5>
+        </div>
+        } @if (customer.phone) {
+        <div class="content__body">
+          <p>Phone Number</p>
+          <h5>{{ customer.phone }}</h5>
+        </div>
+        } @if (customer.gender) {
+        <div class="content__body">
+          <p>Gender</p>
+          <h5>{{ customer.gender }}</h5>
+        </div>
+        } @if (customer.email) {
+        <div class="content__body">
+          <p>Email Address</p>
+          <h5>{{ customer.email }}</h5>
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</div>

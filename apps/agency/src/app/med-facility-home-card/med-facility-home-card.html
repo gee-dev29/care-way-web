@@ -1,0 +1,74 @@
+@if (!request) {
+<div class="request-card skeleton-card">
+  <ion-skeleton-text
+    animated
+    style="width: 50%; height: 14px"
+  ></ion-skeleton-text>
+  <ion-skeleton-text
+    animated
+    style="width: 40%; height: 12px"
+  ></ion-skeleton-text>
+  <ion-skeleton-text
+    animated
+    style="width: 30%; height: 12px"
+  ></ion-skeleton-text>
+  <ion-skeleton-text
+    animated
+    style="width: 35%; height: 12px"
+  ></ion-skeleton-text>
+  <div class="arrow">
+    <ion-skeleton-text
+      animated
+      style="width: 20px; height: 20px"
+    ></ion-skeleton-text>
+  </div>
+</div>
+} @else { @if (title) {
+<div class="header">
+  <div class="title">
+    {{ title }} <span class="green">({{ totalRecords }})</span>
+  </div>
+  <div
+    class="title-2"
+    tabindex=""
+    (keyup.enter)="viewAll()"
+    (click)="viewAll()"
+  >
+    View all
+  </div>
+</div>
+} @if (request) {
+<div
+  class="request-card"
+  tabindex="0"
+  (keyup.enter)="viewDetails(request?.serviceRequestId,request?.memberId);viewIt.emit()"
+  (click)="viewDetails(request?.serviceRequestId, request?.memberId); viewIt.emit()"
+  [style.background]="background"
+  [style.color]="background ? '#000':'#ffffff'"
+>
+  <div class="card-info">
+    <div class="facility-name">{{ request?.name }}</div>
+
+    <div class="detail-grid">
+      <div class="detail-row">
+        <ion-icon name="call-outline"></ion-icon>
+        <span>{{ request?.phoneNumber }}</span>
+      </div>
+      <div class="detail-row">
+        <ion-icon name="location-outline"></ion-icon>
+        <span>{{ request?.country }}</span>
+      </div>
+    </div>
+
+    <div class="detail-row">
+      <ion-icon name="mail-outline"></ion-icon>
+      <span>{{ request?.email }}</span>
+    </div>
+  </div>
+  @if (arrowShow===null) {
+  <div class="arrow">
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </div>
+  }
+</div>
+} }

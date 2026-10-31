@@ -1,0 +1,17 @@
+<ion-content fullscreen id="background-content">
+  <ui-appointment-form
+    [title]="'Appointment'"
+    [date]="date"
+    [time]="time"
+    [noteLabel]="'Presenting Complaints'"
+    [note]="notes"
+    [doctors]="doctors"
+    [showAddress]="false"
+    [buttonLabel]="'Set Appointment'"
+    (dateChange)="date = $event"
+    (noteChange)="notes = $event"
+    (timeChange)="time = $event"
+    (back)="goBack()"
+    (proceed)="proceed()"
+  ></ui-appointment-form>
+</ion-content>

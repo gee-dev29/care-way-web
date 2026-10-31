@@ -1,0 +1,34 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="home" class="mt-4 page-layout">
+    <div class="header">
+      <ion-icon (click)="routeTo()" name="chevron-back-outline"></ion-icon>
+      <div class="title">All Appointments</div>
+      <div></div>
+    </div>
+
+    @if((medDetails$ | async); as medDetail){
+    <agency-med-facility-detail-card
+      [email]="medDetail.email"
+      [name]="medDetail.name"
+      [location]="medDetail.state"
+    >
+    </agency-med-facility-detail-card>
+    }
+
+    <div class="tab-content">
+      <div class="section-header">
+        <span class="section-title"
+          >Appointments ({{ appointments.length }})</span
+        >
+      </div>
+
+      <div class="orders-list">
+        @if (appointments.length > 0) { @for (appointment of appointments; track
+        appointment.appointmentId) {
+        <agency-appointment-card [appointments]="appointment">
+        </agency-appointment-card>
+        } }
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,9 @@
+<div class="pt-2 navbar"><ui-navbar></ui-navbar></div>
+<div class="body__container">
+  <div class="body__wrapper">
+    <ng-content></ng-content>
+    <div class="backgroundImage">
+      @if (background) { <img src="{{ background }}" alt="" />}
+    </div>
+  </div>
+</div>

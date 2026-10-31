@@ -1,0 +1,43 @@
+<ui-page-body>
+  <div class="table__head">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">Withdrawal</h2>
+    </div>
+  </div>
+  <div>
+    <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+    @if (activeTab !== 0) {
+    <ui-page-highlight
+      [primaryDetailTitle]="'Account Name:'"
+      [primaryDetail]="accountName | titlecase"
+      [secondaryDetailTitle]="'Account Number:'"
+      [secondaryDetail]="accountNumber"
+    ></ui-page-highlight>
+    }
+  </div>
+  @if(activeTab === 0){
+  <back-office-withdrawal-details-card
+    [cardHeading]="'Payment Details'"
+    [withdrawal$]="withdrawalDetail$"
+  ></back-office-withdrawal-details-card>
+  } @if(activeTab === 0){
+  <back-office-bank-details-card
+    [bank$]="bank$"
+    [cardHeading]="'Bank Details'"
+  ></back-office-bank-details-card>
+  } @if(activeTab === 1){
+  <div>
+    @if ((uploads$ | async)?.length > 0) {
+    <ui-upload-card [uploads$]="uploads$"></ui-upload-card>
+    }
+  </div>
+  }
+</ui-page-body>

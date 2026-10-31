@@ -1,0 +1,75 @@
+<ion-content
+  id="background-content"
+  class="no-bottom-space"
+  [fullscreen]="true"
+>
+  <div id="prescription" class="ion-padding">
+    <ui-vital-records-card
+      title="Record Vitals"
+      [showShare]="true"
+      cardTitle="Blood Pressure"
+      [cardIcon]="cardIcon"
+      [tabs]="['History','Tracker']"
+      [tabContents]="[history, tracker]"
+      [label]="'Record BP'"
+      [records$]="records$"
+      [record]="records[0]"
+      [vitalSignType]="vitalSignType.BloodPressure"
+      (continue)="addNewBp()"
+      [storageService]="storageService"
+    >
+      <div left class="summary-temp">
+        <ion-text class="summary-title"> Systolic </ion-text>
+        @if ((records$ | async); as records) {
+        <ion-text class="degree"> {{records[0]?.systolic}} </ion-text>
+        } @else { {{0}} }
+
+        <ion-text class="summary-title">mmHg</ion-text>
+      </div>
+      <div right class="summary-temp">
+        <ion-text class="summary-title"> Diastolic </ion-text>
+
+        @if ((records$ | async); as records) {
+        <ion-text class="degree"> {{records[0]?.diastolic}} </ion-text>
+        } @else { {{0}} }
+
+        <ion-text class="summary-title">mmHg</ion-text>
+      </div>
+
+      <ng-container>
+        <ng-template #tracker>
+          <p>✅ Temperature Content</p>
+        </ng-template>
+
+        <ng-template #history>
+          @for ((item of records$ | async); track item) {
+          <ion-card class="temp-card">
+            <ion-card-content>
+              <div class="row">
+                <div>
+                  <div class="row-title">
+                    <div class="temperature">
+                      {{ item.systolic }}/{{item.diastolic}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="status-col">
+                  <ion-badge
+                    class="status-badge"
+                    [ngClass]="getStatusColor(item.status)"
+                    >{{ item.status }}</ion-badge
+                  >
+                  <div class="date">
+                    {{newDateFormat( item.date, item.time) }}
+                  </div>
+                </div>
+              </div>
+            </ion-card-content>
+          </ion-card>
+          }
+        </ng-template>
+      </ng-container>
+    </ui-vital-records-card>
+  </div>
+</ion-content>

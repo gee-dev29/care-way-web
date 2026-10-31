@@ -1,0 +1,65 @@
+<div class="card__container">
+  <h2 class="mb-2">{{cardHeading}}</h2>
+  <div class="card__wrapper">
+    @if (hmoProductDetails$ | async; as hmoProduct) {
+    <div class="content__bottom">
+      @if (hmoProduct.productName) {
+      <div class="content__body">
+        <p>Product Name</p>
+        <h5>{{ hmoProduct.productName }}</h5>
+      </div>
+      } @if (hmoProduct.waitingPeriods) {
+      <div class="content__body">
+        <p>Waiting Periods</p>
+        <h5>{{ hmoProduct.waitingPeriods }}</h5>
+      </div>
+      } @if (hmoProduct.markUp) {
+      <div class="content__body">
+        <p>Mark Up</p>
+        <h5>{{ hmoProduct.markUp }}%</h5>
+      </div>
+      } @if (hmoProduct.price) {
+      <div class="content__body">
+        <p>Price</p>
+        <h5>{{ hmoProduct.price | currency: 'NGN' }}</h5>
+      </div>
+      } @if (hmoProduct.durationInMonths) {
+      <div class="content__body">
+        <p>Durations</p>
+        <h5>{{ hmoProduct.durationInMonths }} Months</h5>
+      </div>
+      } @if (hmoProduct.memberCount) {
+      <div class="content__body">
+        <p>Member Count</p>
+        <h5>{{ hmoProduct.memberCount }}</h5>
+      </div>
+      } @if (hmoProduct.status) {
+      <div class="content__body">
+        <p>Status</p>
+        <h5>{{ hmoProduct.status }}</h5>
+      </div>
+      }
+    </div>
+    @if (hmoProduct.inclusions) {
+    <div class="content__body mt-2">
+      <p>Inclusions</p>
+      <div class="covers">
+        @for ( inclusion of hmoProduct.inclusions.split(','); track inclusion )
+        {
+        <span class="cover inclusion"> {{ inclusion.trim() }} </span>
+        }
+      </div>
+    </div>
+    } @if (hmoProduct.exclusions) {
+    <div class="content__body mt-2">
+      <p>Exclusions</p>
+      <div class="covers">
+        @for ( exclusion of hmoProduct.exclusions.split(','); track exclusion )
+        {
+        <span class="cover exclusion"> {{ exclusion.trim() }} </span>
+        }
+      </div>
+    </div>
+    } }
+  </div>
+</div>

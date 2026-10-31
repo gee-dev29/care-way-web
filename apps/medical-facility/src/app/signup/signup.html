@@ -1,0 +1,69 @@
+<div class="page">
+  <div class="center">
+    <ion-img src="/logo/healbridge.svg" alt="HealBridge"></ion-img>
+  </div>
+  <div class="ion-padding">
+    <ion-text color="black">
+      <h1>Create Medical Facility</h1>
+    </ion-text>
+    <form [formGroup]="form">
+      <ui-input
+        [type]="'text'"
+        [label]="'Facility Name'"
+        [control]="name"
+      ></ui-input>
+      <ui-input
+        [type]="'email'"
+        [label]="'Email Address'"
+        [control]="email"
+      ></ui-input>
+      <ui-input
+        [type]="'phone'"
+        [label]="'Phone Number'"
+        [control]="phoneNumber"
+      ></ui-input>
+      <ui-input
+        [type]="'text'"
+        [label]="'Referral code (optional)'"
+        [control]="referralCode"
+        (onIonChange)="getCode($event)"
+      ></ui-input>
+      <!-- <div class="input">
+       <ui-input
+          [label]="'Country'"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [isClicked]="isCountry"
+          [type]="'dropdown'"
+          [options]="countries$ | async"
+          (data)="isCountryClicked()"
+          [control]="country"
+          (emitted)="offCountryClicked()"
+        ></ui-input>
+        </div> -->
+      <!-- <div class="input"> -->
+      <!-- <ui-input [label]="'State'" [type]="'text'" [control]="state"></ui-input> -->
+    </form>
+    <div class="bts">
+      <ui-button
+        [label]="signupLabel"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [loading]="loading"
+        [disabled]="loading || (!form.valid)"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (Click)="signup()"
+      ></ui-button>
+    </div>
+    <div class="bts">
+      <ion-text color="black">
+        <p class="label mv_down">
+          Already have an account?
+          <a routerLink="/login" class="cursor"><b>Sign In</b></a>
+        </p>
+      </ion-text>
+    </div>
+  </div>
+</div>

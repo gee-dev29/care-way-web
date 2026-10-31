@@ -1,0 +1,14 @@
+<div class="container">
+  <p>Select a card</p>
+  @for (item of (membershipCardTypes$ | async); track item.cardId) {
+  <ion-card tabindex="" (keyup)="onSelect(item)" (click)="onSelect(item)">
+    <ion-card-content>
+      <div>
+        {{ item.cardName }} ({{ item.membershipLimit }} {{ item.membershipLimit
+        === 1 ? 'user' : 'users' }})
+      </div>
+      <ion-checkbox [checked]="item.cardId === selectedId"></ion-checkbox>
+    </ion-card-content>
+  </ion-card>
+  }
+</div>

@@ -1,0 +1,154 @@
+<ui-page-body>
+  <div class="table__head">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">Appointment</h2>
+    </div>
+    @if(isRequest){
+    <ui-desktop-button
+      [label]="'Send Appointment Request'"
+      [primary]="true"
+      (click)="showRequest()"
+    ></ui-desktop-button>
+    }
+  </div>
+  <div class="mt-1">
+    <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+  </div>
+  <div class="ml-1">
+    @if(activeTab !== 0){
+    <ui-page-highlight
+      [primaryDetailTitle]="'Patient:'"
+      [primaryDetail]="patientName | titlecase"
+      [secondaryDetailTitle]="'Date:'"
+      [secondaryDetail]="(moment(date).local().format('ddd MMM DD, YYYY')  || '') + ' @ ' + moment.utc(`${date} ${time}`, 'YYYY-MM-DD HH:mm').local()
+          .format('h:mm A')"
+    ></ui-page-highlight>
+    } @if (activeTab === 0) {
+    <div>
+      <ui-appointment-details-card
+        [appointment$]="appointment$"
+        [cardHeading]="'Appointment Details'"
+      ></ui-appointment-details-card>
+    </div>
+    } @if(activeTab === 1){
+    <div>
+      <ui-appointment-request-table
+        [showDoctor]="true"
+        [appointmentRequests$]="appointmentRequests$"
+        [totalRecords]="totalRecords"
+      ></ui-appointment-request-table>
+    </div>
+    } @if(activeTab === 2){
+    <div class="card__container">
+      <ui-appointment-recording-card
+        [recordingUrls$]="recordingUrls$"
+      ></ui-appointment-recording-card>
+    </div>
+    }
+  </div>
+</ui-page-body>
+<ui-modal
+  [header]="'Send Appointment Requests'"
+  [selectedWidth]="'60vw'"
+  [(visibility)]="showModal"
+>
+  <div class="modal__container">
+    <div class="table__head">
+      <h2 class="title">Doctors</h2>
+      <ui-desktop-button
+        [label]="'Proceed'"
+        [size]="'large'"
+        [primary]="true"
+        (click)="proceed()"
+        [disabled]="selected.size === 0"
+      ></ui-desktop-button>
+    </div>
+    <div class="modal__body">
+      <p-table
+        #dt1
+        dataKey="professionalId"
+        [paginator]="true"
+        [lazy]="true"
+        [rows]="20"
+        [paginator]="true"
+        [totalRecords]="totalRecords"
+        [rowsPerPageOptions]="[20, 50, 100]"
+        [value]="listOfDoctors$ | async"
+        (onRowSelect)="onRowSelect($event)"
+        (onLazyLoad)="load($event)"
+        (onRowUnselect)="onRowUnselect($event)"
+        (onHeaderCheckboxToggle)="onHeaderCheckboxToggle({$event, dt1})"
+      >
+        <ng-template #header>
+          <tr>
+            <th style="width: 3rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Cadre</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th style="width: 3rem"></th>
+            <th></th>
+            <th>
+              <p-columnFilter
+                field="category"
+                matchMode="equals"
+                [showMenu]="false"
+              >
+                <ng-template
+                  pTemplate="filter"
+                  let-value
+                  let-filter="filterCallback"
+                >
+                  <div class="dropdown__filter__container">
+                    <ui-input-drop-down
+                      [label]="'Specialization'"
+                      [options]="specializationOptions$ | async"
+                      [key]="'name'"
+                      [value]="'hospitalSpecializationId'"
+                      [showClear]="true"
+                      [filter]="true"
+                      (data)="filterBySpecialization($event)"
+                    ></ui-input-drop-down>
+                    <div class="p-float-label"></div>
+                  </div>
+                </ng-template>
+              </p-columnFilter>
+            </th>
+            <th></th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-item>
+          <tr>
+            <td style="width: 3rem">
+              <p-tableCheckbox [value]="item"></p-tableCheckbox>
+            </td>
+            <td>{{ item.firstName }} {{ item.lastName }}</td>
+            <td>
+              {{item.specializationName ? (item.specializationName | titlecase)
+              : 'N/A'}}
+            </td>
+            <td>{{ item.cadre || 'N/A' }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</ui-modal>
+<ui-confirmation-modal-desktop
+  [message]="'Are you sure you want to send this appointment request?'"
+  [(visibility)]="confirmationModal"
+  (proceed)="selectDoctor()"
+></ui-confirmation-modal-desktop>

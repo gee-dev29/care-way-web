@@ -1,0 +1,198 @@
+<ion-content id="background-content" class="ion-padding" fullscreen>
+  <div id="prescription">
+    <ion-header class="ion-no-border">
+      <div class="left-toolbar">
+        <ion-icon
+          src="/logo/backarrow.svg"
+          (click)="navigateTo()"
+          (keyup)="navigateTo()"
+        ></ion-icon>
+        <ion-text>Payment Summary</ion-text>
+      </div>
+      <div class="card">
+        @if (( appointment$ | async); as appointment) {
+        <div class="row">
+          <span class="label">Date:</span>
+          <span class="value"
+            >{{(appointment.date + 'T' + appointment.time + ':00Z') |
+            date:'mediumDate'}}</span
+          >
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+          <span class="label">Time:</span>
+          <span class="value"
+            >{{(appointment.date + 'T' + appointment.time + ':00Z') | date:'h:mm
+            a'}}</span
+          >
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+          <span class="label">Doctor:</span>
+          <span class="value">{{appointment?.professionalName}}</span>
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+          <span class="label">Appointment Type:</span>
+          <span class="value">{{appointment?.appointmentType}}</span>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <span class="label">Presenting Complaints</span>
+          <p class="complaint">
+            {{appointment?.notes ? appointment?.notes : 'N/A'}}
+          </p>
+        </div>
+        } @else {
+        <div class="row">
+          <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+          <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 35%"></ion-skeleton-text>
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+          <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <ion-skeleton-text
+            animated
+            style="width: 60%; height: 16px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 95%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+        </div>
+        }
+      </div>
+      @if (( appointment$ | async); as appointment) {
+      @if(appointment.appointmentType === type.Physical && showCardTypeOptions){
+      <div>
+        <ui-appointment-card-type
+          (cardType)="getCardType($event)"
+          [membershipCardTypes$]="membershipCardTypes$"
+          [selectedId]="selectedCardId"
+        ></ui-appointment-card-type>
+      </div>
+      } } @if (showPaymentSummary ) { @if ((appointmentOrder$| async) ; as
+      appointmentOrder) {
+      <div class="card">
+        <div class="row">
+          <div class="icon-row">
+            <div class="icon">
+              <ion-icon name="document-text-outline"></ion-icon>
+            </div>
+            <span>Appointment Fee</span>
+          </div>
+          <span class="amount"
+            >{{appointmentOrder?.costSummary?.consultationFee | currency:
+            '₦'}}</span
+          >
+        </div>
+        <div class="divider"></div>
+        @if (appointment.appointmentType === type.Virtual) {
+        <div class="row">
+          <div class="icon-row">
+            <div class="icon">
+              <ion-icon name="document-text-outline"></ion-icon>
+            </div>
+            <span>Virtual Call Fee</span>
+          </div>
+          <span class="amount"
+            >{{ (appointmentOrder?.costSummary?.virtualCallFee) | currency:
+            '₦'}}</span
+          >
+        </div>
+        <div class="divider"></div>
+        } @if (appointment.appointmentType === type.Physical) {
+        <div class="row">
+          <div class="icon-row">
+            <div class="icon">
+              <ion-icon name="document-text-outline"></ion-icon>
+            </div>
+            <span>Card Fee</span>
+          </div>
+          <span class="amount"
+            >{{ (appointmentOrder?.costSummary?.cardFee) | currency: '₦'}}</span
+          >
+        </div>
+        <div class="divider"></div>
+        }
+        <div class="row">
+          <div class="icon-row">
+            <div class="icon">
+              <ion-icon name="receipt-outline"></ion-icon>
+            </div>
+            <span>Service Charge</span>
+          </div>
+          <span class="amount"
+            >{{appointmentOrder.costSummary.serviceFee | currency: '₦'}}</span
+          >
+        </div>
+        <div class="divider"></div>
+        <div class="row total">
+          <span>Total</span>
+          <span
+            >{{appointmentOrder?.costSummary?.totalCost | currency: '₦'}}</span
+          >
+        </div>
+      </div>
+      } @else {
+      <div class="row">
+        <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 35%"></ion-skeleton-text>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <ion-skeleton-text
+          animated
+          style="width: 60%; height: 16px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 95%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+      </div>
+      } @if (canPay) {
+      <div class="btn-container">
+        <ui-button
+          [label]="'Pay'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [backgroundColor]="'#307d3d'"
+          (Click)="continue()"
+        ></ui-button>
+        <ui-button
+          [label]="'Ask Family & Friends'"
+          [width]="'full'"
+          [size]="'medium'"
+          [fill]="'solid'"
+          [borderLine]="'#1E293B'"
+          [textColor]="'#1E293B'"
+          [showIcon]="true"
+          [backgroundColor]="'#F9FFFA'"
+          [icon]="'return-up-forward-outline'"
+          [shape]="'round'"
+          (Click)="sharePaymentLink()"
+        ></ui-button>
+      </div>
+      } }
+    </ion-header>
+  </div>
+</ion-content>

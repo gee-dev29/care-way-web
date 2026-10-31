@@ -1,0 +1,47 @@
+ion-content {
+    --background: #f4f5fe !important;
+}
+ion-card {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+ion-text {
+    font-weight: 600;
+}
+#laboratory {
+    background: #f4f5fe !important;
+    margin-top: 115px !important;
+}
+.left__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+form {
+    margin-top: 30px;
+}
+.end {
+    padding-bottom: 100px !important;
+}
+.ui__button {
+    margin-top: 30px;
+}
+.contentDetail {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    color: var(--background);
+}
+.detail {
+    color: var(--background);
+    font-weight: 800;
+}
+h4 {
+    font-weight: 500;
+    font-size: 14px;
+    color: #000;
+}
+.black {
+    background-color: black;
+    margin-top: 20px;
+}

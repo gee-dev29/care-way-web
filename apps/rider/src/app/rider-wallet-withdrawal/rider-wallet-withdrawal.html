@@ -1,0 +1,11 @@
+<ion-content id="background-content" class="ion-padding" [fullscreen]="true">
+  <ui-wallet-withdraw
+    [balance]="balance"
+    [bankDetails]="bankDetails"
+    [loading]="loading"
+    (initiateWithdrawal)="initiateWithdrawal($event)"
+    (bankAccountSelected)="selectBankAcct($event)"
+    (back)="back()"
+  >
+  </ui-wallet-withdraw>
+</ion-content>

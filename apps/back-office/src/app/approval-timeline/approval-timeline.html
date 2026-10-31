@@ -1,0 +1,87 @@
+@if (approval$ | async; as approval) { @if (approval.steps.length) {
+<div class="card__container">
+  <div class="card__header">
+    <h3>{{ cardHeading }}</h3>
+    @if (statusBadges[approval.status]; as badge) {
+    <span class="status__badge" [attr.data-tone]="badge.tone">
+      {{ badge.label }}
+    </span>
+    }
+  </div>
+  <div class="progress">
+    <span>
+      {{ getApprovedCount(approval.steps) }} of {{ approval.steps.length }}
+      approved
+    </span>
+    <div class="progress__track">
+      <div
+        class="progress__fill"
+        [style.width.%]="getProgress(approval.steps)"
+      ></div>
+    </div>
+  </div>
+  <ol class="timeline">
+    @for (step of expanded ? approval.steps : approval.steps.slice(0, 1); track
+    $index) {
+    <li class="timeline__step" [attr.data-state]="step.state">
+      <span class="timeline__marker">
+        @if (step.state === 'approved') {
+        <i class="pi pi-check"></i>
+        } @else if (step.state === 'rejected') {
+        <i class="pi pi-times"></i>
+        } @else { {{ step.initials }} }
+      </span>
+      <div class="timeline__body">
+        <div class="timeline__title">
+          <span class="name">{{ step.name }}</span>
+          @if (step.isYou) {
+          <span class="tag tag__you">You</span>
+          } @if (step.slaInHours) {
+          <span class="tag">SLA {{ step.slaInHours }}h</span>
+          } @if (step.respondedAt) {
+          <span class="date">
+            {{ moment.utc(`${step.respondedAt}`).local().format('MMM DD, YYYY
+            h:mm A') }}
+          </span>
+          }
+        </div>
+        @if (step.caption) {
+        <p class="caption">{{ step.caption }}</p>
+        } @if (step.reason) {
+        <blockquote class="reason">{{ step.reason }}</blockquote>
+        }
+      </div>
+    </li>
+    }
+  </ol>
+  @if (approval.steps.length > 1) {
+  <button
+    type="button"
+    class="toggle"
+    [attr.aria-expanded]="expanded"
+    (click)="expanded = !expanded"
+  >
+    {{ expanded ? 'Show less' : 'Show all ' + approval.steps.length + '
+    approvers' }}
+    <i
+      class="pi"
+      [class.pi-chevron-up]="expanded"
+      [class.pi-chevron-down]="!expanded"
+    ></i>
+  </button>
+  }
+</div>
+} } @else if (loading$ | async) {
+<div class="card__container">
+  <p-skeleton width="9rem" height="1.1rem" />
+  @for (row of skeletonRows; track row) {
+  <div class="skeleton__row">
+    <p-skeleton shape="circle" size="2rem" />
+    <div class="skeleton__text">
+      <p-skeleton width="60%" height="0.8rem" />
+      <p-skeleton width="40%" height="0.65rem" />
+    </div>
+  </div>
+  }
+</div>
+}

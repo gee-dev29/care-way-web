@@ -1,0 +1,21 @@
+<ui-page-body>
+  <div class="table__head">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">Approval Route</h2>
+    </div>
+  </div>
+  <div class="mt-2">
+    <back-office-approval-route-card
+      [approvalRouteDetails]="approvalRouteDetails$ | async"
+      (editAction)="edit($event)"
+    ></back-office-approval-route-card>
+  </div>
+</ui-page-body>

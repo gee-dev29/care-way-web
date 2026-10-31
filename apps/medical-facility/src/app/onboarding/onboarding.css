@@ -1,0 +1,256 @@
+.page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  background-color: #f4f5fe;
+  min-height: 100vh;
+}
+
+ion-card {
+  margin: 0px !important;
+  height: 129px;
+  --background: #d7dfea;
+  border-radius: 14px;
+  position: relative;
+}
+
+ion-card ion-text {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.contentFlex {
+  width: 57px;
+  height: 57px;
+  background-color: #bfc9d5;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-icon {
+  font-size: 24px;
+}
+
+ion-checkbox {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  --checkbox-background-checked: transparent !important;
+  --border-color-checked: #056e26 !important;
+  --checkmark-color: #056e26 !important;
+}
+
+.container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  padding: 10px 0;
+  gap: 1rem;
+  /* height: 60vh; */
+}
+
+.ion-padding {
+  padding: 25px !important;
+  margin-top: 50px;
+}
+
+.forgot__password {
+  margin-top: 20px;
+}
+
+::ng-deep ion-item {
+  margin-bottom: 10px !important;
+  --background: var(
+    --ion-item-background,
+    var(--ion-background-color, transparent)
+  );
+}
+
+a {
+  text-decoration: none;
+}
+
+.bts {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ion-item {
+  padding-left: 0px !important;
+}
+
+.ion-padding p {
+  color: #666666;
+  margin-top: 0px;
+  font-size: 14px;
+}
+
+.ion-padding h1 {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.label {
+  text-align: center;
+  margin-top: 20px !important;
+  font-weight: 500;
+}
+
+.mv_down {
+  margin-top: 20px !important;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+:host .item-native {
+  margin: 0px !important;
+  padding-left: 0px !important;
+}
+.centeralized {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.01), 0 6px 6px rgba(0, 0, 0, 0.01);
+  border-radius: 12px;
+  background: white;
+}
+.justify-left {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.cursor {
+  cursor: pointer;
+}
+
+:host .item-native {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+h1,
+p {
+  color: black;
+}
+
+ion-img {
+  width: 40% !important;
+}
+
+.block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  overflow-y: auto;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  justify-content: space-between;
+}
+.icon-con {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  padding-top: 8px;
+  border-radius: 10px;
+}
+
+.acct-box {
+  position: relative;
+  padding: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  border-radius: 15px;
+  font-weight: 600;
+  text-align: center;
+  color: #1f2937;
+  cursor: pointer;
+  background-color: #f6f6f6;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.acct-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.acct-box.active {
+  outline: 2px solid #2563eb;
+}
+
+.acct-checkbox {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  pointer-events: none;
+}
+
+.acct-text {
+  padding: 0 10px;
+  font-weight: 500;
+  width: 70%;
+  font-size: 18px;
+}
+
+ion-modal {
+  --height: auto;
+}
+
+/* @media (min-width: 401px) {
+  .page {
+    margin-top: 80px;
+  }
+} */
+/* 
+@media (min-width: 500px) {
+  .page {
+    overflow-y: auto;
+    padding-top: 45%;
+  }
+} */
+
+/* @media (min-width: 800px) {
+  .page {
+    overflow-y: auto;
+    padding-top: 0%;
+  }
+} */
+/* 
+@media (max-width: 375px) {
+  .page {
+    overflow-y: auto;
+  }
+  .center {
+    margin-top: 45%;
+  }
+  .container {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 365px) {
+  .center {
+    margin-top: 45%;
+  }
+} */

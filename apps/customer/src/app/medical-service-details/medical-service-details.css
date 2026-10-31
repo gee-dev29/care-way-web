@@ -1,0 +1,194 @@
+#background-content {
+  background: #f9fffa !important;
+}
+#medical-service-details {
+  margin-top: 80px !important;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.header ion-icon {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #121212;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.summary-card {
+  background: #307d3d;
+  border-radius: 18px;
+  padding: 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.summary-row {
+  display: flex;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.summary-label {
+  color: #d7ecda;
+}
+
+.summary-value {
+  font-weight: 600;
+}
+
+.details-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 4px 20px;
+  margin-bottom: 16px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 15px;
+}
+
+.details-card .detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  color: #111827;
+}
+
+.detail-value {
+  color: #111827;
+  font-weight: 500;
+}
+
+.cost-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 15px;
+}
+
+.cost-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #111827;
+}
+
+.cost-icon {
+  font-size: 18px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e7f6e9;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0 32px;
+}
+
+.total-label,
+.total-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: #307d3d;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 24px;
+}
+
+ion-modal#payment-confirmation-modal {
+  --width: 90%;
+  --max-width: 340px;
+  --height: auto;
+  --border-radius: 20px;
+  --box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  --backdrop-opacity: 0.45;
+}
+
+.payment-confirm-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px 20px;
+  text-align: center;
+}
+
+.bell-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fdecd1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.bell-icon ion-icon {
+  font-size: 26px;
+  color: #f3951f;
+}
+
+.confirm-heading {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.4;
+  margin: 0 0 24px;
+}
+
+.confirm-btn {
+  width: 100%;
+  border: 1.5px dashed #307d3d;
+  border-radius: 10px;
+  padding: 14px;
+  background: transparent;
+  color: #307d3d;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.cancel-btn {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #307d3d;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 12px;
+}

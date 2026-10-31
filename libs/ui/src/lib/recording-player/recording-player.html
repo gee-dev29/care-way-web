@@ -1,0 +1,12 @@
+<div class="video__player">
+  @if(closeVideoIcon){
+  <ion-icon (click)="closeVideo()" class="close__icon" name="close"></ion-icon>
+  }
+  <video
+    #videoPlayer
+    class="video-js vjs-default-skin vjs-big-play-centered"
+    controls
+    preload="auto"
+    playsinline
+  ></video>
+</div>

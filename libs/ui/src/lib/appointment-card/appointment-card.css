@@ -1,0 +1,182 @@
+.appointment-card {
+  min-width: 260px;
+  background: #f6f6f6;
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.appointment-card .cardTitle {
+  font-size: 16px;
+  color: #121212;
+  font-weight: 500;
+}
+
+.apptTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #6f786f;
+  margin-top: 2px;
+}
+
+.status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f5a623;
+}
+
+.status.confirmed .dot,
+.status.joined .dot {
+  background: #2c7a3f;
+}
+
+.apptMeta {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+  color: #6f786f;
+  font-size: 12px;
+  font-weight: 500;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.apptMeta .metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+ion-icon {
+  font-size: 20px;
+  color: var(--primary-color) !important;
+}
+
+.label {
+  margin-top: 12px;
+  color: #1f7a3f;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.time {
+  font-size: 16px;
+  color: #6f786f;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.complaint {
+  margin-top: 6px;
+  font-size: 16px;
+  color: #121212;
+  line-height: 1.35;
+}
+
+.cardSub {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #6f786f;
+}
+
+.btnRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.member-name {
+  font-weight: 500;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  padding-bottom: 10px;
+  justify-content: space-between;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.pill {
+  height: 35px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #9aa39a;
+  background: #fff;
+  color: #121212;
+  font-size: 14px;
+}
+
+.pill.active {
+  background: #2c7a3f;
+  border-color: #2c7a3f;
+  color: #fff;
+}
+
+.joinBtn {
+  margin-left: auto;
+  height: 34px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #2c7a3f;
+  background: #2c7a3f;
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.btnSolid {
+  height: 38px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid #2c7a3f;
+  background: #2c7a3f;
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.btnOutline {
+  height: 38px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid #2c7a3f;
+  background: transparent;
+  color: #2c7a3f;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.chev {
+  margin-left: auto;
+  font-size: 18px;
+  color: #6f786f;
+  flex-shrink: 0;
+  align-self: center;
+}

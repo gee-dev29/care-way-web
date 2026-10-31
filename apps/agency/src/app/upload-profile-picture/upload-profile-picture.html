@@ -1,0 +1,16 @@
+<ion-content id="background-content" fullscreen>
+    
+  <div id="upload" class="ion-padding">
+        <ui-upload-component
+      [heading]="'Upload Picture'"
+      [label]="'Save Image'"
+      [api]="api"
+      [referencedDocumentId]="referencedDocumentId"
+      [route]="route"
+      (back)="goback($event)"
+    ></ui-upload-component>
+        
+    <div class="end"></div>
+      
+  </div>
+</ion-content>

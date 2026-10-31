@@ -1,0 +1,81 @@
+.daily-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6% 4%;
+    background: #fbfffc;
+    border: 2px solid #e6f4e9;
+    border-radius: 30px;
+    color: #101828;
+    margin-bottom: 20px;
+  }
+  
+  .daily-header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .daily-title {
+    display: flex;
+    align-items: center;
+    gap: 42px;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  
+  
+  
+  .dose-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+  
+  .dose-item {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  
+  .dose-text {
+    font-size:20px;
+    font-weight: 600;
+  }
+  
+  .time-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    width: 150px;
+    height: 40px;
+    background: #e9f8ec;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .h2{
+    font-size: 26px;
+    font-weight: 500;
+  }
+  .date-row {
+    display: flex;
+    align-items: center;
+    gap: 36px;  
+    font-size: 25px;
+    font-weight: 400;
+  }
+
+  
+  .card-divider {
+    width: 100%;
+    height: 2px;
+    margin-top: 10px;
+    background: #e6e9e7;
+  }
+  
+  .instruction {
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 400;
+  }

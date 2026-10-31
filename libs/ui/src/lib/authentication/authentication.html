@@ -1,0 +1,16 @@
+<div class="auth-container">
+  <div class="auth-left" [style.--bg-image]="'url(' + leftImage + ')'"></div>
+  <div class="auth-right" [ngClass]="{ 'long-form': isLongForm }">
+    <div class="auth-card">
+      <div class="center">
+        <ion-img src="/logo/healbridge.svg" alt="HealBridge"></ion-img>
+      </div>
+      <p class="module">Back-Office</p>
+      <h2 class="title">{{ title }}</h2>
+      @if (subtitle) {
+      <p class="subtitle">{{ subtitle }}</p>
+      }
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+
+<ion-content fullscreen>
+
+<form class="ion-padding" [formGroup]="form">
+  <ion-text color="black">
+    @if (edit) {
+    <h1>Update Rider License Details</h1>
+    } @else {
+    <h1>Rider License Details</h1>}
+  </ion-text>
+  <div class="container">
+    <ui-input [label]="'License ID'" [control]="licenseNumber"></ui-input>
+    
+    <ui-input-calendar
+      [control]="issueDate"
+      (emitDate)="calculateDate()"
+      [min]="1900-01-01"
+      [label]="'License Issue Date'"
+    ></ui-input-calendar>
+    <ui-input-calendar
+      [max]="max"
+      [min]="form.value.issueDate"
+      [control]="expiryDate"
+      [label]="'License Expiry Date'"
+    ></ui-input-calendar>
+  </div>
+
+  <div class="bts">
+    <ui-button
+      [label]="label"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [loading]="loading"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      [disabled]="loading || (!form.valid)"
+      (Click)="proceed()"
+    ></ui-button>
+  </div>
+</form>
+</ion-content>

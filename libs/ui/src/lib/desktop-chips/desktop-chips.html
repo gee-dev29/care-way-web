@@ -1,0 +1,15 @@
+<p-floatlabel variant="on">
+  <div class="form__group">
+    <span class="p-float-label">
+      <p-autoComplete
+        [formControl]="control"
+        [multiple]="true"
+        [typeahead]="false"
+        [addOnBlur]="false"
+        (keydown)="onChipKeydown($event)"
+        fluid
+      ></p-autoComplete>
+      <label htmlFor="chips">{{ label }}</label>
+    </span>
+  </div>
+</p-floatlabel>

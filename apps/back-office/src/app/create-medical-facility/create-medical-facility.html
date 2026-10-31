@@ -1,0 +1,53 @@
+<ui-page-body>
+  <div class="page">
+    <div>
+        <h3>Create Medical Facility</h3>
+    </div>
+      <form [formGroup]="form">
+        <ui-form-body [columns]="'split'" class="form__body">
+          <ui-desktop-input
+            [type]="'text'"
+            [label]="'Facility Name'"
+            [control]="name"
+            [size]="'large'"
+          ></ui-desktop-input>
+          <ui-desktop-input
+            [type]="'phone'"
+            [label]="'Phone Number'"
+            [control]="phoneNumber"
+            [size]="'large'"
+          ></ui-desktop-input>
+        <ui-desktop-input
+          [type]="'email'"
+          [label]="'Email Address'"
+          [control]="email"
+          [size]="'large'"
+        ></ui-desktop-input>
+           <ui-desktop-input
+            [label]="'State'"
+            [type]="'text'"
+            [control]="state"
+            [size]="'large'"
+          ></ui-desktop-input>
+          <div class="grouped__btn">
+            <ui-desktop-button
+              [label]="'Previous'"
+              [width]="'full'"
+              [size]="'large'"
+              (Click)="back()"
+            ></ui-desktop-button>
+            <ui-desktop-button
+              [label]="signupLabel"
+              [width]="'full'"
+              [primary]="true"
+              [size]="'large'"
+              [loading]="loading"
+              [disabled]="loading || (!form.valid)"
+              (Click)="next()"
+            ></ui-desktop-button>
+          </div>
+        </ui-form-body>
+      </form>
+  
+  </div>
+</ui-page-body>

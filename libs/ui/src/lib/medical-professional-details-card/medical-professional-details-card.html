@@ -1,0 +1,51 @@
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>{{cardHeading}}</h3>
+      </div>
+    </div>
+    <div class="content__bottom">
+      @if (medicalProfessional$ | async; as medicalProfessional) {
+      <div class="content__bottom">
+        @if (medicalProfessional.firstName) {
+        <div class="content__body">
+          <p>First Name</p>
+          <h5>{{ medicalProfessional.firstName }}</h5>
+        </div>
+        } @if (medicalProfessional.lastName) {
+        <div class="content__body">
+          <p>Last Name</p>
+          <h5>{{ medicalProfessional.lastName }}</h5>
+        </div>
+        } @if (medicalProfessional.email) {
+        <div class="content__body">
+          <p>Email Address</p>
+          <h5>{{ medicalProfessional.email }}</h5>
+        </div>
+        } @if (medicalProfessional.phoneNumber) {
+        <div class="content__body">
+          <p>Phone Number</p>
+          <h5>{{ medicalProfessional.phoneNumber }}</h5>
+        </div>
+        } @if (medicalProfessional.gender) {
+        <div class="content__body">
+          <p>Gender</p>
+          <h5>{{ medicalProfessional.gender }}</h5>
+        </div>
+        } @if (medicalProfessional.cadre) {
+        <div class="content__body">
+          <p>Cadre</p>
+          <h5>{{ medicalProfessional.cadre }}</h5>
+        </div>
+        } @if (medicalProfessional.specializationName) {
+        <div class="content__body">
+          <p>Specialization</p>
+          <h5>{{ medicalProfessional.specializationName | titlecase}}</h5>
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</div>

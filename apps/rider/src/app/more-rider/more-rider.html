@@ -1,0 +1,50 @@
+<div class="profile-content">
+  <div class="title">
+    <h2>Profile</h2>
+  </div>
+
+  <div tabindex="" (keyup)="upload()" (click)="upload()" class="avatar-wrapper">
+    @if (profileInfoService?.picture!==null) {
+    <div class="avatar-border">
+      <ion-img class="avatar" [src]="profileInfoService?.picture"> </ion-img>
+    </div>
+    } @else {
+    <ion-avatar class="avatar-border text__avater">
+      <span
+        >{{profileInfoService.name[0]}} {{profileInfoService.name.split('
+        ')[1][0]}}
+      </span>
+    </ion-avatar>
+    }
+
+    <h3 class="name">{{profileInfoService?.name}}</h3>
+    <p class="verified">Verified</p>
+  </div>
+
+  <div class="menu-list">
+    <div
+      class="menu-row"
+      tabindex="0"
+      (keydown.enter)="goTo('profile')"
+      (click)="goTo('profile')"
+    >
+      <div class="right">
+        <ion-icon src="/logo/profile-icon.svg"></ion-icon>
+        <span>Profile</span>
+      </div>
+      <ion-icon class="end-icon" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+    <div
+      class="menu-row mobile-header"
+      tabindex="0"
+      (keydown.enter)="logout()"
+      (click)="logout()"
+    >
+      <div class="right">
+        <ion-icon src="/logo/logout.svg"></ion-icon>
+        <span>Log out</span>
+      </div>
+    </div>
+  </div>
+</div>

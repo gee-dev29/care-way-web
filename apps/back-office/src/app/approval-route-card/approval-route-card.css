@@ -1,0 +1,85 @@
+.card__container {
+  width: clamp(350px, 45vw, 540px);
+  padding: clamp(20px, 4.5vw, 40px);
+  border-radius: 20px;
+  color: white;
+  background-color: #327f40;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(237, 245, 239, 0.7);
+}
+
+.card__containerSmall {
+  width: clamp(350px, 45vw, 540px);
+  padding: clamp(20px, 3.5vw, 30px) clamp(20px, 4.5vw, 30px);
+  border-radius: 14px;
+  color: black;
+  background-color: #f6f6f6;
+}
+
+.content__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  cursor: pointer;
+  color: white;
+}
+
+.content__top {
+  display: grid;
+  grid-template-columns: 9fr 3fr;
+  padding-bottom: clamp(15px, 4.5vw, 30px);
+}
+
+.content__bottom {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+
+.riskDetail {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.heading {
+  font-size: 12px;
+  margin: 0 0 6px;
+  opacity: 0.9;
+}
+
+.detail {
+  font-size: 14px;
+  margin: 0;
+  word-break: break-word;
+}
+
+.approver_heading {
+  font-size: 12px;
+  margin: 0 0 6px;
+}
+
+.approver_detail {
+  font-size: 14px;
+  margin: 0;
+  word-break: break-word;
+}
+
+.title {
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+}
+
+h5 {
+  word-break: break-word;
+}
+
+@media (max-width: 420px) {
+  .riskDetail {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

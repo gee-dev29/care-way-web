@@ -1,0 +1,28 @@
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>{{facilityType}} Patient Card Type Details</h3>
+      </div>
+    </div>
+    <div class="content__bottom">
+      @if (patientCardType$ | async; as cards) { @if (cards?.length === 0) {
+      <h5 class="empty">No Patient Card Type Details Added Yet.</h5>
+      } @for (card of cards; track card.hospitalId) {
+      <div class="content__body">
+        <p>Card Name</p>
+        <h5>{{ card.cardName }}</h5>
+      </div>
+      <div class="content__body">
+        <p>Card Fee</p>
+        <h5>{{ card.cardFee }}</h5>
+      </div>
+      <div class="content__body">
+        <p>Membership Limit</p>
+        <h5>{{ card.membershipLimit }}</h5>
+      </div>
+
+      } }
+    </div>
+  </div>
+</div>

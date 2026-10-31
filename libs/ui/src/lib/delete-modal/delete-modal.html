@@ -1,0 +1,27 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<i [ngStyle]="{ color: color }" class="pi pi-trash" (click)="openModal()"></i>
+<p-dialog
+  [(visible)]="visibility"
+  [modal]="true"
+  [style]="{ width: '30vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="modal">
+    <i class="pi pi-exclamation-triangle" data-icon="warning"></i>
+    <div class="warning">{{ message }}</div>
+    <div class="grouped__btn">
+      <ui-desktop-button
+        [label]="'Yes'"
+        [size]="'large'"
+        (Click)="continue()"
+      ></ui-desktop-button>
+      <ui-desktop-button
+        [label]="'No'"
+        [size]="'large'"
+        (Click)="cancel()"
+      ></ui-desktop-button>
+    </div>
+  </div>
+</p-dialog>

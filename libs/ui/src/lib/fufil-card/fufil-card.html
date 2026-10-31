@@ -1,0 +1,46 @@
+<div class="cost-card">
+  @if (header) {
+
+  <div class="header-row">
+    <p>Orders to Fulfil</p>
+
+    <p tabindex="" (keyup.enter)="viewAll()" (click)="viewAll()">View all</p>
+  </div>
+  }
+
+  <div
+    class="card-box"
+    [style.background]="bg"
+    [style.border]="bdColor"
+    tabindex="0"
+    (keyup.enter)="viewIt.emit(order)"
+    (click)="viewIt.emit(order)"
+  >
+    <div class="header-row"></div>
+
+    <div class="header-row">
+      <div class="user">{{ order?.address?.creator?.name }}</div>
+
+      <div class="status-row">
+        <span class="pending">{{order?.status}}</span>
+      </div>
+    </div>
+    <p class="sub__header">#{{order?.orderCode}}</p>
+
+    <div class="header-row2">
+      <div class="time">
+        <ion-img src="/icons/clock2.svg"></ion-img>
+        <span
+          >{{ moment.utc(order?.address?.creator?.date).local().fromNow()
+          }}</span
+        >
+      </div>
+      <div class="request-arrow" [style.color]="'#000'">
+        <ion-icon
+          name="chevron-forward-outline"
+          class="forward-icon"
+        ></ion-icon>
+      </div>
+    </div>
+  </div>
+</div>

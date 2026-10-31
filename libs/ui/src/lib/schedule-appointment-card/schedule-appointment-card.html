@@ -1,0 +1,62 @@
+<div class="card__wrapper">
+  <div>
+    <div tabindex="" (keyup)="routeTo()" (click)="routeTo()">
+      <div class="top">
+        <div class="left__top">
+          <ion-avatar>
+            <ion-img src="images/dr.Olarenwaju.svg"></ion-img>
+          </ion-avatar>
+        </div>
+        <div class="right__top">
+          <h5>Dr. Olanrewaju Chuckwueze</h5>
+          <p>Cardiologist</p>
+        </div>
+      </div>
+      <div class="middle">
+        <div class="midddle__content">
+          <ion-img src="icons/blue-calendar.svg"></ion-img>
+          <p class="date">12 Nov, 12:00 - 12:30PM</p>
+        </div>
+        <div class="midddle__content py">
+          <ion-img src="icons/blue-calendar.svg"></ion-img>
+          <p class="date">{{label}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div>
+        <div class="btn__one">
+          @if(label === 'Virtual Visit' && status === 'Pending' || status ===
+          'Draft' ){
+          <div
+            tabindex=""
+            (keyup)="join()"
+            (click)="join()"
+            class="btn__wrpper"
+          >
+            <ion-img class="video__icon" src="/icons/video-icon.svg"></ion-img>
+            <p>Join</p>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  @if(status === 'Completed'){
+  <div class="btnFollow">
+    <ui-button
+      (Click)="continueTwo()"
+      [label]="buttonLabelOne"
+      [width]="'fit'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [backgroundColor]="'dark'"
+      [showImage]="false"
+    ></ui-button>
+    <div tabindex="" (keyup)="watch()" (click)="watch()" class="extend">
+      <ion-img class="video__icon" src="/icons/video-icon.svg"></ion-img>
+      <p>Watch</p>
+    </div>
+  </div>
+  }
+</div>

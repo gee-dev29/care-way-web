@@ -1,0 +1,20 @@
+ion-datetime {
+  --background: #e7f6e9;
+  --background-rgb: #e7f6e9;
+  border-radius: 10px;
+  --wheel-highlight-background: #f9fffa;
+  --wheel-highlight-border-radius: 48px;
+  min-width: 100%;
+  height: 130px !important;
+}
+
+ion-datetime::part(wheel-item) {
+  color: #818181;
+  font-size: 1.2rem;
+}
+
+ion-datetime::part(wheel-item active) {
+  font-weight: 500;
+  color: #160904;
+  font-size: 1.2rem;
+}

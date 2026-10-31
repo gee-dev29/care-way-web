@@ -1,0 +1,64 @@
+@if (!transaction) {
+<div class="header">
+  <ion-skeleton-text
+    animated
+    style="width: 40%; height: 14px"
+  ></ion-skeleton-text>
+  <ion-skeleton-text
+    animated
+    style="width: 20%; height: 14px"
+  ></ion-skeleton-text>
+</div>
+<div class="order-card skeleton-card">
+  <div class="order-content">
+    <ion-skeleton-text
+      animated
+      style="width: 50%; height: 14px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 40%; height: 14px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 60%; height: 12px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 35%; height: 12px"
+    ></ion-skeleton-text>
+  </div>
+  <div class="order-arrow">
+    <ion-skeleton-text
+      animated
+      style="width: 20px; height: 20px"
+    ></ion-skeleton-text>
+  </div>
+</div>
+} @else { @if (title) {
+<div class="header">
+  <div>{{ title }}</div>
+  <div tabindex="" (keyup.enter)="viewAll()" (click)="viewAll()">View all</div>
+</div>
+}
+<div
+  class="order-card"
+  tabindex="0"
+  (keyup.enter)="viewIt.emit(transaction)"
+  (click)="viewIt.emit(transaction)"
+  [style.background]="background"
+  [style.color]="background ? '#000':'#ffffff'"
+>
+  <div class="item-left">#{{ transaction?.name }}</div>
+  <div class="item-right">
+    {{ transaction?.costSummary?.totalCost | currency:"NGN" }}
+  </div>
+  <div class="item-left">
+    {{ moment(transaction?.creator?.date).local().fromNow() }}
+  </div>
+  <div class="item-right status">{{ transaction?.status }}</div>
+  <div class="arrow">
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </div>
+</div>
+}

@@ -1,0 +1,102 @@
+<ui-page-body>
+  <div class="grouped__btn">
+    <img
+      class="left-arrow-icon"
+      (click)="back()"
+      src="icons/left-arrow-black.svg"
+      alt=""
+    />
+    <h2 class="title">Customer</h2>
+  </div>
+  <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+  <div class="ml-1">
+    @if (activeTab !== 0) {
+    <ui-page-highlight
+      [primaryDetailTitle]="'Customer:'"
+      [primaryDetail]="userName"
+      [secondaryDetailTitle]="'Email:'"
+      [secondaryDetail]="userEmail"
+    ></ui-page-highlight
+    >} @if (activeTab === 0) {
+    <div>
+      <ui-customer-details-card
+        [cardHeading]="'Customer Details'"
+        [customer$]="customer$"
+      ></ui-customer-details-card>
+    </div>
+    } @if (activeTab === 1) {
+    <back-office-list-members
+      [members$]="members$"
+      [totalRecords]="membersTotalRecords"
+    ></back-office-list-members>
+    } @if (activeTab === 2) { @if ((members$ | async)) {
+    <div class="mt-2">
+      <ui-tab-secondary
+        [tabs]="vitalTabs"
+        (tabChange)="vitalActiveTab = $event"
+      ></ui-tab-secondary>
+      @if (vitalActiveTab === 0) {
+      <back-office-list-blood-pressure
+        [bloodPressure$]="bloodPressure$"
+        [totalRecords]="bloodPressureTotalRecords"
+      ></back-office-list-blood-pressure>
+      } @if (vitalActiveTab === 1) {
+      <back-office-list-temperature
+        [temperature$]="temperature$"
+        [totalRecords]="temperatureTotalRecords"
+      ></back-office-list-temperature>
+      } @if (vitalActiveTab === 2) {
+      <back-office-list-glucose
+        [glucose$]="glucose$"
+        [totalRecords]="glucoseTotalRecords"
+      ></back-office-list-glucose>
+      }@if (vitalActiveTab === 3) {
+      <back-office-list-weight
+        [weight$]="weight$"
+        [totalRecords]="weightTotalRecords"
+      ></back-office-list-weight>
+      }@if (vitalActiveTab === 4) {
+      <back-office-list-height
+        [height$]="height$"
+        [totalRecords]="heightTotalRecords"
+      ></back-office-list-height>
+      }@if (vitalActiveTab === 5) {
+      <back-office-list-oxygen-saturation
+        [oxygenSaturation$]="oxygenSaturation$"
+        [totalRecords]="oxygenSaturationTotalRecords"
+      ></back-office-list-oxygen-saturation>
+      }
+    </div>
+    } } @if (activeTab === 3 && (members$ | async)) {
+    <div>
+      <back-office-order-table
+        [memberId]="selfMemberId"
+      ></back-office-order-table>
+    </div>
+    } @if (activeTab === 4 && (members$ | async)) {
+    <div>
+      <back-office-appointment-table
+        [showProfessionalName]="true"
+        [showPatient]="false"
+        [memberId]="selfMemberId"
+        (viewAppointment)="viewAppointmentDetails($event)"
+      ></back-office-appointment-table>
+    </div>
+    } @if (activeTab === 5 && (members$ | async)) {
+    <div class="mt-2">
+      <ui-tab-secondary
+        [tabs]="serviceRequestTabs"
+        (tabChange)="onServiceRequestTabChange($event)"
+      ></ui-tab-secondary>
+      <back-office-service-request-table
+        [connectedServiceRequests$]="serviceRequests$"
+        [totalRecords]="serviceRequestsTotalRecords"
+        [referralType]="activeReferralType"
+        [showAccept]="false"
+        [isSkeleton]="true"
+        [showFacilityName]="false"
+      ></back-office-service-request-table>
+    </div>
+    }
+  </div>
+</ui-page-body>

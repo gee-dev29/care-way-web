@@ -1,0 +1,36 @@
+<ion-content id="background-content" fullscreen>
+  <div id="order" class="ion-padding">
+    <div class="head">
+      <div class="pricing-head">
+        <div class="icon">
+          <ion-icon
+            (click)="goBack()"
+            name="chevron-back-outline"
+            size="small"
+          ></ion-icon>
+        </div>
+
+        <ion-text class="pricing-title">Adverse Drug Reaction</ion-text>
+      </div>
+    </div>
+
+    <form [formGroup]="form">
+      <ui-input-textarea [label]="'Description'" [control]="description">
+      </ui-input-textarea>
+    </form>
+    <div class="bts">
+      <ui-button
+        expand="block"
+        [label]="'Save'"
+        [width]="'full'"
+        [size]="'medium'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        (Click)="save()"
+        [backgroundColor]="'#307d3d'"
+        [disabled]="!form.valid"
+        [textColor]="'#FDFDFD'"
+      ></ui-button>
+    </div>
+  </div>
+</ion-content>

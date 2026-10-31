@@ -1,0 +1,74 @@
+<div class="padding" [style.margin-top.px]="module ? 0 : 20">
+  <ion-header id="prescription">
+    <div class="pricing-head">
+      <ion-icon
+        (click)="cancel()"
+        name="chevron-back-outline"
+        size="small"
+      ></ion-icon>
+      <ion-text class="pricing-title">Add SpO₂</ion-text>
+    </div>
+  </ion-header>
+
+  <ion-list>
+    @if(module){
+    <p class="date">Select Date</p>
+    <ui-date-picker [control]="date"></ui-date-picker>
+    <p class="date two">Select Time</p>
+    <ui-time-picker [control]="time"></ui-time-picker>
+    }
+
+    <div class="box">
+      <div class="height-box">
+        <ion-picker>
+          <ion-picker-column
+            [value]="currentValue"
+            (ionChange)="onIonChange($event)"
+          >
+            @for (opt of spo; track opt.value) {
+            <ion-picker-column-option [value]="opt.value">
+              {{ opt.label }}
+            </ion-picker-column-option>
+            }
+          </ion-picker-column>
+        </ion-picker>
+
+        <div class="toggle-row">
+          <p class="cm-label">SpO₂</p>
+        </div>
+      </div>
+
+      <div class="height-box">
+        <ion-picker>
+          <ion-picker-column
+            [value]="currentPulse"
+            (ionChange)="onPulseChange($event)"
+          >
+            @for (opt of pulse; track opt.value) {
+            <ion-picker-column-option [value]="opt.value">
+              {{ opt.label }}
+            </ion-picker-column-option>
+            }
+          </ion-picker-column>
+        </ion-picker>
+
+        <div class="toggle-row">
+          <p class="cm-label">Pulse</p>
+        </div>
+      </div>
+    </div>
+    <div class="bts">
+      <ui-button
+        [label]="'Save'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        [disabled]="!form.valid"
+        [loading]="loading"
+        (Click)="save()"
+      ></ui-button>
+    </div>
+  </ion-list>
+</div>

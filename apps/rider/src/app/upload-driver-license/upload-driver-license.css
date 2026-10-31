@@ -1,0 +1,30 @@
+.content {
+  padding: 0 4%;
+  margin-top: 35px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 40px 1fr 50px;
+  align-items: center;
+  margin: 50px 0 170px 0;
+}
+
+.left-arrow-icon {
+  cursor: pointer;
+}
+
+.title {
+  text-align: center;
+  margin: 0 !important;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.skip-btn {
+  text-align: right;
+  color: #307d3d;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}

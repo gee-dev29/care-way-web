@@ -1,0 +1,28 @@
+.body__container {
+  background-color: var(--color-pageBody);
+  width: calc(100vw - 260px);
+  margin-left: auto;
+  height: 100%;
+  margin-top: 50px;
+}
+
+.navbar {
+  padding-top: 0.1px;
+}
+
+.body__wrapper {
+  width: clamp(95%, 45vw, 90%);
+  margin: auto;
+  padding: clamp(15px, 4.5vw, 40px);
+}
+
+.backgroundImage img {
+  height: clamp(200px, 45vw, 210px);
+  object-fit: contain;
+  object-position: bottom;
+  position: absolute;
+  right: 100px;
+  bottom: 24px;
+  opacity: 0.5;
+  z-index: -1;
+}

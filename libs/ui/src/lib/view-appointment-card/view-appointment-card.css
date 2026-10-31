@@ -1,0 +1,43 @@
+.card {
+  background: var(--primary-color);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.label {
+  font-size: 15px;
+  color: #000;
+  font-weight: 500;
+  color: white;
+}
+
+.value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e293b;
+  color: white;
+}
+
+.section {
+  margin-top: 12px;
+}
+
+.divide {
+  height: 1px;
+  background: #d5e6db;
+  margin: 12px 0;
+}
+
+p {
+  color: white;
+  font-weight: 600;
+}

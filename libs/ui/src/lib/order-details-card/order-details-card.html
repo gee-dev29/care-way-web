@@ -1,0 +1,68 @@
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>Order Details</h3>
+      </div>
+    </div>
+    @if (orders$ | async; as order) {
+    <div class="content__bottom">
+      <div class="content__bottom">
+        @if (order.orderCode) {
+        <div class="content__body">
+          <p>Order Code</p>
+          <h5>#{{ order.orderCode}}</h5>
+        </div>
+        }  @if (order.referralType) {
+        <div class="content__body">
+          <p>Referral Type</p>
+          <h5>{{ order.referralType}}</h5>
+        </div>
+        } @if(order.memberId){
+        <div class="content__body">
+          <p>Customer</p>
+          <h5>{{ memberName }}</h5>
+        </div>
+
+        } @if (order.costSummary) {
+        <div class="content__body">
+          <p>Item Cost</p>
+          <h5>{{ order.costSummary.itemsCost | currency:'NGN '}}</h5>
+        </div>
+        } @if (order.costSummary) {
+        <div class="content__body">
+          <p>Delivery Fee</p>
+          <h5>{{ order.costSummary.deliveryFee | currency:'NGN '}}</h5>
+        </div>
+        } @if (order.costSummary) {
+        <div class="content__body">
+          <p>Service Charge</p>
+          <h5>{{ order.costSummary.serviceCharge | currency:'NGN '}}</h5>
+        </div>
+        } @if (order.costSummary) {
+        <div class="content__body">
+          <p>Total Cost</p>
+          <h5>{{ order.costSummary.totalCost | currency:'NGN '}}</h5>
+        </div>
+        } @if (order.status) {
+        <div class="content__body">
+          <p>Status</p>
+          <h5>{{ order.status }}</h5>
+        </div>
+        }
+      </div>
+    </div>
+    <div class="content__bottom mt-2">
+      @if(order.address){
+      <div class="content__body">
+        <p>Address</p>
+        <h5>
+          {{order.address.address + ' ' + order.address.city + ' ' +
+          order.address.country}}
+        </h5>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>

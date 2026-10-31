@@ -1,0 +1,194 @@
+<ion-content id="background-content" fullscreen>
+  <div class="page ion-padding">
+    <div class="header">
+      <ion-icon
+        tabindex="0"
+        (keyup.enter)="back()"
+        (click)="back()"
+        class="left__arrow"
+        name="left-arrow"
+      ></ion-icon>
+      <div class="title">Payment Summary</div>
+      <div></div>
+    </div>
+
+    @if (notFound) {
+    <p class="empty">We couldn't find this plan.</p>
+    } @else {
+    <div class="coverage">
+      <p class="coverage__label">SELECTED COVERAGE</p>
+      <div class="coverage__row">
+        <p class="coverage__name">{{ product?.productName }}</p>
+        <p class="coverage__price">NGN {{ product?.price | amountFormat }}</p>
+      </div>
+      <p class="coverage__meta">{{ coverageSubtitle }}</p>
+    </div>
+
+    <div class="panel">
+      <div class="stats">
+        <div class="stat">
+          <p class="stat__label">Maximum No. of Members</p>
+          <p class="stat__value">{{ product?.memberCount }}</p>
+        </div>
+        <div class="stat">
+          <p class="stat__label">Waiting Period</p>
+          <p class="stat__value">{{ product?.waitingPeriods }}</p>
+        </div>
+      </div>
+
+      @if (inclusions.length) {
+      <p class="section">Inclusions</p>
+      <div class="chips">
+        @for (inclusion of inclusions; track $index) {
+        <span class="chip">{{ inclusion }}</span>
+        }
+      </div>
+      } @if (exclusions.length) {
+      <p class="section">Exclusions</p>
+      <div class="chips">
+        @for (exclusion of exclusions; track $index) {
+        <span class="chip">{{ exclusion }}</span>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="dates">
+      <div
+        class="date"
+        [class.date--readonly]="mode === 'active'"
+        [attr.tabindex]="mode === 'checkout' ? 0 : null"
+        (keyup.enter)="openDatePicker()"
+        (click)="openDatePicker()"
+      >
+        <div>
+          <p class="date__label">Start Date</p>
+          <p class="date__value">{{ format(startDate) }}</p>
+        </div>
+        <ion-icon name="calendar-icon"></ion-icon>
+      </div>
+
+      <div class="date date--readonly">
+        <div>
+          <p class="date__label">End Date</p>
+          <p class="date__value">{{ format(endDate) }}</p>
+        </div>
+        <ion-icon name="calendar-icon"></ion-icon>
+      </div>
+    </div>
+
+    <p class="section section--plain">Members</p>
+    <div class="list">
+      @for (member of members; track $index) {
+      <div class="row">
+        @if (member.profilePicture) {
+        <ion-avatar>
+          <img [src]="member.profilePicture" [alt]="member.firstName" />
+        </ion-avatar>
+        } @else {
+        <ion-avatar class="text__avatar">
+          <span>{{ initials(member) }}</span>
+        </ion-avatar>
+        }
+        <div class="middle">
+          <p class="name">{{ member.firstName }} {{ member.lastName }}</p>
+          <p class="meta">
+            {{ member.gender }} @if (member.age !== undefined) { | Age: {{
+            member.age }} } @if (member.bloodGroup) { | Blood Group: {{
+            member.bloodGroup }} }
+          </p>
+        </div>
+        <ion-icon class="check" src="/icons/check.svg"></ion-icon>
+      </div>
+      }
+    </div>
+
+    @if (hospital) {
+    <div class="row row--hospital">
+      <div class="icon">
+        <ion-icon src="/logo/hospitals-white.svg"></ion-icon>
+      </div>
+      <div class="middle">
+        <p class="name">{{ hospital.facilityName }}</p>
+        <p class="meta">{{ location(hospital) }}</p>
+      </div>
+    </div>
+    } @if (mode === 'active' && statusText) {
+    <p class="status" [style.color]="statusTint">{{ statusText }}</p>
+    }
+
+    <div class="actions">
+      @if (showPayAction) {
+      <ui-button
+        [label]="mode === 'checkout' ? 'Proceed to Payment' : 'Complete Payment'"
+        [width]="'full'"
+        [shape]="'round'"
+        [loading]="submitting"
+        [disabled]="submitting"
+        [backgroundColor]="'#317E3D'"
+        [textColor]="'#fff'"
+        (Click)="proceedToPayment()"
+      ></ui-button>
+      @if (mode === 'checkout') {
+      <ui-button
+        [label]="'Ask Family & Friend'"
+        [width]="'full'"
+        [shape]="'round'"
+        [fill]="'outline'"
+        [borderLine]="'#317E3D'"
+        [textColor]="'#317E3D'"
+        (Click)="askFamilyAndFriend()"
+      ></ui-button>
+      } } @else {
+      <ui-button
+        [label]="'Renew Now'"
+        [width]="'full'"
+        [shape]="'round'"
+        [disabled]="!canRenew"
+        [backgroundColor]="canRenew ? '#317E3D' : '#E8EAE8'"
+        [textColor]="canRenew ? '#fff' : '#8A928A'"
+        (Click)="renew()"
+      ></ui-button>
+      @if (renewHint) {
+      <p class="hint">{{ renewHint }}</p>
+      } }
+    </div>
+    }
+  </div>
+
+  <ion-modal
+    [isOpen]="datePickerOpen"
+    (ionModalDidDismiss)="closeDatePicker()"
+    class="date-modal"
+  >
+    <ng-template>
+      <div class="picker">
+        <ion-datetime
+          presentation="date"
+          [(ngModel)]="draftDate"
+          [showDefaultButtons]="false"
+          [ngModelOptions]="{ standalone: true }"
+        ></ion-datetime>
+        <div class="picker__actions">
+          <ui-button
+            [label]="'Cancel'"
+            [width]="'full'"
+            [shape]="'round'"
+            [fill]="'outline'"
+            [borderLine]="'#317E3D'"
+            [textColor]="'#317E3D'"
+            (Click)="closeDatePicker()"
+          ></ui-button>
+          <ui-button
+            [label]="'Done'"
+            [width]="'full'"
+            [shape]="'round'"
+            [backgroundColor]="'#317E3D'"
+            [textColor]="'#fff'"
+            (Click)="confirmDate()"
+          ></ui-button>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>

@@ -1,0 +1,112 @@
+.ion-padding {
+  padding: 25px !important;
+}
+.ion-padding h1 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+.banker{
+  font-size: 16px;
+  font-weight: 700;
+}
+ion-card-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+.contentFlex {
+  width: 72px;
+  height: 72px;
+  background-color: #dcbef0;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ion-icon {
+  font-size: 24px;
+}
+
+ion-checkbox {
+  --checkbox-background-checked: transparent !important;
+  --border-color-checked: #056e26 !important;
+  --checkmark-color: #056e26 !important;
+}
+
+ion-card {
+  margin: 0px !important;
+  height: 71px;
+  --background: var(--ion-icon);
+  border-radius: 20px;
+  margin-bottom: 30px !important;
+}
+
+.bts {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.label {
+  text-align: center;
+  margin-top: 20px !important;
+  font-weight: 500;
+}
+.mv_down {
+  margin-top: 20px !important;
+}
+p {
+  font-size: 16px;
+  margin-top: 0px;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15%;
+}
+
+h1,
+p {
+  color: black;
+}
+p {
+  margin-bottom: 40px;
+}
+ion-img {
+  width: 40% !important;
+}
+.recent {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 1px;
+}
+.left__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+form {
+  margin-bottom: 30%;
+}
+.container {
+  min-height: 60vh;
+  overflow-y: auto;
+  margin-top: 30px;
+}
+.upper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.right ion-text {
+  font-weight: 600;
+}
+

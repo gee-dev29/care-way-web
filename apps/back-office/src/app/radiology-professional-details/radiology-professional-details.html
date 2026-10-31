@@ -1,0 +1,22 @@
+<ui-page-body>
+  <div class="grouped__btn">
+    <img
+      class="left-arrow-icon"
+      (click)="back()"
+      src="icons/left-arrow-black.svg"
+      alt=""
+    />
+    <h2 class="title">Radiology Professional</h2>
+  </div>
+  <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+  <div class="mt-1">
+    @if (activeTab === 0) {
+    <div>
+      <ui-medical-professional-details-card
+        [medicalProfessional$]="radiology$"
+        [cardHeading]="cardHeading"
+      ></ui-medical-professional-details-card>
+    </div>
+    }
+  </div>
+</ui-page-body>

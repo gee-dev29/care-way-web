@@ -1,0 +1,152 @@
+<ion-content id="background-content" fullscreen>
+  <div class="page ion-padding">
+    <div class="header">
+      <ion-icon
+        tabindex="0"
+        (keyup.enter)="back()"
+        (click)="back()"
+        class="left__arrow"
+        name="left-arrow"
+      ></ion-icon>
+      <div class="title">Preferred Hospital</div>
+      <div></div>
+    </div>
+
+    <div class="pills">
+      <button
+        type="button"
+        class="pill"
+        [class.pill--active]="!filterOpen"
+        (click)="showAll()"
+      >
+        All
+      </button>
+      <button
+        type="button"
+        class="pill"
+        [class.pill--active]="filterOpen"
+        (click)="openFilter()"
+      >
+        Filter
+        <ion-icon name="filter-icon"></ion-icon>
+      </button>
+    </div>
+
+    @if (filterOpen) {
+    <div class="filters">
+      <div class="field">
+        <p class="field__label">State</p>
+        <ui-input-drop-down
+          [label]="'Select state'"
+          [control]="stateControl"
+          [options]="options.State"
+          [filter]="options.State.length > 8"
+          (data)="choose('State', $event.value)"
+        ></ui-input-drop-down>
+      </div>
+
+      <div class="field">
+        <p class="field__label">LGA</p>
+        <ui-input-drop-down
+          [label]="'Select LGA'"
+          [control]="lgaControl"
+          [options]="options.LGA"
+          [filter]="options.LGA.length > 8"
+          (data)="choose('LGA', $event.value)"
+        ></ui-input-drop-down>
+      </div>
+
+      <div class="field">
+        <p class="field__label">Ward</p>
+        <ui-input-drop-down
+          [label]="'Select ward'"
+          [control]="wardControl"
+          [options]="options.Ward"
+          [filter]="options.Ward.length > 8"
+          (data)="choose('Ward', $event.value)"
+        ></ui-input-drop-down>
+      </div>
+
+      <div class="field">
+        <p class="field__label">Hospital</p>
+        <ui-input-drop-down
+          [label]="hospitalPlaceholder"
+          [control]="hospitalControl"
+          [options]="hospitalOptions"
+          [key]="'label'"
+          [value]="'value'"
+          [filter]="hospitalOptions.length > 8"
+          (data)="selectByKey($event.value)"
+        ></ui-input-drop-down>
+      </div>
+    </div>
+    } @else {
+    <div class="searchWrap">
+      <ion-searchbar
+        (ionInput)="search($event)"
+        class="search"
+        placeholder="Search"
+      ></ion-searchbar>
+    </div>
+
+    @if (!loaded) {
+    <div class="list">
+      @for (item of skeletons; track $index) {
+      <div class="row">
+        <ion-skeleton-text animated class="iconSkeleton"></ion-skeleton-text>
+        <div class="middle">
+          <ion-skeleton-text
+            animated
+            style="width: 180px; height: 14px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="width: 140px; height: 12px; margin-top: 8px"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+      }
+    </div>
+    } @else if (failed) {
+    <p class="empty">We couldn't load hospitals. Please try again.</p>
+    } @else if (!filtered.length) {
+    <p class="empty">No hospitals match your search.</p>
+    } @else {
+    <ion-radio-group
+      class="list"
+      [value]="selectedKey"
+      (ionChange)="selectByKey($event.detail.value)"
+    >
+      @for (hospital of filtered; track $index) {
+      <div
+        class="row row--hospital"
+        tabindex="0"
+        (keyup.enter)="select(hospital)"
+        (click)="select(hospital)"
+      >
+        <div class="icon">
+          <ion-icon src="/logo/hospitals-white.svg"></ion-icon>
+        </div>
+        <div class="middle">
+          <p class="name">{{ hospital.facilityName }}</p>
+          <p class="meta">{{ location(hospital) }}</p>
+        </div>
+        <ion-radio [value]="key(hospital)"></ion-radio>
+      </div>
+      }
+    </ion-radio-group>
+    } }
+  </div>
+
+  <div class="cta">
+    <ui-button
+      [label]="'Proceed'"
+      [width]="'full'"
+      [shape]="'round'"
+      [disabled]="!canProceed"
+      [backgroundColor]="canProceed ? '#317E3D' : '#D9DDD9'"
+      [textColor]="canProceed ? '#fff' : '#8A928A'"
+      (Click)="proceed()"
+    ></ui-button>
+  </div>
+</ion-content>

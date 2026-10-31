@@ -1,0 +1,103 @@
+<div class="appointments">
+  @if (!isLoading) {
+  <div class="header">
+    <ion-button fill="clear" class="back" (click)="goBack()">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <div class="titleWrap">
+      <div class="sectionTitle">Appointments</div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="searchWrap">
+    <ion-searchbar
+      placeholder="Search"
+      mode="ios"
+      show-clear-button="never"
+      class="search"
+      (ionInput)="onSearch($event)"
+    ></ion-searchbar>
+  </div>
+  <div class="tabs">
+    <button class="pill" [class.active]="activeTab === 'All'" (click)="setTab('All')">All</button>
+    <button class="pill" [class.active]="activeTab === 'Pending'" (click)="setTab('Pending')">Pending</button>
+    <button class="pill" [class.active]="activeTab === 'Assigned'" (click)="setTab('Assigned')">Assigned</button>
+    <button class="pill" [class.active]="activeTab === 'Paid'" (click)="setTab('Paid')">Paid</button>
+    <button class="pill" [class.active]="activeTab === 'Declined'" (click)="setTab('Declined')">Declined</button>
+  </div>
+  <div class="list">
+    @for (appointment of filteredAppointments(); track appointment.appointmentId) {
+    <ui-appointment-card-primary
+      [appointment]="appointment"
+      [statusFn]="getStatus(appointment?.status)"
+      (getStatus)="getStatus($event)"
+      (viewAppointment)="viewAppointment(appointment)"
+      [showPatient]="true"
+    ></ui-appointment-card-primary>
+    } @if (hasMore && !searchTerm.trim()) {
+    <ion-infinite-scroll [disabled]="!hasMore" (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more appointments..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    } @if (totalRecords === 0) {
+    <div class="empty">
+      <div class="empty-icon">
+        <ion-icon name="calendar-outline"></ion-icon>
+      </div>
+      <span class="empty-title">No appointments yet</span>
+      <span class="empty-text">You have no appointments to show.</span>
+    </div>
+    } @if (totalRecords > 0 && filteredAppointments().length === 0) {
+    <div class="empty">
+      <div class="empty-icon">
+        <ion-icon name="search-outline"></ion-icon>
+      </div>
+      <span class="empty-title">No results found</span>
+      <span class="empty-text">
+        Nothing matches "{{ searchTerm.trim() }}". Try a different search.
+      </span>
+    </div>
+    }
+  </div>
+  } @else {
+  <div class="header">
+    <ion-button fill="clear" class="back">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <div class="titleWrap">
+      <ion-skeleton-text animated style="width: 160px; height: 16px"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 140px; height: 12px; margin-top: 6px"></ion-skeleton-text>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="searchWrap">
+    <div class="searchSkeleton">
+      <ion-skeleton-text animated style="width: 100%; height: 44px"></ion-skeleton-text>
+    </div>
+  </div>
+  <div class="tabs">
+    <ion-skeleton-text animated style="width: 92px; height: 40px; border-radius: 999px"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 110px; height: 40px; border-radius: 999px"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 92px; height: 40px; border-radius: 999px"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 110px; height: 40px; border-radius: 999px"></ion-skeleton-text>
+  </div>
+  <div class="list">
+    @for (_ of [1,2,3]; track _) {
+    <div class="card skCard">
+      <div class="topRow">
+        <div class="left">
+          <ion-skeleton-text animated style="width: 120px; height: 14px"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 110px; height: 12px; margin-top: 8px"></ion-skeleton-text>
+        </div>
+        <ion-skeleton-text animated style="width: 80px; height: 12px"></ion-skeleton-text>
+      </div>
+      <div class="infoRow skInfo">
+        <ion-skeleton-text animated style="width: 140px; height: 12px"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 140px; height: 12px"></ion-skeleton-text>
+      </div>
+      <ion-skeleton-text animated style="width: 90px; height: 12px; margin-top: 10px"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 100%; height: 44px; margin-top: 8px"></ion-skeleton-text>
+    </div>
+    }
+  </div>
+  }
+</div>

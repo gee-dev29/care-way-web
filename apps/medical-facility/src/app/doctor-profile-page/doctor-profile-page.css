@@ -1,0 +1,109 @@
+.profile-content {
+  --background: #f9fffa;
+  text-align: center;
+  padding: 25px !important;
+  overflow-y: auto;
+}
+
+.title h2 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #000;
+  margin-top: 90px;
+  letter-spacing: 2px;
+}
+
+.avatar-wrapper {
+  margin-top: 20px;
+}
+.text__avater {
+  background: #6c63ff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.avatar-border {
+  border: 2px solid #307d3d;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.avatar {
+  height: 130px;
+  width: 130px;
+}
+ion-img::part(image) {
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 15px;
+  color: #000;
+}
+
+.verified {
+  color: #19c37d;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 22px;
+}
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 12px;
+}
+
+.menu-row {
+  display: flex;
+  align-items: center;
+  padding: 22px 14px 22px 20px;
+  border-radius: 12px;
+  background: #e7f6e9;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.menu-row ion-icon {
+  font-size: 22px;
+  margin-right: 14px;
+}
+
+.menu-row span {
+  flex: 1;
+  font-size: 16px;
+}
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.end-icon {
+  margin-left: auto;
+  font-size: 20px;
+  color: #9b9b9b;
+}
+
+.danger ion-icon {
+  color: var(--ion-color-danger);
+}
+
+.badge {
+  background: #eee;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}

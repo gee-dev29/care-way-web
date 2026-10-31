@@ -1,0 +1,33 @@
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>{{cardHeading}}</h3>
+      </div>
+    </div>
+    <div class="content__bottom">
+      @if (bank$ | async; as bankDetails) {
+      <div class="content__bottom">
+        @if (bankDetails.bank) {
+        <div class="content__body">
+          <p>Bank Name</p>
+          <h5>{{ bankDetails.bank }}</h5>
+        </div>
+        } @if (bankDetails.accountName) {
+        <div class="content__body">
+          <p>Account Name</p>
+          <h5>{{ bankDetails.accountName }}</h5>
+        </div>
+        } @if (bankDetails.accountNumber) {
+        <div class="content__body">
+          <p>Account Number</p>
+          <h5>{{ bankDetails.accountNumber }}</h5>
+        </div>
+        }
+      </div>
+      } @else {
+      <h5>There are no Bank Details yet</h5>
+      }
+    </div>
+  </div>
+</div>

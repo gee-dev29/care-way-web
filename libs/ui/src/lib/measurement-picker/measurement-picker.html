@@ -1,0 +1,36 @@
+<ion-list >
+  <ion-header id="prescription">
+    <div class="up">
+      <ion-text class="cancel" (click)="cancel()"><p>Cancel</p></ion-text>
+      <ion-text class="title">{{title}}</ion-text>
+      <ion-text class="save" (click)="save()"><p>Save</p></ion-text>
+    </div>
+  </ion-header>
+
+  <ion-list>
+    <div class="container">
+      @if (module) {
+
+        <ui-datetime-picker></ui-datetime-picker>
+      }
+
+      <div class="height-box">
+
+        <ion-picker>
+          <ion-picker-column
+            [value]="currentValue"
+            (ionChange)="onIonChange($event)"
+          >
+            @for (opt of options; track opt.value) {
+            <ion-picker-column-option [value]="currentValue">
+              {{ opt.label }}
+            </ion-picker-column-option>
+            }
+          </ion-picker-column>
+        </ion-picker>
+
+
+      </div>
+    </div>
+  </ion-list>
+</ion-list>

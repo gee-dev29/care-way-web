@@ -1,0 +1,29 @@
+ion-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  box-shadow: none !important;
+}
+
+ion-icon {
+  font-size: 24px;
+}
+
+ion-checkbox {
+  --checkbox-background-checked: transparent !important;
+  --border-color-checked: #056e26 !important;
+  --checkmark-color: #056e26 !important;
+}
+
+ion-card {
+  margin: 0px !important;
+  height: 71px;
+  /* --background: #e7f6e9;  */
+  border-radius: 20px;
+  margin-bottom: 10px !important;
+}
+
+p {
+  font-size: 1rem !important;
+}

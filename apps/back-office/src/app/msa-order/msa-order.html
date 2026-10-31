@@ -1,0 +1,90 @@
+<ui-page-body>
+  <div class="table__head">
+    <h2>MSA Order</h2>
+  </div>
+
+  <div class="mt-1">
+    <p-table
+      #dt1
+      dataKey="msaId"
+      [paginator]="true"
+      [lazy]="true"
+      (onLazyLoad)="load($event)"
+      [rows]="20"
+      [totalRecords]="totalRecords"
+      [value]="msaOrder$ | async"
+      [rowsPerPageOptions]="[20, 50, 100]"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th>Order</th>
+          <th>Customer</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+        <tr>
+          <th></th>
+          <th>
+            <p-columnFilter
+              field="status"
+              matchMode="equals"
+              [showMenu]="false"
+            >
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <div class="dropdown__filter__container">
+                  <ui-input-drop-down
+                    [label]="'Customer'"
+                    [options]="users$ | async"
+                    [key]="'name'"
+                    [showClear]="true"
+                    [filter]="true"
+                    (data)="filterByUser($event)"
+                  ></ui-input-drop-down>
+                  <div class="p-float-label"></div>
+                </div>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter
+              field="status"
+              matchMode="equals"
+              [showMenu]="false"
+            >
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <div class="dropdown__filter__container">
+                  <ui-input-drop-down
+                    [label]="'Status'"
+                    [options]="msaStatuses"
+                    [key]="'text'"
+                    [value]="'text'"
+                    [showClear]="true"
+                    [filter]="true"
+                    (data)="filterByStatus($event)"
+                  ></ui-input-drop-down>
+                  <div class="p-float-label"></div>
+                </div>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-columns="columns">
+        <tr>
+          <td>{{item.dateOfRate | date: 'MMM dd, yyyy'}}</td>
+          <td>{{item.rate}}</td>
+          <td>{{item.status}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</ui-page-body>

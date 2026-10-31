@@ -1,0 +1,58 @@
+<p-table
+  #dt1
+  dataKey="id"
+  [lazy]="true"
+  [paginator]="totalRecords > 0"
+  [rows]="20"
+  [totalRecords]="totalRecords"
+  [rowsPerPageOptions]="[20, 50, 100]"
+  [value]="medicalProducts$ | async"
+  (onLazyLoad)="load($event)"
+>
+  <ng-template #header>
+    <tr>
+      <th>Product Name</th>
+      <th>Product Type</th>
+      <th>Unit Price</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>
+        <p-columnFilter
+          field="productType"
+          matchMode="equals"
+          [showMenu]="false"
+        >
+          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+            <div class="dropdown__filter__container">
+              <ui-input-drop-down
+                [label]="'Product Type'"
+                [options]="productTypes"
+                [key]="'text'"
+                [value]="'text'"
+                [showClear]="true"
+                [filter]="true"
+                (data)="filterByProductType($event)"
+              ></ui-input-drop-down>
+            </div>
+          </ng-template>
+        </p-columnFilter>
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{item.productName}}</td>
+      <td>{{item.productType}}</td>
+      <td>{{item.unitPrice | currency: 'NGN '}}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="7">
+        <div class="empty__table__text">There are no Medical Products yet</div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

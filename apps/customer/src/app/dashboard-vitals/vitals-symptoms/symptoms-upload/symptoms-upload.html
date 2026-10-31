@@ -1,0 +1,15 @@
+<ion-content id="background-content" fullscreen>
+  <div id="upload" id="prescription">
+    <ui-upload-component
+      [heading]="heading"
+      [label]="'Save Symptoms Image'"
+      [api]="api"
+      [referencedDocumentId]="referencedDocumentId"
+      [route]="route"
+      [skipRoute]="skip"
+      (back)="goback($event)"
+      [plus]="true"
+    ></ui-upload-component>
+    <div class="end"></div>
+  </div>
+</ion-content>

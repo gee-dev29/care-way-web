@@ -1,0 +1,127 @@
+<ion-content id="background-content" fullscreen>
+  @if(member$ | async; as member){
+  <div #tabs id="home">
+    <div class="header">
+      <div class="header__container">
+        <a routerLink="/dashboard/all-members">
+          <ion-icon class="left__arrow" name="left-arrow"></ion-icon>
+        </a>
+        <div class="titles">Member Details</div>
+        <div tabindex="" (keyup)="editDetails()" (click)="editDetails()">
+          <ion-icon src="/icons/pencilIcon.svg"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="bottom__header">
+      <div class="profile__wrapper">
+        @if (picture$ | async; as picture) {
+        <ion-avatar>
+          <img [src]="picture" />
+        </ion-avatar>
+        } @else {
+        <ion-avatar class="text__avater">
+          <span>{{member.firstName[0]}} {{member.lastName[0]}}</span>
+        </ion-avatar>
+        }
+      </div>
+      <ion-card class="small__curve">
+        <ion-col class="content__details">
+          <div class="row-item">
+            <p class="text">Name</p>
+            <p class="title">{{member.firstName}} {{member.lastName}}</p>
+          </div>
+          <div class="row-item">
+            <p class="text">Relationship</p>
+            <p class="title">{{member.relationship}}</p>
+          </div>
+          <div class="row-item">
+            <p class="text">Gender</p>
+            <p class="title">{{member.gender}}</p>
+          </div>
+          <div class="row-item">
+            <p class="text">Blood Group</p>
+            <p class="title">{{member.bloodGroup || 'N/A'}}</p>
+          </div>
+        </ion-col>
+      </ion-card>
+    </div>
+  </div>
+  } @else {
+  <div id="home">
+    <div style="padding: 30px 20px 0" class="btn__wrapper">
+      <ion-skeleton-text
+        animated
+        style="width: 150px; height: 20px"
+      ></ion-skeleton-text>
+    </div>
+    <div style="margin-top: 16px" class="bottom__header">
+      <div class="profile__wrapper">
+        <ion-avatar>
+          <ion-skeleton-text
+            animated
+            style="width: 100%; border-radius: 50%"
+          ></ion-skeleton-text>
+        </ion-avatar>
+      </div>
+      <ion-card class="small__curve">
+        <ion-row class="content__details">
+          <ion-col size="6">
+            <ion-skeleton-text
+              animated
+              style="width: 80px; height: 16px; margin: 10px 0 10px"
+            ></ion-skeleton-text>
+            <ion-skeleton-text
+              animated
+              style="width: 120px; height: 16px; margin: 20px 0 10px"
+            ></ion-skeleton-text>
+            <ion-skeleton-text
+              animated
+              style="width: 120px; height: 16px; margin: 20px 0 10px"
+            ></ion-skeleton-text>
+            <ion-skeleton-text
+              animated
+              style="width: 120px; height: 16px; margin: 20px 0 10px"
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-skeleton-text
+              animated
+              style="width: 80px; height: 16px; margin: 5px 0 10px 40px"
+            ></ion-skeleton-text>
+            <ion-skeleton-text
+              animated
+              style="width: 40px; height: 16px; margin: 20px 0 0 40px"
+            ></ion-skeleton-text>
+
+            <ion-skeleton-text
+              animated
+              style="width: 80px; height: 16px; margin: 20px 0 0 40px"
+            ></ion-skeleton-text>
+            <ion-skeleton-text
+              animated
+              style="width: 40px; height: 16px; margin: 20px 0 0 40px"
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-skeleton-text
+              animated
+              style="width: 140px; height: 16px; margin: 10px 0 10px"
+            ></ion-skeleton-text>
+            <ion-skeleton-text
+              animated
+              style="width: 140px; height: 60px; margin: 20px 0 10px"
+            ></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+        <div class="toggle">
+          <ion-skeleton-text
+            animated
+            style="width: 50px; height: 30px; border-radius: 16px"
+          ></ion-skeleton-text>
+        </div>
+      </ion-card>
+    </div>
+  </div>
+
+  }
+</ion-content>

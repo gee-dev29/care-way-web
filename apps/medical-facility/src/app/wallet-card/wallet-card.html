@@ -1,0 +1,25 @@
+<div class="card-container">
+  <div class="top-row">
+    <div>
+      <ion-icon name="wallet-outline" class="icon"></ion-icon>
+    </div>
+    <div tabindex="0" (keyup.enter)="visible()" (click)="visible()">
+      @if(isReady){
+      <ion-icon
+        [name]="displayMoney ? 'eye-sharp' : 'eye-off-sharp'"
+        class="eye-icon"
+      ></ion-icon>
+      }
+    </div>
+  </div>
+  <div class="bottom-row">
+    <div class="balance-title">{{ title }}</div>
+    <div class="balance-amount">
+      <div>
+        {{ displayMoney ? (amount | currency : '' : '' : '1.2-2') :
+        hiddenAmmount }}
+      </div>
+    </div>
+    <div class="pharmacy-name">{{ pharmacyName }}</div>
+  </div>
+</div>

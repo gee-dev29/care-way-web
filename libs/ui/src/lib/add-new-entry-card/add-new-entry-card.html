@@ -1,0 +1,40 @@
+@if (isLoading) {
+<div class="skeleton-container">
+  <ion-skeleton-text
+    animated
+    style="width: 40%; height: 16px"
+  ></ion-skeleton-text>
+
+  <div class="body">
+    <ion-skeleton-text
+      animated
+      style="width: 50px; height: 50px; border-radius: 50%"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 70%; height: 14px"
+    ></ion-skeleton-text>
+  </div>
+</div>
+} @else { @if (heading) {
+<p class="header">{{ heading }}</p>
+} @if (state === 'add') {
+<div class="body">
+  <ui-plus-icon-component [size]="'big'"></ui-plus-icon-component>
+
+  @if (title) {
+  <p class="detail">{{ title }}</p>
+  }
+</div>
+} @else if(state === 'empty') {
+<div class="body">
+  <ion-icon src="/icons/alert.svg"></ion-icon>
+  <p class="detail">{{ title }}</p>
+</div>
+} @else{
+<div class="body upload mt-3">
+  <ion-icon src="/icons/upload.svg"></ion-icon>
+  <p class="detail">{{title}}</p>
+</div>
+<p class="footer">Only support .jpg, .png and pdf files</p>
+} }

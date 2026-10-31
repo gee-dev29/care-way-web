@@ -1,0 +1,43 @@
+<div class="page">
+  <div class="mb-2">
+    <h3>Bank Account Details</h3>
+  </div>
+  <p>This information is secured and required for receiving payments.</p>
+  <form [formGroup]="form">
+    <div class="container">
+      <ui-desktop-input
+        [type]="'text'"
+        [label]="'Bank Name'"
+        [control]="bank"
+      ></ui-desktop-input>
+      <ui-desktop-input
+        [type]="'text'"
+        [label]="'Account Number'"
+        [control]="accountNumber"
+      ></ui-desktop-input>
+      <ui-desktop-input
+        [type]="'text'"
+        [label]="'Account Name'"
+        [control]="accountName"
+      ></ui-desktop-input>
+    </div>
+    <div class="grouped__btn">
+      <ui-desktop-button
+        [label]="'Cancel'"
+        [width]="'full'"
+        [primary]="true"
+        [size]="'large'"
+        (Click)="cancel()"
+      ></ui-desktop-button>
+      <ui-desktop-button
+        [label]="label"
+        [width]="'full'"
+        [primary]="true"
+        [size]="'large'"
+        [loading]="loading"
+        (Click)="proceed()"
+      ></ui-desktop-button>
+      <!-- [disabled]="loading || (!form.valid)" -->
+    </div>
+  </form>
+</div>

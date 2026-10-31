@@ -1,0 +1,50 @@
+#background-content {
+  --background: #ffffff !important;
+}
+#home {
+  /* padding: 25px; */
+  margin-top: 105px;
+}
+
+.recent {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.content {
+  padding: 20px 0;
+}
+
+.plus__img {
+  width: 48px;
+  height: 48px;
+}
+.recent p,
+.recent a {
+  font-size: 14px;
+  font-weight: 500;
+}
+.member__wrapper {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+ion-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  border: 1px solid black;
+}
+
+.cost {
+  margin-bottom: 20px;
+}
+
+.end {
+  padding-bottom: 100px !important;
+}

@@ -1,0 +1,128 @@
+<ui-page-body>
+  <div class="table__head">
+    <h2 class="title">Hospitals</h2>
+    <div class="grouped__btn">
+      <!-- <ui-desktop-button
+        [label]="'Onboard Hospital'"
+        [size]="'large'"
+        [primary]="true"
+        (Click)="onboardHospital()"
+      ></ui-desktop-button> -->
+    </div>
+  </div>
+  <div class="mt-1">
+    <p-table
+      #dt1
+      dataKey="id"
+      [lazy]="true"
+      [paginator]="true"
+      [rows]="20"
+      [totalRecords]="totalRecords"
+      [value]="hospital$ | async"
+      (onLazyLoad)="load($event)"
+      [rowsPerPageOptions]="[20, 50, 100]"
+      [tableStyle]="{ 'min-width': '100rem' }"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Facility Name</th>
+          <th>Facility Level</th>
+          <th>Facility Ownership</th>
+          <th>Facility Ownership Type</th>
+          <th>Facility Type</th>
+          <th>Ward</th>
+          <th>LGA</th>
+          <th>State</th>
+        </tr>
+        <tr>
+          <th>
+          <p-columnFilter
+          type="text"
+          field="facilityName"
+          [showMenu]="false"
+        ></p-columnFilter>
+          </th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>
+            <p-columnFilter field="ward" matchMode="equals" [showMenu]="false">
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <div class="dropdown__filter__container">
+                  <ui-input-drop-down
+                    [label]="'Ward'"
+                    [options]="wards"
+                    [key]="'key'"
+                    [value]="'value'"
+                    [showClear]="true"
+                    [filter]="true"
+                    (data)="filterByWards($event)"
+                  ></ui-input-drop-down>
+                </div>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter field="lga" matchMode="equals" [showMenu]="false">
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <div class="dropdown__filter__container">
+                  <ui-input-drop-down
+                    [label]="'LGA'"
+                    [options]="lgas"
+                    [key]="'key'"
+                    [value]="'value'"
+                    [showClear]="true"
+                    [filter]="true"
+                    (data)="filterByLga($event)"
+                  ></ui-input-drop-down>
+                </div>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter field="state" matchMode="equals" [showMenu]="false">
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <div class="dropdown__filter__container">
+                  <ui-input-drop-down
+                    [label]="'State'"
+                    [options]="states"
+                    [key]="'key'"
+                    [value]="'value'"
+                    [showClear]="true"
+                    [filter]="true"
+                    (data)="filterByStates($event)"
+                  ></ui-input-drop-down>
+                </div>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.facilityName || 'N/A' }}</td>
+          <td>{{ item.facilityLevel || 'N/A'}}</td>
+          <td>{{ item.facilityOwnership || 'N/A' }}</td>
+          <td>{{ item.facilityOwnershipType || 'N/A'}}</td>
+          <td>{{ item.facilityType || 'N/A'}}</td>
+          <td>{{ item.ward || 'N/A'}}</td>
+          <td>{{ item.lga || 'N/A'}}</td>
+          <td>{{ item.state || 'N/A'}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</ui-page-body>

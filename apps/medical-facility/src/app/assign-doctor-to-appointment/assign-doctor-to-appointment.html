@@ -1,0 +1,51 @@
+<div class="up ion-padding">
+  <div class="header">
+    <div class="sub-head">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <ion-text class="schedule">Assign Doctor</ion-text>
+    </div>
+  </div>
+  <form [formGroup]="form" class="full-field">
+    <div class="select-body">
+      <ui-input
+        [type]="'dropdown'"
+        [label]="'Doctor'"
+        [isMultiselect]="false"
+        [shouldSearch]="true"
+        [selectedText]="form.value?.doctor?.text"
+        [selectedItem]="[form.value?.doctor?.text]"
+        [isClicked]="isDoctor"
+        [options]="doctors$ | async"
+        (data)="onDoctorDropdownItemSelect()"
+        (emitted)="getDoctorDropdownValue($event)"
+        [control]="doctor"
+        [isItemObject]="true"
+      ></ui-input>
+    </div>
+    <div class="date-picker">
+      <ion-text class="date-title">Date</ion-text>
+      <div class="picker">
+        <ui-date-picker
+          [control]="dateControl"
+          [isGeneric]="true"
+          [min]="minDate"
+        ></ui-date-picker>
+      </div>
+    </div>
+    <div class="date-picker">
+      <ion-text class="date-title">Time</ion-text>
+      <div class="picker">
+        <ui-time-picker [control]="timeControl"></ui-time-picker>
+      </div>
+    </div>
+  </form>
+  <ui-button
+    [label]="'Assign Doctor'"
+    [width]="'full'"
+    [fill]="'solid'"
+    [shape]="'round'"
+    [backgroundColor]="'#307d3d'"
+    (Click)="assignDoctor()"
+    [disabled]="!form.valid || loading"
+  ></ui-button>
+</div>

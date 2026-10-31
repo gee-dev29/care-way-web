@@ -1,0 +1,90 @@
+<ui-page-body>
+  <div class="table__head pb-2">
+    <h2>Approval Routes</h2>
+    <ui-desktop-button
+      [label]="'Create Approval Route'"
+      [primary]="true"
+      [size]="'medium'"
+      (Click)="addRoute()"
+    ></ui-desktop-button>
+  </div>
+  <p-table
+    #dt1
+    dataKey="id"
+    [lazy]="true"
+    (onLazyLoad)="load($event)"
+    [value]="approvalRoutes$ | async"
+    [paginator]="true"
+    [totalRecords]="totalRecords"
+    [rows]="20"
+    [rowsPerPageOptions]="[20, 50, 100]"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>Route Name</th>
+        <th>Approval Type</th>
+        <th>Date Created</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>
+          <p-columnFilter
+            field="approvalType"
+            matchMode="equals"
+            [showMenu]="false"
+          >
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="'Type'"
+                  [options]="approvalTypes"
+                  [key]="'text'"
+                  [value]="'text'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByApprovalType($event)"
+                ></ui-input-drop-down>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-columns="columns">
+      <tr>
+        <td>{{ item.routeName }}</td>
+        <td>{{ item.approvalType }}</td>
+        <td>{{ item.date | date : 'MMM, dd yyyy'}}</td>
+        <td>
+          <div class="grouped__btn">
+            <ui-desktop-button
+              [label]="'View'"
+              [size]="'small'"
+              [primary]="true"
+              (Click)="view(item)"
+            ></ui-desktop-button>
+            <ui-desktop-button
+              [label]="'Delete'"
+              [size]="'small'"
+              [primary]="false"
+              (Click)="showDeleteModal(item)"
+            ></ui-desktop-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ui-page-body>
+
+<ui-confirmation-modal-desktop
+  [(visibility)]="approvalModal"
+  (proceed)="deleteApproval()"
+  [message]="'Are you sure you want to delete this Approval Route?'"
+></ui-confirmation-modal-desktop>

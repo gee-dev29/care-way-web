@@ -1,0 +1,31 @@
+<div class="fee-list-card">
+  <span class="fee-list-title">{{ title }}</span>
+
+  @if (!fees?.length) {
+  <div class="fee-list-empty">No consultation fee has been set yet.</div>
+  } @else {
+  <div class="fee-list">
+    @for (fee of fees; track fee.feeId) {
+    <button
+      type="button"
+      class="fee-list-item"
+      (click)="viewFee.emit(fee)"
+      [attr.aria-label]="'View fee details for ' + (fee?.facilityName || fee?.hospitalName)"
+    >
+      <ion-img
+        src="images/virtual-fee.png"
+        alt="consultation fee"
+        class="fee-item-img"
+      />
+      <div class="fee-item-info">
+        <span class="fee-item-name"
+          >{{ (fee?.facilityName || fee?.hospitalName) | titlecase }}</span
+        >
+        <span class="fee-item-type">{{ fee?.facilityType }}</span>
+      </div>
+      <ion-icon [icon]="eyeIcon" class="fee-item-eye"></ion-icon>
+    </button>
+    }
+  </div>
+  }
+</div>

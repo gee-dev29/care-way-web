@@ -1,0 +1,268 @@
+.side__nav__container {
+  width: clamp(280px, 18vw, 300px);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: width 0.5s;
+  padding: 10px;
+  z-index: 1000;
+  background-color: #fafafa;
+  overflow: hidden;
+  background-image: url('/bg/healbridge-pill.svg');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 140px auto;
+}
+
+.sidebar-bg-art {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 140px;
+  max-width: 60%;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.nav__closed {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.unit {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  margin: 5px 0 0 30px;
+  grid-gap: 10px;
+  align-items: center;
+}
+
+.company {
+  font-weight: 400 !important;
+  padding: 5px 10px;
+  background: rgba(0, 255, 0, 0.083);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: green;
+}
+
+.unit p {
+  font-weight: 400;
+}
+
+.unit img {
+  width: 13px;
+}
+
+ul {
+  list-style: none;
+  gap: 25px;
+}
+
+.link {
+  display: grid;
+  grid-template-columns: auto 9fr 2fr;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.link:hover::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 3px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.link:hover p {
+  color: var(--primary-color);
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.link:hover i {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.link:hover img {
+  filter: invert(36%) sepia(41%) saturate(685%) hue-rotate(85deg)
+    brightness(92%) contrast(92%);
+  transition: all 0.3s ease-in-out;
+}
+
+ul li img {
+  padding: 5px 0;
+  width: 15px;
+}
+
+.nav__top {
+  margin-top: 20px;
+  height: 36px;
+  width: fit-content;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.nav__bottom {
+  margin-top: 30px;
+  position: relative;
+  z-index: 1200;
+  max-height: calc(100vh - 190px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #eaeaea transparent;
+}
+
+.nav__wrapper {
+  position: fixed;
+  left: 35px;
+  top: 5px;
+}
+
+.bottom-bg {
+  height: 80px;
+  width: fit-content;
+}
+
+.content__bottom {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.bottom-bg {
+  margin-bottom: 20px;
+}
+
+.activeLink::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 3px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.dropdown p,
+.dropdown__new p {
+  font-size: 0.8rem;
+  line-height: 2.5;
+  cursor: pointer;
+}
+
+.dropdown p:hover {
+  color: var(--primary-color);
+  font-variation-settings: 'wght' 800;
+}
+
+.dropdown {
+  position: fixed;
+  width: 200px;
+  max-height: calc(100vh - 16px);
+  overflow-y: auto;
+  box-shadow: var(--shadow1);
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  z-index: 20000000000000 !important;
+}
+
+.logOut {
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  padding: 5px;
+  gap: 50px;
+  margin: auto;
+}
+
+.company__switch {
+  width: 100%;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  background-color: #f5f5ff;
+  cursor: pointer;
+  border: none;
+}
+.company__name {
+  font-size: 0.8rem;
+  color: black;
+}
+
+.company__switch .pi-angle-right {
+  color: black;
+}
+
+::ng-deep .dropdown__new .p-dropdown {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.icon {
+  margin-right: 6px;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.overlay {
+  height: 100vh;
+  width: 100vw;
+  background: transparent;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 900;
+}
+
+.link.activeSidebar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 3px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.link.activeLink p,
+.link.activeLink i {
+  color: var(--primary-color);
+  font-variation-settings: 'wght' 800;
+}
+
+.link.activeLink img {
+  filter: invert(30%) sepia(82%) saturate(2855%) hue-rotate(215deg)
+    brightness(93%) contrast(99%);
+  transition: all 0.3s ease-in-out;
+}
+
+[data-icon='power'] {
+  font-size: 1.2rem !important;
+  color: red;
+}

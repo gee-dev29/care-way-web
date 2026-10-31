@@ -1,0 +1,37 @@
+.approval__container {
+  width: 100%;
+}
+.new__group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.grouped__btn__two{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.grouped__btn {
+  gap: 0 !important;
+}
+.delete__wrapper {
+  background-color: #307d3d;
+  padding: 8px 24px;
+  width: fit-content;
+  border-radius: 32px;
+  cursor: pointer;
+}
+.delete__wrapper:hover{
+  background-color: #0e541a;
+}
+.delete__icon {
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 1025px) {
+  .approval__container {
+    width: 65%;
+  }
+}

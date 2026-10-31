@@ -1,0 +1,112 @@
+#background-content {
+  --background: #e7f6e9 !important;
+}
+.up {
+  padding: 25px;
+   margin-top: 120px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 50px;
+}
+
+.header .left,
+.header .right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #0c0416;
+}
+
+.header ion-icon {
+  font-size: 18px;
+}
+
+.top-section {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.box {
+  flex: 1;
+  padding: 20px;
+  border-radius: 18px;
+  color: #fff;
+}
+
+.blue-box {
+  background: #0057ff;
+}
+
+.dark-box {
+  background: #111827;
+}
+
+.label {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.label.small {
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 13px;
+}
+
+.value {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.info-card {
+  background: #fff;
+  padding: 20px;
+  margin-top: 18px;
+  border-radius: 18px;
+}
+
+.info-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.info-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+.file-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-left ion-icon {
+  font-size: 40px;
+  color: #7d7d7d;
+}
+
+.file-right h4 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.file-right p {
+  font-size: 13px;
+  color: #666;
+}
+
+.btn-container {
+  margin-top: 160px;
+}

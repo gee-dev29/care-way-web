@@ -1,0 +1,59 @@
+.wallet-card {
+  border-radius: 20px;
+  padding: 24px 15px;
+  position: relative;
+  overflow: hidden;
+  background-image: url('/bg/wallet-bg.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+
+.wallet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: inherit;
+}
+
+.history {
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: inherit;
+  z-index: 20;
+  text-underline-offset: 4px;
+}
+
+.wallet-body {
+  display: flex;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.balance {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+  margin-right: 10px;
+  color: inherit;
+  display: flex;
+  justify-content: start;
+  gap: 6px;
+  align-items: center;
+}
+
+.eye-icon {
+  font-size: 22px;
+  cursor: pointer;
+  color: inherit;
+}

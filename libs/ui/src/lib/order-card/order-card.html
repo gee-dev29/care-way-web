@@ -1,0 +1,81 @@
+@if (!order) {
+<div class="header">
+  <ion-skeleton-text
+    animated
+    style="width: 40%; height: 14px"
+  ></ion-skeleton-text>
+  <ion-skeleton-text
+    animated
+    style="width: 20%; height: 14px"
+  ></ion-skeleton-text>
+</div>
+<div class="order-card skeleton-card">
+  <div class="order-content">
+    <ion-skeleton-text
+      animated
+      style="width: 50%; height: 14px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 40%; height: 14px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 60%; height: 12px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 35%; height: 12px"
+    ></ion-skeleton-text>
+  </div>
+  <div class="order-arrow">
+    <ion-skeleton-text
+      animated
+      style="width: 20px; height: 20px"
+    ></ion-skeleton-text>
+  </div>
+</div>
+} @else { @if (title) {
+<div class="header">
+  <div>{{ title }}</div>
+  <div
+    class="view__all"
+    tabindex=""
+    (keyup.enter)="viewAll()"
+    (click)="viewAll()"
+  >
+    View all
+  </div>
+</div>
+}
+<div
+  class="order-card"
+  tabindex="0"
+  (keyup.enter)="viewIt.emit(order)"
+  (click)="viewIt.emit(order)"
+  [style.background]="background"
+  [style.color]="background ? '#000':'#ffffff'"
+>
+  <div class="order-main">
+    <div class="col left">
+      <div class="code">#{{ order?.orderCode }}</div>
+      <div class="time">
+        {{ moment(order?.creator?.date).local().fromNow() }}
+      </div>
+    </div>
+
+    <div class="col right">
+      @if (showAmount) {
+      <div class="amount">
+        {{ order?.costSummary?.totalCost | currency:"NGN" }}
+      </div>
+      }
+      <div class="status" [style.color]="statusColor">{{ order?.status }}</div>
+    </div>
+  </div>
+
+  <div class="arrow">
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </div>
+</div>
+}

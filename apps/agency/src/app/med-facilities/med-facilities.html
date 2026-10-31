@@ -1,0 +1,27 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="home" class="ion-padding mt-4 page-layout">
+    <div class="header">
+      <ion-icon
+        (click)="routeTo('dashboard/home')"
+        name="chevron-back-outline"
+      ></ion-icon>
+      <div class="title">Medical Facilities</div>
+    </div>
+
+    @if((orders$ | async)?.length) { @for(orders of (orders$ | async); track
+    $index) {
+
+    <agency-med-facility-home-card
+      [request]="orders"
+      (viewIt)="routeTo('/dashboard/med-facilities', orders.facilityId)"
+      [background]="'#E3F5E5'"
+    >
+    </agency-med-facility-home-card>
+    } }@else {
+    <div class="empty-state">
+      <ion-icon name="document-outline"></ion-icon>
+      <p>No Facility at the moment</p>
+    </div>
+    }
+  </div>
+</ion-content>

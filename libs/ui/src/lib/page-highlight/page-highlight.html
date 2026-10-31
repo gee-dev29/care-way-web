@@ -1,0 +1,22 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<div class="page__highlight">
+  <div class="content">
+    <div class="section section1">
+      <div class="pText">{{ primaryDetailTitle }}</div>
+      <h4>{{ primaryDetail }}</h4>
+    </div>
+    @if (isClickable) {
+    <div class="section">
+      <div class="pText">{{ secondaryDetailTitle }}</div>
+      <h4 class="clickable" (click)="viewSecondaryDetail.emit()">
+        {{ secondaryDetail }}
+      </h4>
+    </div>
+    } @if (!isClickable) {}
+    <div class="section">
+      <div class="pText">{{ secondaryDetailTitle }}</div>
+      <h4>{{ secondaryDetail }}</h4>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+.page {
+  --background: #f2f4f8;
+}
+.padding {
+  padding: 20px;
+  margin-top: 100px;
+}
+.card-container {
+  background: #ffffff;
+  margin: 16px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.tracking {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.tracker-id {
+  font-size: 15px;
+  font-weight: 500;
+}
+.label {
+  font-size: 14px;
+  color: #45494d;
+}
+
+.id {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.request {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.info-box {
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.section-title {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.value {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.test {
+  margin-top: 20px;
+}
+
+.flex {
+  display: flex;
+  text-align: end;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex2,
+.link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.test .title {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.test .sub {
+  font-size: 15px;
+  color: #030303;
+}
+
+.button {
+  margin-top: 13rem !important;
+}
+
+.arrow__icon {
+  font-size: 24px;
+}

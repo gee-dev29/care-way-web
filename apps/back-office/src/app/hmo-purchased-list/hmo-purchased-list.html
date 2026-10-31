@@ -1,0 +1,155 @@
+<ui-page-body>
+  <div class="table__head">
+    <h2 class="title">HMO Purchased List</h2>
+    <div class="grouped__btn">
+      <ui-desktop-button
+        [label]="'Export'"
+        [size]="'large'"
+        [primary]="true"
+        (Click)="export()"
+      ></ui-desktop-button>
+    </div>
+  </div>
+  <div class="mt-1">
+    <p-table
+      #dt1
+      dataKey="adId"
+      [lazy]="true"
+      [paginator]="true"
+      [rows]="20"
+      [totalRecords]="totalRecords"
+      [value]="hmoPurchased$ | async"
+      (onLazyLoad)="load($event)"
+      [rowsPerPageOptions]="[20, 50, 100]"
+      [tableStyle]="{'min-width': '100vw'}"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Order Code</th>
+          <th>Customer</th>
+          <th>Product Name</th>
+          <th>Amount</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Status</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <th></th>
+          <th>
+            <p-columnFilter
+              field="userId"
+              matchMode="equals"
+              [showMenu]="false"
+            >
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <div class="dropdown__filter__container">
+                  <ui-input-drop-down
+                    [label]="'Customer'"
+                    [options]="users$ | async"
+                    [key]="'name'"
+                    [value]="'userId'"
+                    [showClear]="true"
+                    [filter]="true"
+                    (data)="filterByUser($event)"
+                  ></ui-input-drop-down>
+                </div>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter
+              field="productId"
+              matchMode="equals"
+              [showMenu]="false"
+            >
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <div class="dropdown__filter__container">
+                  <ui-input-drop-down
+                    [label]="'Product Name'"
+                    [options]="hmoProduct$ | async"
+                    [key]="'name'"
+                    [value]="'hmoProductId'"
+                    [showClear]="true"
+                    [filter]="true"
+                    (data)="filterByHmoProduct($event)"
+                  ></ui-input-drop-down>
+                </div>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>
+            <p-columnFilter
+              field="orderStatus"
+              matchMode="equals"
+              [showMenu]="false"
+            >
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <div class="dropdown__filter__container">
+                  <ui-input-drop-down
+                    [label]="'Status'"
+                    [options]="orderStatus"
+                    [key]="'text'"
+                    [value]="'text'"
+                    [showClear]="true"
+                    [filter]="true"
+                    (data)="filterByOrderStatus($event)"
+                  ></ui-input-drop-down>
+                </div>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th></th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.orderCode }}</td>
+          <td>{{ getUserName(item.userId) }}</td>
+          <td>{{ getHmoProduct(item.productId) }}</td>
+          <td>{{item.payableAmountInKobo | currency: 'NGN '}}</td>
+          <td>{{ item.startDate | date: 'MMM dd, yyyy' }}</td>
+          <td>{{ getEndDate(item.startDate, item.durationInMonths) }}</td>
+          <td>{{item.status}}</td>
+          <td></td>
+          <td>
+            <div class="grouped__btn">
+              <ui-desktop-button
+                [label]="'View'"
+                [primary]="true"
+                [size]="'small'"
+                (Click)="view(item)"
+              ></ui-desktop-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7">
+            <div class="empty__table__text">
+              There are no HMO Purchased Orders yet
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</ui-page-body>

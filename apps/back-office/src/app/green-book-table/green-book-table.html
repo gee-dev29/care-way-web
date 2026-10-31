@@ -1,0 +1,210 @@
+<div class="table__head">
+  <h2 class="title">Green Book - {{heading}}</h2>
+  <div class="grouped__btn">
+    <ui-desktop-button
+      [label]="'Export'"
+      [size]="'large'"
+      [primary]="true"
+      (Click)="export()"
+    ></ui-desktop-button>
+    <ui-desktop-button
+      [label]="'Add Green Book Item'"
+      [size]="'large'"
+      [primary]="true"
+      (Click)="showAddGreenBookModal()"
+    ></ui-desktop-button>
+  </div>
+</div>
+
+<div class="mt-1">
+  <p-table
+    dataKey="dt1"
+    [paginator]="true"
+    [lazy]="true"
+    [rows]="20"
+    [paginator]="true"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[20, 50, 100]"
+    (onLazyLoad)="load($event)"
+    [value]="greenBooks$ | async"
+    [tableStyle]="{ 'min-width': '75rem' }"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Applicant Name</th>
+        <th>Product</th>
+        <th>
+          {{heading === 'Medical Devices' ? 'Product Category' : 'Active
+          Ingredient'}}
+        </th>
+        <th>Form</th>
+        <th>Strength</th>
+        <th>ROA</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="productName"
+            [showMenu]="false"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            field="activeIngredient"
+            matchMode="equals"
+            [showMenu]="false"
+          >
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="heading === 'Medical Devices' ? 'Product Category' : 'Active Ingredient'"
+                  [options]="activeIngredients"
+                  [key]="'key'"
+                  [value]="'value'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByActiveIngredients($event)"
+                ></ui-input-drop-down>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter field="form" matchMode="equals" [showMenu]="false">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="'Form'"
+                  [options]="forms"
+                  [key]="'key'"
+                  [value]="'value'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByForms($event)"
+                ></ui-input-drop-down>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th></th>
+        <th></th>
+        <th>
+          <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="'Status'"
+                  [options]="statuses"
+                  [key]="'text'"
+                  [value]="'value'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByStatus($event)"
+                ></ui-input-drop-down>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.applicantName }}</td>
+        <td>{{ item.productName }}</td>
+        <td>{{ item.activeIngredient }}</td>
+        <td>{{ item.form}}</td>
+        <td>{{ item.strength }}</td>
+        <td>{{ item.roa }}</td>
+        <td>{{ item.status }}</td>
+        <td>
+          <ui-desktop-button
+            [label]="'Edit'"
+            [primary]="true"
+            [size]="'small'"
+            (Click)="edit(item)"
+          ></ui-desktop-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<ui-modal
+  [header]="greenBookId ? 'Edit Green Book Item (' + greenBookType + ')' : 'Add Green Book Item (' + greenBookType + ')'"
+  [(visibility)]="greenBookFormModal"
+  [selectedWidth]="'35vw'"
+>
+  <div class="modal__container">
+    <form class="mb-2" [formGroup]="greenBookForm">
+      <ui-form-body [columns]="'split'" class="form__group">
+        <ui-desktop-input
+          [type]="'text'"
+          [label]="'Product Name'"
+          [control]="productName"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [type]="'text'"
+          [label]="'Active Ingredient'"
+          [control]="activeIngredient"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [type]="'text'"
+          [label]="'NRN'"
+          [control]="nrn"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [type]="'text'"
+          [label]="'Form'"
+          [control]="form"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [type]="'text'"
+          [label]="'ROA'"
+          [control]="roa"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [type]="'text'"
+          [label]="'Strength'"
+          [control]="strength"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [type]="'text'"
+          [label]="'Applicant Name'"
+          [control]="applicantName"
+        ></ui-desktop-input>
+        <ui-input-drop-down
+          [type]="'dropdown'"
+          [label]="'Status'"
+          [options]="statuses"
+          [control]="status"
+          [key]="'text'"
+          [value]="'value'"
+          [showClear]="true"
+        ></ui-input-drop-down>
+      </ui-form-body>
+    </form>
+    <ui-desktop-button
+      [primary]="true"
+      [label]="greenBookId ? 'Save' : 'Add'"
+      [width]="'full'"
+      [disabled]="!greenBookForm.valid"
+      (click)="saveGreenBookItem()"
+    ></ui-desktop-button></div
+></ui-modal>

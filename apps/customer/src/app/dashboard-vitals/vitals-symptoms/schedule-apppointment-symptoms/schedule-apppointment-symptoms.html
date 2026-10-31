@@ -1,0 +1,115 @@
+<ion-content fullscreen id="prescription">
+  <div class="up">
+    <div class="header">
+      <div class="sub-head">
+        <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+        <ion-text>Schedule Appointment</ion-text>
+      </div>
+    </div>
+
+    <form [formGroup]="form" class="full-field">
+      <div class="select-body">
+        <ui-input
+          [label]="'Specialist'"
+          [isMultiselect]="false"
+          [shouldSearch]="true"
+          [selectedText]="form.value.specialization"
+          [selectedItem]="[form.value?.specialization]"
+          [isClicked]="isSpecialization"
+          [type]="'dropdown'"
+          [options]="hospitalSpecializations$ | async"
+          (data)="onSpecializationDropdownItemSelect()"
+          (emitted)="getSpecializationDropdownValue($event)"
+          [control]="specializationControl"
+        ></ui-input>
+      </div>
+      <div class="select-body">
+        <ui-card-type
+          [heading]="'Appointment Type'"
+          (cardType)="getAppointmentType($event)"
+        ></ui-card-type>
+      </div>
+      @if (form.value.appointmentType === type.Physical) {
+      <div class="select-body">
+        <ui-input
+          [type]="'dropdown'"
+          [label]="'Hospital'"
+          [isMultiselect]="false"
+          [shouldSearch]="true"
+          [selectedText]="form.value?.hospital?.text"
+          [selectedItem]="[form.value?.hospital?.text]"
+          [isClicked]="isHospital"
+          [options]="hospitals$ | async"
+          (data)="onHospitalDropdownItemSelect()"
+          (emitted)="getHospitalDropdownValue($event)"
+          [control]="hospital"
+          [isItemObject]="true"
+        ></ui-input>
+      </div>
+      <!-- <ui-address-card
+        [address$]="address$"
+        (selectAddress)="selectAddress($event)"
+      ></ui-address-card> -->
+      <div class="form-group">
+        <ion-label class="form-label">Address</ion-label>
+        <span class="form-value">{{ addressControl.value }}</span>
+      </div>
+      }
+
+      <div class="date-picker">
+        <ion-text class="date-title">Date</ion-text>
+
+        <div class="picker">
+          <ui-date-picker
+            [byPassDate]="true"
+            [control]="dateControl"
+          ></ui-date-picker>
+        </div>
+      </div>
+      <div class="date-picker">
+        <ion-text class="date-title">Time</ion-text>
+
+        <div class="picker">
+          <ui-time-picker [control]="timeControl"></ui-time-picker>
+        </div>
+      </div>
+
+      <!-- <div class="select-body">
+        <ui-input
+          label="Select Specialization"
+          [control]="specializationControl"
+          [options]="options"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [isClicked]="isSymptoms"
+          [type]="'dropdown'"
+          (data)="isSymptomsClicked()"
+          (emitted)="offSymptomsClicked()"
+        >
+        </ui-input>
+      </div> -->
+
+      <div>
+        <ui-input-textarea
+          [control]="description"
+          [placeholder]="'Cough and Shortness of breath worsen over a week.'"
+          [label]="'Presenting Complaints'"
+        >
+        </ui-input-textarea>
+      </div>
+    </form>
+
+    <div class="btn-container">
+      <ui-button
+        [label]="'Proceed to Payment'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (Click)="continue()"
+        [disabled]="!form.valid"
+      ></ui-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "650786565757",
+    "project_id": "healbridge-73d25",
+    "storage_bucket": "healbridge-73d25.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650786565757:android:ef770b9a047d9788fe0b14",
+        "android_client_info": {
+          "package_name": "app.healbridge.customer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGyNOOINCNnWMtTKVNYI_UhOifnwlJ_uI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650786565757:android:8a7fbb8d4b7bdbe3fe0b14",
+        "android_client_info": {
+          "package_name": "app.healbridge.facility"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGyNOOINCNnWMtTKVNYI_UhOifnwlJ_uI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

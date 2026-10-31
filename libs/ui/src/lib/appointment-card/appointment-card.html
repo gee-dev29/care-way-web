@@ -1,0 +1,173 @@
+@if (!appointment) {
+<div class="appointment-card skeleton-card">
+  <div class="apptTop">
+    <ion-skeleton-text
+      animated
+      style="width: 50%; height: 14px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 25%; height: 14px"
+    ></ion-skeleton-text>
+  </div>
+
+  <div class="apptMeta">
+    <div class="metaItem">
+      <ion-skeleton-text
+        animated
+        style="width: 80px; height: 14px"
+      ></ion-skeleton-text>
+    </div>
+    <div class="metaItem">
+      <ion-skeleton-text
+        animated
+        style="width: 70px; height: 14px"
+      ></ion-skeleton-text>
+    </div>
+    <ion-skeleton-text
+      animated
+      style="width: 20px; height: 20px"
+    ></ion-skeleton-text>
+  </div>
+
+  <ion-skeleton-text
+    animated
+    style="width: 40%; height: 12px"
+  ></ion-skeleton-text>
+  <ion-skeleton-text
+    animated
+    style="width: 80%; height: 14px"
+  ></ion-skeleton-text>
+
+  <ion-skeleton-text
+    animated
+    style="width: 50%; height: 12px"
+  ></ion-skeleton-text>
+  <ion-skeleton-text
+    animated
+    style="width: 90%; height: 14px"
+  ></ion-skeleton-text>
+
+  <div class="btnRow">
+    <ion-skeleton-text
+      animated
+      style="width: 120px; height: 32px; border-radius: 16px"
+    ></ion-skeleton-text>
+  </div>
+</div>
+} @else {
+<div
+  class="appointment-card"
+  [class.list-card]="variant === 'list'"
+  tabindex="0"
+  (keyup.enter)="onViewAppointment($event, appointment)"
+  (click)="onViewAppointment($event, appointment)"
+>
+  <div class="apptTop">
+    <div>
+      @if (appointment?.memberName !== null && showPatientName) {
+      <div class="member-name">
+        Patient:
+        <span class="cardTitle">
+          {{ appointment?.memberName !== null ? appointment?.memberName : 'N/A'
+          }}
+        </span>
+      </div>
+      } @else {
+      <div class="member-name">
+        Doctor:
+        <span class="cardTitle">
+          {{ appointment?.professionalName !== null ?
+          appointment?.professionalName : 'N/A' }}
+        </span>
+      </div>
+      }
+    </div>
+    <div class="status" [ngClass]="appointment?.status?.toLowerCase()">
+      <span class="dot"></span>
+      <p class="time">{{ statusFn }}</p>
+    </div>
+  </div>
+  <div class="apptMeta">
+    <div class="metaItem">
+      <ion-icon src="/icons/calendar-clear.svg"></ion-icon>
+      @if (appointment?.date && appointment?.time) {
+      <p class="time">
+        {{ (appointment?.date + 'T' + appointment?.time + 'Z') | date:"MMM d, y
+        '@' h:mm a" : userTimezone}}
+      </p>
+      }
+    </div>
+    <div class="metaItem">
+      <ion-icon
+        [src]="
+          appointment?.appointmentType === type.Physical
+            ? '/icons/location.svg'
+            : '/icons/laptop.svg'
+        "
+      ></ion-icon>
+      <p class="time">{{ appointment?.appointmentType }}</p>
+    </div>
+    <ion-icon class="chev" name="chevron-forward-outline"></ion-icon>
+  </div>
+  @if (showDetails) {
+  <p class="label cardTitle">Specialization</p>
+  <p class="complaint">
+    {{ appointment?.specialization ? appointment?.specialization : 'Not
+    Specified'}}
+  </p>
+  <p class="label cardTitle">Presenting Complaints</p>
+  <p class="complaint">
+    {{ appointment?.notes ? appointment?.notes : 'Not Specified' }}
+  </p>
+  } @if (variant === 'details' && appointment?.status ===
+  status?.AwaitingCustomerPayment) {
+  <!-- <div class="btnRow">
+    <div class="tabs">
+      <button
+        class="pill active"
+        (click)="onPay($event, appointment?.appointmentId)"
+      >
+        Proceed to Payment
+      </button>
+      <button class="pill" (click)="$event.stopPropagation()">Cancel</button>
+    </div>
+  </div> -->
+  } @if ( variant === 'details' && (appointment?.status === status?.Pending ||
+  appointment?.status === status?.AwaitingHospitalConfirmation) ) {
+  <!-- <div class="btnRow">
+    <div class="tabs">
+      <button class="pill active" (click)="$event.stopPropagation()">
+        Cancel
+      </button>
+    </div>
+  </div> -->
+  } @if (variant === 'request') {
+  <div class="btnRow">
+    <div class="tabs">
+      <button class="pill active" (click)="onAssignDoctor($event, appointment)">
+        Assign Doctor
+      </button>
+      <!-- <button class="pill" (click)="onDeclineRequest($event, appointment)">
+        Decline
+      </button> -->
+    </div>
+  </div>
+  } @if (variant === 'list' && appointment?.status === 'Joined') {
+  <div class="actions">
+    <button class="btnSolid" (click)="onViewRecord($event)">View Record</button>
+  </div>
+  }
+  <!-- @if (variant === 'details' && appointment?.status === 'Confirmed' &&
+  appointment?.appointmentType === 'Virtual') {
+  <div class="actions">
+    <button class="btnSolid" (click)="onViewAppointment($event, appointment)">
+      View
+    </button>
+    <button class="btnSolid" (click)="onJoinCall($event, appointment)">
+      Join
+    </button>
+  </div>
+  } -->
+</div>
+}

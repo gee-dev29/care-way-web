@@ -1,0 +1,44 @@
+<div class="cost-card">
+  @if (isList) {
+  <div class="header-row">
+    <h3 class="title">Medical Requests</h3>
+    <p
+      class="view-all"
+      [style.color]="viewAllColor"
+      tabindex="1"
+      (keyup.enter)="onViewAll($event)"
+      (click)="onViewAll($event)"
+    >
+      View all
+    </p>
+  </div>
+  } @if (costRequest?.serviceRequestId) {
+  <div
+    tabindex="0"
+    (keyup.enter)="viewDetails(costRequest?.serviceRequestId, costRequest?.memberId);viewIt.emit()"
+    (click)="viewDetails(costRequest?.serviceRequestId, costRequest?.memberId); viewIt.emit()"
+    class="card-box"
+    [style.background]="bg"
+    [style.border]="bdColor"
+  >
+    <div class="header-row">
+      <div class="user">#{{ costRequest?.serviceRequestCode }}</div>
+      <div class="status-row">
+        <span class="dot"></span>
+        <span class="pending">{{ costRequest?.status }}</span>
+      </div>
+    </div>
+    <p class="sub__header">Prescription Medical Request</p>
+
+    <div class="date__row__wrapper">
+      <div class="date-row">
+        <ion-img src="/icons/black-calender.svg"></ion-img>
+      </div>
+      <div class="time">
+        <ion-img src="/icons/clock2.svg"></ion-img>
+        <span>{{ moment.utc(costRequest?.creator?.date).local().fromNow() }}</span>
+      </div>
+    </div>
+  </div>
+  }
+</div>

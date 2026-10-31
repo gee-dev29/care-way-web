@@ -1,0 +1,78 @@
+<div id="home">
+  <div class="top__header">
+    <div tabindex="0" (keyup.enter)="back.emit()" (click)="back.emit()">
+      <ion-icon class="left__arrow" name="left-arrow"></ion-icon>
+    </div>
+    <ion-text class="black">
+      <p>{{title}}</p>
+    </ion-text>
+  </div>
+  <form [formGroup]="form">
+    <div class="text">
+      <ion-text class="">
+        <p>Select Date</p>
+      </ion-text>
+    </div>
+
+    <ui-date-picker [control]="newDate"></ui-date-picker>
+
+    <div class="text">
+      <ion-text>
+        <p>Time</p>
+      </ion-text>
+    </div>
+
+    <ui-time-picker [control]="newTime"></ui-time-picker>
+
+    <div class="form__inputs">
+      @if (showSpecialization){
+      <ui-input
+        [label]="'Select Specialization'"
+        [shouldSearch]="true"
+        [isMultiple]="false"
+        [isClicked]="isClicked"
+        [type]="'dropdown'"
+        [options]="doctors"
+        [control]="newSpecialization"
+        (data)="isSpecializationClicked()"
+        (emitted)="offSpecializationClicked()"
+      ></ui-input>
+      } @if(showAddress){
+      <div class="address__wrapper">
+        <p>Appointment Location</p>
+        <div
+          tabindex=""
+          (keyup)="checked()"
+          (click)="checked()"
+          class="address__details"
+        >
+          <ion-icon class="left__arrow" name="location-outline"></ion-icon>
+          <p>No. 12, Oluwole Street, Ikeja, Lagos</p>
+          <ion-icon
+            class="left__arrow"
+            [name]="checkBox ? 'checkmark-circle':'ellipse-outline'"
+          ></ion-icon>
+        </div>
+      </div>
+      }
+      <ui-input-textarea
+        [placeholder]="'Recent or new symptom — started within the past few days.'"
+        [label]="noteLabel"
+        [control]="newNote"
+      >
+      </ui-input-textarea>
+      <div class="button">
+        <ui-button
+          (Click)="proceed.emit()"
+          [label]="buttonLabel"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [showImage]="false"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+        ></ui-button>
+      </div>
+    </div>
+  </form>
+</div>

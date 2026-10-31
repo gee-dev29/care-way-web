@@ -1,0 +1,87 @@
+.fee-card {
+  background-color: #cfffd7;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fee-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.virtual-img {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.facility-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.facility-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.facility-type {
+  font-size: 12px;
+  font-weight: 400;
+  color: #4b5563;
+  text-transform: capitalize;
+}
+
+.fee-columns {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.fee-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.fee-column-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+
+.fee-row {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.fee-label {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.fee-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.fee-divider {
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  align-self: stretch;
+}

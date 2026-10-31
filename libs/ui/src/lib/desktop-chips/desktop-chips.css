@@ -1,0 +1,123 @@
+:host ::ng-deep .p-autocomplete {
+  width: 100%;
+}
+
+:host ::ng-deep .p-autocomplete-multiple-container {
+  width: 100%;
+  min-height: 48px;
+  max-height: 110px;
+  overflow-y: auto;
+
+  background: #fff !important;
+  border: 1px solid #d1e7dd;
+  border-radius: 8px;
+  padding: 8px;
+  gap: 6px;
+  align-content: flex-start;
+}
+
+:host ::ng-deep .p-autocomplete-input-multiple {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 6px;
+
+  width: 100%;
+  min-width: 0;
+  height: 110px; 
+  overflow-y: auto;
+  background: #fff !important;
+  border: 1px solid #d1e7dd;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+:host ::ng-deep .p-autocomplete {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+:host ::ng-deep .p-autocomplete-multiple-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+:host ::ng-deep .p-autocomplete-input-multiple input {
+  color: #000 !important;
+  width: 180px !important;
+  min-width: 180px !important;
+}
+
+:host ::ng-deep .p-autocomplete-input-multiple input::placeholder {
+  color: #6b7280;
+}
+
+:host ::ng-deep .p-chip-remove-icon path {
+  fill: #383636 !important;
+}
+
+:host ::ng-deep .p-autocomplete-input-multiple::-webkit-scrollbar {
+  width: 2px;
+}
+
+:host ::ng-deep .p-autocomplete-input-multiple::-webkit-scrollbar-thumb {
+  background: #bfe8d3;
+  border-radius: 999px;
+}
+
+:host ::ng-deep .p-autocomplete-input-multiple {
+  background-color: #fff !important;
+  width: 100%;
+  overflow-y: auto;
+  border: 1px solid #d1e7dd;
+  border-radius: 8px;
+  align-content: flex-start;
+}
+
+:host ::ng-deep .p-autocomplete-multiple-container::-webkit-scrollbar-thumb {
+  background: #bfe8d3;
+  border-radius: 999px;
+}
+
+:host ::ng-deep .p-autocomplete-multiple-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:host ::ng-deep .p-autocomplete-token {
+  background: #eaf7f0;
+  color: #1f7a4d;
+  border: 1px solid #bfe8d3;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  gap: 6px;
+}
+
+:host ::ng-deep .p-autocomplete-token-icon {
+  color: #1f7a4d;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+
+:host ::ng-deep .p-autocomplete-input-token input {
+  width: 100% !important;
+  color: #000 !important;
+  font-size: 1rem;
+}
+
+:host ::ng-deep .p-autocomplete-input-token {
+  flex: 0 0 180px !important;
+  max-width: 180px;
+}
+
+:host ::ng-deep .p-float-label > label {
+  margin-top: -0.3rem !important;
+  font-family: montserrat !important;
+}

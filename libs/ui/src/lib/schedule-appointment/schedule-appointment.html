@@ -1,0 +1,129 @@
+<div class="up ion-padding">
+  <div class="header">
+    <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+    <div class="title">Schedule Appointment</div>
+    <div></div>
+  </div>
+  <form [formGroup]="form" class="full-field">
+    <div class="select-body">
+      <ui-input
+        [label]="'Specialist'"
+        [isMultiselect]="false"
+        [shouldSearch]="true"
+        [selectedText]="form.value.specialization?.text"
+        [selectedItem]="[form.value?.specialization?.text]"
+        [isClicked]="isSpecialization"
+        [type]="'dropdown'"
+        [options]="hospitalSpecializations$ | async"
+        (data)="onSpecializationDropdownItemSelect()"
+        (emitted)="getSpecializationDropdownValue($event)"
+        [control]="specializationControl"
+        [isItemObject]="true"
+      ></ui-input>
+    </div>
+    @if (isMedicalFacility && this.form.value.specialization) {
+    <div class="select-body">
+      <ui-input
+        [type]="'dropdown'"
+        [label]="'Doctor'"
+        [isMultiselect]="false"
+        [shouldSearch]="true"
+        [selectedText]="form.value?.doctor?.text"
+        [selectedItem]="[form.value?.doctor?.text]"
+        [isClicked]="isDoctor"
+        [options]="doctors$ | async"
+        (data)="onDoctorDropdownItemSelect()"
+        (emitted)="getDoctorDropdownValue($event)"
+        [control]="doctor"
+        [isItemObject]="true"
+        [requiredGroups]="['Available Specialists']"
+        [emptyGroupMessage]="'There are no available specialists'"
+      ></ui-input>
+    </div>
+    }
+    <div class="select-body">
+      <ui-card-type
+        [heading]="'Appointment Type'"
+        (cardType)="getAppointmentType($event)"
+      ></ui-card-type>
+    </div>
+    @if (form.value.appointmentType === type.Physical) { @if
+    (!isMedicalFacility) {
+    <div class="select-body">
+      <ui-input
+        [type]="'dropdown'"
+        [label]="'Hospital'"
+        [isMultiselect]="false"
+        [shouldSearch]="true"
+        [selectedText]="form.value?.hospital?.text"
+        [selectedItem]="[form.value?.hospital?.text]"
+        [isClicked]="isHospital"
+        [options]="hospitals$ | async"
+        (data)="onHospitalDropdownItemSelect()"
+        (emitted)="getHospitalDropdownValue($event)"
+        [control]="hospital"
+        [isItemObject]="true"
+      ></ui-input>
+    </div>
+    }
+    <div class="form-group">
+      <ion-label class="form-label">Address</ion-label>
+      <span class="form-value">{{address?.address}}</span>
+    </div>
+    <!-- <ui-address-card
+      [address$]="address$"
+      (selectAddress)="selectAddress($event)"
+    ></ui-address-card> -->
+    }
+    <div class="date-picker">
+      <ion-text class="date-title">Date</ion-text>
+      <div class="picker">
+        <ui-date-picker
+          [byPassDate]="true"
+          [control]="dateControl"
+        ></ui-date-picker>
+      </div>
+    </div>
+    <div class="date-picker">
+      <ion-text class="date-title">Time</ion-text>
+      <div class="picker">
+        <ui-time-picker [control]="timeControl"></ui-time-picker>
+      </div>
+    </div>
+    <div>
+      <ui-input-textarea
+        [control]="description"
+        [label]="'Presenting Complaints (How are you feeling?)'"
+      >
+      </ui-input-textarea>
+    </div>
+    @if (isMedicalFacility && form.value.appointmentType === type.Physical) {
+    <div>
+      <ui-input
+        [type]="'check'"
+        [control]="requirePatientPayment"
+        [label]="'Will the patient be making a payment?'"
+      ></ui-input>
+    </div>
+    }
+  </form>
+  <ui-button
+    [label]="isMedicalFacility?'Book Appointment': 'Request Appointment'"
+    [width]="'full'"
+    [fill]="'solid'"
+    [shape]="'round'"
+    [backgroundColor]="'#307d3d'"
+    (Click)="showAppointmentConfirmation()"
+    [loading]="loading"
+    [disabled]="!form.valid"
+  ></ui-button>
+</div>
+<ui-confirmation-modal-secondary
+  [confirmationMessage]="confirmationMessage"
+  [open]="appointmentConfirmationModal"
+  [background]="'primary'"
+  (dismiss)="closeModal()"
+  (no)="closeModal()"
+  (next)="continue()"
+  [loading]="loading"
+></ui-confirmation-modal-secondary>

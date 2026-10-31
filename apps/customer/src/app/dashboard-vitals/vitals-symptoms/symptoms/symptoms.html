@@ -1,0 +1,95 @@
+<ion-content id="background-content" fullscreen>
+  <div id="prescription" class="ion-padding">
+    <div class="symptoms-page">
+      <div class="header">
+        <div class="left">
+          <ion-icon src="/logo/backarrow.svg" (click)="goBack()"></ion-icon>
+          <ion-text>Symptoms</ion-text>
+        </div>
+        <div
+          (click)="onNavigate()"
+          tabindex=""
+          (keydown)="onNavigate()"
+          class="add-btn"
+        >
+          <span class="plus">+</span>
+          Add Symptoms
+        </div>
+      </div>
+
+      <div class="symptoms-list">
+        @if (symtoms$ | async; as symptoms) {
+        <!-- -->
+        @for (items of symptoms; track items?.vitalRecordId) {
+        <div
+          class="symptom-card"
+          (click)="viewDetails(items.vitalRecordId)"
+          tabindex="0"
+          (keydown)="viewDetails(items.vitalRecordId)"
+        >
+          <div class="icon-box">
+            <ion-icon src="/icons/human.svg"></ion-icon>
+          </div>
+
+          <div class="info">
+            <div class="title">{{ items.bodyPart }}</div>
+
+            <div class="meta">
+              <div class="date">
+                <ion-icon src="icons/new-calendar.svg" />
+                <span>{{ items.date }}</span>
+              </div>
+
+              <div class="time">
+                <ion-icon src="/icons/clock2.svg" />
+                <span>{{ items.time }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="arrow">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+        </div>
+        } } @else {
+        <!-- these is for the skeleton loading -->
+        @for (i of [1, 2, 3, 4]; track i) {
+        <div class="symptom-card">
+          <div class="icon-box">
+            <ion-skeleton-text
+              animated
+              style="width: 32px; height: 32px; border-radius: 50%"
+            ></ion-skeleton-text>
+          </div>
+
+          <div class="info">
+            <ion-skeleton-text
+              animated
+              style="width: 60%; height: 16px"
+            ></ion-skeleton-text>
+
+            <div class="meta">
+              <ion-skeleton-text
+                animated
+                style="width: 35%; height: 12px"
+              ></ion-skeleton-text>
+
+              <ion-skeleton-text
+                animated
+                style="width: 30%; height: 12px"
+              ></ion-skeleton-text>
+            </div>
+          </div>
+
+          <div class="arrow">
+            <ion-skeleton-text
+              animated
+              style="width: 16px; height: 16px"
+            ></ion-skeleton-text>
+          </div>
+        </div>
+        } }
+      </div>
+    </div>
+  </div>
+</ion-content>

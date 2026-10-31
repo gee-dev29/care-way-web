@@ -1,0 +1,65 @@
+<ion-content class="ion-padding" fullscreen>
+  <div class="header" id="services">
+    <button
+      type="button"
+      class="back-btn"
+      aria-label="Go back"
+      (click)="goBack()"
+    >
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </button>
+    <ion-text class="title">All Medical Services</ion-text>
+    <ui-plus-icon-component
+      [size]="'small'"
+      (addIdentity)="addNew()"
+    ></ui-plus-icon-component>
+  </div>
+
+  <div class="filters" role="tablist" aria-label="Filter by product type">
+    @for (filter of filters; track filter) {
+    <button
+      type="button"
+      role="tab"
+      class="filter-chip"
+      [class.active]="activeFilter === filter"
+      [attr.aria-selected]="activeFilter === filter"
+      (click)="setFilter(filter)"
+    >
+      <span class="filter-label">{{ filter }}</span>
+    </button>
+    }
+  </div>
+
+  <div class="cards">
+    @if (loading) { @for (skeleton of skeletons; track $index) {
+    <div class="product-card skeleton-card" aria-hidden="true">
+      <ion-skeleton-text
+        [animated]="true"
+        class="skeleton-line skeleton-line-lg"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        [animated]="true"
+        class="skeleton-line skeleton-line-sm"
+      ></ion-skeleton-text>
+    </div>
+    } } @else if (products.length === 0) {
+    <div class="empty">
+      <span class="empty-title">No Medical Services Yet</span>
+      <span class="empty-text">
+        There are no {{ activeFilter }} services to show.
+      </span>
+    </div>
+    } @else { @for (product of products; track product.medicalProductId) {
+    <ui-medical-service-card [service]="product"></ui-medical-service-card>
+    } }
+  </div>
+
+  @if (hasMore) {
+  <ion-infinite-scroll [disabled]="!hasMore" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Loading more services..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  }
+</ion-content>

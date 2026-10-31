@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+.parent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  height: 100vh;
+}
+h1 {
+  font-size: 64px;
+  font-weight: 500;
+}
+/* 
+.div1 { grid-area: 1 / 1 / 2 / 2; }
+.div2 { grid-area: 2 / 1 / 4 / 3; }
+.div3 { grid-area: 1 / 2 / 2 / 3; } */

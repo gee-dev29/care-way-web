@@ -1,0 +1,151 @@
+<div class="mt-1">
+  <p-table
+    #dt1
+    dataKey="id"
+    [lazy]="true"
+    (onLazyLoad)="load($event)"
+    [paginator]="totalRecords"
+    [rows]="20"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[20, 50, 100]"
+    [value]="appointments$ | async"
+    [tableStyle]="{ 'min-width': '100rem' }"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        @if(showProfessionalName){
+        <th>Doctor</th>
+        } @if(showPatient){
+        <th>Patient</th>
+        }
+        <th>Appointment Type</th>
+        <th>Specialization</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        @if(showProfessionalName){
+        <th></th>
+        } @if(showPatient){
+        <th style="width: 10vw">
+          <p-columnFilter
+            field="memberId"
+            matchMode="equals"
+            [showMenu]="false"
+          >
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="'Patient'"
+                  [options]="members$ | async"
+                  [key]="'memberName'"
+                  [value]="'memberId'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByMember($event)"
+                ></ui-input-drop-down>
+                <div class="p-float-label"></div>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        }
+
+        <th style="width: 10vw">
+          <p-columnFilter
+            field="appointmentType"
+            matchMode="equals"
+            [showMenu]="false"
+          >
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="'Type'"
+                  [options]="appointmentTypes"
+                  [key]="'value'"
+                  [value]="'value'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByAppointmentType($event)"
+                ></ui-input-drop-down>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th></th>
+        <th>
+          <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="'Status'"
+                  [options]="statuses"
+                  [key]="'text'"
+                  [value]="'text'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByStatus($event)"
+                ></ui-input-drop-down>
+                <div class="p-float-label"></div>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>
+          {{ moment.utc(`${item.date} ${item.time}`).local().format('ddd MMM DD,
+          YYYY') }}
+        </td>
+        <td>
+          {{moment.utc(`${item.date} ${item.time}`, 'YYYY-MM-DD HH:mm').local()
+          .format('h:mm A')}}
+        </td>
+        @if(showProfessionalName){
+        <td>{{item.professionalName || 'N/A'}}</td>
+        } @if(showPatient){
+        <td>{{item.memberName}}</td>
+        }
+        <td>{{item.appointmentType}}</td>
+        <td>
+          {{item.specialization ? (item.specialization | titlecase) : 'N/A'}}
+        </td>
+        <td>{{item.status}}</td>
+        <td>
+          <ui-desktop-button
+            [label]="'View'"
+            [primary]="true"
+            [size]="'small'"
+            (click)="view(item.appointmentId)"
+          ></ui-desktop-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">
+          <div class="empty__table__text">There are no Appointments yet</div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

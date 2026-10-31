@@ -1,0 +1,164 @@
+:host {
+  --ok: var(--primary-color, #307d3d);
+  --wait: #b7791f;
+  --muted: #8a9099;
+  --line: #e4e8ec;
+  display: block;
+}
+
+.card__container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: clamp(300px, 100%, 520px);
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(48, 125, 61, 0.08);
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.count {
+  min-width: 22px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--ok);
+  background: #e8f3ea;
+}
+
+.query__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.query {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.query__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.name {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ok);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.date {
+  font-size: 0.7rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.query__text {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.response {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--ok);
+  border-radius: 0 8px 8px 0;
+  background: #f5faf6;
+}
+
+.query__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--wait);
+  background: #fdf3e1;
+}
+
+.link {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ok);
+  cursor: pointer;
+}
+
+.response__form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.response__form textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 0.85rem;
+  color: #1f2328;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.response__form textarea::placeholder {
+  color: var(--muted);
+}
+
+.response__form textarea:focus {
+  outline: none;
+  border-color: var(--ok);
+}
+
+.grouped__btn {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

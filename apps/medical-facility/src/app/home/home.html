@@ -1,0 +1,43 @@
+<div class="page">
+  <div class="background">
+    <div class="ion-padding">
+      <div class="center">
+        <ion-img src="/logo/medicalhomeLogo.svg" alt="HealBridge"></ion-img>
+      </div>
+      <div class="texter">
+        <ion-text color="black" class="ion-text">
+          <p>Welcome to Healbridge</p>
+        </ion-text>
+        <ion-text color="black" class="text__thin">
+          <p>
+            Your all-in-one platform for medical facility and patient
+            management.
+          </p>
+        </ion-text>
+      </div>
+      <div class="bts">
+        <ion-router-outlet></ion-router-outlet>
+        <ui-button
+          [label]="'Sign In'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#FFF5E8'"
+          [borderLine]="'#F4951E'"
+          [textColor]="'#00190D'"
+          (Click)="routeTo('/login')"
+        ></ui-button>
+        <ui-button
+          [label]="'Create Medical Facility'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307D3D'"
+          (Click)="routeTo('/signup')"
+          [icon]="'/icons/medLogo.svg'"
+          [showIcon]="true"
+        ></ui-button>
+      </div>
+    </div>
+  </div>
+</div>

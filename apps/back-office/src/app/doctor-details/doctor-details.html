@@ -1,0 +1,95 @@
+<ui-page-body>
+  <div class="grouped__btn">
+    <img
+      class="left-arrow-icon"
+      (click)="back()"
+      src="icons/left-arrow-black.svg"
+      alt=""
+    />
+    <h2 class="title">Doctor</h2>
+  </div>
+  <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+  <div class="mt-1">
+    @if(activeTab !== 0){
+    <ui-page-highlight
+      [primaryDetailTitle]="'Doctor:'"
+      [primaryDetail]="doctor"
+      [secondaryDetailTitle]="'Cadre:'"
+      [secondaryDetail]="cadre"
+    ></ui-page-highlight>
+    } @if (activeTab === 0) {
+    <div>
+      <ui-medical-professional-details-card
+        [medicalProfessional$]="doctor$"
+        [cardHeading]="cardHeading"
+      ></ui-medical-professional-details-card>
+    </div>
+    } @if(activeTab === 1){
+    <div>
+      <ui-appointment-request-table
+        [showProfessionalName]="false"
+        [showDoctor]="false"
+        [professionalId]="professionalId"
+        [appointmentRequests$]="appointmentRequests$"
+        [totalRecords]="totalRecords"
+      ></ui-appointment-request-table>
+    </div>
+    } @if(activeTab === 2){
+    <div>
+      <back-office-appointment-table
+        [showProfessionalName]="false"
+        [showPatient]="true"
+        [professionalId]="professionalId"
+        (viewAppointment)="viewAppointmentDetails($event)"
+      ></back-office-appointment-table>
+    </div>
+    } @if(activeTab === 3){
+    <div>
+      <ui-medical-professional-fee-table
+        [medicalProfessionalFees$]="medicalProfessionalFees$"
+        [totalRecords]="totalRecords"
+        (showModalFee)="showModalFee($event)"
+      ></ui-medical-professional-fee-table>
+    </div>
+    }
+  </div>
+</ui-page-body>
+<ui-modal
+  [header]="'Create Medical Professional Fee'"
+  #modal
+  [visibility]="feeModal"
+  (visibilityChange)="feeModal = $event"
+  [selectedWidth]="'40vw'"
+>
+  <div class="modal__container">
+    <div class="input">
+      <form class="group mb-2" [formGroup]="form">
+        <ui-desktop-input
+          [label]="'Physical Consultation Fee'"
+          [type]="'number'"
+          [control]="physicalConsultationFee"
+        ></ui-desktop-input>
+        <ui-input
+          (click)="showVirtual()"
+          [label]="'Virtual Consultation'"
+          [type]="'check'"
+          [control]="virtualConsultation"
+        ></ui-input>
+        @if(isVirtual){
+        <ui-desktop-input
+          [label]="'Virtual Consultation Fee'"
+          [type]="'number'"
+          [control]="virtualConsultationFee"
+        ></ui-desktop-input>
+        }
+      </form>
+      <ui-desktop-button
+        [primary]="true"
+        [disabled]="!form.valid"
+        [label]="'Save'"
+        [width]="'full'"
+        (click)="saveFee()"
+      ></ui-desktop-button>
+    </div>
+  </div>
+</ui-modal>

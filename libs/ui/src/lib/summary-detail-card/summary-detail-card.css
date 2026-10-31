@@ -1,0 +1,36 @@
+.summary__wrapper {
+  margin: 115px 0 0;
+}
+
+.top,
+.icon__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.top__details,
+.file__icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.content__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.summary__details {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 32px;
+}
+
+p {
+  color: rgba(14, 14, 14, 1);
+}
+.py {
+  margin-top: 20px;
+}
+.details {
+  padding: 0 20px;
+}

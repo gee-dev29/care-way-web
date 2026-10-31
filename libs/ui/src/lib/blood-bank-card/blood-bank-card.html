@@ -1,0 +1,56 @@
+<div class="lab-card">
+  @for(blood of bloodBank; track $index ){
+
+  <div class="lab-card-header">
+    <h4>Blood Bank</h4>
+
+    @if(blood.status === documentStatus.Draft && !module){
+
+    <div class="actions">
+      <ion-img
+        (click)="editBlood(blood)"
+        src="icons/white-pencil-icon.svg"
+        class="edit-icon"
+      ></ion-img>
+      <ion-icon
+        (click)="deleteBlood(blood)"
+        name="close-circle-outline"
+        class="delete-icon"
+      ></ion-icon>
+    </div>
+    }
+  </div>
+
+  <div class="lab-card-body">
+    <div class="row">
+      <p class="label">Service Name</p>
+      <p class="value">{{blood.serviceName}}</p>
+    </div>
+
+    <div class="row">
+      <p class="label">Blood Group</p>
+      <p class="value">{{blood.bloodGroup}}</p>
+    </div>
+
+    <div class="row">
+      <p class="label">Quantity</p>
+      <p class="value">{{blood.quantity}}</p>
+    </div>
+    <div class="row">
+      <p class="label">Status</p>
+      <p class="value">{{blood.status}}</p>
+    </div>
+  </div>
+  }
+  <ui-button
+    (Click)="proceed()"
+    [label]="'Request Cost'"
+    [width]="'full'"
+    [disabled]="disabled"
+    [fill]="'solid'"
+    [shape]="'round'"
+    [backgroundColor]="'#307d3d'"
+    [showImage]="false"
+    [loading]="isLoading"
+  ></ui-button>
+</div>

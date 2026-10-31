@@ -1,0 +1,137 @@
+.onboard-content {
+  --offset-bottom: 0;
+  --keyboard-offset: 0;
+  --padding-bottom: 0;
+}
+.main {
+  min-height: 100%;
+  max-width: 480px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+.page {
+  min-height: 100%;
+  position: relative;
+  background-image: linear-gradient(to bottom, #081a0b, #031d08);
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.center ion-img {
+  width: 100%;
+  max-width: 320px;
+  margin: auto;
+}
+
+.page .flareup {
+  position: absolute !important;
+  top: 15%;
+  right: 0%;
+  left: 250px;
+  min-height: 10%;
+}
+
+.page .flaredown {
+  position: absolute !important;
+  top: 45%;
+  right: 250px;
+  left: 0px;
+  min-height: 10%;
+}
+
+.bts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5%;
+}
+
+.pointer {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background: #307d3d;
+}
+
+.circle1 {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  border: 1px solid #307d3d;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border: 1px solid #307d3d;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.starter ion-img {
+  width: 25%;
+}
+
+.ion-text1 {
+  color: #b9dfbf;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.slime {
+  margin-top: 15%;
+}
+
+.ion-text2 {
+  margin-top: 5%;
+  color: #d7e8da;
+  font-size: 22px;
+  text-align: center;
+}
+/* .transition-wrapper {
+  position: relative;
+  transition: all 0.7s ease;
+}
+  */
+
+.starter {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  animation: fadeInUp 0.8s ease both;
+}
+
+@media(min-width:600px) {
+  .flaredown{
+    display: none;
+  }
+  .flareup{
+    display: none;
+  }
+}

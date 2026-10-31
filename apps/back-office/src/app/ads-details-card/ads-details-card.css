@@ -1,0 +1,36 @@
+.card__container {
+  width: clamp(350px, 45vw, 540px);
+  padding: clamp(20px, 4.5vw, 40px);
+  border-radius: 20px;
+  color: black;
+  background-color: #fafafa;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(237, 245, 239, 0.7);
+}
+
+.content__top {
+  display: grid;
+  grid-template-columns: 10fr 0fr;
+  padding-bottom: clamp(15px, 4.5vw, 30px);
+}
+
+.content__bottom {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+h5 {
+  word-break: break-word;
+}
+
+img {
+  width: 20px;
+  cursor: pointer;
+}

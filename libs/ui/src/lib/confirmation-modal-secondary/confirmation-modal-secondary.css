@@ -1,0 +1,62 @@
+ion-modal {
+  --width: fit-content;
+  --min-width: 400px;
+  --height: fit-content;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 6% 0px;
+  padding-bottom: 0%;
+}
+
+p {
+  font-weight: 600;
+  font-size: 18px;
+  color: #307d3d;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+}
+
+.hr {
+  width: 100%;
+  height: 1px;
+  background-color: #d1d1d1;
+}
+
+ion-modal#example-modal .wrapper {
+  margin-bottom: 10px;
+}
+
+.header {
+  font-weight: 500;
+  font-size: 22px;
+  text-align: center;
+}
+
+.button {
+  width: 100%;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn {
+  width: 45%;
+}
+
+.action.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: default;
+}

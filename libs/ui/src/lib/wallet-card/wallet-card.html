@@ -1,0 +1,38 @@
+<ion-card
+  [style.background]="bg"
+  [style]="{'color':color}"
+  class="balance-card"
+>
+  <div class="content">
+    <div class="top-row">
+      <ion-text class="title">{{ title }}</ion-text>
+
+      <div
+        class="eye-icon"
+        tabindex="0"
+        (keyup.enter)="toggle()"
+        (click)="toggle()"
+      >
+        <ion-icon
+          [name]="displayMoney ? 'eye-sharp' : 'eye-off-sharp'"
+        ></ion-icon>
+      </div>
+    </div>
+
+    <h1 class="balance">
+      NGN {{ showBalance ? formattedBalance : '•••••••' }}
+    </h1>
+
+    <div class="bottom-row">
+      <p class="subtitle">{{ subtitle | titlecase }}</p>
+      <ion-text
+        class="view-history"
+        tabindex="0"
+        (keyup.enter)="navigate()"
+        (click)="navigate()"
+      >
+        View History
+      </ion-text>
+    </div>
+  </div>
+</ion-card>

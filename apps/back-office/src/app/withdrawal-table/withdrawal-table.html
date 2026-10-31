@@ -1,0 +1,92 @@
+<div class="mt-1">
+  <p-table
+    #dt1
+    dataKey="id"
+    [lazy]="true"
+    [paginator]="true"
+    [rows]="20"
+    [totalRecords]="totalRecords"
+    [value]="withdrawals$ | async"
+    (onLazyLoad)="load($event)"
+    [rowsPerPageOptions]="[20, 50, 100]"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Date</th>
+        <th>Account Name</th>
+        <th>Bank</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter [showMenu]="false" type="date" field="date">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <p-datepicker
+                [ngModel]="value"
+                [readonlyInput]="true"
+                [showClear]="true"
+                [iconDisplay]="'input'"
+                (ngModelChange)="filterByDate($event)"
+                inputId="dateFilter"
+                dateFormat="dd-mm-yy"
+              />
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th></th>
+        <th></th>
+        <th>
+          <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="'Withdrawal Status'"
+                  [options]="withdrawalStatuses"
+                  [key]="'text'"
+                  [value]="'value'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByWithdrawalStatus($event)"
+                ></ui-input-drop-down>
+                <div class="p-float-label"></div>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ moment.utc(`${item.date}`).local().format('MMM DD, YYYY') }}</td>
+        <td style="width: 14vw">{{ item.accountName }}</td>
+        <td style="width: 14vw">{{ item.bank }}</td>
+        <td>{{ item.status}}</td>
+        <td>
+          <ui-desktop-button
+            [label]="'View'"
+            [primary]="true"
+            [size]="'small'"
+            (Click)="view(item)"
+          ></ui-desktop-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">
+          <div class="empty__table__text">There are no Withdrawals yet</div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

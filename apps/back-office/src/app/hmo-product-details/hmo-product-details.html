@@ -1,0 +1,37 @@
+<ui-page-body>
+  <div class="table__head">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">HMO Product</h2>
+    </div>
+    <back-office-approval-button
+      [description]="approvalDescription"
+      (approvalAction)="getHmoProductDetails(hmoId, hmoProductId)"
+    ></back-office-approval-button>
+  </div>
+  <ui-tab
+    [tabs]="tabs"
+    [value]="activeTab"
+    (tabChange)="activeTab = $event"
+  ></ui-tab>
+  @if(activeTab === 0){
+  <back-office-approval-timeline></back-office-approval-timeline>
+  <back-office-approval-queries></back-office-approval-queries>
+
+  <back-office-hmo-details-card
+    [hmoDetails$]="hmoDetails$"
+    (editHmoDetails)="editHmoDetails($event)"
+  ></back-office-hmo-details-card>
+  }
+  <back-office-hmo-product-details-card
+    [cardHeading]="'Product Details'"
+    [hmoProductDetails$]="hmoProductDetails$"
+  ></back-office-hmo-product-details-card>
+</ui-page-body>

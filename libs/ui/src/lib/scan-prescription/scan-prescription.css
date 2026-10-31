@@ -1,0 +1,81 @@
+#background-content {
+  background: #f4f5fe !important;
+}
+
+.plus_icon_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 130px;
+  width: 130px;
+  background-color: white;
+  border-radius: 100%;
+}
+
+.plus-icon {
+  background-color: #2e7d32;
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  padding: 7;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header {
+  margin-top: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px;
+}
+.up {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.up ion-icon {
+  font-size: 20px !important;
+}
+
+.ion-padding {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+.camera-body {
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 150px;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+ion-text h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 600;
+}
+ion-icon {
+  font-size: 30px;
+}
+
+.container ion-text {
+  text-align: center;
+}

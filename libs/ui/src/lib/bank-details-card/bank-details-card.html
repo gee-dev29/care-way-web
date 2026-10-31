@@ -1,0 +1,27 @@
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>{{facilityType}} Bank Details</h3>
+      </div>
+    </div>
+    <div class="content__bottom">
+      @if (bank$ | async; as bankDetails) { @if (!bankDetails) {
+      <h5 class="empty">No bank details added yet.</h5>
+      } @else {
+      <div class="content__body">
+        <p>Bank Name</p>
+        <h5>{{ bankDetails.bank }}</h5>
+      </div>
+      <div class="content__body">
+        <p>Account Number</p>
+        <h5>{{ bankDetails.accountNumber }}</h5>
+      </div>
+      <div class="content__body">
+        <p>Account Name</p>
+        <h5>{{ bankDetails.accountName }}</h5>
+      </div>
+      } }
+    </div>
+  </div>
+</div>

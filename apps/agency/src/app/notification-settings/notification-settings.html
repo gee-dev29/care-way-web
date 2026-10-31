@@ -1,0 +1,34 @@
+<ion-content id="background-content" fullscreen>
+  <div class="ion-padding">
+    <div class="up" tabindex="0" (keyup)="goBack()" (click)="goBack()">
+      <ion-icon src="/logo/backarrow.svg"></ion-icon>
+      <ion-text> <p>Notification settings</p></ion-text>
+    </div>
+  </div>
+
+  <ion-list id="list" [formGroup]="form">
+    <ion-toggle justify="space-between" formControlName="messages"
+      >Messages</ion-toggle
+    >
+
+    <ion-toggle justify="space-between" formControlName="testResults"
+      >Test results</ion-toggle
+    >
+
+    <ion-toggle justify="space-between" formControlName="bookingUpdates"
+      >Booking updates</ion-toggle
+    >
+
+    <ion-toggle justify="space-between" formControlName="medicationReminders"
+      >Medication reminders</ion-toggle
+    >
+
+    <ion-toggle justify="space-between" formControlName="appointmentReminders"
+      >Appointment reminders</ion-toggle
+    >
+
+    <ion-toggle justify="space-between" formControlName="newPrescription"
+      >New prescription</ion-toggle
+    >
+  </ion-list>
+</ion-content>

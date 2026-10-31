@@ -1,0 +1,628 @@
+@if (showHeader){
+<ion-header collapse="fade" class="mobile-header">
+  <ion-toolbar>
+    @if (loaded) {
+    <div class="up">
+      <div class="left">
+        <div class="center">
+          @if (facilityType===FacilityType.Hospital) {
+          <ion-img src="/logo/Hospital-logo.svg" alt="HealBridge"></ion-img>
+
+          } @if (facilityType===FacilityType.Pharmacy) {
+          <ion-img src="/logo/pahrmacy-logo.svg" alt="HealBridge"></ion-img>
+          } @if (facilityType===FacilityType.BloodBank) {
+          <ion-img src="/logo/Blood-banklogo.svg" alt="HealBridge"></ion-img>
+          } @if (facilityType===FacilityType.Radiology) {
+          <ion-img src="/logo/Diagnostics-logo.svg" alt="HealBridge"></ion-img>
+          } @if (facilityType===FacilityType.Laboratory) {
+          <ion-img src="/logo/lab-logo.svg" alt="HealBridge"></ion-img>
+          }
+        </div>
+      </div>
+      <div
+        class="user"
+        tabindex="0"
+        (keypress)="openModal()"
+        (click)="openModal()"
+      >
+        <div
+          class="ion-tab-buttonn prescription"
+          tabindex="1"
+          (keyup.enter)="route($event)"
+          (click)="route($event)"
+        >
+          <ion-icon class="notif" src="/icons/notification.svg"></ion-icon>
+          @if (unreadNotificationCount > 0) {
+            <ion-badge color="danger">{{ unreadNotificationCount }}</ion-badge>
+          }
+        </div>
+
+        <div
+          class="avatar-wrapper"
+          (keyup)="openModal()"
+          tabindex="0"
+          (click)="openModal()"
+        >
+          <ion-avatar [class.profile__pic]="profileInfoService.picture">
+            <img [src]="profileInfoService.picture || '/logo/avatar.svg'" alt="" />
+          </ion-avatar>
+          <ion-icon
+            src="/icons/swap-horizontal-outline.svg"
+            class="swap-icon"
+            name="swap-horizontal-outline"
+          >
+          </ion-icon>
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div class="up">
+      <div class="left">
+        <div class="center">
+          <ion-skeleton-text
+            [animated]="true"
+            style="width: 90px; height: 26px; border-radius: 6px"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+      <div class="user">
+        <div class="ion-tab-buttonn prescription">
+          <ion-skeleton-text
+            [animated]="true"
+            style="width: 22px; height: 22px; border-radius: 50%"
+          ></ion-skeleton-text>
+        </div>
+        <div class="avatar-wrapper">
+          <ion-avatar>
+            <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+          </ion-avatar>
+        </div>
+      </div>
+    </div>
+    }
+  </ion-toolbar>
+</ion-header>
+<ion-modal
+  [isOpen]="isFacilityModalOpen"
+  [initialBreakpoint]="1"
+  [breakpoints]="[0, 1]"
+  (didDismiss)="isFacilityModalOpen = false"
+>
+  <ng-template>
+    <div></div>
+    <div class="block">
+      @for (item of switchAccounts; track item.id) {
+
+      <div
+        tabindex="0"
+        class="acct-box"
+        (click)="toggleExpand(item.facilityType)"
+        (keydown)="toggleExpand(item.facilityType)"
+        [class.active]="item.facilityType === activeFacilityType"
+      >
+        <div
+          class="icon-con"
+          [ngStyle]="{ 'background-color': item.bgColor }"
+        >
+          <ion-icon [src]="item.icons"></ion-icon>
+        </div>
+        <ion-text class="acct-text">{{ item.text }}</ion-text>
+      </div>
+
+      }
+    </div>
+  </ng-template>
+</ion-modal>
+<ion-header collapse="fade" class="desktop-header">
+  <ion-toolbar>
+    @if (loaded) {
+    <div class="up">
+      <div
+        class="user"
+        tabindex="0"
+        (keypress)="openModal()"
+        (click)="openModal()"
+      >
+        @if (profileInfoService.picture) {
+        <div
+          class="avatar-wrapper"
+          (keyup)="openModal()"
+          tabindex="0"
+          (click)="openModal()"
+        >
+          <ion-avatar class="profile__pic">
+            <img [src]="profileInfoService.picture" alt="" />
+          </ion-avatar>
+          <ion-icon
+            src="/icons/swap-horizontal-outline.svg"
+            class="swap-icon"
+            name="swap-horizontal-outline"
+          >
+          </ion-icon>
+        </div>
+        } @else {
+        <div
+          class="avatar-wrapper"
+          (keyup)="openModal()"
+          tabindex="0"
+          (click)="openModal()"
+        >
+          <ion-avatar class="profile__pic text__avater">
+            <span>
+              {{ profileInfoService?.name?.[0] }}
+              {{ profileInfoService?.name?.split(' ')?.[1]?.[0] || '' }}
+            </span>
+          </ion-avatar>
+          <ion-icon
+            src="/icons/swap-horizontal-outline.svg"
+            class="swap-icon"
+            name="swap-horizontal-outline"
+          >
+          </ion-icon>
+        </div>
+        }
+        <div class="greeting__container">
+          <p class="greeting">
+            Hi, {{ profileInfoService?.name?.split(' ')[0] }} 👋
+          </p>
+        </div>
+      </div>
+      <div class="left">
+        <div
+          class="ion-tab-buttonn"
+          tabindex="1"
+          (keyup.enter)="route($event)"
+          (click)="route($event)"
+        >
+          <ion-icon class="notif" name="notifications-outline"></ion-icon>
+          @if (unreadNotificationCount > 0) {
+            <ion-badge color="danger">{{ unreadNotificationCount }}</ion-badge>
+          }
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div class="up">
+      <div class="user">
+        <div class="avatar-wrapper">
+          <ion-avatar class="profile__pic">
+            <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+          </ion-avatar>
+        </div>
+        <div class="greeting__container">
+          <ion-skeleton-text
+            [animated]="true"
+            style="width: 90px; height: 14px"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+      <div class="left">
+        <div class="ion-tab-buttonn">
+          <ion-skeleton-text
+            [animated]="true"
+            style="width: 20px; height: 20px; border-radius: 50%"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+    }
+  </ion-toolbar>
+</ion-header>
+} @if(isMobile){
+<ion-tabs class="mobile-tabs">
+  <!-- <ion-router-outlet></ion-router-outlet> -->
+  @if (showTab){
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" href="dashboard/home">
+      <ion-icon src="/icons/Home.svg"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+    @if (facilityType===FacilityType.Hospital) {
+    <ion-tab-button (click)="navigateTo('doctor')">
+      <ion-icon src="/icons/Doctor.svg"></ion-icon>
+      <ion-label>Doctors</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)="navigateTo('nurse')">
+      <ion-icon src="/icons/Nurse.svg"></ion-icon>
+      <ion-label>Nurses</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)="navigateTo('patient')">
+      <ion-icon src="/icons/Patients.svg"></ion-icon>
+      <ion-label>Patients</ion-label>
+    </ion-tab-button>
+    <!-- <ion-tab-button tab="orders" href="/dashboard/orders">
+      <ion-icon src="/icons/orders.svg"></ion-icon>
+      <ion-label>Orders</ion-label>
+    </ion-tab-button> -->
+    } @if (facilityType !== FacilityType.Hospital) {
+    <ion-tab-button tab="request" href="dashboard/request">
+      <ion-icon src="/icons/requests.svg"></ion-icon>
+      <ion-label>Requests</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="orders" href="/dashboard/orders">
+      <ion-icon src="/logo/prescription.svg"></ion-icon>
+      <ion-label>Orders</ion-label>
+    </ion-tab-button>
+    } @if (facilityType === FacilityType.Pharmacy) {
+    <ion-tab-button tab="pharms" href="dashboard/pharms">
+      <ion-icon src="/icons/Staff.svg"></ion-icon>
+      <ion-label>Pharm</ion-label>
+    </ion-tab-button>
+    } @if (facilityType === FacilityType.Laboratory) {
+    <ion-tab-button tab="labstaffs" href="dashboard/labstaffs">
+      <ion-icon src="/icons/Staff.svg"></ion-icon>
+      <ion-label>Lab Staff</ion-label>
+    </ion-tab-button>
+    } @if (facilityType === FacilityType.BloodBank) {
+    <ion-tab-button tab="bbstaff" href="dashboard/bbstaff">
+      <ion-icon src="/icons/Staff.svg"></ion-icon>
+      <ion-label>BB Staff</ion-label>
+    </ion-tab-button>
+    } @if (facilityType === FacilityType.Radiology) {
+    <ion-tab-button tab="radiologystaff" href="dashboard/radiologystaff">
+      <ion-icon src="/icons/Staff.svg"></ion-icon>
+      <ion-label>Radiologist</ion-label>
+    </ion-tab-button>
+    }
+
+    <ion-tab-button (click)="goToProfile()">
+      <ion-icon src="/icons/Category.svg"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+  }
+</ion-tabs>
+} @else{
+<div class="desktop-layout">
+  @if (showTab) {
+  <div class="desktop-sidebar">
+    <div class="desktop-sidebar-inner">
+      <div>
+        <div class="desktop-logo">
+          @if (facilityType===FacilityType.Hospital) {
+          <img src="/logo/Hospital-logo.svg" alt="HealBridge" />
+
+          } @if (facilityType===FacilityType.Pharmacy) {
+          <img src="/logo/pahrmacy-logo.svg" alt="HealBridge" />
+          } @if (facilityType===FacilityType.BloodBank) {
+          <img src="/logo/Blood-banklogo.svg" alt="HealBridge" />
+          } @if (facilityType===FacilityType.Radiology) {
+          <img src="/logo/Diagnostics-logo.svg" alt="HealBridge" />
+          } @if (facilityType===FacilityType.Laboratory) {
+          <img src="/logo/lab-logo.svg" alt="HealBridge" />
+          }
+        </div>
+        <div class="desktop-nav">
+          <ul>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/home')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/home')"
+                (click)="navigate('/dashboard/home')"
+              >
+                <img src="/logo/home.svg" alt="" />
+                <p>Home</p>
+              </div>
+            </li>
+            @if (facilityType===FacilityType.Hospital) {
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/doctors')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/doctors')"
+                (click)="navigate('/dashboard/doctors')"
+              >
+                <img src="/icons/Doctor.svg" alt="" />
+                <p>Doctors</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/nurses')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/nurses')"
+                (click)="navigate('/dashboard/nurses')"
+              >
+                <img src="/icons/Nurse.svg" alt="" />
+                <p>Nurses</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/patients')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/patients')"
+                (click)="navigate('/dashboard/patients')"
+              >
+                <img src="/icons/Patients.svg" alt="" />
+                <p>Patients</p>
+              </div>
+            </li>
+            
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive(`/dashboard/list-all-medical-facility-appointments/${this.facilityType}/${this.facilityId}/${this.facilityTypeId}`)"
+                tabindex="0"
+                (keyup.enter)="navigate(`/dashboard/list-all-medical-facility-appointments/${this.facilityType}/${this.facilityId}/${this.facilityTypeId}`)"
+                (click)="navigate(`/dashboard/list-all-medical-facility-appointments/${this.facilityType}/${this.facilityId}/${this.facilityTypeId}`)"
+              >
+                <img src="/logo/schedule.svg" alt="" />
+                <p>Appointments</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive(`/dashboard/more/${this.facilityType}/${this.facilityId}/${this.facilityTypeId}/view-all-medical-service`)"
+                tabindex="0"
+                (keyup.enter)="navigate(`/dashboard/more/${this.facilityType}/${this.facilityId}/${this.facilityTypeId}/view-all-medical-service`)"
+                (click)="navigate(`/dashboard/more/${this.facilityType}/${this.facilityId}/${this.facilityTypeId}/view-all-medical-service`)"
+              >
+                <ion-icon src="/icons/medicalService.svg"></ion-icon>
+                <p>Medical Services</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive(`/dashboard/hospital-profile/${this.facilityId}/${this.facilityTypeId}`)"
+                tabindex="0"
+                (keyup.enter)="navigate(`/dashboard/hospital-profile/${this.facilityId}/${this.facilityTypeId}`)"
+                (click)="navigate(`/dashboard/hospital-profile/${this.facilityId}/${this.facilityTypeId}`)"
+              >
+                <ion-icon src="/logo/profile-icon.svg"></ion-icon>
+                <p>Profile</p>
+              </div>
+            </li>
+            } @if (facilityType !== FacilityType.Hospital) {
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/request')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/request')"
+                (click)="navigate('/dashboard/request')"
+              >
+                <img src="/icons/requests.svg" alt="" />
+                <p>Request</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/orders')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/orders')"
+                (click)="navigate('/dashboard/orders')"
+              >
+                <ion-icon src="/logo/prescription.svg"></ion-icon>
+                <p>Orders</p>
+              </div>
+            </li>
+            } @if (facilityType === FacilityType.Pharmacy) {
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/pharms')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/pharms')"
+                (click)="navigate('/dashboard/pharms')"
+              >
+                <img src="/icons/Staff.svg" alt="" />
+                <p>Pharm</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive(`/dashboard/pharm-profile/${this.facilityId}/${this.facilityTypeId}`)"
+                tabindex="0"
+                (keyup.enter)="navigate(`/dashboard/pharm-profile/${this.facilityId}/${this.facilityTypeId}`)"
+                (click)="navigate(`/dashboard/pharm-profile/${this.facilityId}/${this.facilityTypeId}`)"
+              >
+                <ion-icon src="/logo/profile-icon.svg"></ion-icon>
+                <p>Profile</p>
+              </div>
+            </li>
+            } @if (facilityType === FacilityType.Laboratory) {
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/labstaffs')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/labstaffs')"
+                (click)="navigate('/dashboard/labstaffs')"
+              >
+                <img src="/icons/Staff.svg" alt="" />
+                <p>Lab Staff</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive(`/dashboard/laboratory-profile/${this.facilityId}/${this.facilityTypeId}`)"
+                tabindex="0"
+                (keyup.enter)="navigate(`/dashboard/laboratory-profile/${this.facilityId}/${this.facilityTypeId}`)"
+                (click)="navigate(`/dashboard/laboratory-profile/${this.facilityId}/${this.facilityTypeId}`)"
+              >
+                <ion-icon src="/logo/profile-icon.svg"></ion-icon>
+                <p>Profile</p>
+              </div>
+            </li>
+            } @if (facilityType === FacilityType.BloodBank) {
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/bbstaff')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/bbstaff')"
+                (click)="navigate('/dashboard/bbstaff')"
+              >
+                <img src="/icons/Staff.svg" alt="" />
+                <p>BB Staff</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive(`/dashboard/blood-bank-profile/${this.facilityId}/${this.facilityTypeId}`)"
+                tabindex="0"
+                (keyup.enter)="navigate(`/dashboard/blood-bank-profile/${this.facilityId}/${this.facilityTypeId}`)"
+                (click)="navigate(`/dashboard/blood-bank-profile/${this.facilityId}/${this.facilityTypeId}`)"
+              >
+                <ion-icon src="/logo/profile-icon.svg"></ion-icon>
+                <p>Profile</p>
+              </div>
+            </li>
+            } @if (facilityType === FacilityType.Radiology) {
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/radiologystaff')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/radiologystaff')"
+                (click)="navigate('/dashboard/radiologystaff')"
+              >
+                <img src="/icons/Staff.svg" alt="" />
+                <p>Radiologist</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive(`/dashboard/radiology-profile/${this.facilityId}/${this.facilityTypeId}`)"
+                tabindex="0"
+                (keyup.enter)="navigate(`/dashboard/radiology-profile/${this.facilityId}/${this.facilityTypeId}`)"
+                (click)="navigate(`/dashboard/radiology-profile/${this.facilityId}/${this.facilityTypeId}`)"
+              >
+                <ion-icon src="/logo/profile-icon.svg"></ion-icon>
+                <p>Profile</p>
+              </div>
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+      <div class="desktop-logout-wrap">
+        <div class="desktop-logout">
+          <div class="desktop-logout-user">
+            @if (profileInfoService.picture!==null) {
+            <ion-avatar class="desktop-avatar">
+              <img [src]="profileInfoService.picture" alt="" />
+            </ion-avatar>
+            } @else {
+            <div class="desktop-initials">
+              {{profileInfoService?.name?.[0]
+
+
+
+
+
+
+
+              }}{{profileInfoService?.name?.split('')?.[1]?.[0]}}
+            </div>
+            }
+            <div class="desktop-logout-name">
+              <p>{{ profileInfoService?.name }}</p>
+            </div>
+          </div>
+          <div>
+            <ion-icon
+              name="power-outline"
+              class="desktop-power"
+              (click)="logout()"
+            ></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+  <div class="desktop-router-shell">
+    <ion-router-outlet></ion-router-outlet>
+  </div>
+</div>
+}
+
+<ui-confirmation-modal
+  [heading]="`Do You Want to onboard ${selectedFacilityType}?`"
+  [background]="'#307d3d'"
+  [open]="confirmSwitchModalOpen"
+  (next)="confirmSwitch()"
+  (no)="cancelSwitch()"
+  (dismiss)="cancelSwitch()"
+>
+</ui-confirmation-modal>
+
+<ion-modal
+  [isOpen]="isFacilityModalOpen2"
+  [initialBreakpoint]="2"
+  [breakpoints]="[1, 0]"
+  (didDismiss)="isFacilityModalOpen2 = false"
+>
+  <ng-template>
+    <div class="block2">
+      <div class="centeralized">
+        <div class="icon-con" [ngStyle]="{ 'background-color': '#EFE3EE' }">
+          @switch (selected) { @case (FacilityTypes.Pharmacy) {
+          <ion-icon src="/icons/pharmIcon.svg"></ion-icon>
+          } @case (FacilityTypes.Hospital) {
+          <ion-icon src="/icons/hospitalIcon.svg"></ion-icon>
+          } @case (FacilityTypes.Laboratory) {
+          <ion-icon src="/icons/laboratory.svg"></ion-icon>
+          } @case (FacilityTypes.Radiology) {
+          <ion-icon src="/icons/radiology.svg"></ion-icon>
+          } @default {
+          <ion-icon src="/icons/bloodbank.svg"></ion-icon>
+          } }
+        </div>
+        <h4>{{ selected }}</h4>
+      </div>
+      <div
+        tabindex=""
+        (keypress)="confirmSwitch()"
+        (click)="confirmSwitch()"
+        class="justify-left cursor"
+      >
+        <h2>All Onboarded</h2>
+        <ui-plus-icon-component [size]="'small'"></ui-plus-icon-component>
+      </div>
+      @for (facility of allFacilities; track $index) {
+      <div
+        tabindex="0"
+        class="acct-box"
+        (click)="
+          setFacilityType(facility.facilityType, facility);
+          selectedFacility = facility
+        "
+        (keydown)="
+          setFacilityType(facility.facilityType, facility);
+          selectedFacility = facility
+        "
+      >
+        <div class="icon-con" [ngStyle]="{ 'background-color': '#EFE3EE' }">
+          @switch (facility.facilityType) { @case (FacilityTypes.Pharmacy) {
+          <ion-icon src="/icons/pharmIcon.svg"></ion-icon>
+          } @case (FacilityTypes.Hospital) {
+          <ion-icon src="/icons/hospitalIcon.svg"></ion-icon>
+          } @case (FacilityTypes.Laboratory) {
+          <ion-icon src="/icons/laboratory.svg"></ion-icon>
+          } @case (FacilityTypes.Radiology) {
+          <ion-icon src="/icons/radiology.svg"></ion-icon>
+          } @default {
+          <ion-icon src="/icons/bloodbank.svg"></ion-icon>
+          } }
+        </div>
+        <ion-text class="acct-text"> {{ facility.name }} </ion-text>
+      </div>
+      }
+    </div>
+  </ng-template>
+</ion-modal>

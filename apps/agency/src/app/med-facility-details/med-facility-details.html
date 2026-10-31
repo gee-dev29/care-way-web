@@ -1,0 +1,83 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="home" class="mt-4 page-layout">
+    <div class="header">
+      <ion-icon
+        (click)="routeTo('dashboard/med-facilities')"
+        name="chevron-back-outline"
+      ></ion-icon>
+      <div class="title">Medical Facility Details</div>
+    </div>
+
+    @if((medDetails$ | async); as medDetail){
+    <agency-med-facility-detail-card
+      [email]="medDetail.email"
+      [name]="medDetail.name"
+      [location]="medDetail.phoneNumber"
+    >
+    </agency-med-facility-detail-card>
+    }
+
+    <!-- tabs -->
+    <div class="tab-bar-wrapper">
+      <div class="tab-bar">
+        @for(tab of tabsText; track tab.key) {
+        <ion-text
+          class="tab-btn"
+          [class.active]="activeTab === tab.key"
+          (click)="setActiveTab(tab.key)"
+        >
+          {{ tab.label }}
+        </ion-text>
+        }
+      </div>
+    </div>
+    @if( activeTab !== FacilityType.Hospital && facilityTypeId){
+    <div class="tab-content">
+      <div class="section-header">
+        <span class="section-title">Orders ({{ orders.length }})</span>
+
+        <button class="view-all-btn" (click)="viewAll('/dashboard/all-orders')">
+          View all
+        </button>
+      </div>
+
+      <div class="orders-list">
+        @if (orders.length > 0) { @for (order of orders; track order.orderId) {
+        <agency-agency-order-list-card [order]="order" />
+        } } @else {
+        <div class="empty-state">
+          <ion-icon name="document-outline"></ion-icon>
+          <p>No orders for {{ activeTab }}</p>
+        </div>
+        }
+      </div>
+    </div>
+    } @if( activeTab === FacilityType.Hospital && facilityTypeId){
+    <div class="tab-content">
+      <div class="section-header">
+        <span class="section-title"
+          >Appointment ({{ appointments.length }})</span
+        >
+        <button
+          class="view-all-btn"
+          (click)="viewAll('/dashboard/all-appointments')"
+        >
+          View all
+        </button>
+      </div>
+
+      <div class="orders-list">
+        @if (appointments.length > 0) { @for (appointment of appointments; track
+        appointment.appointmentId) {
+        <agency-appointment-card [appointments]="appointment" />
+        } } @else {
+        <div class="empty-state">
+          <ion-icon name="document-outline"></ion-icon>
+          <p>No appointments for {{ activeTab }}</p>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</ion-content>

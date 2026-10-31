@@ -1,0 +1,173 @@
+.page {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  justify-content: center;
+  background-color: #f4f5fe;
+  overflow-y: auto;
+}
+
+.ion-padding {
+  padding: 25px !important;
+}
+
+::ng-deep ion-item {
+  margin-bottom: 10px !important;
+  --background: var(
+    --ion-item-background,
+    var(--ion-background-color, transparent)
+  );
+}
+
+.gender__text {
+  margin-top: 20px;
+  ion-text {
+    font-weight: 700;
+  }
+}
+
+.bts {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.ion-item {
+  padding-left: 0px !important;
+}
+
+.ion-padding p {
+  color: #666666;
+  margin-top: 0px;
+  font-size: 14px;
+}
+
+.ion-padding h1 {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.input {
+  margin-top: 30px;
+}
+
+.id__plus {
+  font-size: 14px;
+}
+
+.label {
+  text-align: center;
+  margin-top: 10px !important;
+  font-weight: 500;
+}
+
+.mv_down {
+  margin-top: 10px !important;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+:host .item-native {
+  margin: 0px !important;
+  padding-left: 0px !important;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+:host .item-native {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+ion-item {
+  border-bottom: 0.5px solid black !important;
+}
+
+ion-img {
+  width: 40% !important;
+}
+
+.chips-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  padding: 10px 0;
+  gap: 1rem;
+}
+
+.chips-container::-webkit-scrollbar {
+  display: none;
+}
+
+.chips-container ion-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100px;
+}
+
+:host(.toggle-ltr) .toggle-inner {
+  background: black !important;
+}
+
+:host(.toggle-ltr) .native .toggle-inner {
+  background: black !important;
+}
+
+.gender__based {
+  margin: 5px 0px;
+}
+
+.gender__based ion-text {
+  font-weight: 300;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.timer {
+  background-color: #d7dfea;
+  padding: 10px 12px;
+  text-align: center;
+  border-radius: 32px;
+}
+
+.timer2 {
+  background-color: #0061ef;
+  padding: 10px 12px;
+  text-align: center;
+  border-radius: 32px;
+  color: #fff;
+}
+
+.gender {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+@media (min-width: 500px) {
+  .page {
+    overflow-y: auto;
+    padding-top: auto;
+  }
+}
+@media (min-width: 401px) {
+  .page {
+    overflow-y: auto;
+    padding-top: auto !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .page {
+    overflow-y: auto;
+  }
+}

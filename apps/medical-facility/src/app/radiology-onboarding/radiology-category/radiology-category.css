@@ -1,0 +1,182 @@
+.page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  background-color: #fffff7;
+  overflow-y: auto;
+}
+ion-card {
+  height: 71px;
+  --background: transparent;
+  border-radius: 14px;
+  margin: 0px !important;
+  margin-bottom: 0px !important;
+  border: 1px solid black;
+}
+ion-card ion-text {
+  font-weight: 500;
+  font-size: 1rem;
+  color: black;
+  width: 50%;
+}
+ion-icon {
+  font-size: 24px;
+}
+ion-checkbox {
+  --checkbox-background-checked: transparent !important;
+  --border-color-checked: #056e26 !important;
+  --checkmark-color: #056e26 !important;
+}
+.container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(381px, 1fr));
+  padding: 10px 0;
+  gap: 1rem;
+}
+.ion-padding {
+  padding: 0 25px !important;
+  margin-top: 80px;
+}
+.forgot__password {
+  margin-top: 20px;
+}
+::ng-deep ion-item {
+  margin-bottom: 10px !important;
+  --background: var(
+    --ion-item-background,
+    var(--ion-background-color, transparent)
+  );
+}
+a {
+  text-decoration: none;
+}
+ion-card-content {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.lefter {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.bts {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 30vh;
+  position: relative;
+  width: 100%;
+}
+ui-button {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.ion-item {
+  padding-left: 0px !important;
+}
+.ion-padding p {
+  color: #666666;
+  margin-top: 0px;
+  font-size: 14px;
+}
+.ion-padding h1 {
+  font-size: 20px;
+}
+ .header {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+.label {
+  text-align: center;
+  margin-top: 20px !important;
+  font-weight: 500;
+}
+.mv_down {
+  margin-top: 20px !important;
+}
+.title-case input {
+  text-transform: Title Case !important;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+:host .item-native {
+  margin: 0px !important;
+  padding-left: 0px !important;
+}
+.cursor {
+  cursor: pointer;
+}
+:host .item-native {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+.ui-input {
+  margin-top: 30px;
+}
+h1,
+p {
+  color: black;
+}
+ion-img {
+  width: 40% !important;
+}
+@media (min-width: 401px) {
+  .page {
+    overflow-y: auto;
+  }
+  .center {
+    margin-top: 10%;
+  }
+}
+@media (max-width: 827px) {
+  .page {
+    overflow-y: auto;
+  }
+  .center {
+    margin-top: 10%;
+  }
+  .container {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+  ion-card ion-text {
+    width: 60%;
+  }
+}
+@media (max-width: 665px) {
+  ion-card ion-text {
+    width: 70%;
+  }
+  .center {
+    margin-top: 115px;
+  }
+}
+@media (max-width: 375px) {
+  ion-card ion-text {
+    width: 100%;
+    font-size: 0.7rem;
+  }
+  .container {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
+  .lefter {
+    display: flex;
+    align-items: flex-start;
+    gap: 0px;
+    flex-direction: column;
+  }
+}

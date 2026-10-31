@@ -1,0 +1,303 @@
+<ion-content id="background-content" class="ion-padding" fullscreen>
+  <div #tabs id="home">
+    @if (!loaded) {
+    <!-- ===================== SKELETON ===================== -->
+    @if (getAuth?.userType==="Medical Facility") {
+    <ion-skeleton-text
+      animated
+      style="width: 100%; height: 100px; border-radius: 12px"
+    ></ion-skeleton-text>
+    }
+
+    <div class="flex-col gp-big mt-2">
+      <div class="flex-row">
+        <ion-text class="sub-title">Pending Appointments</ion-text>
+        <ion-text (click)="viewAllMedicalAppointments()" class="view-all"
+          >View all</ion-text
+        >
+      </div>
+      <div class="patient-card">
+        <div>
+          <ion-skeleton-text
+            animated
+            style="width: 160px; height: 14px; margin-bottom: 8px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="width: 220px; height: 12px"
+          ></ion-skeleton-text>
+        </div>
+        <div>
+          <ion-skeleton-text
+            animated
+            style="width: 40px; height: 40px; border-radius: 50%"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-col gp-big mt-2">
+      <div class="flex-row">
+        <ion-text class="sub-title">Medical Services</ion-text>
+        <ion-text (click)="viewAllMedicalServices()" class="view-all"
+          >View all</ion-text
+        >
+      </div>
+      <div class="patient-card">
+        <div>
+          <ion-skeleton-text
+            animated
+            style="width: 160px; height: 14px; margin-bottom: 8px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="width: 220px; height: 12px"
+          ></ion-skeleton-text>
+        </div>
+        <div>
+          <ion-skeleton-text
+            animated
+            style="width: 40px; height: 40px; border-radius: 50%"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+
+    <div class="patient-card">
+      <div>
+        <ion-skeleton-text
+          animated
+          style="width: 160px; height: 14px; margin-bottom: 8px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 220px; height: 12px"
+        ></ion-skeleton-text>
+      </div>
+      <div>
+        <ion-skeleton-text
+          animated
+          style="width: 40px; height: 40px; border-radius: 50%"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+
+    <div class="up">
+      <div class="patient-card">
+        <div>
+          <ion-skeleton-text
+            animated
+            style="width: 160px; height: 14px; margin-bottom: 8px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="width: 220px; height: 12px"
+          ></ion-skeleton-text>
+        </div>
+        <div>
+          <ion-skeleton-text
+            animated
+            style="width: 40px; height: 40px; border-radius: 50%"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+
+    <div class="up">
+      <div class="patient-card">
+        <div>
+          <ion-skeleton-text
+            animated
+            style="width: 160px; height: 14px; margin-bottom: 8px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="width: 220px; height: 12px"
+          ></ion-skeleton-text>
+        </div>
+        <div>
+          <ion-skeleton-text
+            animated
+            style="width: 40px; height: 40px; border-radius: 50%"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-col ion-padding">
+      @for(i of [1,2,3]; track i) {
+      <ion-card class="order-card">
+        <div class="left">
+          <ion-skeleton-text animated class="icon-box"></ion-skeleton-text>
+          <div class="info" style="margin-left: 15px">
+            <ion-skeleton-text
+              animated
+              style="height: 12px; width: 110px"
+            ></ion-skeleton-text>
+            <ion-skeleton-text
+              animated
+              style="height: 12px; width: 90px; margin-top: 8px"
+            ></ion-skeleton-text>
+          </div>
+        </div>
+        <div class="right" style="margin-top: 15px">
+          <ion-skeleton-text
+            animated
+            style="height: 12px; width: 60px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="height: 12px; width: 50px; margin-top: 8px"
+          ></ion-skeleton-text>
+        </div>
+      </ion-card>
+      }
+    </div>
+
+    } @else {
+    <!-- ===================== CONTENT ===================== -->
+    @if (getAuth?.userType==="Medical Facility") {
+    <ui-wallet-card
+      [subtitle]="`${facilityTypeInfo?.name}`"
+      [bg]="'#317e3d'"
+      [color]="'white'"
+      [balance]="balance"
+      [facilityType]="facilityType"
+      [facilityId]="facilityId"
+    ></ui-wallet-card>
+    }
+
+    <div class="flex-col gp-big mt-2">
+      <div class="flex-row">
+        <ion-text class="sub-title">Pending Appointments</ion-text>
+        <ion-text (click)="viewAllMedicalAppointments()" class="view-all"
+          >View all</ion-text
+        >
+      </div>
+      @if (appointments$ | async; as appointment) {
+      <ui-appointment-card-primary
+        [appointment]="appointment"
+        [status]="status"
+        [showPatient]="true"
+        [statusFn]="getStatus(appointment?.status)"
+        (viewAppointment)="viewAppointment($event)"
+      ></ui-appointment-card-primary>
+      } @else {
+      <div
+        tabindex=""
+        (keyup.enter)="createAppointment()"
+        (click)="createAppointment()"
+      >
+        <ui-add-new-entry-card [title]="'Schedule appointment with a patient'">
+        </ui-add-new-entry-card>
+      </div>
+      }
+    </div>
+
+    <div class="flex-col gp-big mt-2">
+      <div class="flex-row">
+        <ion-text class="sub-title">Medical Services</ion-text>
+        <ion-text (click)="viewAllMedicalServices()" class="view-all"
+          >View all</ion-text
+        >
+      </div>
+      @if (medicalService$ | async; as service) {
+      <ui-medical-service-card [service]="service"></ui-medical-service-card>
+      } @else {
+      <div
+        tabindex=""
+        (keyup.enter)="addMedicalService()"
+        (click)="addMedicalService()"
+      >
+        <ui-add-new-entry-card [title]="'Add a Medical Service'">
+        </ui-add-new-entry-card>
+      </div>
+      }
+    </div>
+
+    @if (patients$ | async; as patients) { @if (patients.length > 0) {
+    <ui-dashboard-identities-list-card
+      [cardHeading]="'Patients'"
+      [identities$]="patients$"
+      [identityType]="type.Patient"
+      (addIdentity)="addPatient()"
+      [identitiesTotalRecords]="patientsTotalRecords"
+      (viewAll)="viewPatients()"
+    ></ui-dashboard-identities-list-card>
+    }@else {
+    <div tabindex="" (keyup.enter)="addPatient()" (click)="addPatient()">
+      <ui-add-new-entry-card [title]="'Add a Patient'"> </ui-add-new-entry-card>
+    </div>
+    } }
+
+    <div class="up">
+      @if (doctors$ | async; as doctors) { @if (doctors.length > 0) {
+      <ui-dashboard-identities-list-card
+        [cardHeading]="'Doctors'"
+        [identities$]="doctors$"
+        [identityType]="type.Doctor"
+        (addIdentity)="addDoctor()"
+        [identitiesTotalRecords]="doctorTotalRecords"
+        (viewAll)="viewDoctors()"
+      ></ui-dashboard-identities-list-card>
+      }@else {
+      <div tabindex="" (keyup.enter)="addDoctor()" (click)="addDoctor()">
+        <ui-add-new-entry-card [title]="'Add a Doctor'">
+        </ui-add-new-entry-card>
+      </div>
+      } }
+    </div>
+
+    <div class="up">
+      @if (nurses$ | async; as nurses) { @if (nurses.length > 0) {
+      <ui-dashboard-identities-list-card
+        [cardHeading]="'Nurses'"
+        [identities$]="nurses$"
+        [identityType]="type.Nurse"
+        (addIdentity)="addNurses()"
+        [identitiesTotalRecords]="nurseTotalRecords"
+        (viewAll)="viewNurses()"
+      ></ui-dashboard-identities-list-card>
+      }@else {
+      <div tabindex="" (keyup.enter)="addNurses()" (click)="addNurses()">
+        <ui-add-new-entry-card [title]="'Add a Nurse'">
+        </ui-add-new-entry-card>
+      </div>
+      } }
+    </div>
+
+    <div class="flex-col ion-padding">
+      @for(order of modifiedOrder; track order.orderId){
+      <ion-card class="order-card">
+        <div class="left">
+          <div class="icon-box">
+            <ion-img [src]="getOrderIcon(order.status)"></ion-img>
+          </div>
+          <div class="info">
+            <div class="order-id mb-5">Order ID: {{ order.orderId }}</div>
+            <div class="datetime">
+              {{ order.date }} | Time: {{ order.time }}
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="amount">{{ order.amount | number:'1.2-2' }}</div>
+          <div class="status" [ngClass]="order.status">{{ order.status }}</div>
+        </div>
+      </ion-card>
+      }
+    </div>
+    }
+  </div>
+  <div class="end"></div>
+</ion-content>
+@if(confirmModal){
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to decline this appointment?'"
+  [background]="'#307D3D'"
+  [open]="confirmModal"
+  (next)="confirmAccept()"
+  (no)="cancelAccept()"
+  (dismiss)="cancelAccept()"
+></ui-confirmation-modal>
+}

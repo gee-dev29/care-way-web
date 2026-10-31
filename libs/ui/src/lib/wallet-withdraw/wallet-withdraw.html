@@ -1,0 +1,86 @@
+<div id="home" class="page-layout">
+  <div class="header">
+    <ion-icon (click)="back.emit()" name="chevron-back-outline"></ion-icon>
+    <div class="title">Withdraw to Account</div>
+  </div>
+
+  <ui-reuseable-wallet-card
+    [balance]="balance"
+    [showHistory]="false"
+  ></ui-reuseable-wallet-card>
+
+  <div class="amount-section">
+    <ion-text class="amount-label">Enter amount</ion-text>
+    <div class="amount-wrapper">
+      <!-- <span class="currency-sign">₦</span> -->
+      <ion-input
+        type="text"
+        inputmode="decimal"
+        placeholder="₦0.00"
+        [disabled]="!balance"
+        [value]="displayValue"
+        (ionInput)="onAmountInput($event)"
+        (ionFocus)="onAmountFocus()"
+        (ionBlur)="onAmountBlur()"
+        class="amount-input"
+      ></ion-input>
+    </div>
+  </div>
+
+  <ui-button
+    [width]="'full'"
+    [shape]="'round'"
+    [label]="'Initiate Withdrawal'"
+    [backgroundColor]="'#307d3d'"
+    [textColor]="'#FDFDFD'"
+    [disabled]="amount.invalid || !balance || loading || !selectedBankAccountId"
+    [loading]="loading"
+    (click)="onWithdraw()"
+  ></ui-button>
+
+  @if ((bankDetails?.length ?? 0) > 0) {
+  <div class="bank-list">
+    <ion-text class="bank-list-label">Select account to withdraw to</ion-text>
+    @for (bank of (bankDetails ?? []); track bank.bankAccountId) {
+    <div
+      class="bank-details"
+      [class.selected]="selectedBankAccountId === bank.bankAccountId"
+      (click)="selectBank(bank)"
+      tabindex="0"
+      (keyup.enter)="selectBank(bank)"
+    >
+      <div class="bank-header">
+        <div class="bank-title">
+          <ion-icon src="/icons/bankIcon.svg" class="bank-icon"></ion-icon>
+          <span class="bank-title">Bank Account Details</span>
+        </div>
+        <ion-icon
+          class="check-icon"
+          [class.checked]="selectedBankAccountId === bank.bankAccountId"
+          [name]="selectedBankAccountId === bank.bankAccountId ? 'checkmark-circle' : 'ellipse-outline'"
+        ></ion-icon>
+      </div>
+
+      <div class="bank-info">
+        <div class="bank-row">
+          <span class="bank-label">Account Number</span>
+          <span class="bank-value">{{ bank?.accountNumber }}</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Bank Name</span>
+          <span class="bank-value">{{ bank?.bank }}</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Account Name</span>
+          <span class="bank-value">{{ bank?.accountName }}</span>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  } @else {
+  <button class="add-bank" (click)="addBank.emit()">
+    <ion-icon name="add-circle-outline"></ion-icon>
+    <span>Add Bank Account</span></button
+  >}
+</div>

@@ -1,0 +1,8 @@
+<p-splitbutton
+  [disabled]="disabled"
+  [label]="label"
+  styleClass="p-button-rounded mr-2 mb-1"
+  [model]="items"
+  (onClick)="Change.emit($event)"
+  (onDropdownClick)="Click.emit($event)"
+></p-splitbutton>

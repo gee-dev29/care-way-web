@@ -1,0 +1,153 @@
+<h2>Frequency of Use</h2>
+@switch (schedule.type) { @case ('daily') {
+<div class="daily-card">
+  <div class="daily-header">
+    <div class="daily-title">
+      <ion-icon src="/icons/alarm.svg"></ion-icon>
+      <span>Daily</span>
+    </div>
+  </div>
+
+  @for (usage of schedule?.scheduleType?.usages; track $index) {
+  <div class="dose-row">
+    <div class="dose-item">
+      <span class="dose-text">{{usage.dosage}} Unit(s)</span>
+      <span class="time-pill">
+        {{ moment(usage.time, 'HH:mm').format('h:mm A')}}
+      </span>
+    </div>
+  </div>
+  } @if (schedule?.startDate) {
+  <div class="date-row">
+    <ion-icon src="/icons/calendarLogo.svg"></ion-icon>
+    <span>{{schedule?.startDate}} - {{schedule?.endDate}}</span>
+  </div>
+  } @if (schedule?.usage) {
+  <div class="card-divider"></div>
+
+  <div class="instruction">{{schedule?.usage}}</div>
+  }
+</div>
+} @case ('weekDay') { @for (item of schedule?.scheduleType?.dayOfWeek; track
+$index) {
+<div class="daily-card">
+  <div class="daily-header">
+    <div class="daily-title">
+      <ion-icon src="/icons/alarm.svg"></ion-icon>
+      <span>Selected Day of the Week: {{days[item.dayOfWeek-1]}}</span>
+    </div>
+  </div>
+
+  @for (usage of item.usages; track $index) {
+  <div class="dose-row">
+    <div class="dose-item">
+      <span class="dose-text">{{usage.dosage}} Unit(s)</span>
+      <span class="time-pill">
+        {{ moment(usage.time, 'HH:mm').format('h:mm A')}}
+      </span>
+    </div>
+  </div>
+  } @if (schedule?.startDate) {
+  <div class="date-row">
+    <ion-icon src="/icons/calendarLogo.svg"></ion-icon>
+    <span>{{schedule?.startDate}} - {{schedule?.endDate}}</span>
+  </div>
+  } @if (schedule?.usage) {
+  <div class="card-divider"></div>
+
+  <div class="instruction">{{schedule?.usage}}</div>
+  }
+</div>
+} } @case ('everyFewDays') {
+<div class="daily-card">
+  <div class="daily-header">
+    <div class="daily-title">
+      <ion-icon src="/icons/alarm.svg"></ion-icon>
+      <span>Every {{schedule?.scheduleType?.interval}} Few Days</span>
+    </div>
+  </div>
+
+  @for (usage of schedule?.scheduleType?.usages; track $index) {
+  <div class="dose-row">
+    <div class="dose-item">
+      <span class="dose-text">{{usage.dosage}} Unit(s)</span>
+      <span class="time-pill">
+        {{ moment(usage.time, 'HH:mm').format('h:mm A')}}
+      </span>
+    </div>
+  </div>
+  } @if (schedule?.startDate) {
+  <div class="date-row">
+    <ion-icon src="/icons/calendarLogo.svg"></ion-icon>
+    <span>{{schedule?.startDate}} - {{schedule?.endDate}}</span>
+  </div>
+  } @if (schedule?.usage) {
+  <div class="card-divider"></div>
+
+  <div class="instruction">{{schedule?.usage}}</div>
+  }
+</div>
+} @case ('cycle') {
+<div class="daily-card">
+  <div class="daily-header">
+    <div class="daily-title">
+      <ion-icon src="/icons/alarm.svg"></ion-icon>
+      <span>Cycle-Based</span>
+    </div>
+  </div>
+
+  <div class="dose-row">
+    <div class="dose-item">
+      <span class="dose-text"
+        >Use For: {{schedule?.scheduleType?.useFor}}
+        {{schedule?.scheduleType?.frequency}}(s)</span
+      >
+    </div>
+    <div class="dose-item">
+      <span class="dose-text"
+        >Pause For: {{schedule?.scheduleType?.pauseFor}}
+        {{schedule?.scheduleType?.frequency}}(s)</span
+      >
+    </div>
+  </div>
+
+  @for (usage of schedule?.scheduleType?.usages; track $index) {
+  <div class="dose-row">
+    <div class="dose-item">
+      <span class="dose-text">{{usage.dosage}} Unit(s)</span>
+      <span class="time-pill">
+        {{ moment(usage.time, 'HH:mm').format('h:mm A')}}
+      </span>
+    </div>
+  </div>
+  } @if (schedule?.startDate) {
+  <div class="date-row">
+    <ion-icon src="/icons/calendarLogo.svg"></ion-icon>
+    <span>{{schedule?.startDate}} - {{schedule?.endDate}}</span>
+  </div>
+  } @if (schedule?.usage) {
+  <div class="card-divider"></div>
+
+  <div class="instruction">{{schedule?.usage}}</div>
+  }
+</div>
+} @case ('asNeeded') {
+<div class="daily-card">
+  <div class="daily-header">
+    <div class="daily-title">
+      <ion-icon src="/icons/alarm.svg"></ion-icon>
+      <span>As Needed</span>
+    </div>
+  </div>
+  @if (schedule?.startDate) {
+  <div class="date-row">
+    <ion-icon src="/icons/calendarLogo.svg"></ion-icon>
+    <span>{{schedule?.startDate}} - {{schedule?.endDate}}</span>
+  </div>
+  } @if (schedule?.usage) {
+  <div class="card-divider"></div>
+
+  <div class="instruction">{{schedule?.usage}}</div>
+  }
+</div>
+} }

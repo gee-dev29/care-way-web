@@ -1,0 +1,166 @@
+<ui-page-body>
+  <div class="table__head">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">Ad</h2>
+    </div>
+    <back-office-approval-button
+      [description]="approvalDescription"
+      (approvalAction)="getAd(advertId)"
+    ></back-office-approval-button>
+  </div>
+  <div>
+    <ui-tab
+      [tabs]="tabs"
+      [value]="activeTab"
+      (tabChange)="activeTab = $event"
+    ></ui-tab>
+  </div>
+  @if (activeTab === 0) {
+  <back-office-approval-timeline></back-office-approval-timeline>
+  <back-office-approval-queries></back-office-approval-queries>
+  <back-office-ads-details-card
+    [cardHeading]="'Ad Details'"
+    [ad$]="ad$"
+    [endDate]="endDate"
+    (edit)="edit($event)"
+  ></back-office-ads-details-card>
+  }
+  @if (activeTab === 1) {
+  <ui-upload-card
+    [uploads$]="uploads$"
+    [showDelete]="true"
+    [primaryView]="false"
+  ></ui-upload-card>
+  }
+  @if (activeTab === 2) {
+  <div class="mt-1">
+    <p-table
+      #dt1
+      dataKey="id"
+      [lazy]="true"
+      [paginator]="true"
+      [rows]="20"
+      [totalRecords]="totalCountRecords"
+      [value]="counts$ | async"
+      (onLazyLoad)="loadCounts($event)"
+      [rowsPerPageOptions]="[20, 50, 100]"
+      
+    >
+      <ng-template #header>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Device</th>
+          <th>Device Type</th>
+          <th>Audience</th>
+        </tr>
+        <tr>
+          <th>
+            <p-columnFilter [showMenu]="false" type="date" field="date">
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <p-datepicker
+                  [ngModel]="value"
+                  [readonlyInput]="true"
+                  [showClear]="true"
+                  [iconDisplay]="'input'"
+                  (ngModelChange)="filterByCountDate($event)"
+                  inputId="countDateFilter"
+                  dateFormat="dd-mm-yy"
+                />
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th></th>
+          <th>
+            <p-columnFilter field="device" type="text" [showMenu]="false">
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <ui-desktop-input
+                  [label]="' '"
+                  [type]="'text'"
+                  (keyup.enter)="filterByDevice($event)"
+                ></ui-desktop-input>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter field="deviceType" matchMode="equals" [showMenu]="false">
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <div class="dropdown__filter__container">
+                  <ui-input-drop-down
+                    [label]="'Device Type'"
+                    [options]="deviceTypes"
+                    [key]="'text'"
+                    [value]="'value'"
+                    [showClear]="true"
+                    [filter]="true"
+                    (data)="filterByCountDeviceType($event)"
+                  ></ui-input-drop-down>
+                </div>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter field="audience" matchMode="equals" [showMenu]="false">
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <div class="dropdown__filter__container">
+                  <ui-input-drop-down
+                    [label]="'Audience'"
+                    [options]="audiences"
+                    [key]="'text'"
+                    [value]="'value'"
+                    [showClear]="true"
+                    [filter]="true"
+                    (data)="filterByCountAudience($event)"
+                  ></ui-input-drop-down>
+                </div>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ moment.utc(`${item.date}`).local().format('MMM DD, YYYY') }}</td>
+          <td>
+            {{ moment.utc(`${item.date} ${item.time}`, 'YYYY-MM-DD HH:mm').local().format('h:mm A') }}
+          </td>
+          <td>{{ item.device }}</td>
+          <td>{{ item.deviceType }}</td>
+          <td>{{ item.audience }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">
+            <div class="empty__table__text">There are no Counts yet</div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+</ui-page-body>

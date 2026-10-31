@@ -1,0 +1,194 @@
+<div id="background-content">
+  <ion-list class="header">
+    @if ((records$ | async); as records) {
+
+    <div class="pricing-head">
+      <ion-icon
+        (click)="goBack()"
+        name="chevron-back-outline"
+        size="small"
+      ></ion-icon>
+      <ion-text class="pricing-title">{{ title }}</ion-text>
+    </div>
+
+    @if (cardIcon) {
+    <div class="share">
+      <ion-icon src="/logo/shareIcon.svg" class="share-icon"></ion-icon>
+      <ion-text>share</ion-text>
+    </div>
+    } } @else {
+    <div
+      class="pricing-head"
+      style="display: flex; align-items: center; gap: 12px"
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 24px; height: 24px; border-radius: 50%"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 150px; height: 20px"
+      ></ion-skeleton-text>
+    </div>
+
+    <div
+      class="share"
+      style="display: flex; align-items: center; gap: 6px; margin-top: 8px"
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 20px; height: 20px; border-radius: 50%"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 40px; height: 14px"
+      ></ion-skeleton-text>
+    </div>
+
+    }
+  </ion-list>
+
+  <ion-list class="content-container">
+    @if ((records$ | async); as records) {
+    <h3>{{vitalType}}</h3>
+
+    <div class="summary-card">
+      <div class="summary-header">
+        @if (cardIcon) {
+        <ion-icon [src]="cardIcon" class="header-icon"></ion-icon>
+        }
+        <div>
+          <div class="header-text">{{ cardTitle }}</div>
+          <div class="summary-link">
+            {{records.length ? moment.utc(`${records[0]?.date}
+            ${records[0]?.time}`).local().fromNow() :"No record yet"}}
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-body">
+        <div class="left">
+          <ng-content select="[left]"></ng-content>
+        </div>
+        @if (!subtitle) {
+        <div class="right">
+          <ng-content select="[right]"></ng-content>
+        </div>
+        }
+      </div>
+      @if (vitalSignType===vitalType?.BloodPressure && record?.systolic>129 &&
+      record?.diastolic>80) {
+      <div class="bp">
+        <ui-button
+          [label]="'Schedule Appointment'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#000000'"
+          [textColor]="'#FDFDFD'"
+          (Click)="handleContinue()"
+        ></ui-button>
+      </div>
+      }
+    </div>
+    <ui-button
+      [label]="label"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      (Click)="handleContinue()"
+    ></ui-button>
+    <div class="tabs-container">
+      <div class="tabs">
+        @for(tab of tabs; track tab) {
+        <ion-text
+          class="tab"
+          [class.active]="activeTabIndex === $index"
+          (click)="setTab($index)"
+        >
+          {{ tab }}
+        </ion-text>
+        }
+      </div>
+
+      <div class="tab-content">
+        @if (tabContents[activeTabIndex]) {
+        <ng-container
+          *ngTemplateOutlet="tabContents[activeTabIndex]"
+        ></ng-container>
+        }
+      </div>
+    </div>
+    } @else {
+
+    <div class="summary-card">
+      <div
+        class="summary-header"
+        style="display: flex; gap: 12px; align-items: center"
+      >
+        <ion-skeleton-text
+          animated
+          style="width: 40px; height: 40px; border-radius: 50%"
+        ></ion-skeleton-text>
+        <div>
+          <ion-skeleton-text
+            animated
+            style="width: 120px; height: 18px; margin-bottom: 6px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="width: 100px; height: 14px"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+    <div
+      class="summary-body"
+      style="display: flex; justify-content: space-between; margin-top: 16px"
+    >
+      <div class="left">
+        <ion-skeleton-text
+          animated
+          style="width: 100px; height: 80px"
+        ></ion-skeleton-text>
+      </div>
+      <div class="right">
+        <ion-skeleton-text
+          animated
+          style="width: 100px; height: 80px"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+
+    <div class="tabs-container" style="margin-top: 16px">
+      <div class="tabs" style="display: flex; gap: 12px; margin-bottom: 12px">
+        <ion-skeleton-text
+          animated
+          style="width: 40%; height: 30px; border-radius: 10px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 40%; height: 30px; border-radius: 10px"
+        ></ion-skeleton-text>
+      </div>
+
+      <div class="tab-content">
+        <ion-skeleton-text
+          animated
+          style="width: 100%; height: 100px; border-radius: 8px"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px">
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 44px; border-radius: 22px"
+      ></ion-skeleton-text>
+    </div>
+
+    }
+  </ion-list>
+</div>

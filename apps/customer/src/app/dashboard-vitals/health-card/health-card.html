@@ -1,0 +1,24 @@
+<ion-card (click)="navigateTo()" class="health-card">
+  <div class="icon-container">
+    <ion-icon [src]="icon"></ion-icon>
+  </div>
+
+  <div class="text-container">
+    <div class="flex">
+      <div>
+        <div class="title">{{ title }}</div>
+        <div class="subtitle">{{ subtitle }}</div>
+      </div>
+      <div>
+        <ion-icon
+          name="chevron-forward-outline"
+          class="forward-icon"
+        ></ion-icon>
+      </div>
+    </div>
+
+    @if (statusText) {
+    <div class="status" [style.color]="statusColor">● {{ statusText }}</div>
+    }
+  </div>
+</ion-card>

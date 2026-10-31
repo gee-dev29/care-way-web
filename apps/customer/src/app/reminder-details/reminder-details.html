@@ -1,0 +1,81 @@
+<!-- <ion-content id="background-content">
+
+</ion-content> -->
+<div id="background-content">
+  <div id="details" class="ion-padding">
+    <p class="day-number">{{ selectedFullDate }}</p>
+    <div class="title">
+      <ion-text class="text__bold">Today Reminders</ion-text>
+      <ui-button
+        (Click)="createReminder()"
+        [label]="'New'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307D3D'"
+        [image]="'/icons/plus-white-icon.svg'"
+        [showImage]="true"
+        [size]="'small'"
+        class="adr"
+      ></ui-button>
+    </div>
+    <div class="date-strip">
+      @for (day of weekDays; track $index) {
+      <div
+        class="day"
+        [class.active]="day.active"
+        tabindex=""
+        (keydown)="selectDay(day)"
+        (click)="selectDay(day)"
+      >
+        <div class="day-name">{{ day.short }}</div>
+        <div class="day-number">{{ day.num }}</div>
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="static ion-padding">
+    <div class="title__list">
+      <p class="day-number">Time</p>
+      <p class="day-number">Medication</p>
+    </div>
+    <ion-card class="medium__curve">
+      <div>
+        <div class="reminders">
+          @for (item of reminders; let i = $index; track $index) {
+          <div
+            [ngStyle]="{
+            'background-color': i === activeTimeIndex ? '#E7F6E9' : 'transparent'
+             }"
+            class="reminder"
+          >
+            <div
+              class="time"
+              [class.active]="i === activeTimeIndex"
+              tabindex=""
+              (click)="setActive(i)"
+              (keydown)="setActive(i)"
+            >
+              <p class="day-number">{{ item.time }}</p>
+            </div>
+
+            <div class="meds">
+              @for (med of item.meds; track $index) {
+              <div
+                class="med-card"
+                (click)="setActive(i)"
+                tabindex=""
+                (keydown)="setActive(i)"
+              >
+                <h4 class="text">{{ med.name }}</h4>
+                <p class="text">{{ med.dosage }}</p>
+              </div>
+              }
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </ion-card>
+  </div>
+</div>

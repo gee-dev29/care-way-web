@@ -1,0 +1,36 @@
+<div class="mt-1">
+  <p-table
+    #dt1
+    dataKey="id"
+    [lazy]="true"
+    [paginator]="totalRecords > 0"
+    [rows]="20"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[20, 50, 100]"
+    [value]="membershipCard$ | async"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Card Name</th>
+        <th>Card Fee</th>
+        <th>Membership Limit</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{item.cardName | titlecase}}</td>
+        <td>{{item.cardFee | currency:'NGN '}}</td>
+        <td>{{item.membershipLimit}}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">
+          <div class="empty__table__text">
+            There are no Membership Cards yet
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

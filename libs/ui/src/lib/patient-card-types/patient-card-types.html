@@ -1,0 +1,85 @@
+<div class="patient-card-type">
+  <form class="ion-padding">
+    <div class="upper">
+      <div
+        class="left__wrapper"
+        tabindex=""
+        (keypress)="goback()"
+        (click)="goback()"
+      >
+        <ion-icon name="left-arrow"></ion-icon>
+        <ion-text color="black" class="left-title">
+          {{ cardTypes.length > 0 ? 'Patient Card Details' : 'Patient Card Type'
+          }}
+        </ion-text>
+      </div>
+      @if(cardTypes.length > 0) {
+      <a class="right" tabindex="" (keyup)="addMore()" (click)="addMore()">
+     <ui-plus-icon-component size="'small'"></ui-plus-icon-component>
+      </a>
+      }
+    </div>
+
+    @if(cardTypes.length > 0) {
+    <div class="container-address">
+      @for (item of cardTypes; track $index) {
+      <ion-card>
+        <ion-card-content>
+          <div class="card-types">
+            <div class="card-type">
+              <div class="card-item">
+                <ion-text class="card-label"> Maximum Numbers </ion-text>
+                <ion-text class="card-text">
+                  {{item.membershipLimit}}
+                </ion-text>
+              </div>
+
+              <div class="card-item">
+                <ion-text class="card-label"> Amount </ion-text>
+                <ion-text class="card-text">  {{item.cardFee | currency:"NGN"}} </ion-text>
+              </div>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      }
+    </div>
+
+    } @else {
+
+    <div class="container">
+      <div
+        [ngStyle]="{
+  'background-color':
+    facilityType === FacilityType?.Laboratory ? '#D1E0EC' :
+    facilityType === FacilityType?.Pharmacy   ? '#F1ECF1' :
+    facilityType === FacilityType?.Hospital   ? '#E5E7F6' :
+    facilityType === FacilityType?.Radiology   ? '#FBFBD8' :
+    '#F4E7E7'
+}"
+        class="rounded"
+        tabindex=""
+        (keyup)="addMore()"
+        (click)="addMore()"
+      >
+        <ion-icon src="/icons/plus-icon.svg"></ion-icon>
+      </div>
+      <p>Add Patient Card Type</p>
+    </div>
+
+    } @if(cardTypes.length > 0) {
+    <div class="bts">
+      <ui-button
+        [label]="label"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [loading]="loading"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (Click)="proceed()"
+      ></ui-button>
+    </div>
+    }
+  </form>
+</div>

@@ -1,0 +1,46 @@
+<ion-content id="background-content" fullscreen>
+  <div
+    id="preview__video"
+    tabindex="0"
+    (keyup.enter)="onScreenTap()"
+    (click)="onScreenTap()"
+  >
+    <video
+      #videoPlayer
+      src="video/car-video.mp4"
+      [muted]="true"
+      playsinline
+      (play)="onPlay()"
+      (pause)="onPause()"
+    ></video>
+    <div
+      tabindex="0"
+      (keyup.enter)="goBack()"
+      class="top-back"
+      (click)="goBack()"
+    >
+      <ion-icon class="left__arrow" name="chevron-back-outline"></ion-icon>
+      Back
+    </div>
+    @if(showCenterPlay){
+    <div
+      class="center-play"
+      tabindex="1"
+      (keyup)="playVideo($event)"
+      (click)="playVideo($event)"
+    >
+      <ion-icon name="play"></ion-icon>
+    </div>
+    } @if(showPauseBtn){
+    <div class="bottom-pause">
+      <div
+        tabindex="2"
+        (keyup.enter)="pauseVideo($event)"
+        (click)="pauseVideo($event)"
+      >
+        <ion-icon name="pause-circle-outline"></ion-icon>
+      </div>
+    </div>
+    }
+  </div>
+</ion-content>

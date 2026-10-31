@@ -1,0 +1,162 @@
+#background-content {
+  background: #f9fffa !important;
+}
+#prescription {
+  background: #f9fffa !important;
+  margin-top: 70px !important;
+}
+.toggle {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.toggle .flexxer {
+  display: flex;
+}
+.ordinary {
+  --background: white !important;
+  width: 150px !important;
+  color: black;
+  box-shadow: 0.03px 0.03px 0.2px black !important;
+  --background-activated: white !important;
+}
+
+.selected {
+  width: 150px !important;
+  --background: #307d3d !important;
+  color: white;
+  --background-activated: #307d3d !important;
+}
+.pricing-head {
+  margin-bottom: 20px;
+  display: flex;
+  margin-bottom: 40px;
+  align-items: center;
+  gap: 30px;
+}
+.icon__text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pricing-title {
+  font-weight: 600;
+  display: block;
+  font-size: 17px;
+}
+
+.pricing-sub-text {
+  font-size: 13px;
+}
+
+.limit-title {
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.mb--5 {
+  margin-bottom: 5%;
+}
+
+.price-label {
+  font-size: 12px;
+}
+
+.price-value {
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 19.5px;
+  margin-bottom: 10px;
+}
+
+ion-item {
+  width: 100%;
+  background: transparent !important;
+  --background: transparent !important;
+  border: none;
+  border-bottom: 0.1px solid #030303 !important;
+  height: 0px !important;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.p-4 {
+  padding: 16px;
+}
+.limit-card-price-content-texts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between !important;
+  gap: 10px;
+  width:100%
+}
+
+.limit-card-wrapper {
+  border-radius: 10px;
+  background: #f6f6f6;
+  padding: 5%;
+}
+
+.limit-card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  background-color: white;
+  border-radius: 20px;
+  height: 80px;
+  padding: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 20px;
+}
+
+.limit-card-price {
+  background-color: transparent;
+  padding: 16px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.break {
+  background-color: #03030329;
+  width: 100%;
+  height: 1px;
+}
+
+.limit-card-price-content {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: start;
+  background-color: transparent;
+}
+.titlePrice {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 13px;
+  line-height: 19.5px;
+  margin-bottom: 10px;
+}
+
+.limit-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.limit-card-price-content ion-icon {
+  font-size: 62px;
+}
+.arrow ion-icon {
+  font-size: 20px;
+}

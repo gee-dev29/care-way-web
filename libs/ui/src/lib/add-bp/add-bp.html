@@ -1,0 +1,80 @@
+<ion-content>
+  <div id="add__bp" [style.margin-top.px]="module ? 70 : 20">
+    <div class="up">
+      <div class="pricing-head">
+        <div class="icon">
+          <ion-icon
+            (click)="goToVitals()"
+            name="chevron-back-outline"
+            size="small"
+          ></ion-icon>
+        </div>
+        <ion-text class="pricing-title rm-bg">Add New Blood Pressure</ion-text>
+      </div>
+    </div>
+    <form class="container" [formGroup]="form">
+      @if(module){
+      <p class="date">Select Date</p>
+      <ui-date-picker [control]="date"></ui-date-picker>
+      <p class="date two">Select Time</p>
+      <ui-time-picker [control]="time"></ui-time-picker>
+      }
+      <div class="box">
+        <div class="height-box">
+          <div class="toggle-row">
+            <p class="cm-label">Systolic</p>
+          </div>
+          <ion-picker>
+            <ion-picker-column
+              [value]="currentSystolic"
+              (ionChange)="onSystolicChange($event)"
+            >
+              @for (opt of systolicOptions; track opt.value) {
+              <ion-picker-column-option [value]="opt.value">
+                {{ opt.label }}
+              </ion-picker-column-option>
+              }
+            </ion-picker-column>
+          </ion-picker>
+        </div>
+        <div class="divider"></div>
+        <div class="height-box">
+          <div class="toggle-row">
+            <p class="cm-label">Diastolic</p>
+          </div>
+          <ion-picker>
+            <ion-picker-column
+              [value]="currentDiastolic"
+              (ionChange)="onDiastolicChange($event)"
+            >
+              @for (opt of diastolicOptions; track opt.value) {
+              <ion-picker-column-option [value]="opt.value">
+                {{ opt.label }}
+              </ion-picker-column-option>
+              }
+            </ion-picker-column>
+          </ion-picker>
+        </div>
+        <div class="divider"></div>
+      </div>
+      @if (currentSystolic>140 && currentDiastolic>90) {
+      <div class="severe">
+        <ion-img src="/logo/severe.svg"></ion-img>
+        <p class="redder">Severely High Blood Pressure (Hypertensive Crisis)</p>
+      </div>
+      }
+      <div class="bts">
+        <ui-button
+          [label]="'Save'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [loading]="loading"
+          (Click)="save()"
+        ></ui-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,60 @@
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>{{cardHeading}}</h3>
+      </div>
+    </div>
+    @if (medicalFacility$ | async; as medicalFacility) {
+    <div class="content__bottom">
+      <div class="content__bottom">
+        @if (medicalFacility.name) {
+        <div class="content__body">
+          <p> Name</p>
+          <h5>{{ medicalFacility.name | titlecase}}</h5>
+        </div>
+        }
+        @if (medicalFacility.facilityName) {
+        <div class="content__body">
+          <p> Facility Name</p>
+          <h5>{{ medicalFacility.facilityName | titlecase}}</h5>
+        </div>
+        }
+         @if (medicalFacility.category) {
+        <div class="content__body">
+          <p>Category</p>
+          <h5>{{ medicalFacility.category }}</h5>
+        </div>
+        } @if (medicalFacility.status) {
+        <div class="content__body">
+          <p>Status</p>
+          <h5>{{ medicalFacility.status }}</h5>
+        </div>
+        }
+      </div>
+    </div>
+    @if (medicalFacility.address) {
+    <div class="content__body mt-2">
+      <p>Address</p>
+      <h5>
+        {{ medicalFacility.address.address}}, {{medicalFacility.address.city }}
+      </h5>
+    </div>
+    } @if (medicalFacility.specializations?.length) {
+    <div class="content__body mt-2">
+      <p>Specializations</p>
+      <h5>{{ getSpecNames(medicalFacility.specializations) }}</h5>
+    </div>
+    } @if (medicalFacility.productCategories?.length) {
+    <div class="content__body mt-2">
+      <p>Product Categories</p>
+      <h5>{{ getProductCategory(medicalFacility.productCategories) }}</h5>
+    </div>
+    } @if (medicalFacility.bloodProducts?.length) {
+    <div class="content__body mt-2">
+      <p>Blood Products</p>
+      <h5>{{ getBloodProducts(medicalFacility.bloodProducts) }}</h5>
+    </div>
+    } }
+  </div>
+</div>

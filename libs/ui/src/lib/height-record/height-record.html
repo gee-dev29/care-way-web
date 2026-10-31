@@ -1,0 +1,68 @@
+<ion-content
+  id="background-content"
+  class="no-bottom-space"
+  [fullscreen]="true"
+>
+  <div id="prescription" class="ion-padding">
+    <ui-vital-records-card
+      title="Record Vitals"
+      [showShare]="true"
+      cardTitle="Height"
+      subtitle="Summary"
+      cardIcon="/logo/blood-pressure.svg"
+      [tabs]="['History','Tracker']"
+      [tabContents]="[history, tracker]"
+      [label]="'Add Height'"
+      [records$]="records$"
+      (continue)="addHeight()"
+      [vitalSignType]="vitalSignType.Weight"
+      [storageService]="storageService"
+    >
+      <div left class="summary-temp">
+        @if ((records$ | async); as records) {
+        <ion-text class="summary-title">
+          {{records[0]?.record > 0 ? 'metres': 'meter'}}
+        </ion-text>
+
+        <ion-text class="degree">{{records[0]?.record}}</ion-text>
+
+        }
+      </div>
+
+      <ng-container>
+        <ng-template #tracker>
+          <p>✅ Temperature Content</p>
+        </ng-template>
+
+        <ng-template #history>
+          @for ((item of records$ | async); track item) {
+          <ion-card class="temp-card">
+            <ion-card-content>
+              <div class="row">
+                <div>
+                  <div class="temperature">
+                    {{ item.record }}
+                    <ion-badge class="unit" color="light">m</ion-badge>
+                    <!-- <span class="unit">ft</span> -->
+                  </div>
+                </div>
+
+                <div class="status-col">
+                  <ion-badge
+                    class="status-badge"
+                    [style.background-color]="item.color"
+                    >{{ item.status }}</ion-badge
+                  >
+                  <div class="date">
+                    {{newDateFormat( item.date, item.time) }}
+                  </div>
+                </div>
+              </div>
+            </ion-card-content>
+          </ion-card>
+          }
+        </ng-template>
+      </ng-container>
+    </ui-vital-records-card>
+  </div>
+</ion-content>

@@ -1,0 +1,150 @@
+ion-content {
+  --background: #fffff !important;
+}
+ion-card {
+  margin: 15px;
+}
+
+.static {
+  height: 50%;
+  overflow: auto;
+}
+.scroll-y {
+  overflow-y: hidden;
+}
+ion-text {
+  font-weight: 500;
+}
+
+.medium__curve {
+  margin: 0 0px;
+  padding: 0 30px;
+  background-color: #e7f6e9;
+}
+#details {
+  background: #fff !important;
+  margin-top: 70px !important;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+::ng-deep .adr ion-button,
+::ng-deep .adr .button-native {
+  padding: 0 !important;
+  --padding-start: 20px !important;
+  --padding-end: 20px !important;
+  --height: 1.8em !important;
+}
+
+.adr {
+  color: #fff;
+}
+
+.date-strip {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  background: #c8eacd;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  gap: 16px;
+}
+
+.day {
+  text-align: center;
+  width: 40px;
+  cursor: pointer;
+}
+
+.day-name {
+  font-size: 10px;
+  color: rgb(9, 8, 8);
+}
+.text__bold {
+  font-size: 18px;
+  font-weight: 500;
+}
+.day-number {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 8px 6px;
+  line-height: 1.3;
+  color: #0c0c0c;
+}
+
+.day.active .day-number {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 5px;
+  padding: 8px 4px;
+}
+.title__list {
+  display: grid;
+  grid-template-columns: 70px auto 70px;
+  color: #000;
+  position: sticky;
+  top: 0%;
+  z-index: 10;
+  background: #c8eacd;
+  padding-top: 10px;
+  padding-left: 40px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+.time {
+  border-right: 3px solid #cecece;
+  padding: 6px;
+}
+.reminders {
+  margin-top: 10px;
+}
+.reminder {
+  display: grid;
+  grid-template-columns: 70px auto;
+  padding-top: 10px;
+  overflow-y: auto;
+  max-height: 400px;
+}
+.scrollbar-placeholder {
+  position: relative;
+  width: 6px;
+}
+.time:hover {
+  border-right: 3px solid #f3951f !important;
+  padding-left: 12px;
+}
+
+.time.active {
+  border-right: 3px solid #f3951f;
+  padding-left: 12px;
+}
+.reminder:hover .time {
+  border-right: 3px solid #f3951f;
+  padding-left: 12px;
+}
+
+.meds {
+  border-bottom: 1px solid #cecece;
+  margin: 15px 0px;
+}
+.text {
+  color: #fff;
+}
+
+.med-card {
+  margin-bottom: 15px;
+  margin-left: 10px;
+  padding: 6px 12px;
+  color: #000;
+  background: var(--primary-color);
+  border-radius: 8px;
+}
+.reminder:last-child .meds {
+  border-bottom: none;
+}

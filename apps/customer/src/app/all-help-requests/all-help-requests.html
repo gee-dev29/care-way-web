@@ -1,0 +1,67 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="medical-requests">
+    <div class="header">
+    <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+
+    <div class="title">Help Requests</div>
+    <div class="spacer"></div>
+  </div>
+
+    <div class="status-filters">
+      <button
+        class="status-btn"
+        [class.active]="activeStatus === 'All'"
+        (click)="setStatus('All')"
+      >
+        All
+      </button>
+      <button
+        class="status-btn"
+        [class.active]="activeStatus === DocumentStatus.Pending"
+        (click)="setStatus('Pending')"
+      >
+        Pending
+      </button>
+
+      <button
+        class="status-btn"
+        [class.active]="activeStatus === DocumentStatus.Accepted"
+        (click)="setStatus('Accepted')"
+      >
+        Accepted
+      </button>
+
+      <button
+        class="status-btn"
+        [class.active]="activeStatus === DocumentStatus.Declined"
+        (click)="setStatus('Declined')"
+      >
+        Declined
+      </button>
+    </div>
+    <div class="requests">
+      @for(item of (requests$ | async); track item;){
+      <div
+        class="request-card"
+        tabindex=""
+        (keydown)="navigateTo(item)"
+        (click)="navigateTo(item)"
+      >
+        <div>
+          <p class="name">Request # {{item.helpCode}}</p>
+          <p class="attachments">{{moment.utc(item?.creator?.date).local().fromNow()}}</p>
+          <p class="attachments">From: {{item?.creator?.name}}</p>
+          <p class="attachments">Message: {{item?.message}}</p>
+        </div>
+
+        <span
+          [ngClass]="{'draft':item?.status===DocumentStatus.Draft,'pending':item?.status===DocumentStatus.Pending,'processed':item?.status===DocumentStatus.Processed, 'declined':item?.status===DocumentStatus.Declined}"
+          class="status"
+        >
+          {{ item?.status }}
+        </span>
+      </div>
+      }
+    </div>
+  </div>
+</ion-content>

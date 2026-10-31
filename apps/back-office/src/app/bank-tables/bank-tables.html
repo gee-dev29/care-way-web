@@ -1,0 +1,140 @@
+<div class="table__head">
+  <h2 class="title">{{heading}}</h2>
+  <!-- <ui-desktop-button
+    [label]="'Add Bank'"
+    [size]="'large'"
+    [primary]="true"
+    (Click)="addBank()"
+  ></ui-desktop-button> -->
+</div>
+<div class="mt-1">
+  <p-table
+    #dt1
+    dataKey="id"
+    [lazy]="true"
+    [paginator]="true"
+    [rows]="20"
+    [totalRecords]="totalRecords"
+    [value]="banks$ | async"
+    (onLazyLoad)="load($event)"
+    [rowsPerPageOptions]="[20, 50, 100]"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Bank Name</th>
+        <th>Bank Code</th>
+        <th></th>
+        <!-- <th>Bank Status</th> -->
+        <th></th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="bankName"
+            [showMenu]="false"
+          ></p-columnFilter>
+        </th>
+        <th></th>
+        <th>
+          <!-- <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <div class="dropdown__filter__container">
+                <ui-input-drop-down
+                  [label]="'Bank Status'"
+                  [options]="bankStatuses"
+                  [key]="'value'"
+                  [value]="'text'"
+                  [showClear]="true"
+                  [filter]="true"
+                  (data)="filterByBankStatus($event)"
+                ></ui-input-drop-down>
+                <div class="p-float-label"></div>
+              </div>
+            </ng-template>
+          </p-columnFilter> -->
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td style="width: 20vw">{{ item.bankName}}</td>
+        <td>{{ item.bankCode}}</td>
+        <td>
+          <!-- @if(item.status === bankStatus.Enable){ {{item.status + 'd' |
+          titlecase}} } @if(item.status === bankStatus.Disable){ {{item.status +
+          'd' | titlecase}}} -->
+        </td>
+        <td>
+          <div class="grouped__btn">
+            <!-- <div>
+              @if(item.status === bankStatus.Disable){
+              <ui-desktop-button
+                [label]="'Enable'"
+                [size]="'small'"
+                [primary]="true"
+                (Click)="openStatusModal(item)"
+              ></ui-desktop-button>
+              } @if(item.status === bankStatus.Enable){
+              <ui-desktop-button
+                [label]="'Diable'"
+                [size]="'small'"
+                (Click)="openStatusModal(item)"
+              ></ui-desktop-button>
+              }
+            </div> -->
+            <!-- <ui-desktop-button
+              [label]="'Edit'"
+              [primary]="true"
+              [size]="'small'"
+              (Click)="edit(item)"
+            ></ui-desktop-button> -->
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<!-- <ui-modal
+  [header]="title"
+  #modal
+  [(visibility)]="addBankModal"
+  [selectedWidth]="'40vw'"
+>
+  <div class="modal__container">
+    <div class="input">
+      <form class="mb-2" [formGroup]="form">
+        <ui-form-body [columns]="'split'" class="form__group">
+          <ui-desktop-input
+            [label]="'Bank Name'"
+            [control]="bankName"
+            [type]="'text'"
+          ></ui-desktop-input>
+          <ui-desktop-input
+            [label]="'CBN Bank Code'"
+            [control]="bankCode"
+            [type]="'text'"
+          ></ui-desktop-input>
+        </ui-form-body>
+      </form>
+      <ui-desktop-button
+        [primary]="true"
+        [disabled]="!form.valid"
+        [label]="label"
+        [width]="'full'"
+        (click)="save()"
+      ></ui-desktop-button>
+    </div>
+  </div>
+</ui-modal> -->
+<!-- <ui-confirmation-modal-desktop
+  [message]="headerStatus"
+  [(visibility)]="statusModal"
+  (proceed)="proceed()"
+>
+</ui-confirmation-modal-desktop> -->

@@ -1,0 +1,126 @@
+<ion-router-outlet></ion-router-outlet>
+<ion-content [fullscreen]="true" class="onboard-content no-bottom-space">
+  <div class="page">
+    <div class="flareup">
+      <ion-img src="/bg/flareup.svg" alt="HealBridge"></ion-img>
+    </div>
+    <div class="flaredown">
+      <ion-img src="/bg/flaredown.svg" alt="HealBridge"></ion-img>
+    </div>
+    <div class="main">
+      <div #slide class="transition-wrapper" [@slideAnimation]="index">
+        @switch (index) { @case (0) {
+        <div class="center">
+          <ion-img src="/logo/pictureslide1.svg" alt="HealBridge"></ion-img>
+        </div>
+        <div class="starter">
+          <ion-text class="ion-text1">Find Trusted Specialists</ion-text>
+          <ion-text class="ion-text2">
+            Discover verified doctors, clinics, and hospitals around the world —
+            all in one app.
+          </ion-text>
+          <div class="pointer">
+            @for (item of items; track $index) { @if ($index===0) {
+            <div class="circle">
+              @if ($index===0) {
+              <div class="inner"></div>
+              }
+            </div>
+            } @else {
+            <div class="circle1"></div>
+            } }
+          </div>
+        </div>
+        } @case (1) {
+        <div class="center">
+          <ion-img src="/logo/pictureslide2.svg" alt="HealBridge"></ion-img>
+        </div>
+        <div class="starter">
+          <ion-text class="ion-text1">Compare & Book Easily</ion-text>
+          <ion-text class="ion-text2">
+            View treatment options, costs, and reviews to make confident
+            healthcare decisions.
+          </ion-text>
+          <div class="pointer">
+            @for (item of items; track $index) { @if ($index===1) {
+            <div class="circle">
+              @if ($index===1) {
+              <div class="inner"></div>
+              }
+            </div>
+            } @else {
+            <div class="circle1"></div>
+            } }
+          </div>
+        </div>
+        } @case (2) {
+        <div class="center">
+          <ion-img src="/logo/pictureslide3.svg" alt="HealBridge"></ion-img>
+        </div>
+        <div class="starter">
+          <ion-text class="ion-text1">Access Wellness & Rehab</ion-text>
+          <ion-text class="ion-text2">
+            Explore holistic care — from recovery centers to mental wellness
+            programs.
+          </ion-text>
+          <div class="pointer">
+            @for (item of items; track $index) { @if ($index===2) {
+            <div class="circle">
+              @if ($index===2) {
+              <div class="inner"></div>
+              }
+            </div>
+            } @else {
+            <div class="circle1"></div>
+            } }
+          </div>
+        </div>
+        } @case (3) {
+        <div class="center ion-padding">
+          <ion-img src="/logo/pictureslide4.svg" alt="HealBridge"></ion-img>
+        </div>
+        <div class="starter">
+          <ion-text class="ion-text1">Global Care, Local Comfort</ion-text>
+          <ion-text class="ion-text2">
+            Connect with professionals who understand your needs — wherever you
+            are.
+          </ion-text>
+          <div class="pointer">
+            @for (item of items; track $index) { @if ($index===3) {
+            <div class="circle">
+              @if ($index===3) {
+              <div class="inner"></div>
+              }
+            </div>
+            } @else {
+            <div class="circle1"></div>
+            } }
+          </div>
+        </div>
+        } }
+      </div>
+      <div class="ion-padding">
+        <div class="bts">
+          <ui-button
+            [label]="'Create Account'"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307D3D'"
+            (Click)="routeTo('create')"
+          ></ui-button>
+          <ui-button
+            [label]="'Sign in'"
+            [width]="'full'"
+            [fill]="'outline'"
+            [shape]="'round'"
+            [backgroundColor]="'light'"
+            [borderLine]="'#899C8C'"
+            [textColor]="'#899C8C'"
+            (Click)="routeTo('login')"
+          ></ui-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

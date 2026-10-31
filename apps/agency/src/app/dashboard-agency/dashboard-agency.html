@@ -1,0 +1,252 @@
+@if (showHeader){
+<ion-header collapse="fade" class="mobile-header">
+  <ion-toolbar>
+    @if (loaded) {
+    <div class="up">
+      <div class="left">
+        <div class="center">
+          <ion-img
+            class="img-agent"
+            src="/logo/agent-logo.svg"
+            alt="HealBridge Agency"
+          ></ion-img>
+        </div>
+      </div>
+      <div class="user">
+        <div class="ion-tab-button prescription">
+          <ion-icon class="notif" src="/icons/notification.svg"></ion-icon>
+        </div>
+
+        @if ((picture$ | async); as picture) {
+        <div class="avatar-wrapper">
+          <ion-avatar class="profile__pic">
+            <img [src]="picture" alt="" />
+          </ion-avatar>
+        </div>
+        } @else {
+        <div class="avatar-wrapper">
+          <ion-avatar>
+            <img alt="" src="/logo/avatar.svg" />
+          </ion-avatar>
+        </div>
+        }
+      </div>
+    </div>
+    } @else {
+    <div class="up">
+      <div class="user">
+        <ion-avatar>
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-avatar>
+        <div>
+          <ion-skeleton-text
+            style="width: 90px"
+            [animated]="true"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            style="width: 50px"
+            [animated]="true"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+      <div class="left">
+        <ion-skeleton-text
+          class="prescription"
+          style="width: 80%; height: 20px"
+          [animated]="true"
+        ></ion-skeleton-text>
+        <div class="ion-tab-buttonn">
+          <ion-skeleton-text
+            class="notif"
+            style="width: 80%; height: 20px"
+            [animated]="true"
+          ></ion-skeleton-text>
+        </div>
+        <ion-badge color="danger">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-badge>
+      </div>
+    </div>
+    }
+  </ion-toolbar>
+</ion-header>
+<ion-header collapse="fade" class="desktop-header">
+  <ion-toolbar>
+    @if (profileInfoService?.name?.length > 0) {
+    <div class="up">
+      <div class="user" tabindex="0">
+        @if ((picture$ | async); as picture) {
+        <div class="avatar-wrapper">
+          <ion-avatar class="profile__pic">
+            <img [src]="picture" alt="" />
+          </ion-avatar>
+        </div>
+        } @else {
+        <ion-avatar class="profile__pic text__avater">
+          <span>
+            {{profileInfoService.name[0]}}{{profileInfoService.name.split('
+            ')?.[1]?.[0] || ''}}
+          </span>
+        </ion-avatar>
+        }
+        <div class="greeting__container">
+          <p class="greeting">
+            Hi, {{profileInfoService?.name?.split(' ')[0]}} 👋
+          </p>
+        </div>
+      </div>
+      <div class="left">
+        <div class="ion-tab-buttonn" tabindex="1">
+          <ion-icon class="notif" name="notifications-outline"></ion-icon>
+        </div>
+      </div>
+    </div>
+    }
+  </ion-toolbar>
+</ion-header>
+} @if (showTab){ @if(isMobile){
+<ion-tabs class="mobile-tabs">
+  <ion-router-outlet></ion-router-outlet>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" href="/dashboard/home">
+      <ion-icon src="/icons/Home.svg"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="med-facilities" href="/dashboard/med-facilities">
+      <ion-icon src="/icons/facilities.svg"></ion-icon>
+      <ion-label>Facilities</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="all-customers" href="/dashboard/all-customers">
+      <ion-icon src="/icons/customers.svg"></ion-icon>
+      <ion-label>Customers</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="more" href="/dashboard/more">
+      <ion-icon src="/logo/profile-icon.svg"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+}@else{
+<div class="desktop-layout">
+  <div class="desktop-sidebar">
+    <div class="desktop-sidebar-inner">
+      <div>
+        <div class="desktop-logo">
+          <img src="/logo/agent-logo.svg" alt="HealBridge Agency" />
+        </div>
+        <div class="desktop-unit">
+          <p>Agency</p>
+        </div>
+        <div class="desktop-nav">
+          <ul>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/home')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/home')"
+                (click)="navigate('/dashboard/home')"
+              >
+                <img src="/icons/Home.svg" alt="" />
+                <p>Home</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/med-facilities')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/med-facilities')"
+                (click)="navigate('/dashboard/med-facilities')"
+              >
+                <img src="/icons/orders.svg" alt="" />
+                <p>Med Facilities</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/all-customers')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/all-customers')"
+                (click)="navigate('/dashboard/all-customers')"
+              >
+                <img src="/icons/wallet.svg" alt="" />
+                <p>Customers</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/wallet-history')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/wallet-history')"
+                (click)="navigate('/dashboard/wallet-history')"
+              >
+                <ion-icon name="wallet-outline"></ion-icon>
+                <p>Wallet</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/referral')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/referral')"
+                (click)="navigate('/dashboard/referral')"
+              >
+                <ion-icon name="people-outline"></ion-icon>
+                <p>Referral</p>
+              </div>
+            </li>
+            <li>
+              <div
+                class="desktop-link"
+                [class.activeLink]="isActive('/dashboard/more')"
+                tabindex="0"
+                (keyup.enter)="navigate('/dashboard/more')"
+                (click)="navigate('/dashboard/more')"
+              >
+                <ion-icon src="/logo/profile-icon.svg"></ion-icon>
+                <p>More</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="desktop-logout-wrap">
+        <div class="desktop-logout">
+          <div class="desktop-logout-user">
+            @if ((picture$ | async); as picture) {
+            <ion-avatar class="desktop-avatar">
+              <img [src]="picture" alt="" />
+            </ion-avatar>
+            } @else {
+            <div class="desktop-initials">
+              {{profileInfoService?.name?.[0]}}{{profileInfoService?.name?.split('
+              ')?.[1]?.[0] || ''}}
+            </div>
+            }
+            <div class="desktop-logout-name">
+              <p>{{ profileInfoService?.name }}</p>
+            </div>
+          </div>
+          <div>
+            <ion-icon
+              name="power-outline"
+              class="desktop-power"
+              (click)="logout()"
+            ></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="desktop-router-shell">
+    <ion-router-outlet></ion-router-outlet>
+  </div>
+</div>
+} }

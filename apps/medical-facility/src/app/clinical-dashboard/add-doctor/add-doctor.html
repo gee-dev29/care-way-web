@@ -1,0 +1,141 @@
+<ion-content class="ion-padding">
+  <div #tabs id="prescription">
+    <div>
+      <div class="header">
+        <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+        @if (edit) {
+        <ion-text class="pricing-title"> Update Doctor </ion-text>
+        } @else {
+        <ion-text class="pricing-title"> Add Doctor </ion-text>
+
+        }
+        <div></div>
+      </div>
+
+      <form class="form-wrapper" [formGroup]="form">
+        <ui-input
+          [control]="form.controls['firstName']"
+          [label]="'First Name'"
+          [type]="'text'"
+        ></ui-input>
+        <ui-input
+          [control]="form.controls['lastName']"
+          [label]="'Last Name'"
+          [type]="'text'"
+        ></ui-input>
+        <ui-input
+          label="Email"
+          type="email"
+          [control]="form.controls['email']"
+          [readOnly]="edit"
+        ></ui-input>
+        <ui-input
+          label="Phone number"
+          [control]="form.controls['phone']"
+        ></ui-input>
+        <div class="gender__based">
+          <ion-text class="gender__text">Gender</ion-text>
+          <div class="gender">
+            <ui-input
+              [options]="genders"
+              [type]="'checkbox'"
+              [control]="form.controls['gender']"
+            ></ui-input>
+          </div>
+        </div>
+        <ui-input
+          label="Cadre"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [isClicked]="isCadre"
+          type="dropdown"
+          [options]="cadre"
+          [selectedText]="form.value.cadre"
+          [control]="form.controls['cadre']"
+          (data)="isCadreClicked()"
+          (emitted)="offCadreClicked()"
+        ></ui-input>
+
+        <ui-input
+          label="Specialization"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [isClicked]="isSpecialization"
+          type="dropdown"
+          [options]="specializations"
+          [selectedText]="form.value.specialization"
+          [control]="form.controls['specialization']"
+          (data)="isSpecializedClicked()"
+          (emitted)="offSpecializedClicked()"
+        ></ui-input>
+        <ui-input
+          label="Virtual Consultation Settlement"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [isClicked]="isVirtualSettlement"
+          type="dropdown"
+          [options]="settlementOptions"
+          [selectedText]="form.value.virtualConsultationSettlement"
+          [control]="form.controls['virtualConsultationSettlement']"
+          (data)="isVirtualSettlementClicked()"
+          (emitted)="offVirtualSettlementClicked()"
+        ></ui-input>
+        <ui-input
+          label="Physical Consultation Settlement"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [isClicked]="isPhysicalSettlement"
+          type="dropdown"
+          [options]="settlementOptions"
+          [selectedText]="form.value.physicalConsultationSettlement"
+          [control]="form.controls['physicalConsultationSettlement']"
+          (data)="isPhysicalSettlementClicked()"
+          (emitted)="offPhysicalSettlementClicked()"
+        ></ui-input>
+        <ui-input
+          [type]="'number'"
+          label="Physical Consultation Rate"
+          [control]="form.controls['physicalConsultationFee']"
+        ></ui-input>
+        <ui-input
+          [type]="'number'"
+          label="Physical Hospital Fee"
+          [control]="form.controls['physicalHospitalFee']"
+        ></ui-input>
+        <div></div>
+        <ui-input
+          [type]="'check'"
+          [label]="'Virtual Consultation'"
+          [control]="this.form.controls['virtualConsultation']"
+        ></ui-input>
+        @if (form.controls['virtualConsultation'].value) {
+        <ui-input
+          label="Virtual Consultation Fee"
+          [type]="'number'"
+          [control]="form.controls['virtualConsultationFee']"
+        ></ui-input>
+        <ui-input
+          label="Virtual Hospital Fee"
+          [type]="'number'"
+          [control]="form.controls['virtualHospitalFee']"
+        ></ui-input>
+        }
+      </form>
+      <div class="btn-margin">
+        <ui-button
+          expand="block"
+          label="Next"
+          [width]="'full'"
+          size="medium"
+          [fill]="'solid'"
+          shape="round"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [loading]="loading"
+          (Click)="onNext()"
+          [disabled]="!form.valid || loading"
+        ></ui-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

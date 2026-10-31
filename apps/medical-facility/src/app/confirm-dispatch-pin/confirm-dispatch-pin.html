@@ -1,0 +1,34 @@
+<ion-content>
+  <div class="order-container ion-padding">
+    <header class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title">
+        {{facilityType===FacilityType.Pharmacy||facilityType===FacilityType.BloodBank?"Input Dispatch PIN":"Input Fulfillment PIN"}}
+      </div>
+      <div></div>
+    </header>
+    <div class="pin-card">
+      <form [formGroup]="form">
+        <ui-input [control]="fulfilmentPin" [color]="'dark'" [bypass]="true" [type]="'otp'">
+          <p class="instruction">
+            Enter the 4-digit dispatch confirmation PIN to proceed.
+          </p>
+          </ui-input
+        >
+      </form>
+    </div>
+    <div class="bts">
+      <ui-button
+        [label]="'Confirm'"
+        [width]="'full'"
+        [fill]="'solid'"
+        (Click)="dispatch()"
+        [shape]="'round'"
+        [loading]="loading"
+        [disabled]="loading || (!form.valid) || form.value.fulfilmentPin?.length!==4"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+      ></ui-button>
+    </div>
+  </div>
+</ion-content>

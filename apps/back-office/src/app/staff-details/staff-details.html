@@ -1,0 +1,26 @@
+<ui-page-body>
+  <div class="table__head">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">Staff</h2>
+    </div>
+  </div>
+  <div class="mt-1">
+    <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+  </div>
+  <div class="ml-1">
+    @if(activeTab === 0){
+    <ui-staff-details-card
+      [staffDetails$]="staffDetails$"
+      [totalRecords]="totalRecords"
+    ></ui-staff-details-card>
+    }
+  </div>
+</ui-page-body>

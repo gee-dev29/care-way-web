@@ -1,0 +1,65 @@
+<ion-content fullscreen class="auth-content">
+  <div class="page" [ngStyle]="bgColor ? {'background-color': bgColor} : null">
+    <div class="page-inner">
+      <div class="center">
+        <ion-img src="/logo/healbridge.svg" alt="HealBridge"></ion-img>
+      </div>
+      <form class="ion-padding" [formGroup]="form">
+        <ion-text color="black">
+          <h1>Sign In</h1>
+        </ion-text>
+        <ion-text color="black"> </ion-text>
+        <div>
+          <ui-input
+            [control]="identity"
+            [label]="'Email'"
+            [type]="'email'"
+          ></ui-input>
+          <ui-input
+            [control]="password"
+            [label]="'Password'"
+            [type]="'password'"
+          ></ui-input>
+        </div>
+        <div class="bts">
+          <ui-button
+            [label]="loginLabel"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+            [textColor]="'#FDFDFD'"
+            (Click)="login()"
+            [disabled]="loading || (!form.valid)"
+            [loading]="loading"
+          ></ui-button>
+          @if (showBiometric) {
+          <ui-button
+            [label]="''"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+            [textColor]="'#FDFDFD'"
+            [showImage]="true"
+            [image]="'/logo/biometric.svg'"
+            (Click)="loginWithBiometric()"
+            [disabled]="loading"
+          ></ui-button>
+          }
+        </div>
+        <div class="bt">
+          <ion-text color="black">
+            <p class="label"><a routerLink="/forgot-password">Reset Password</a></p>
+          </ion-text>
+          <ion-text color="black">
+            <p class="label mv_down">
+              New on HealBridge?
+              <a routerLink="/signup" class="cursor"><b>Sign Up</b></a>
+            </p>
+          </ion-text>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

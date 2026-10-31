@@ -1,0 +1,51 @@
+<div class="ion-padding">
+  <div class="left__wrapper">
+    <ion-icon
+      class="left__arrow"
+      name="chevron-back-outline"
+      (click)="goback()"
+    ></ion-icon>
+    <ion-text color="black">
+      <h1>Bank Account Details</h1>
+    </ion-text>
+  </div>
+  <p>This information is required.</p>
+  <form [formGroup]="form">
+    <ui-input
+      [label]="'Bank Name'"
+      [shouldSearch]="true"
+      [isMultiselect]="false"
+      [selectedText]="form.value.bank?.bankName"
+      [isClicked]="isBank"
+      [type]="'dropdown'"
+      [options]="banks"
+      (data)="isServiceNameClicked()"
+      (emitted)="offServiceNameClicked()"
+      [control]="form.get('bank')"
+      [isItemObject]="true"
+    ></ui-input>
+    <ui-input
+      [type]="'text'"
+      [label]="'Account Number'"
+      [control]="accountNumber"
+    ></ui-input>
+    <ui-input
+      [type]="'text'"
+      [label]="'Account Name'"
+      [control]="accountName"
+    ></ui-input>
+  </form>
+  <div class="bts">
+    <ui-button
+      [label]="label"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [loading]="loading"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      [disabled]="loading || (!form.valid)"
+      (Click)="proceed()"
+    ></ui-button>
+  </div>
+</div>

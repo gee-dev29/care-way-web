@@ -1,0 +1,195 @@
+<ui-page-body>
+  @if (approvers$ | async; as approvers) {
+  <div class="table__head">
+    <div class="grouped__btn__two">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2>Create Approval Route</h2>
+    </div>
+    <ui-desktop-button
+      [primary]="true"
+      [label]="'Save'"
+      (click)="confirmApprovers()"
+      [size]="'large'"
+      [disabled]="loading || approvers.length === 0"
+    ></ui-desktop-button>
+  </div>
+  <div class="approval__container">
+    <ui-form-body [columns]="'split'">
+      <div class="new__group">
+        <ui-desktop-input
+          [label]="'Route Name'"
+          [control]="routeName"
+        ></ui-desktop-input>
+        <div class="grouped__btn">
+          <ui-desktop-input
+            [type]="'checkbox'"
+            [control]="isFinancial"
+            [binary]="true"
+          ></ui-desktop-input>
+          <p>Is Financial?</p>
+        </div>
+        @if(form.value.isFinancial === true){
+        <ui-desktop-input
+          [label]="'Approval Limit'"
+          [control]="approvalLimit"
+          type="number"
+        ></ui-desktop-input>
+        } @if(form.value.isFinancial === true){
+        <ui-input-drop-down
+          [label]="'Currency'"
+          [options]="currencies"
+          [control]="currency"
+          [key]="'value'"
+          [value]="'value'"
+        ></ui-input-drop-down>
+        }
+      </div>
+      <div class="new__group">
+        <ui-input-drop-down
+          [label]="'Transaction Type'"
+          [options]="transactionTypes"
+          [control]="approvalType"
+          [key]="'text'"
+          [value]="'text'"
+          [filter]="true"
+        ></ui-input-drop-down>
+        <div class="grouped__btn">
+          <ui-desktop-input
+            [type]="'checkbox'"
+            [control]="canReorder"
+            [binary]="true"
+          ></ui-desktop-input>
+          <p>Can re-order?</p>
+        </div>
+        <div class="grouped__btn">
+          <ui-desktop-input
+            [type]="'checkbox'"
+            [control]="withOTP"
+            [binary]="true"
+          ></ui-desktop-input>
+          <p>Enable OTP</p>
+        </div>
+      </div>
+    </ui-form-body>
+
+    <div class="grouped__btn">
+      @if(approvers.length === 0){
+      <ui-desktop-button
+        [label]="'Add Approver'"
+        [primary]="true"
+        [size]="'medium'"
+        (click)="openApprovalItemModal()"
+        [disabled]="!form.valid"
+      >
+      </ui-desktop-button>
+      } @if(approvers.length > 0){
+      <ui-desktop-button
+        [label]="'Add More Approvers'"
+        [primary]="true"
+        [icon]="'pi pi-plus-circle'"
+        [showIcon]="true"
+        [size]="'medium'"
+        (click)="openApprovalItemModal()"
+        [disabled]="!form.valid"
+      >
+      </ui-desktop-button>
+      }
+    </div>
+  </div>
+
+  <div class="voucher__item__table approval__table">
+    <div class="card">
+      @if(approvers.length > 0){
+
+      <h2 class="mt-4">Approvers</h2>
+      <div class="pt-2">
+        <p-table
+          #dt1
+          dataKey="id"
+          [value]="approvers"
+          [reorderableColumns]="true"
+        >
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th pReorderableColumn>Approver</th>
+              <th pReorderableColumn>SLA (in hours)</th>
+              <th pReorderableColumn>Permanent</th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template
+            pTemplate="body"
+            let-item
+            let-columns="columns"
+            let-rowIndex="rowIndex"
+          >
+            <tr [pReorderableRow]="rowIndex">
+              <td pReorderableRowHandle>{{ item.name }}</td>
+              <td pReorderableRowHandle>{{ item.slaInHours }}</td>
+              <td pReorderableRowHandle>
+                {{ item.cannotChange ? 'Yes' : 'No' }}
+              </td>
+              <td>
+                <div class="delete__wrapper" (click)="removeApprover(rowIndex)">
+                  <img
+                    class="delete__icon"
+                    src="icons/white-delete-icon.png"
+                    alt="Delete"
+                  />
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      }
+    </div>
+  </div>
+  }
+</ui-page-body>
+
+<ui-modal
+  [(visibility)]="showApprovalItemModal"
+  [header]="'Add Approver'"
+  selectedWidth="40vw"
+>
+  <div class="new__group">
+    <ui-input-drop-down
+      [label]="'Approver'"
+      [filter]="true"
+      [options]="users$ | async"
+      [control]="userId"
+      [key]="'name'"
+    ></ui-input-drop-down>
+    <ui-desktop-input
+      [label]="'SLA (in hours)'"
+      [control]="slaInHours"
+      type="number"
+    ></ui-desktop-input>
+    <div class="grouped__btn">
+      <ui-desktop-input
+        [type]="'checkbox'"
+        [label]="'Permanent?'"
+        [control]="cannotChange"
+        [binary]="true"
+      ></ui-desktop-input>
+      <p>Permanent?</p>
+    </div>
+    <ui-desktop-button
+      [label]="'Proceed'"
+      [primary]="true"
+      [width]="'full'"
+      [size]="'medium'"
+      (Click)="proceed()"
+      [disabled]="!addApprovalForm.valid"
+    >
+    </ui-desktop-button>
+  </div>
+</ui-modal>

@@ -1,0 +1,39 @@
+.service-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #e7f6e9;
+  border-radius: 18px;
+  padding: 22px 20px;
+}
+
+.service-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.service-name,
+.service-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.service-delivery {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.service-delivery-label {
+  color: #5b5f5f;
+}
+
+.service-delivery-value {
+  color: #307d3d;
+  font-weight: 600;
+}

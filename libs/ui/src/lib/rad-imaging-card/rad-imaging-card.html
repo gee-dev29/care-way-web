@@ -1,0 +1,49 @@
+@for (rad of rads; track $index) {
+<div class="lab-card">
+  <div class="lab-card-header">
+    <h4>Imaging/radiology</h4>
+    @if(rad.status === documentStatus.Draft  && !module){
+
+    <div class="actions">
+      <ion-img
+        (click)="editRad(rad)"
+        src="icons/white-pencil-icon.svg"
+        class="edit-icon"
+      ></ion-img>
+
+      <ion-icon
+        (click)="deleteRad(rad)"
+        name="close-circle-outline"
+        class="delete-icon"
+      ></ion-icon>
+    </div>
+    }
+  </div>
+
+  <div class="lab-card-body">
+    @if (rad?.serviceName) {
+    <div class="row">
+      <p class="label">Service Name</p>
+      <p class="value">{{ rad.serviceName }}</p>
+    </div>
+    } @if (rad?.status) {
+    <div class="row">
+      <p class="label">Status</p>
+      <p class="value">{{ rad.status }}</p>
+    </div>
+    }
+  </div>
+</div>
+}
+
+<ui-button
+  (Click)="proceed()"
+  [label]="'Request Cost'"
+  [width]="'full'"
+  [fill]="'solid'"
+  [shape]="'round'"
+  [loading]="isLoading"
+  [backgroundColor]="'#307d3d'"
+  [disabled]="disabled"
+  [showImage]="false"
+></ui-button>

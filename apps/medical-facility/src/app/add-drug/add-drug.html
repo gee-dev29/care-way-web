@@ -1,0 +1,366 @@
+<ion-content id="background-content" fullscreen>
+  <div id="add__herbals" class="ion-padding">
+    <div
+      class="up"
+      (keyup.enter)="goBack()"
+      tabindex="0"
+      role="button"
+      (click)="goBack()"
+    >
+      <ion-icon src="/logo/backarrow.svg"></ion-icon>
+      <ion-text>Add Drugs</ion-text>
+    </div>
+
+    <div class="card__wrapper">
+      <form [formGroup]="drugForm">
+        <div class="input">
+          <ui-input
+            [label]="'Active Ingredient'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isActiveIngredient"
+            [type]="'dropdown'"
+            [options]="activeIngredients"
+            (data)="isActiveIngredientClicked()"
+            (emitted)="offActiveIngredientClicked()"
+            [selectedText]="drugForm.value.activeIngredient"
+            [selectedItem]="[drugForm.value.activeIngrident]"
+            [control]="activeIngredient"
+          ></ui-input>
+        </div>
+        <div class="input">
+          <ui-input
+            [label]="'Form'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isForm"
+            [type]="'dropdown'"
+            [options]="form"
+            (data)="isFormClicked()"
+            (emitted)="offFormClicked()"
+            [selectedText]="drugForm.value.form"
+            [selectedItem]="[drugForm.value.form]"
+            [control]="formSelected"
+          ></ui-input>
+        </div>
+
+        <div class="input">
+          <ui-input
+            [label]="'Strength'"
+            [control]="strength"
+            [type]="'text'"
+            (data)="checkStrength('')"
+            (keyupData)="checkStrength($event)"
+          ></ui-input>
+        </div>
+
+        @if (isStrengthOpen && availableStrength.length > 0) {
+        <div class="modal-card-new">
+          @for (item of availableStrength; track $index) {
+          <ion-radio slot="end" (click)="selectProductStrength(item.strength)">
+            <div class="word">{{ item.strength }}</div>
+          </ion-radio>
+          }
+        </div>
+        }
+        <div class="picker">
+          <div class="tabs-container">
+            <div class="tabs">
+              @for(tab of tabs; track tab; let i = $index) {
+              <ion-text
+                class="tab"
+                [class.active]="activeTabIndex === i"
+                (click)="setTab(tab)"
+              >
+                {{ tab }}
+              </ion-text>
+              }
+            </div>
+          </div>
+          @if (activeTabIndex === 0) {
+          <ion-picker>
+            <ion-picker-column
+              [value]="duration"
+              (ionChange)="onDayChange($event)"
+            >
+              @for (opt of dayOptions; track $index) {
+              <ion-picker-column-option [value]="opt.value">
+                {{ opt.label }}
+              </ion-picker-column-option>
+              }
+            </ion-picker-column>
+          </ion-picker>
+
+          }@else if (activeTabIndex === 1) {
+
+          <ion-picker>
+            <ion-picker-column
+              [value]="duration"
+              (ionChange)="onMonthChange($event)"
+            >
+              @for (opt of monthOptions; track $index) {
+              <ion-picker-column-option [value]="opt.value">
+                {{ opt.label }}
+              </ion-picker-column-option>
+              }
+            </ion-picker-column>
+          </ion-picker>
+          }
+        </div>
+        <ui-input
+          [label]="'Frequency'"
+          [control]="scheduleType"
+          [type]="'dropdown'"
+          [options]="frequencyTypes"
+          [selectedText]="drugForm.value.scheduleType"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [isClicked]="isFrequency"
+          (data)="isFrequencyClicked()"
+          (emitted)="offFrequencyClicked()"
+        ></ui-input>
+        @if(drugForm.get('scheduleType')?.value === 'Cycle-Based Schedule') {
+        <div class="based">
+          <span>Every</span>
+          <ion-list>
+            <ion-item>
+              <ion-select
+                (ionChange)="changeCycleFrequency($event)"
+                aria-label="Favorite Fruit"
+                value="Day"
+              >
+                <ion-select-option value="Day">Day</ion-select-option>
+                <ion-select-option value="Week">Week</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div>
+        } @if(drugForm.get('scheduleType')?.value === 'At Regular Intervals') {
+        <div class="based">
+          <span>Interval</span>
+          <ion-list>
+            <ion-item>
+              <ion-select  (ionChange)="changeFewDaysMedication($event)" aria-label="Favorite Fruit" value="Every 2 Days">
+                @for (item of fewDaysMedication; track $index) {
+                <ion-select-option [value]="item.value"
+                  >{{item.key}}</ion-select-option
+                >
+                }
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div>
+        } @if(drugForm.get('scheduleType')?.value === 'Selected Days of the Week') {
+       @for (week of daysOfWeekLength; let weekIndex = $index; track $index) {
+        <div class="each__holder">
+          <div class="based">
+            @for (item of week?.day; track $index) {
+            <ion-button
+            [disabled]="item.selected === null"
+              (click)="selectedDay = $index; selectDay(item.day, weekIndex, $index)"
+              [ngClass]="{ 'selectedColor': item.selected === true, 'notColor':item.selected ===false ||item.selected ===null }"
+              >{{days[$index].text}}</ion-button
+            >
+            }
+          </div>
+  
+          <div class="time-row">
+            <p class="time-label">Time</p>
+            @for (t of week.usages; track $index) {
+            <div class="all__date">
+              <div class="list__time">
+                <ion-icon
+                  name="remove-circle-outline"
+                  (click)="removeTime($index, weekIndex)"
+                >
+                </ion-icon>
+                <span
+                  tabindex=""
+                  (keydown)="openTimePicker($index, weekIndex)"
+                  (click)="openTimePicker($index, weekIndex)"
+                >
+                  {{ t.time }}
+                </span>
+              </div>
+              <div
+                tabindex=""
+                (keydown)="openUnitPicker($index, weekIndex)"
+                (click)="openUnitPicker($index, weekIndex)"
+                class="list__time"
+              >
+                <span tabindex=""> {{ t.dosage }} unit </span>
+                <ion-icon [src]="'icons/pencilIcon.svg'"> </ion-icon>
+              </div>
+            </div>
+            }
+            @if(hasSelectedDay(week)){
+              <div
+                class="list__time"
+                tabindex=""
+                (keydown)="addNewTime(weekIndex)"
+                (click)="addNewTime(weekIndex)"
+              >
+                <ion-icon name="add-circle-outline"></ion-icon>
+                <span>Add a Time</span>
+              </div>
+            }
+          </div>
+          
+        </div>
+       }
+       <div class="set__new__date">
+        <button type="button" [disabled]="disableButton()===false" (click)="addAnotherWeek()">Schedule Other Days</button>
+       </div>
+        } @if(drugForm.get('scheduleType')?.value!==null &&
+        drugForm.get('scheduleType')?.value !== 'As Needed' &&  drugForm.get('scheduleType')?.value !== 'Selected Days of the Week') {
+        <div class="time-row">
+          <p class="time-label">Time</p>
+          @for (t of times; track $index) {
+          <div class="all__date">
+            <div class="list__time">
+              <ion-icon
+                name="remove-circle-outline"
+                (click)="removeTime($index, null)"
+              >
+              </ion-icon>
+              <span
+                tabindex=""
+                (keydown)="openTimePicker($index, null)"
+                (click)="openTimePicker($index, null)"
+              >
+                {{ t.time }}
+              </span>
+            </div>
+            <div
+              tabindex=""
+              (keydown)="openUnitPicker($index, null)"
+              (click)="openUnitPicker($index, null)"
+              class="list__time"
+            >
+              <span tabindex=""> {{ t.dosage }} unit </span>
+              <ion-icon [src]="'icons/pencilIcon.svg'"> </ion-icon>
+            </div>
+          </div>
+          }
+
+          <div
+            class="list__time"
+            tabindex=""
+            (keydown)="addTime()"
+            (click)="addTime()"
+          >
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <span>Add a Time</span>
+          </div>
+        </div>
+        } 
+        @if(drugForm.get('scheduleType')?.value === 'Cycle-Based Schedule') {
+        <div class="time-row usePause">
+          <p class="time-label">Cycle Details</p>
+          @for (t of useForUseOrPause; track $index) {
+          <div class="all__date">
+            <div class="list__time">
+              <span>Use For</span>
+            </div>
+            <ion-item>
+              <ion-select
+                (ionChange)="changeCycleDuration($event, 'useFor')"
+                aria-label="Favorite Fruit"
+                value="1"
+              >
+                @for (item of cycleDurations; track $index) {
+                <ion-select-option [value]="item">{{item}}</ion-select-option>
+                }
+              </ion-select>
+            </ion-item>
+          </div>
+          }
+          @for (t of useForUseOrPause; track $index) {
+          <div class="all__date">
+            <div class="list__time">
+              <span>Pause For</span>
+            </div>
+            <ion-item>
+              <ion-select
+                (ionChange)="changeCycleDuration($event, 'pauseFor')"
+                aria-label="Favorite Fruit"
+                value="1"
+              >
+                @for (item of cycleDurations; track $index) {
+                <ion-select-option [value]="item">{{item}}</ion-select-option>
+                }
+              </ion-select>
+            </ion-item>
+          </div>
+          }
+        </div>
+        }
+        <div class="ui__button">
+          <ui-button
+            (Click)="next()"
+            [label]="label"
+            [disabled]="loading || (!drugForm.valid) || disableButton()===false || disableNextButton()"
+            [loading]="loading"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'#307d3d'"
+          ></ui-button>
+        </div>
+      </form>
+
+      <div class="end"></div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-modal
+  [isOpen]="isTimeModalOpen"
+  (didDismiss)="onTimeModalDismiss()"
+  [breakpoints]="[0, 0.4]"
+  [initialBreakpoint]="0.4"
+>
+  <ng-template>
+    <ion-content class="ion-padding">
+      <ion-datetime
+        presentation="time"
+        (ionChange)="onDateTimeChange($event.detail.value)"
+      ></ion-datetime>
+      <ion-button class="save-btn" expand="block" (click)="confirmTime()">
+        Confirm
+      </ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal
+  [isOpen]="isUnitPickerOpen"
+  [canDismiss]="true"
+  (didDismiss)="isUnitPickerOpen=false"
+  [breakpoints]="[0, 0.35]"
+  [initialBreakpoint]="0.35"
+>
+  <ng-template>
+    <ion-content class="ion-padding">
+      <h3 class="modal-title">Select Unit</h3>
+      <div class="unit-grid">
+        <ion-picker>
+          <ion-picker-column
+            (ionChange)="confirmUnit($event.detail.value)"
+            [value]="1"
+          >
+            @for (item of unitOptions; track $index) {
+            <ion-picker-column-option
+              (keyup)="confirmUnit(item)"
+              (click)="confirmUnit(item)"
+              (onChange)="confirmUnit(item)"
+              [value]="item"
+              >{{item}}</ion-picker-column-option
+            >
+            }
+          </ion-picker-column>
+        </ion-picker>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,14 @@
+<ui-page-body>
+  <div class="table__head">
+    <h2 class="title">Withdrawals</h2>
+  </div>
+  <back-office-withdrawal-table
+    [totalRecords]="totalRecords"
+    [withdrawals$]="withdrawals$"
+    [withdrawalStatuses]="withdrawalStatuses"
+    (dateFilter)="filterByDate($event)"
+    (withdrawalStatus)="filterByWithdrawalStatus($event)"
+    (onLoad)="load($event)"
+    (viewDetails)="view($event)"
+  ></back-office-withdrawal-table>
+</ui-page-body>

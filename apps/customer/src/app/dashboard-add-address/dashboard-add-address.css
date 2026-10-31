@@ -1,0 +1,83 @@
+ion-header {
+  --shadow: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  margin-top: 0px;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.address {
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.up {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.up p {
+  color: #0061ef;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+form {
+  width: 100%;
+}
+
+.loc-icon {
+  font-size: 22px;
+  color: #4faf58;
+  margin-top: 10px;
+}
+
+ion-content {
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  position: relative;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.search-box {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 90%;
+  background: white;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.suggestion-list {
+  position: absolute;
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 20;
+  background: white;
+  border-radius: 10px;
+  padding: 2%;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}

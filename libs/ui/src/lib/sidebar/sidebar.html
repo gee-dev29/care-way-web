@@ -1,0 +1,87 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<div [ngClass]="{ show: show, side__nav__container: !show }" id="sidebar">
+  <div class="close" (click)="closeSideBar()">
+    <i class="pi pi-times"></i>
+  </div>
+  <ng-content></ng-content>
+  <div class="nav__closed">
+    <div class="">
+      <div class="nav__top">
+        <img
+          style="width: 150px"
+          src="/logo/healbridge.svg"
+          alt="Heal Bridge"
+        />
+      </div>
+      <div class="unit">
+        <p>{{ unit }}</p>
+      </div>
+      @if (user$ | async; as user) {
+      <div class="unit">
+        <p class="company">{{ user.name }}</p>
+      </div>
+      }
+      <div class="nav__bottom">
+        <ul>
+          @for (link of sidebarLinks; track link; let i = $index) {
+          <li>
+            @if (!link.hasOwnProperty('dropdownLinks')) {
+            <div
+              (click)="singleClick(link)"
+              [ngClass]="'link'"
+              [class]="name === link.name ? 'activeLink' : ''"
+            >
+              <img src="{{ link.icon }}" alt="" />
+              <p>{{ link.name }}</p>
+              @if (link.dropdownLinks) {<i class="pi pi-angle-right"></i>}
+            </div>
+            } @if (link?.dropdownLinks?.length > 0) {
+            <div
+              [ngClass]="'link'"
+              (click)="link.dropdownLinks ? setId(i, link, $event) : setId(-1, link, $event)"
+            >
+              <img src="{{ link.icon }}" alt="" />
+              <p>{{ link.name }}</p>
+              @if (link.dropdownLinks) { <i class="pi pi-angle-right"></i>}
+            </div>
+            } @if (id$ | async; as id) { @if (id - 1 === i) { @if
+            (link.dropdownLinks) {
+            <div
+              class="dropdown"
+              [style.top.px]="dropdownPosition.top"
+              [style.left.px]="dropdownPosition.left"
+            >
+              @for (dropdownlink of link.dropdownLinks; track $index) {
+              <p (click)="closeMenu(dropdownlink.link)">
+                {{ dropdownlink.name }}
+              </p>
+              }
+            </div>
+            } } }
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+    <div class="header__right cursor-pointer">
+      <div class="logOut">
+        <div class="user">
+          <div class="icon">{{ initials }}</div>
+          <div class="user">
+            <p class="text-xs">{{ userName }}</p>
+          </div>
+        </div>
+        <div>
+          <i class="pi pi-power-off" data-icon="power" (click)="logout()"></i>
+        </div>
+      </div>
+    </div>
+    @if (id$ | async) { @if (id$ | async) {
+    <div class="overlay" (click)="closeMenu()"></div>
+    } }
+  </div>
+</div>
+<div class="menu">
+  <i class="pi pi-bars" (click)="menu()"></i>
+</div>

@@ -1,0 +1,50 @@
+<ion-content id="background-content" fullscreen>
+  <div class="padding">
+    <rider-wallet-card
+      [balance]="balance"
+      currency="NGN"
+      (viewHistory)="navigateTo()"
+    ></rider-wallet-card>
+
+    <div>
+      @if (allData.length) { @for (order of allData; track $index) { @if (
+      $index===0 ) {
+
+      <ui-order-card
+        [order]="order"
+        [title]="'Recent Orders'"
+        (view)="viewAll()"
+        [makeOrange]="true"
+        (viewIt)="viewIt($event)"
+      >
+      </ui-order-card>
+      } } }@else {
+      <div tabindex="">
+        <ui-add-new-entry-card [title]="'New Order'"> </ui-add-new-entry-card>
+      </div>
+      }
+    </div>
+
+    <div class="mt-5">
+      @if (transactions.length) { @for (transaction of transactions; track
+      $index) { @if ( $index===0 ) {
+
+      <ui-transaction-card
+        [transaction]="transaction"
+        [title]="'Recent Transactions'"
+        (view)="viewAll()"
+        (viewIt)="viewIt($event)"
+      >
+      </ui-transaction-card>
+      } } }@else {
+      <div tabindex="">
+        <ui-add-new-entry-card
+          [title]="'No Transactions'"
+          [state]="'empty'"
+          [heading]="'Recent Transactions'"
+        ></ui-add-new-entry-card>
+      </div>
+      }
+    </div>
+  </div>
+</ion-content>

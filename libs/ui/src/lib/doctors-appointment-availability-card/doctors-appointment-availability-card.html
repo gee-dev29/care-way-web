@@ -1,0 +1,30 @@
+@if (appointment) {
+<div
+  class="card"
+  tabindex="0"
+  (keyup.enter)="onSelectAppointment($event, appointment)"
+  (click)="onSelectAppointment($event, appointment)"
+  [style.background]="background"
+  [style.color]="background ? '#ffffff':'#000'"
+>
+  <div class="item-left">
+    <ion-icon src="/icons/person.svg"></ion-icon>
+    <span class="doctor-name">
+      {{ "Dr. " + appointment?.professional.firstName + " " +
+      appointment?.professional.lastName }}
+    </span>
+    @if (appointment?.professional.cadre) {
+    <span class="cadre-badge">{{ appointment?.professional.cadre }}</span>
+    }
+  </div>
+  <div class="item-right">
+    <ion-icon src="/icons/calendar-clear.svg"></ion-icon>
+    {{ (moment(appointment.date).local().format('ddd MMM DD, YYYY') || '') + ' @
+    ' + moment.utc(`${appointment.date} ${appointment.time}`, 'YYYY-MM-DD
+    HH:mm').local() .format('h:mm A') }}
+  </div>
+  <div class="arrow">
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </div>
+</div>
+}

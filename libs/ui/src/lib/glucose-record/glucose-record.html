@@ -1,0 +1,80 @@
+<ion-content
+  id="background-content"
+  class="no-bottom-space"
+  [fullscreen]="true"
+>
+  <div id="prescription" class="ion-padding">
+    <ui-vital-records-card
+      [title]="title"
+      [showShare]="true"
+      cardTitle="Glucose Level"
+      [cardIcon]="cardIcon"
+      [tabs]="['History','Oxygen Tracker']"
+      [tabContents]="[history, tracker]"
+      [label]="'Add Glucose'"
+      (continue)="navigateTo()"
+      [records$]="records$"
+      [navigateTo]="goBack"
+    >
+      <div left class="summary-temp">
+        @if ((records$ | async); as records) {
+        <ion-text class="summary-title"> mg/dl </ion-text>
+
+        <ion-text class="degree">
+          {{records[0]?.readings[0].record??0}}
+        </ion-text>
+        }
+      </div>
+      <div right class="summary-temp">
+        @if ((records$ | async); as records) {
+        <!-- <ion-text class="summary-title" color="medium">
+          Type: {{vitalType}}
+        </ion-text> -->
+
+        @if (records.length>0) {
+        <ion-text class="status">
+          {{records[0]?.readings[0]?.status}}
+        </ion-text>
+
+        <ion-text class="summary-title" color="medium">
+          {{formatDate(records[0]?.date, records[0]?.time)}}
+        </ion-text>
+        } }
+      </div>
+
+      <ng-container>
+        <ng-template #tracker>
+          <p>✅ Glucose Content</p>
+        </ng-template>
+
+        <ng-template #history>
+          @for ((item of records$ | async); track item) {
+          <ion-card class="temp-card">
+            <ion-card-content>
+              <div class="row">
+                <div>
+                  <div class="row-title">
+                    <div class="temperature">{{ item.readings[0].record }}</div>
+                    <ion-badge class="status-badge color-black" color="light"
+                      >mgdL</ion-badge
+                    >
+                  </div>
+                </div>
+
+                <div class="status-col">
+                  <ion-badge
+                    class="status-badge color-white"
+                    color="{{item.color}}"
+                    >{{ item.readings[0]?.status }}</ion-badge
+                  >
+                  <div class="date">{{formatDate( item.date, item.time) }}</div>
+                </div>
+              </div>
+            </ion-card-content>
+          </ion-card>
+          }
+        </ng-template>
+      </ng-container>
+    </ui-vital-records-card>
+  </div>
+</ion-content>

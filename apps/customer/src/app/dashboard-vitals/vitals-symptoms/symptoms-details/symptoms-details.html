@@ -1,0 +1,218 @@
+<ion-content id="background-content" fullscreen>
+  <div id="prescription" class="ion-padding">
+    <ion-header class="ion-no-border">
+      <div class="header-content">
+        <div class="left-toolbar">
+          <ion-icon src="/logo/backarrow.svg" (click)="goBack()"></ion-icon>
+
+          <ion-text>Symptoms Details</ion-text>
+        </div>
+
+        <div class="right-toolbar">
+          <ion-icon src="/logo/share.svg"></ion-icon>
+          <ion-text>Share</ion-text>
+        </div>
+      </div>
+    </ion-header>
+
+    <div class="container">
+      @if (( symtomsDetails$ | async); as symptoms) {
+      <div class="row">
+        <div class="card card-dark">
+          <div class="icon">
+            <ion-icon name="calendar-outline"></ion-icon>
+          </div>
+          <div class="value">
+            {{formatDateorTime(symptoms.date)}},
+            {{formatDateorTime(symptoms.time)}}
+          </div>
+        </div>
+
+        <!-- <div class="card card-light">
+          <div class="icon">
+            <ion-icon name="time-outline"></ion-icon>
+          </div>
+          <div class="label">Time</div>
+          <div class="value">{{formatDateorTime(symptoms.time)}}</div>
+        </div> -->
+      </div>
+
+      <div class="info-card-1">
+        <div class="info-title">
+          At least how many days have you had this symptom?
+        </div>
+
+        <div class="pill">{{symptoms.durationInDays}} Days</div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-title">Body Part</div>
+        <div class="info-value">{{symptoms.bodyPart}}</div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-title">Description of Symptoms</div>
+        <div class="info-value">{{symptoms.description}}</div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-title">Captured Items {{this.datalength}}</div>
+
+        @for (item of imageData; track item?.name; let i = $index) {
+        <div
+          class="file-item"
+          tabindex=""
+          (keydown)="showUploadedImage(item?.url)"
+          (click)="showUploadedImage(item?.url)"
+        >
+          <div class="file-left">
+            <ion-img [src]="item?.url" class="custom-icon"> </ion-img>
+            <span>{{item?.name}}</span>
+          </div>
+
+          <!-- <ion-icon name="close-circle" class="remove-icon"></ion-icon> -->
+        </div>
+        }
+      </div>
+      } @else {
+
+      <div class="row">
+        @for (i of [1, 2]; track i) {
+        <div class="card">
+          <ion-skeleton-text
+            animated
+            style="width: 24px; height: 24px; border-radius: 50%"
+          ></ion-skeleton-text>
+
+          <ion-skeleton-text
+            animated
+            style="width: 40%; height: 12px; margin-top: 8px"
+          ></ion-skeleton-text>
+
+          <ion-skeleton-text
+            animated
+            style="width: 60%; height: 16px; margin-top: 6px"
+          ></ion-skeleton-text>
+        </div>
+        }
+      </div>
+
+      <div class="info-card-1">
+        <ion-skeleton-text
+          animated
+          style="width: 80%; height: 14px"
+        ></ion-skeleton-text>
+
+        <ion-skeleton-text
+          animated
+          style="
+            width: 90px;
+            height: 32px;
+            border-radius: 16px;
+            margin-top: 12px;
+          "
+        ></ion-skeleton-text>
+      </div>
+
+      <div class="info-card">
+        <ion-skeleton-text
+          animated
+          style="width: 30%; height: 12px"
+        ></ion-skeleton-text>
+
+        <ion-skeleton-text
+          animated
+          style="width: 50%; height: 16px; margin-top: 6px"
+        ></ion-skeleton-text>
+      </div>
+
+      <div class="info-card">
+        <ion-skeleton-text
+          animated
+          style="width: 45%; height: 12px"
+        ></ion-skeleton-text>
+
+        <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 95%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+      </div>
+
+      <div class="info-card">
+        <ion-skeleton-text
+          animated
+          style="width: 50%; height: 12px"
+        ></ion-skeleton-text>
+
+        <div class="file-item">
+          <div class="file-left">
+            <ion-skeleton-text
+              animated
+              style="width: 20px; height: 20px; border-radius: 4px"
+            ></ion-skeleton-text>
+
+            <ion-skeleton-text
+              animated
+              style="width: 120px; height: 12px; margin-left: 8px"
+            ></ion-skeleton-text>
+          </div>
+
+          <ion-skeleton-text
+            animated
+            style="width: 18px; height: 18px; border-radius: 50%"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+      }
+
+      <div class="btn-container">
+        <ui-button
+          [label]="'Schedule Appointment'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="continue()"
+        ></ui-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="viewCostAttachment"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+        <!-- <ion-icon
+          (click)="closeSave()"
+          class="closeIcon"
+          src="/logo/closered.svg"
+        ></ion-icon> -->
+      </div>
+      <ion-card-content class="apply__gap">
+        @if (imageView) {
+        <div class="preview-container">
+          <iframe [src]="imageView | safe" class="preview-img"></iframe>
+        </div>
+        <ui-button
+          [label]="'Close'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="closeSave()"
+        ></ui-button>
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>

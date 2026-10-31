@@ -1,0 +1,9 @@
+<button
+  (click)="Click.emit($event)"
+  [style]="{ 'background-color': backgroundColor }"
+  type="button"
+  [class]="classes"
+  [disabled]="disabled"
+>
+  @if (loading) { <i class="pi pi-spin pi-spinner"></i>} {{ label }}
+</button>

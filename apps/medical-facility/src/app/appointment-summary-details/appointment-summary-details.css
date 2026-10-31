@@ -1,0 +1,44 @@
+.wrapper {
+  margin-top: 115px;
+  padding: 0 10px;
+}
+
+.list__container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list__item {
+  background: #eef0f9;
+  padding: 14px 16px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.list__item ion-icon {
+  font-size: 18px;
+}
+
+.dropdown__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+
+.dropdown__content.open {
+  max-height: 300px;
+  opacity: 1;
+}
+
+.inner {
+  background: #ffffff;
+  margin-top: 6px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+}

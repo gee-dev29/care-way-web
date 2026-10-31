@@ -1,0 +1,61 @@
+<ion-app>
+  <medical-facility-active-call-indicator></medical-facility-active-call-indicator>
+  @if (showSplash) {
+  <div class="splash-screen">
+    <img src="/images/splash.png" alt="" />
+  </div>
+  } @else { @if (showForceUpdate) {
+  <div class="update-screen">
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+
+    <div class="update-card">
+      <div class="icon-container">
+        <div class="icon-ring">
+          <ion-img src="/logo/healbridge.svg"></ion-img>
+        </div>
+      </div>
+
+      <h1>Update Required</h1>
+
+      <p class="description">
+        We've made important improvements to give you a faster, more secure and
+        more reliable experience.
+        <br /><br />
+        Please update the app to continue.
+      </p>
+
+      <div class="version-box">
+        <div>
+          <small>Current Version</small>
+          <strong>{{ currentVersion }}</strong>
+        </div>
+
+        <div class="divider"></div>
+
+        <div>
+          <small>Required Version</small>
+          <strong>{{ requiredVersion }}</strong>
+        </div>
+      </div>
+      <ui-button
+        [width]="'full'"
+        (Click)="updateApp()"
+        [size]="'full'"
+        [textColor]="'white'"
+        [backgroundColor]="'#317e3d'"
+        [label]="'Update Now'"
+        [showIcon]="true"
+        [icon]="'arrow-up-circle-outline'"
+      ></ui-button>
+
+      <p class="footer">
+        This update contains security improvements, bug fixes and exciting new
+        features.
+      </p>
+    </div>
+  </div>
+  } @else {
+  <ion-router-outlet></ion-router-outlet>
+  } }
+</ion-app>

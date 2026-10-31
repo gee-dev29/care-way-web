@@ -1,0 +1,68 @@
+<ui-page-body>
+  <div class="table__head">
+    <div class="grouped__btn">
+      <img
+        class="left-arrow-icon"
+        tabindex=""
+        (keyup.enter)="back()"
+        (click)="back()"
+        src="icons/left-arrow-black.svg"
+        alt=""
+      />
+      <h2 class="title">Agent</h2>
+    </div>
+  </div>
+  <div class="mt-1">
+    <ui-tab [tabs]="tabs" (tabChange)="activeTab = $event"></ui-tab>
+    @if (activeTab !== 0) {
+    <ui-page-highlight
+      [primaryDetailTitle]="'Agent:'"
+      [primaryDetail]="agentName | titlecase"
+      [secondaryDetailTitle]="'Email:'"
+      [secondaryDetail]="agentEmail"
+    ></ui-page-highlight
+    >}
+  </div>
+  <div class="ml-1">
+    @if(activeTab === 0){
+    <ui-rider-details-card
+      [cardHeading]="'Agent Details'"
+      [details$]="agentDetails$"
+      [totalRecords]="totalRecords"
+    ></ui-rider-details-card>
+    } @if(activeTab === 0){
+    <div class="mt-1">
+      <back-office-bank-details-card
+        [cardHeading]="'Bank Details'"
+        [bank$]="bankDetails$"
+      ></back-office-bank-details-card>
+    </div>
+    } @if(activeTab === 1){
+    <div>
+      <h2 class="table__head">Customers</h2>
+      <back-office-user-table
+        [user$]="customers$"
+        [totalRecords]="totalRecords"
+        (onLoad)="load($event)"
+        (viewDetails)="view($event)"
+      ></back-office-user-table>
+    </div>
+    } @if(activeTab === 1){
+    <div class="mt-1">
+      <h2 class="table__head">Medical Facilities</h2>
+      <back-office-medical-facilities
+        [totalRecords]="totalRecords"
+        [medicalFacilities$]="medicalFacilities$"
+        (onLoad)="onLoad($event)"
+        (viewDetails)="viewDetails($event)"
+      ></back-office-medical-facilities>
+    </div>
+    }@if(activeTab === 2){
+    <div class="mt-1">
+      <back-office-wallet
+      [beneficiaryId]="agentId"
+      ></back-office-wallet>
+    </div>
+    }
+  </div>
+</ui-page-body>

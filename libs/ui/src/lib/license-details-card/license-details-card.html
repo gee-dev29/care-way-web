@@ -1,0 +1,40 @@
+@if (license$ | async; as licenses) { @if (licenses?.length > 0) { @for (license
+of licenses; track license.licenseId) {
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>{{ facilityType }} License Details</h3>
+      </div>
+    </div>
+
+    <div class="content__bottom">
+      <div class="content__body">
+        <p>License Number</p>
+        <h5>{{ license.licenseNumber }}</h5>
+      </div>
+
+      <div class="content__body">
+        <p>Issue Date</p>
+        <h5>{{ license.issueDate | date }}</h5>
+      </div>
+
+      <div class="content__body">
+        <p>Expiry Date</p>
+        <h5>{{ license.expiryDate | date }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+} } @else {
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>{{ facilityType }} License Details</h3>
+      </div>
+    </div>
+    <h5 class="empty">No license details added yet.</h5>
+  </div>
+</div>
+} }

@@ -1,0 +1,19 @@
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>{{facilityType}} Address Details</h3>
+      </div>
+    </div>
+    <div class="content__bottom">
+      @if (address$ | async; as items) { @if (items?.length === 0) {
+      <h5 class="empty">No hospital address details added yet.</h5>
+      } @for (item of items; track item.hospitalId) {
+      <div class="content__body">
+        <p>Address</p>
+        <h5>{{ item.address }}, {{item.city}}, {{item.state}}.</h5>
+      </div>
+      } }
+    </div>
+  </div>
+</div>

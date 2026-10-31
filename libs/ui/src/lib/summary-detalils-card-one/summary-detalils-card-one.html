@@ -1,0 +1,38 @@
+<ion-card class="card-wrapper">
+  <div class="header-row">
+    <div class="header-left">
+      <ion-icon [src]="icon" class="header-icon"></ion-icon>
+      <ion-text class="header-title">{{ title }}</ion-text>
+    </div>
+
+    @if(isEdit){
+    <div
+      class="pencil"
+      tabindex=""
+      (keyup)="edit.emit()"
+      (click)="edit.emit()"
+    >
+      <ion-icon src="/icons/pencilIcon.svg"></ion-icon>
+    </div>
+    }
+  </div>
+
+  @for(field of items; track field.label){
+  <div class="item-list">
+    <div class="item-row">
+      <ion-text class="item-label">{{ field.label }}:</ion-text>
+      <ion-text class="item-value">{{ field.value }}</ion-text>
+    </div>
+  </div>
+
+  } @if(showLicenseEye){
+  <div class="license-row">
+    <ion-text class="license-text">Doctor License</ion-text>
+    <ion-icon
+      name="eye-outline"
+      class="eye-icon"
+      (click)="eyeClicked()"
+    ></ion-icon>
+  </div>
+  }
+</ion-card>

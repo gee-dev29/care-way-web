@@ -1,0 +1,47 @@
+#home {
+  background: #fff !important;
+  margin-top: 85px !important;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  color: #121212;
+  font-weight: 500;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  margin-top: 0px;
+  padding: 0 15px;
+}
+
+.header ion-icon {
+  font-size: 20px;
+}
+
+.tab-content {
+  padding: 20px 16px;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}

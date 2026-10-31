@@ -1,0 +1,129 @@
+.page {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f9fffa;
+  box-sizing: border-box;
+}
+
+.page-inner {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-top: 40px;
+}
+
+.ion-padding {
+  padding: 25px !important;
+}
+::ng-deep ion-item {
+  margin-bottom: 10px !important;
+  --background: var(
+    --ion-item-background,
+    var(--ion-background-color, transparent)
+  );
+}
+.toggle {
+  margin-top: 30px;
+}
+.bts {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.ion-item {
+  padding-left: 0px !important;
+}
+.ion-padding p {
+  color: #666666;
+  margin-top: 0px;
+  font-size: 14px;
+}
+.ion-padding h1 {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+.id__plus {
+  font-size: 14px;
+}
+.label {
+  text-align: center;
+  margin-top: 10px !important;
+  font-weight: 500;
+}
+.mv_down {
+  margin-top: 20px !important;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+:host .item-native {
+  margin: 0px !important;
+  padding-left: 0px !important;
+}
+.cursor {
+  cursor: pointer;
+}
+:host .item-native {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+/* :host .item-inner,
+.item-native {
+  padding: 0px !important;
+} */
+ion-item {
+  border-bottom: 0.5px solid black !important;
+}
+ion-img {
+  width: 40% !important;
+}
+
+:host(.toggle-ltr) .toggle-inner {
+  background: black !important;
+}
+
+:host(.toggle-ltr) .native .toggle-inner {
+  background: black !important;
+}
+
+.gender__based {
+  margin: 5px 0px;
+}
+
+.gender__based ion-text {
+  font-weight: 300;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.gender {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+@media (min-width: 500px) {
+  .page {
+    overflow-y: auto;
+    padding-top: auto;
+  }
+}
+@media (min-width: 401px) {
+  .page {
+    overflow-y: auto;
+    padding-top: auto !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .page {
+    overflow-y: auto;
+    padding-top: auto;
+  }
+}

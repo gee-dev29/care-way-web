@@ -1,0 +1,6 @@
+.card__container {
+  width: clamp(350px, 45vw, 540px);
+  color: black;
+  background-color: white;
+  margin: 20px 0;
+}

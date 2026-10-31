@@ -1,0 +1,123 @@
+<ion-content id="profile-content">
+  @if (loaded) {
+
+  <div class="photo-section">
+    <div class="photo-container">
+      <ion-img class="avatar" src="images/profile.png"></ion-img>
+    </div>
+
+    <div class="delete">
+      <ion-icon color="danger" src="/logo/delete.svg"></ion-icon>
+      <ion-text color="danger"><p>Delete photo</p></ion-text>
+    </div>
+  </div>
+
+  <ion-card class="profile-card">
+    <div class="card-header">
+      <div class="title-wrap">
+        <ion-icon src="/logo/profile-icon.svg"></ion-icon>
+        <h2>Personal Information</h2>
+      </div>
+
+      <ion-button fill="clear" class="edit-btn"> Edit </ion-button>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <label>First Name</label>
+        <ion-text><p>Olivia</p></ion-text>
+      </div>
+
+      <div class="info-item">
+        <label>Last Name</label>
+        <ion-text><p>Johnson</p></ion-text>
+      </div>
+
+      <div class="info-item">
+        <label>Date of Birth</label>
+        <ion-text><p>05/07/1989</p></ion-text>
+      </div>
+
+      <div class="info-item">
+        <label>Phone No.</label>
+        <ion-text><p>08054673829</p></ion-text>
+      </div>
+
+      <div class="info-item">
+        <label>Gender</label>
+        <ion-text><p>Female</p></ion-text>
+      </div>
+
+      <div class="info-item">
+        <label>Next of Kin</label>
+        <ion-text><p>Kennedy Adams</p></ion-text>
+      </div>
+
+      <div class="info-item full">
+        <label>Address</label>
+        <ion-text><p>No. 12, Oluwole Street, Ikeja, Lagos</p></ion-text>
+      </div>
+    </div>
+  </ion-card>
+
+  } @else {
+  <div class="photo-section">
+    <div class="photo-container">
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 100%; border-radius: 50%"
+      ></ion-skeleton-text>
+    </div>
+
+    <div class="delete">
+      <ion-skeleton-text
+        animated
+        style="width: 100px; height: 16px"
+      ></ion-skeleton-text>
+    </div>
+  </div>
+
+  <ion-card class="profile-card">
+    <div class="card-header">
+      <div class="title-wrap">
+        <ion-skeleton-text
+          animated
+          style="width: 150px; height: 20px"
+        ></ion-skeleton-text>
+      </div>
+
+      <ion-skeleton-text
+        animated
+        style="width: 50px; height: 20px"
+      ></ion-skeleton-text>
+    </div>
+
+    <div class="info-grid">
+      @for (i of [1,2,3,4,5,6]; track i) {
+      <div class="info-item">
+        <ion-skeleton-text
+          animated
+          style="width: 80px; height: 14px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 120px; height: 18px; margin-top: 4px"
+        ></ion-skeleton-text>
+      </div>
+      }
+
+      <div class="info-item full">
+        <ion-skeleton-text
+          animated
+          style="width: 90px; height: 14px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 230px; height: 18px; margin-top: 4px"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+  </ion-card>
+
+  }
+</ion-content>

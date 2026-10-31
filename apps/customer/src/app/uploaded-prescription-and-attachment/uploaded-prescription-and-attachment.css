@@ -1,0 +1,8 @@
+.address-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}

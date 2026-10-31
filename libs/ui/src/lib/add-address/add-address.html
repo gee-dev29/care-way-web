@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="up">
+      <ion-text color="black" (click)="cancel()"><p>Cancel</p></ion-text>
+      <ion-text class="address" color="black">Add Address</ion-text>
+      <ion-text color="black" (click)="save()"><p>Save</p></ion-text>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="search-box">
+    <ion-icon class="loc-icon" name="location"></ion-icon>
+
+    <form [formGroup]="form" class="input-wrapper">
+      <ui-input
+        label="Enter Address"
+        type="text"
+        [control]="address"
+        (keyupData)="onSearchChange($event)"
+      ></ui-input>
+    </form>
+  </div>
+
+  @if (suggestions.length > 0) {
+  <ion-list class="suggestion-list">
+    <ion-item button (click)="useCurrentLocation()" class="current-location">
+      <ion-icon name="location" slot="start"></ion-icon>
+      <ion-text>Use my current location</ion-text>
+    </ion-item>
+    @for (item of suggestions; track $index) {
+    <ion-item button (click)="selectPlace(item)">
+      {{ item?.placePrediction?.text?.text }}
+    </ion-item>
+    }
+  </ion-list>
+  }
+</ion-content>

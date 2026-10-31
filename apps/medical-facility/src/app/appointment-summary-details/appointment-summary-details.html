@@ -1,0 +1,25 @@
+<ion-content id="background-content">
+  <div class="wrapper">
+    <ui-summary-detail-card (back)="goBack()"> </ui-summary-detail-card>
+    <div class="dropdown__wrapper">
+      <div class="list__container">
+        @for(item of items; track $index){
+        <div
+          tabindex=""
+          (keyup)="toggleTab(item.key)"
+          (click)="toggleTab(item.key)"
+          class="list__item"
+        >
+          <p>{{item.label}}</p>
+          <ion-icon
+            [name]="isOpen(item.key) ? 'chevron-down-outline':'chevron-forward-outline'"
+          ></ion-icon>
+        </div>
+        <div class="dropdown__content" [class.open]="isOpen(item.key)">
+          <div class="inner">{{ item.label }} content shows here</div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</ion-content>

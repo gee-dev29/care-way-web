@@ -1,0 +1,675 @@
+<ion-content>
+  <div class="order-container ion-padding">
+    <header class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title">Order Details</div>
+      <div></div>
+    </header>
+
+    <main class="content">
+      <div class="cardd">
+        <div class="card status-section">
+          <div class="order-meta">
+            <span class="order-id"
+              >#<span class="id-number">{{fulfilment?.orderCode}}</span></span
+            >
+            <span></span>
+          </div>
+          <div class="order-meta">
+            <span class="customer-name"
+              >{{fulfilment?.address?.creator.name}}</span
+            >
+            <span class="order-id"
+              ><span
+                [ngClass]="{'pending':fulfilment?.status===documentStatus.Pending,'processed':fulfilment?.status!==documentStatus.Pending && fulfilment?.status!==documentStatus.Cancelled}"
+                >{{fulfilment?.status}}</span
+              ></span
+            >
+          </div>
+          <div class="date-banner">
+            <span class="label">Order Date</span>
+            <span class="value"
+              >{{fulfilment?.address?.creator.date | date}}</span
+            >
+          </div>
+        </div>
+
+        <div class="product-list">
+          @for (item of fulfilment?.orderItems; track $index; let i=$index) {
+          <div class="product-item">
+            <div class="product-info">
+              <h3>
+                {{item?.activeIngredient??item.serviceName??item.testName}}
+                @if(item?.form??item?.bloodGroup){
+                ({{item?.form??item?.bloodGroup}}) } {{item?.testGroup}}
+                <span class="dosage">{{item?.strength}}</span>
+              </h3>
+              <p class="subtitle">{{item?.product??item.quantity}}</p>
+              <p class="price">{{item?.cost | currency:"NGN"}}</p>
+            </div>
+            <div class="product-actions">
+              @if(item?.quantity){
+              <span class="quantity"
+                >{{item?.quantity}}
+                {{item?.uom==="Packets"?'Packs':'Pcs'}}</span
+              >
+              } @if (facilityType===FacilityType.Pharmacy ||
+              facilityType===FacilityType.BloodBank) { @if
+              (item?.uploads?.length===0) {
+              <button
+                (click)="uploadItem(index, item.orderItemId)"
+                class="camera-btn"
+              >
+                <ion-icon name="camera-outline"></ion-icon>
+              </button>
+              } @else {
+              <div class="icons">
+                <ion-icon
+                  (click)="showUploadedImage(index)"
+                  [src]="'/icons/attachmentSlide.svg'"
+                ></ion-icon>
+                <ion-icon
+                  (click)="uploadItem(index, item.orderItemId)"
+                  [src]="'/icons/circlePlusB.svg'"
+                ></ion-icon>
+              </div>
+              } } @else {
+              <button
+                (click)="uploadItem(index, item.orderItemId)"
+                class="camera-btn"
+              >
+                <ion-icon name="camera-outline"></ion-icon>
+              </button>
+              } @if (item.type==='Drugs') {
+              <div class="right">
+                <ion-icon
+                  [name]="expandedIndex === i ? 'chevron-up' : 'chevron-down'"
+                  (click)="showDropDown(i)"
+                ></ion-icon>
+              </div>
+              }
+            </div>
+          </div>
+          @if (expandedIndex===i) {
+          <ui-schedule-card [schedule]="item.schedule"></ui-schedule-card>
+          } @if (facilityType===FacilityType.Laboratory ||
+          facilityType===FacilityType.Radiology) {
+          @if((item?.uploads?.length>0)){
+
+          <div class="section-title">Test Results</div>
+          <div class="attachments-card">
+            @for (newItem of item?.uploads; track newItem) {
+            <div class="attachment-icon">
+              <ion-icon
+                name="attach-outline"
+                (click)="showUploadedAttachment(newItem.url)"
+              ></ion-icon>
+            </div>
+            }
+          </div>
+          } } @if (facilityType===FacilityType.Pharmacy) {
+          <div class="use">
+            <div class="dflex">
+              <span>Usage Instruction:</span>
+              @if (item.usage!==null) {
+              <span>{{item.usage}}</span>
+              } @else {
+              <ion-icon
+                (click)="addUse(item)"
+                [src]="'/icons/circlePlusB.svg'"
+              ></ion-icon>
+              }
+            </div>
+          </div>
+          }
+          <div class="margin__bottom"></div>
+          }
+        </div>
+
+        <div class="dispatch-section">
+          @if (fulfilment?.rider) {
+          <h4>
+            {{fulfilment?.status==="Dispatched"?"Dispatched":"Assigned Rider"}}
+          </h4>
+          <div class="dispatch-card">
+            <div class="dispatch-info">
+              <div class="check-circle">✓</div>
+              <div>
+                <p class="dispatch-name">
+                  {{fulfilment?.rider?.firstName}}
+                  {{fulfilment?.rider?.lastName}}
+                </p>
+                <p class="dispatch-phone">{{fulfilment?.rider?.phone}}</p>
+              </div>
+            </div>
+            <span class="moto-icon">🏍️</span>
+          </div>
+          }
+        </div>
+        @if (fulfilment?.status!=="Dispatched") { @if
+        ((fulfilment?.rider===null) &&
+        fulfilment?.status===documentStatus.Pending) {
+        <ui-button
+          [label]="'Proceed'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading || (!check())"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="proceed()"
+        ></ui-button>
+        } @if (fulfilment?.rider ||
+        (fulfilment?.status===documentStatus.Processed &&
+        (facilityType===FacilityType.Laboratory ||
+        facilityType===FacilityType.Radiology))){
+        <ui-button
+          [label]="'Dispatch'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading || (!check())"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="dispatch()"
+        ></ui-button>
+        } }
+      </div>
+    </main>
+  </div>
+</ion-content>
+<ion-modal #modal3 [isOpen]="viewAttach" [canDismiss]="true">
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+        <div class="buttons">
+          @if((index>0)){
+          <ion-icon (click)="back()" name="chevron-back-outline"></ion-icon>
+          } @if (uploads.length>1) {
+          <ion-icon (click)="next()" name="chevron-forward-outline"></ion-icon>
+          }
+        </div>
+      </div>
+      <ion-card-content class="apply__gap">
+        @if (imageView) {
+        <div class="preview-container">
+          <div
+            class="image-scroll-area"
+            #scrollArea
+            (wheel)="onWheelZoom($event)"
+            (touchstart)="onTouchStart($event)"
+            (touchmove)="onTouchMove($event)"
+            (touchend)="onTouchEnd($event)"
+          >
+            <img
+              #previewImg
+              [src]="imageView"
+              alt="Preview"
+              class="preview-img"
+              [style.transform]="'scale(' + zoomLevel + ')'"
+              [style.transform-origin]="transformOrigin"
+            />
+          </div>
+        </div>
+        <ui-button
+          [label]="'Close'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="closeSave()"
+        ></ui-button>
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+<ion-modal #modal2 [isOpen]="isUploadClicked" [canDismiss]="true">
+  <ng-template>
+    <div class="new-modal-card">
+      <div class="modal-content">
+        <p class="note-text">
+          <span class="highlight">Note:</span> The capture must have the
+          following
+        </p>
+
+        <ul class="requirements-list">
+          <li>The Product seal</li>
+          <li>The Batch Number</li>
+          <li>The Manufacture date</li>
+          <li>The Expiring date</li>
+        </ul>
+
+        <button (click)="triggerCamera()" class="proceed-btn" type="button">
+          Proceed
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>
+@if (dataUrl.length>0) {
+<ion-modal #modal1 [isOpen]="displayFile" [canDismiss]="true">
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+        <div></div>
+      </div>
+      <ion-card-content class="apply__gap">
+        @if (dataUrl) { @if(dataUrl.includes('https')){
+        <div class="preview-container">
+          <iframe [src]="dataUrl | safe" class="preview-img"></iframe>
+        </div>
+        } @else{
+        <div class="preview-container">
+          <image-cropper
+            [imageBase64]="dataUrl"
+            [maintainAspectRatio]="false"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+          ></image-cropper>
+        </div>
+        }
+
+        <ui-button
+          [label]="'Save Upload'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="uploadFile()"
+        ></ui-button>
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+}
+<ion-modal
+  #modal4
+  [isOpen]="addUseText"
+  (didDismiss)="addUseText=false"
+  [canDismiss]="true"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text
+          >Add usage Instruction for {{item?.activeIngredient}}</ion-text
+        >
+        <ion-icon name="close" (click)="close()"></ion-icon>
+      </div>
+      @if (item.referralType===null) {
+      <div class="picker">
+        <div class="tabs-container">
+          <div class="tabs">
+            @for(tab of tabs; track tab; let i = $index) {
+            <ion-text
+              class="tab"
+              [class.active]="activeTabIndex === i"
+              (click)="setTab(tab)"
+            >
+              {{ tab }}
+            </ion-text>
+            }
+          </div>
+        </div>
+        @if (activeTabIndex === 0) {
+        <ion-picker>
+          <ion-picker-column
+            [value]="duration"
+            (ionChange)="onDayChange($event)"
+          >
+            @for (opt of dayOptions; track $index) {
+            <ion-picker-column-option [value]="opt.value">
+              {{ opt.label }}
+            </ion-picker-column-option>
+            }
+          </ion-picker-column>
+        </ion-picker>
+
+        }@else if (activeTabIndex === 1) {
+
+        <ion-picker>
+          <ion-picker-column
+            [value]="duration"
+            (ionChange)="onMonthChange($event)"
+          >
+            @for (opt of monthOptions; track $index) {
+            <ion-picker-column-option [value]="opt.value">
+              {{ opt.label }}
+            </ion-picker-column-option>
+            }
+          </ion-picker-column>
+        </ion-picker>
+        }
+      </div>
+      <ui-input
+        [label]="'Frequency'"
+        [control]="scheduleType"
+        [type]="'dropdown'"
+        [options]="frequencyTypes"
+        [selectedText]="drugForm.value.scheduleType"
+        [shouldSearch]="true"
+        [isMultiselect]="false"
+        [isClicked]="isFrequency"
+        (data)="isFrequencyClicked()"
+        (emitted)="offFrequencyClicked()"
+      ></ui-input>
+      @if(drugForm.get('scheduleType')?.value === 'Cycle-Based Schedule') {
+      <div class="based">
+        <span>Every</span>
+        <ion-list>
+          <ion-item>
+            <ion-select
+              (ionChange)="changeCycleFrequency($event)"
+              aria-label="Favorite Fruit"
+              value="Day"
+            >
+              <ion-select-option value="Day">Day</ion-select-option>
+              <ion-select-option value="Week">Week</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
+      } @if(drugForm.get('scheduleType')?.value === 'At Regular Intervals') {
+      <div class="based">
+        <span>Interval</span>
+        <ion-list>
+          <ion-item>
+            <ion-select
+              (ionChange)="changeFewDaysMedication($event)"
+              aria-label="Favorite Fruit"
+              value="Every 2 Days"
+            >
+              @for (item of fewDaysMedication; track $index) {
+              <ion-select-option [value]="item.value"
+                >{{item.key}}</ion-select-option
+              >
+              }
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
+      } @if(drugForm.get('scheduleType')?.value === 'Selected Days of the Week')
+      { @for (week of daysOfWeekLength; let weekIndex = $index; track $index) {
+      <div class="each__holder">
+        <div class="based">
+          @for (item of week?.day; track $index) {
+          <ion-button
+            [disabled]="item.selected === null"
+            (click)="selectedDay = $index; selectDay(item.day, weekIndex, $index)"
+            [ngClass]="{ 'selectedColor': item.selected === true, 'notColor':item.selected ===false ||item.selected ===null }"
+            >{{days[$index].text}}</ion-button
+          >
+          }
+        </div>
+
+        <div class="time-row">
+          <p class="time-label">Time</p>
+          @for (t of week.usages; track $index) {
+          <div class="all__date">
+            <div class="list__time">
+              <ion-icon
+                name="remove-circle-outline"
+                (click)="removeTime($index, weekIndex)"
+              >
+              </ion-icon>
+              <span
+                tabindex=""
+                (keydown)="openTimePicker($index, weekIndex)"
+                (click)="openTimePicker($index, weekIndex)"
+              >
+                {{ t.time }}
+              </span>
+            </div>
+            <div
+              tabindex=""
+              (keydown)="openUnitPicker($index, weekIndex)"
+              (click)="openUnitPicker($index, weekIndex)"
+              class="list__time"
+            >
+              <span tabindex=""> {{ t.dosage }} unit </span>
+              <ion-icon [src]="'icons/pencilIcon.svg'"> </ion-icon>
+            </div>
+          </div>
+          } @if(hasSelectedDay(week)){
+          <div
+            class="list__time"
+            tabindex=""
+            (keydown)="addNewTime(weekIndex)"
+            (click)="addNewTime(weekIndex)"
+          >
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <span>Add a Time</span>
+          </div>
+          }
+        </div>
+      </div>
+      }
+      <div class="set__new__date">
+        <button
+          type="button"
+          [disabled]="disableButton()===false"
+          (click)="addAnotherWeek()"
+        >
+          Schedule Other Days
+        </button>
+      </div>
+      } @if(drugForm.get('scheduleType')?.value!==null &&
+      drugForm.get('scheduleType')?.value !== 'As Needed' &&
+      drugForm.get('scheduleType')?.value !== 'Selected Days of the Week') {
+      <div class="time-row">
+        <p class="time-label">Time</p>
+        @for (t of times; track $index) {
+        <div class="all__date">
+          <div class="list__time">
+            <ion-icon
+              name="remove-circle-outline"
+              (click)="removeTime($index, null)"
+            >
+            </ion-icon>
+            <span
+              tabindex=""
+              (keydown)="openTimePicker($index, null)"
+              (click)="openTimePicker($index, null)"
+            >
+              {{ t.time }}
+            </span>
+          </div>
+          <div
+            tabindex=""
+            (keydown)="openUnitPicker($index, null)"
+            (click)="openUnitPicker($index, null)"
+            class="list__time"
+          >
+            <span tabindex=""> {{ t.dosage }} unit </span>
+            <ion-icon [src]="'icons/pencilIcon.svg'"> </ion-icon>
+          </div>
+        </div>
+        }
+
+        <div
+          class="list__time"
+          tabindex=""
+          (keydown)="addTime()"
+          (click)="addTime()"
+        >
+          <ion-icon name="add-circle-outline"></ion-icon>
+          <span>Add a Time</span>
+        </div>
+      </div>
+      } @if(drugForm.get('scheduleType')?.value === 'Cycle-Based Schedule') {
+      <div class="time-row usePause">
+        <p class="time-label">Cycle Details</p>
+        @for (t of useForUseOrPause; track $index) {
+        <div class="all__date">
+          <div class="list__time">
+            <span>Use For</span>
+          </div>
+          <ion-item>
+            <ion-select
+              (ionChange)="changeCycleDuration($event, 'useFor')"
+              aria-label="Favorite Fruit"
+              value="1"
+            >
+              @for (item of cycleDurations; track $index) {
+              <ion-select-option [value]="item">{{item}}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+        </div>
+        } @for (t of useForUseOrPause; track $index) {
+        <div class="all__date">
+          <div class="list__time">
+            <span>Pause For</span>
+          </div>
+          <ion-item>
+            <ion-select
+              (ionChange)="changeCycleDuration($event, 'pauseFor')"
+              aria-label="Favorite Fruit"
+              value="1"
+            >
+              @for (item of cycleDurations; track $index) {
+              <ion-select-option [value]="item">{{item}}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+        </div>
+        }
+      </div>
+      } }
+      <ui-input-textarea
+        [control]="usage"
+        [label]="'Add instruction here...'"
+      ></ui-input-textarea>
+      <div class="down_btn">
+        <ui-button
+          [label]="'Save'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading || (!drugForm.valid) || disableButton()===false || disableNextButton()"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="SaveUse()"
+        ></ui-button>
+      </div>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+@if (open) {
+<ion-modal
+  #modal7
+  trigger="open-modal"
+  [isOpen]="open"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header">
+        <ion-text class="title">{{''}}</ion-text>
+        <ion-icon
+          (click)="close2()"
+          class="closeIcon"
+          src="/logo/closeblue.svg"
+        ></ion-icon>
+      </div>
+      <ion-card-content>
+        <ion-text class="desc"> </ion-text>
+        <div class="images">
+          <div
+            tabindex=""
+            (keyup.enter)="takePicture()"
+            (click)="takePicture()"
+          >
+            <ion-img src="/logo/cameraImage.svg"></ion-img>
+            <ion-text>Camera</ion-text>
+          </div>
+          <div tabindex="" (keyup.enter)="pickFile()" (click)="pickFile()">
+            <ion-img src="/logo/fileImage.svg"></ion-img>
+            <ion-text>File</ion-text>
+          </div>
+          <div
+            tabindex=""
+            (keyup.enter)="choosePhoto()"
+            (click)="choosePhoto()"
+          >
+            <ion-img src="/logo/gallaryImage.svg"></ion-img>
+            <ion-text>Gallery</ion-text>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+}
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to dispatch this result?'"
+  [open]="resultModal"
+  [background]="'primary'"
+  (dismiss)="closeModal()"
+  (no)="closeModal()"
+  (next)="confirmDispatchResult()"
+></ui-confirmation-modal>
+<ion-modal
+  [isOpen]="isTimeModalOpen"
+  (didDismiss)="onTimeModalDismiss()"
+  [breakpoints]="[0, 0.4]"
+  [initialBreakpoint]="0.4"
+>
+  <ng-template>
+    <ion-content class="ion-padding">
+      <ion-datetime
+        presentation="time"
+        (ionChange)="onDateTimeChange($event.detail.value)"
+      ></ion-datetime>
+      <ion-button class="save-btn" expand="block" (click)="confirmTime()">
+        Confirm
+      </ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal
+  [isOpen]="isUnitPickerOpen"
+  [canDismiss]="true"
+  (didDismiss)="isUnitPickerOpen=false"
+  [breakpoints]="[0, 0.35]"
+  [initialBreakpoint]="0.35"
+>
+  <ng-template>
+    <ion-content class="ion-padding">
+      <h3 class="modal-title">Select Unit</h3>
+      <div class="unit-grid">
+        <ion-picker>
+          <ion-picker-column
+            (ionChange)="confirmUnit($event.detail.value)"
+            [value]="1"
+          >
+            @for (item of unitOptions; track $index) {
+            <ion-picker-column-option
+              (keyup)="confirmUnit(item)"
+              (click)="confirmUnit(item)"
+              (onChange)="confirmUnit(item)"
+              [value]="item"
+              >{{item}}</ion-picker-column-option
+            >
+            }
+          </ion-picker-column>
+        </ion-picker>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,348 @@
+@if (!isLoading) {
+<div class="section-body">
+  <!-- <div class="searchWrap">
+    <ion-searchbar
+      placeholder="Search"
+      mode="ios"
+      show-clear-button="never"
+      class="search"
+    ></ion-searchbar>
+  </div> -->
+
+  <ui-wallet-card
+    [balance]="balance || 0"
+    [subtitle]="profileInfoService?.name"
+    [bg]="'#317e3d'"
+    [color]="'white'"
+    [historyRoute]="['/doctor-dashboard', professionalId, 'wallet-history']"
+  ></ui-wallet-card>
+
+  <div class="section mb-4">
+    @if (appointmentRequests$ | async; as appointmentRequests) { @if
+    (appointmentRequests.length > 0) {
+    <div class="sectionHead">
+      <h3>Appointment Requests</h3>
+      <a
+        class="link"
+        tabindex="0"
+        (keyup.enter)="viewAllAppointmentRequests()"
+        (click)="viewAllAppointmentRequests()"
+      >
+        View all
+      </a>
+    </div>
+    @for (appointmentRequest of appointmentRequests; track $index) {
+    <div class="card big">
+      <div class="apptTop">
+        <div class="cardTitle">
+          <span class="member-name">{{ appointmentRequest?.memberName }}</span>
+        </div>
+        <div class="status">
+          <span class="dot"></span>
+          <span>{{ appointmentRequest?.status }}</span>
+        </div>
+      </div>
+      <div class="apptMeta">
+        <div class="metaItem">
+          <ion-icon src="/icons/calender.svg"></ion-icon>
+          <span>
+            {{ (moment(appointmentRequest?.appointment.date).local().format('ddd
+            MMM DD, YYYY') || '') + ' @ ' +
+            moment.utc(`${appointmentRequest?.appointment.date}
+            ${appointmentRequest?.appointment.time}`, 'YYYY-MM-DD
+            HH:mm').local() .format('h:mm A') }}</span
+          >
+        </div>
+        <div class="metaItem">
+          <ion-icon src="/icons/virtual.svg"></ion-icon>
+          <span>{{ appointmentRequest?.appointment.appointmentType }}</span>
+        </div>
+      </div>
+      <div class="label">Complaints</div>
+      <div class="complaint">
+        {{ appointmentRequest?.appointment.notes !=='' ?
+        appointmentRequest?.appointment.notes: 'N/A' }}
+      </div>
+      <div class="btnRow">
+        <div class="tabs">
+          <button
+            class="pill"
+            [class.active]="true"
+            (click)="acceptRequest(appointmentRequest)"
+          >
+            Accept
+          </button>
+          <button
+            class="pill"
+            [class.active]="false"
+            (click)="declineRequest(appointmentRequest.appointmentId)"
+          >
+            Decline
+          </button>
+        </div>
+      </div>
+    </div>
+    } } @else {
+    <ui-add-new-entry-card
+      [title]="'You Have No Request Yet'"
+      [state]="'empty'"
+    >
+    </ui-add-new-entry-card>
+    } }
+  </div>
+  <div class="section">
+    @if (appointment) {
+    <div class="sectionHead">
+      <h3>Upcoming Appointments</h3>
+      <a
+        class="link"
+        tabindex="0"
+        (keyup.enter)="viewAllAppointments()"
+        (click)="viewAllAppointments()"
+      >
+        View all
+      </a>
+    </div>
+    <ui-appointment-card-primary
+      [appointment]="appointment"
+      [statusFn]="appointment.status"
+      (viewAppointment)="viewAppointment(appointment)"
+      [showPatient]="true"
+    ></ui-appointment-card-primary>
+    } @else {
+    <ui-add-new-entry-card
+      [title]="'No Appointment Available'"
+      [state]="'empty'"
+    >
+    </ui-add-new-entry-card>
+    }
+  </div>
+  @if (hospitals$ | async) {
+  <div class="mb-2 mt-2">
+    <ui-dashboard-identities-list-card
+      [identities$]="hospitals$"
+      [cardHeading]="'Hospitals'"
+      [identitiesTotalRecords]="(hospitals$ | async)?.length || 0"
+      [identityType]="type.Hospital"
+      (viewAll)="viewAllHospital()"
+    ></ui-dashboard-identities-list-card>
+  </div>
+  } @else {
+  <ui-add-new-entry-card [title]="'No Assigned hospitals'" [state]="'empty'">
+  </ui-add-new-entry-card>
+  }
+  <div class="section">
+    @if (invitations.length > 0) {
+    <div class="sectionHead">
+      <h3>Invitations</h3>
+      <p
+        class="link"
+        tabindex="0"
+        (keyup.enter)="viewAllInvitations()"
+        (click)="viewAllInvitations()"
+      >
+        View all
+      </p>
+    </div>
+    } @if (invitations.length > 0) {
+    <div class="cardsRow">
+      @for (inv of invitations; track $index) {
+      <div class="card">
+        <div class="cardTitle">{{ inv?.facilityName }}</div>
+        <div class="cardSub">Status: {{ inv.status }}</div>
+        <div class="btnRow">
+          <div
+            class="btnSolid"
+            tabindex="0"
+            (keyup.enter)="confirmInvitation(inv)"
+            (click)="confirmInvitation(inv)"
+          >
+            Accept
+          </div>
+          <div
+            class="btnOutline"
+            tabindex="0"
+            (keyup.enter)="rejectInvite(inv)"
+            (click)="rejectInvite(inv)"
+          >
+            Reject
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    } @else {
+    <ui-add-new-entry-card
+      [title]="'You Have No Invitation Yet'"
+      [state]="'empty'"
+    >
+    </ui-add-new-entry-card>
+    }
+  </div>
+</div>
+} @else {
+<div class="section">
+  <div class="sectionHead">
+    <h3>Upcoming Appointments</h3>
+    <ion-skeleton-text
+      animated
+      style="width: 55px; height: 14px"
+    ></ion-skeleton-text>
+  </div>
+  <div class="card big">
+    <div class="apptTop">
+      <div style="flex: 1">
+        <ion-skeleton-text
+          animated
+          style="width: 140px; height: 16px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 120px; height: 12px; margin-top: 8px"
+        ></ion-skeleton-text>
+      </div>
+      <ion-skeleton-text
+        animated
+        style="width: 80px; height: 14px"
+      ></ion-skeleton-text>
+    </div>
+    <div class="apptMeta">
+      <ion-skeleton-text
+        animated
+        style="width: 140px; height: 12px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 140px; height: 12px"
+      ></ion-skeleton-text>
+    </div>
+    <ion-skeleton-text
+      animated
+      style="width: 80px; height: 12px; margin-top: 10px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 100%; height: 44px; margin-top: 8px"
+    ></ion-skeleton-text>
+    <div class="btnRow">
+      <ion-skeleton-text
+        animated
+        style="width: 84px; height: 32px; border-radius: 16px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 84px; height: 32px; border-radius: 16px"
+      ></ion-skeleton-text>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="sectionHead">
+    <h3>Hospitals</h3>
+    <ion-skeleton-text
+      animated
+      style="width: 55px; height: 14px"
+    ></ion-skeleton-text>
+  </div>
+  <div class="hList">
+    @for (_ of [1, 2, 3, 4]; track _) {
+    <div class="hItem">
+      <ion-skeleton-text animated class="skCircle"></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 74px; height: 14px; margin-top: 10px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 60px; height: 12px; margin-top: 6px"
+      ></ion-skeleton-text>
+    </div>
+    }
+  </div>
+</div>
+<div class="section">
+  <div class="sectionHead">
+    <h3>Invitation</h3>
+    <ion-skeleton-text
+      animated
+      style="width: 55px; height: 14px"
+    ></ion-skeleton-text>
+  </div>
+  <div class="cardsRow">
+    @for (_ of [1, 2]; track _) {
+    <div class="card">
+      <ion-skeleton-text
+        animated
+        style="width: 140px; height: 16px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 170px; height: 12px; margin-top: 8px"
+      ></ion-skeleton-text>
+      <div class="btnRow">
+        <ion-skeleton-text
+          animated
+          style="width: 84px; height: 32px; border-radius: 16px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 84px; height: 32px; border-radius: 16px"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+}
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to decline this request?'"
+  [background]="'#307D3D'"
+  [open]="confirmationModal"
+  (next)="declineAppointment()"
+  (no)="closeModal()"
+  (dismiss)="closeModal()"
+></ui-confirmation-modal>
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to accept the invitation?'"
+  [background]="'#307D3D'"
+  [open]="inviteConfirmModal"
+  (next)="confirmAcceptInvite()"
+  (no)="cancelAcceptInvite()"
+  (dismiss)="cancelAcceptInvite()"
+></ui-confirmation-modal>
+
+<ion-modal
+  class="reject-modal"
+  [isOpen]="rejectModal"
+  (didDismiss)="closeReject()"
+>
+  <ng-template>
+    <div class="reject-modal-body">
+      <div class="reject-modal-header">
+        <ion-text class="reject-modal-title">Reject Invitation</ion-text>
+        <ion-icon
+          name="close-outline"
+          class="reject-close-icon"
+          (click)="closeReject()"
+        ></ion-icon>
+      </div>
+
+      <ui-input-textarea
+        [control]="reasonControl"
+        [label]="'Reason for rejection'"
+      ></ui-input-textarea>
+
+      <ui-button
+        [label]="'Submit'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [loading]="rejecting"
+        [disabled]="rejecting || !reasonControl.value?.trim()"
+        (Click)="submitReject()"
+      ></ui-button>
+    </div>
+  </ng-template>
+</ion-modal>

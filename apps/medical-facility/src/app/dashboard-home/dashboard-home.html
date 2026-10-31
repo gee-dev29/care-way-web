@@ -1,0 +1,13 @@
+<ion-content fullscreen>
+  @switch (facilityType) { @case (FacilityType.Pharmacy) {
+  <medical-facility-pharmacy-dashboard [facilityType]="facilityType" />
+  } @case (FacilityType.Radiology) {
+  <medical-facility-radiology-dashboard [facilityType]="facilityType" />
+  } @case (FacilityType.BloodBank) {
+  <medical-facility-lab-technician-dashboard [facilityType]="facilityType" />
+  } @case (FacilityType.Hospital) {
+  <medical-facility-hospital-dashboard [facilityType]="facilityType" />
+  } @case (FacilityType.Laboratory) {
+  <medical-facility-lab-dashboard [facilityType]="facilityType" />
+  } }
+</ion-content>

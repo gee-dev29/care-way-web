@@ -1,0 +1,75 @@
+<ion-content id="background-content" fullscreen>
+  <div id="add__herbals" class="ion-padding">
+    <div
+      class="up"
+      (keyup.enter)="goBack()"
+      tabindex="0"
+      role="button"
+      (click)="goBack()"
+    >
+      <ion-icon src="/logo/backarrow.svg"></ion-icon>
+      <ion-text>Add Price</ion-text>
+    </div>
+
+    <div class="card__wrapper">
+      <form>
+        <div class="input">
+          <ui-input
+            [label]="'Category'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isCategory"
+            [type]="'dropdown'"
+            [options]="category"
+            (data)="isCategoryClicked()"
+            (emitted)="offCategoryClicked()"
+          ></ui-input>
+        </div>
+        <div class="input">
+          <ui-input
+            [label]="'Test Type'"
+            [shouldSearch]="true"
+            [isMultiselect]="false"
+            [isClicked]="isTestType"
+            [type]="'dropdown'"
+            [options]="activeTestType"
+            (data)="isTestTypeClicked()"
+            (emitted)="offTestTypeClicked()"
+          ></ui-input>
+        </div>
+
+        <div class="input">
+          <ui-input [label]="'Test Details'" [type]="'text'"></ui-input>
+        </div>
+
+        <div class="input">
+          <ui-input [label]="'Price'" [type]="'number'"></ui-input>
+        </div>
+
+        <div class="ui__button">
+          <ui-button
+            (Click)="next()"
+            [label]="label"
+            [disabled]="loading"
+            [loading]="loading"
+            [width]="'full'"
+            [fill]="'solid'"
+            [shape]="'round'"
+            [backgroundColor]="'primary'"
+          ></ui-button>
+        </div>
+      </form>
+
+      <div class="end"></div>
+    </div>
+  </div>
+</ion-content>
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to send?'"
+  [open]="open"
+  [background]="'primary'"
+  (dismiss)="dismiss(false)"
+  (no)="no()"
+  (next)="proceed()"
+></ui-confirmation-modal>

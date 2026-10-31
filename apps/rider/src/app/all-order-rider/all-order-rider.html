@@ -1,0 +1,55 @@
+<ion-content id="background-content" fullscreen>
+  <div class="page ion-padding">
+    <div class="header">
+      <p class="title">All Orders</p>
+      <div></div>
+    </div>
+
+    <div class="searchWrap">
+      <ion-searchbar
+        (ionInput)="search($event)"
+        (keyup.enter)="searchOnEnter($event)"
+        class="custom-searchbar"
+        [placeholder]="'Search by Order Code'"
+        class="search"
+      ></ion-searchbar>
+    </div>
+
+    <div class="chips-container">
+      @for (status of statuses; track $index) {
+      <ion-chip
+        [outline]="selectedItem !== status"
+        (click)="selectStatus(status)"
+        [ngStyle]="{
+      'background-color': selectedItem === status ? '#307D3D' : 'transparent',
+      color: selectedItem === status ? '#fff' : '#000',
+      'border-color': selectedItem !== status ? '#000' : '#007BFF'
+    }"
+      >
+        {{ status }}
+      </ion-chip>
+      }
+    </div>
+    @for (order of orders; track $index) {
+    <div class="order">
+      <ui-order-card
+        [order]="order"
+        (viewIt)="route($event)"
+        [background]="'#c8eacd'"
+        [showAmount]="false"
+      >
+      </ui-order-card>
+    </div>
+
+    }@if (hasMore) {
+    <ion-infinite-scroll [disabled]="!hasMore" (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="crescent"
+        loadingText="Loading more orders..."
+      ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    }@if (totalRecords === 0) {
+    <div class="empty">You have no orders</div>
+    } 
+  </div>
+</ion-content>

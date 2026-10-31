@@ -1,0 +1,36 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="home" class="ion-padding mt-4 page-layout">
+    <div class="header">
+      <ion-icon
+        (click)="routeTo('dashboard/home')"
+        name="chevron-back-outline"
+      ></ion-icon>
+      <div class="title">All Customers</div>
+    </div>
+    @if((users$ | async)?.length) { @for(users of (users$ | async); track
+    $index) {
+    <div
+      class="request-card"
+      tabindex="0"
+      (keyup.enter)="routeTo('/dashboard/all-customers', users?.userId)"
+      (click)="routeTo('/dashboard/all-customers', users?.userId)"
+    >
+      <div class="item-left">{{ users?.firstName }} {{ users?.lastName }}</div>
+      <div class="item-right">{{ users?.phone }}</div>
+
+      <div class="item-left">{{ users.gender }}</div>
+      <div class="item-right status">{{ users.status }}</div>
+
+      <div class="arrow">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </div>
+    </div>
+    } }@else {
+
+    <div class="empty-state">
+      <ion-icon name="document-outline"></ion-icon>
+      <p>No Customer at the moment</p>
+    </div>
+    }
+  </div>
+</ion-content>

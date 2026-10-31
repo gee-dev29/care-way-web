@@ -1,0 +1,31 @@
+@for (upload of uploads$ | async; track upload.id) {
+<div class="">
+  @if (upload; as item) {
+  <div class="card__container">
+    <div class="card__wrapper">
+      <div class="content__left">
+        <h4>{{ item.name || item.device }}</h4>
+      </div>
+      <div class="content__right">
+        <div class="view__section">
+          <div class="grouped__btn">
+            <ui-desktop-button
+              [primary]="primaryView"
+              (Click)="view(item.url || item.assetUrl)"
+              [label]="'View'"
+            ></ui-desktop-button>
+            @if (showDelete) {
+            <ui-delete-modal
+              [message]="'Are you sure you want to delete ' + item.name + '?'"
+              [color]="'red'"
+              (proceed)="deleteUpload.emit(item)"
+            ></ui-delete-modal>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+}

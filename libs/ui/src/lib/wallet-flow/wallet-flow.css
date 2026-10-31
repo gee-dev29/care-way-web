@@ -1,0 +1,105 @@
+#home {
+  background: #fff !important;
+  margin-top: 80px !important;
+}
+
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header ion-icon {
+  font-size: 22px;
+  color: #121212;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #121212;
+}
+
+.info-card {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e7efe8;
+  border-radius: 18px;
+  padding: 6px 20px 6px 24px;
+  box-shadow: 0 6px 20px rgba(24, 51, 29, 0.06);
+}
+
+.card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: #307d3d;
+}
+
+.card-accent.declined {
+  background: #e02424;
+}
+
+.card-accent.pending {
+  background: #d97706;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 15px 0;
+  text-align: left;
+  border-bottom: 1px solid #f1f4f1;
+}
+
+.field:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #94a09a;
+}
+
+.value {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a231b;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.value.accent.approved {
+  color: #307d3d;
+  font-weight: 700;
+}
+
+.value.accent.declined {
+  color: #e02424;
+  font-weight: 700;
+}
+
+.value.accent.pending {
+  color: #b45309;
+  font-weight: 700;
+}

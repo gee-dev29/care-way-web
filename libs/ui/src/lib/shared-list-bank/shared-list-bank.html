@@ -1,0 +1,72 @@
+<div>
+  <div class="center">
+    <ion-img src="/logo/healbridge.svg" alt="HealBridge"></ion-img>
+  </div>
+  <div class="ion-padding">
+    <div class="upper">
+      <div
+        class="left__wrapper"
+        tabindex=""
+        (keypress)="goback()"
+        (click)="goback()"
+      >
+        <ion-icon class="left__arrow" name="left-arrow"></ion-icon>
+        <ion-text color="black">
+          <h1>Bank Account Details</h1>
+        </ion-text>
+      </div>
+      <a class="right" tabindex="" (keyup)="addMore()" (click)="addMore()">
+        <ion-icon src="/icons/more.svg"></ion-icon>
+        <ion-text>Add More</ion-text>
+      </a>
+    </div>
+
+    <div class="container">
+      @for (item of bank; track $index) {
+      <ion-card
+        tabindex=""
+        (keyup)="selectCard(item, $index)"
+        (click)="selectCard(item, $index)"
+      >
+        <ion-card-content>
+          <div
+            [ngStyle]="{
+    'background-color':
+      facilityType === FacilityType.Laboratory ? '#BECFDD' :
+      facilityType === FacilityType.Pharmacy   ? '#E0DBE0' :
+      facilityType === FacilityType.Hospital   ? '#C9CCE1' :
+      facilityType === FacilityType.Radiology   ? '#E5E5BB' :
+      '#EDD9D9'
+  }"
+            class="contentFlex"
+          >
+            <ion-icon src="/icons/bankIcon.svg"></ion-icon>
+          </div>
+          <div class="banker">
+            <div>Bank Name: <b>{{item.bank | slice:0:11}}...</b></div>
+            <div>
+              Account Number: <b>{{item.accountNumber | slice:0:6}}...</b>
+            </div>
+            <div>Account Name: <b>{{item.accountName | slice:0:10}}...</b></div>
+          </div>
+          <ion-radio [checked]="item.check"></ion-radio>
+        </ion-card-content>
+      </ion-card>
+      }
+    </div>
+
+    <div class="bts">
+      <ui-button
+        [label]="label"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [loading]="loading"
+        [disabled]="checkIfAnyIsEmpty()===false"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (Click)="proceed()"
+      ></ui-button>
+    </div>
+  </div>
+</div>

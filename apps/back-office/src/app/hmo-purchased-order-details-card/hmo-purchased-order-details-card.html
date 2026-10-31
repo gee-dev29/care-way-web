@@ -1,0 +1,70 @@
+<div class="card__container">
+  <h2 class="mb-2">{{cardHeading}}</h2>
+  <div class="card__wrapper">
+    @if (hmoProductOrderDetails$ | async; as hmoProductOrder) {
+    <div class="content__bottom">
+      @if (hmoProductOrder.orderCode) {
+      <div class="content__body">
+        <p>Order Code</p>
+        <h5>{{ hmoProductOrder.orderCode }}</h5>
+      </div>
+      } @if (hmoProductOrder.userName) {
+      <div class="content__body">
+        <p>Name</p>
+        <h5>{{ hmoProductOrder.userName }}</h5>
+      </div>
+      } @if (hmoProductOrder.productName) {
+      <div class="content__body">
+        <p>Product Name</p>
+        <h5>{{ hmoProductOrder.productName }}</h5>
+      </div>
+      } @if (hmoProductOrder.payableAmountInKobo) {
+      <div class="content__body">
+        <p>Amount</p>
+        <h5>{{ hmoProductOrder.payableAmountInKobo | currency: 'NGN ' }}</h5>
+      </div>
+      } @if (hmoProductOrder.startDate) {
+      <div class="content__body">
+        <p>Start Date</p>
+        <h5>{{ hmoProductOrder.startDate | date: 'MMM dd, yyyy' }}</h5>
+      </div>
+      } @if (endDate) {
+      <div class="content__body">
+        <p>End Date</p>
+        <h5>{{ endDate | date: 'MMM dd, yyyy' }}</h5>
+      </div>
+      } @if (hmoProductOrder.durationInMonths) {
+      <div class="content__body">
+        <p>Duration</p>
+        <h5>{{ hmoProductOrder.durationInMonths }} Months</h5>
+      </div>
+      } @if (hmoProductOrder.status) {
+      <div class="content__body">
+        <p>Status</p>
+        <h5>{{ hmoProductOrder.status }}</h5>
+      </div>
+      }
+    </div>
+    @if (hmoProductOrder.inclusions) {
+    <div class="content__body mt-2">
+      <p>Inclusions</p>
+      <div class="covers">
+        @for ( inclusion of hmoProductOrder.inclusions.split(','); track
+        inclusion ) {
+        <span class="cover inclusion"> {{ inclusion.trim() }} </span>
+        }
+      </div>
+    </div>
+    } @if (hmoProductOrder.exclusions) {
+    <div class="content__body mt-2">
+      <p>Exclusions</p>
+      <div class="covers">
+        @for ( exclusion of hmoProductOrder.exclusions.split(','); track
+        exclusion ) {
+        <span class="cover exclusion"> {{ exclusion.trim() }} </span>
+        }
+      </div>
+    </div>
+    } }
+  </div>
+</div>

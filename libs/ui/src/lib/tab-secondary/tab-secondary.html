@@ -1,0 +1,9 @@
+<div class="secondary-tab">
+  <p-tabs value="value" [(value)]="value" (valueChange)="onTabChange($event)">
+    <p-tablist>
+      @for (tab of tabs; track tab.value) {
+      <p-tab [value]="tab.value">{{ tab.title }}</p-tab>
+      }
+    </p-tablist>
+  </p-tabs>
+</div>

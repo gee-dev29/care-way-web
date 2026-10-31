@@ -1,0 +1,70 @@
+<ui-page-body>
+  <div class="page">
+    <div class="table__head">
+      <div class="grouped__btn">
+        <img
+          class="left-arrow-icon"
+          tabindex=""
+          (keyup.enter)="back()"
+          (click)="back()"
+          src="icons/left-arrow-black.svg"
+          alt=""
+        />
+        <h2 class="title">Create HMO Hospital</h2>
+      </div>
+    </div>
+    <form [formGroup]="form">
+      <ui-form-body [columns]="'split'" class="form__body">
+        <ui-input-drop-down
+          [label]="'State'"
+          [control]="state"
+          [options]="stateOptions"
+          [key]="'key'"
+          [value]="'value'"
+          [showClear]="true"
+          [filter]="true"
+          (data)="onStateChange($event)"
+        ></ui-input-drop-down>
+        <ui-input-drop-down
+          [label]="'LGA'"
+          [control]="lga"
+          [options]="lgaOptions"
+          [key]="'key'"
+          [value]="'value'"
+          [showClear]="true"
+          [filter]="true"
+          (data)="onLgaChange($event)"
+        ></ui-input-drop-down>
+        <ui-input-drop-down
+          [label]="'Ward'"
+          [control]="ward"
+          [options]="wardOptions"
+          [key]="'key'"
+          [value]="'value'"
+          [showClear]="true"
+          [filter]="true"
+          (data)="onWardChange($event)"
+        ></ui-input-drop-down>
+        <ui-input-drop-down
+          [label]="'Hospital'"
+          [control]="hospital"
+          [options]="hospitals"
+          [key]="'key'"
+          [value]="'value'"
+          [showClear]="true"
+          [filter]="true"
+        ></ui-input-drop-down>
+      </ui-form-body>
+      <div class="grouped__btn">
+        <ui-desktop-button
+          [label]="saveLabel"
+          [size]="'large'"
+          [primary]="true"
+          [loading]="loading"
+          [disabled]="!form.valid || loading"
+          (Click)="save()"
+        ></ui-desktop-button>
+      </div>
+    </form>
+  </div>
+</ui-page-body>

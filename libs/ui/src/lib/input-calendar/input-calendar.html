@@ -1,0 +1,43 @@
+<ion-item>
+  <ion-input
+    (click)="openCalendar()"
+    [readonly]="readOnly"
+    labelPlacement="stacked"
+    [label]="label"
+    [value]="value"
+    [formControl]="control"
+  ></ion-input>
+  <ion-icon
+    (click)="openCalendar()"
+    slot="end"
+    src="/logo/calendar.svg"
+  ></ion-icon>
+</ion-item>
+@if (open) {
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="open"
+  [canDismiss]="false"
+>
+  <ng-template>
+    <ion-datetime
+      [(ngModel)]="dater"
+      presentation="date"
+      [preferWheel]="true"
+      [max]="max"
+      [min]="min"
+    ></ion-datetime>
+    <ui-button
+      (Click)="setDate()"
+      (Click)="modal.dismiss(null, 'cancel')"
+      [label]="'Okay'"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [backgroundColor]="'#307D3D'"
+      [showImage]="false"
+    ></ui-button>
+  </ng-template>
+</ion-modal>
+}

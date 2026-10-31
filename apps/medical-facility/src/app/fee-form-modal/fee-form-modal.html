@@ -1,0 +1,81 @@
+<ion-modal class="fee-modal" [isOpen]="isOpen" (didDismiss)="onDismiss()">
+  <ng-template>
+    <div class="modal-body">
+      <div class="modal-header">
+        <ion-text class="modal-title">{{ title }}</ion-text>
+        <ion-icon
+          name="close-outline"
+          class="close-icon"
+          (click)="onDismiss()"
+        ></ion-icon>
+      </div>
+
+      <form [formGroup]="form" class="modal-form">
+        <ui-input
+          [type]="'number'"
+          label="Physical Consultation Fee"
+          [control]="form.controls['physicalConsultationFee']"
+        ></ui-input>
+        <ui-input
+          [type]="'number'"
+          label="Physical Hospital Fee"
+          [control]="form.controls['physicalHospitalFee']"
+        ></ui-input>
+        <ui-input
+          label="Physical Consultation Settlement"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [isClicked]="isPhysicalSettlement"
+          type="dropdown"
+          [options]="settlementOptions"
+          [selectedText]="form.value.physicalConsultationSettlement"
+          [control]="form.controls['physicalConsultationSettlement']"
+          (data)="isPhysicalSettlementClicked()"
+          (emitted)="offPhysicalSettlementClicked()"
+        ></ui-input>
+
+        <ui-input
+          [type]="'check'"
+          [label]="'Virtual Consultation'"
+          [control]="this.form.controls['virtualConsultation']"
+        ></ui-input>
+
+        @if (form.controls['virtualConsultation'].value) {
+        <ui-input
+          label="Virtual Consultation Fee"
+          [type]="'number'"
+          [control]="form.controls['virtualConsultationFee']"
+        ></ui-input>
+        <ui-input
+          label="Virtual Hospital Fee"
+          [type]="'number'"
+          [control]="form.controls['virtualHospitalFee']"
+        ></ui-input>
+        <ui-input
+          label="Virtual Consultation Settlement"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [isClicked]="isVirtualSettlement"
+          type="dropdown"
+          [options]="settlementOptions"
+          [selectedText]="form.value.virtualConsultationSettlement"
+          [control]="form.controls['virtualConsultationSettlement']"
+          (data)="isVirtualSettlementClicked()"
+          (emitted)="offVirtualSettlementClicked()"
+        ></ui-input>
+        }
+      </form>
+
+      <ui-button
+        [label]="'Save'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [loading]="saving"
+        [disabled]="saving || form.invalid"
+        (Click)="onSave()"
+      ></ui-button>
+    </div>
+  </ng-template>
+</ion-modal>

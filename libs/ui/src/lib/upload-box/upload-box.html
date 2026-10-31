@@ -1,0 +1,35 @@
+<p class="upload__box__label">{{ label }}</p>
+
+<div
+  class="upload__box"
+  [class.upload__box--has-file]="fileName"
+  (click)="fileInput.click()"
+>
+  @if (fileName) {
+  <button type="button" class="delete__icon" (click)="deleteFile($event)">
+    <i class="pi pi-trash"></i>
+  </button>
+  }
+
+  <input
+    #fileInput
+    type="file"
+    accept="image/*"
+    (change)="onFileChange($event)"
+    hidden
+  />
+
+  @if (fileName) {
+  <div class="upload__box__preview">
+    <img
+      [src]="previewUrl"
+      alt=""
+      class="upload__box__thumbnail"
+    />
+    <span class="upload__box__filename">{{ fileName }}</span>
+  </div>
+  } @else {
+  <img src="icons/upload.svg" alt="" />
+  <span>Upload Logo</span>
+  }
+</div>

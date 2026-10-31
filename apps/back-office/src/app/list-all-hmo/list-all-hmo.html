@@ -1,0 +1,84 @@
+<ui-page-body>
+  <div class="table__head">
+    <h2>HMOs</h2>
+    <ui-desktop-button [label]="'Add HMO'" [primary]="true" (click)="addHmo()">
+    </ui-desktop-button>
+  </div>
+  <div class="mt-1">
+    <p-table
+      #dt1
+      dataKey="adId"
+      [lazy]="true"
+      [paginator]="true"
+      [rows]="20"
+      [totalRecords]="totalRecords"
+      [value]="hmo$ | async"
+      (onLazyLoad)="load($event)"
+      [rowsPerPageOptions]="[20, 50, 100]"
+      [tableStyle]="{ 'min-width': '70rem' }"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Name</th>
+          <th>Contact Person</th>
+          <th>Contact Phone</th>
+          <th>Contact Email</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="name"
+              [showMenu]="false"
+            ></p-columnFilter>
+          </th>
+          <th></th>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="contactPhone"
+              [showMenu]="false"
+            ></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="contactEmail"
+              [showMenu]="false"
+            ></p-columnFilter>
+          </th>
+          <th></th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.contactPerson }}</td>
+          <td>{{item.contactPhone}}</td>
+          <td>{{item.contactEmail}}</td>
+          <td></td>
+          <td>
+            <div class="group__btn">
+              <ui-desktop-button
+                [label]="'View'"
+                [primary]="true"
+                [size]="'small'"
+                (Click)="view(item)"
+              ></ui-desktop-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7">
+            <div class="empty__table__text">There are no HMOs yet</div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</ui-page-body>

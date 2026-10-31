@@ -1,0 +1,29 @@
+ion-content {
+  --background: #ffffff !important;
+}
+.up {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  margin-top: 20px;
+  cursor: pointer;
+}
+ion-text {
+  font-weight: 600;
+}
+#add__medicaldevices {
+  background: #ffffff !important;
+  margin-top: 80px !important;
+}
+form {
+  margin-top: 30px;
+}
+.end {
+  padding-bottom: 100px !important;
+}
+.ui__button {
+  margin-top: 30px;
+}
+.input {
+  margin-bottom: 20px;
+}

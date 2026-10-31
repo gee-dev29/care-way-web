@@ -1,0 +1,34 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<ui-authentication
+  title="Verify OTP"
+  subtitle="We’ve sent a verification code to {{email}}. Enter it below to continue."
+  leftImage="/images/verify-img.svg"
+>
+  <form [formGroup]="form">
+    <ui-input
+      [label]="'Didn’t get a code?'"
+      (data)="resendOtp()"
+      [type]="'otp'"
+      (ionComplete)="verify()"
+      [control]="otp"
+    >
+      <div class="bts">
+        <ui-button
+          [label]="label"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading || (!form.valid)"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+        ></ui-button>
+        <!-- <p class="paragraph mt-2">
+          Didn't get a code?
+          <span (click)="resendOtp()" class="instruction">Resend Code</span>
+        </p> -->
+      </div></ui-input
+    >
+  </form>
+</ui-authentication>

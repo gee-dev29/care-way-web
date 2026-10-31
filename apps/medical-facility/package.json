@@ -1,0 +1,21 @@
+{
+  "name": "medical-facility",
+  "dependencies": {
+    "@capacitor/ios": "../../node_modules/@capacitor/ios",
+    "@capacitor/android": "../../node_modules/@capacitor/android",
+    "@codetrix-studio/capacitor-google-auth": "../../node_modules/codetrix-studio/capacitor-google-auth",
+    "@capacitor/camera": "../../node_modules/@capacitor/camera",
+    "@capacitor/share": "../../node_modules/@capacitor/share",
+    "@capacitor/google-maps": "../../node_modules/@capacitor/google-maps",
+    "jwt-decode": "^4.0.0",
+    "moment": "^2.30.1",
+    "@capgo/capacitor-native-biometric": "../../node_modules/@capgo/capacitor-native-biometric",
+    "@capacitor/push-notifications": "../../node_modules/@capacitor/push-notifications",
+    "@capacitor-firebase/messaging": "../../node_modules/@capacitor-firebase/messaging",
+    "@capacitor/app": "../../node_modules/@capacitor/app",
+    "@capacitor/keyboard": "../../node_modules/@capacitor/keyboard"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "../../node_modules/@capacitor/cli"
+  }
+}

@@ -1,0 +1,22 @@
+<p-floatlabel variant="on">
+  <p-datepicker
+  [formControl]="control"
+  (onSelect)="calendar.emit($event)"
+  [disabled]="disabled"
+  [showIcon]="true"
+  [disabledDates]="disabledDates"
+  [dateFormat]="format"
+  [showTime]="showTime"
+  [showSeconds]="showSeconds"
+  [hourFormat]="hourFormat"
+  [timeOnly]="timeOnly"
+  [stepHour]="stepHour"
+  [stepMinute]="stepMinute"
+  [minDate]="minDate"
+  [maxDate]="maxDate"
+  [view]="view" 
+  fluid
+  ></p-datepicker>
+    <label for="date">{{ label }}</label>
+</p-floatlabel>
+  

@@ -1,0 +1,16 @@
+<svg width="211" height="576" viewBox="0 0 211 576" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_f_2038_62480)">
+<g clip-path="url(#paint0_diamond_2038_62480_clip_path)" data-figma-skip-parse="true"><g transform="matrix(0 0.1315 -0.06 0 216.281 287.781)"><rect x="0" y="0" width="1003.39" height="1007.43" fill="url(#paint0_diamond_2038_62480)" opacity="1" shape-rendering="crispEdges"/><rect x="0" y="0" width="1003.39" height="1007.43" transform="scale(1 -1)" fill="url(#paint0_diamond_2038_62480)" opacity="1" shape-rendering="crispEdges"/><rect x="0" y="0" width="1003.39" height="1007.43" transform="scale(-1 1)" fill="url(#paint0_diamond_2038_62480)" opacity="1" shape-rendering="crispEdges"/><rect x="0" y="0" width="1003.39" height="1007.43" transform="scale(-1)" fill="url(#paint0_diamond_2038_62480)" opacity="1" shape-rendering="crispEdges"/></g></g><ellipse cx="216.281" cy="287.781" rx="60" ry="131.5" data-figma-gradient-fill="{&#34;type&#34;:&#34;GRADIENT_DIAMOND&#34;,&#34;stops&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.0,&#34;g&#34;:0.38039216399192810,&#34;b&#34;:0.93725490570068359,&#34;a&#34;:1.0},&#34;position&#34;:0.0},{&#34;color&#34;:{&#34;r&#34;:0.0,&#34;g&#34;:0.21804906427860260,&#34;b&#34;:0.53725492954254150,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;stopsVar&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.0,&#34;g&#34;:0.38039216399192810,&#34;b&#34;:0.93725490570068359,&#34;a&#34;:1.0},&#34;position&#34;:0.0},{&#34;color&#34;:{&#34;r&#34;:0.0,&#34;g&#34;:0.21804906427860260,&#34;b&#34;:0.53725492954254150,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;transform&#34;:{&#34;m00&#34;:7.3478812213901255e-15,&#34;m01&#34;:-120.0,&#34;m02&#34;:276.281250,&#34;m10&#34;:263.0,&#34;m11&#34;:1.6104105489455137e-14,&#34;m12&#34;:156.281250},&#34;opacity&#34;:1.0,&#34;blendMode&#34;:&#34;NORMAL&#34;,&#34;visible&#34;:true}"/>
+</g>
+<defs>
+<filter id="filter0_f_2038_62480" x="0.00125122" y="0.00125122" width="432.56" height="575.56" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="78.14" result="effect1_foregroundBlur_2038_62480"/>
+</filter>
+<clipPath id="paint0_diamond_2038_62480_clip_path"><ellipse cx="216.281" cy="287.781" rx="60" ry="131.5"/></clipPath><linearGradient id="paint0_diamond_2038_62480" x1="0" y1="0" x2="500" y2="500" gradientUnits="userSpaceOnUse">
+<stop stop-color="#307D3D"/>
+<stop offset="1" stop-color="#006110"/>
+</linearGradient>
+</defs>
+</svg>

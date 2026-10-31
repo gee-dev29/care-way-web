@@ -1,0 +1,14 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="more" class="ion-padding">
+    <ui-more-menu-page
+      [api]="api"
+      [auth]="auth"
+      [toast]="toast"
+      [title]="'More Menu'"
+      [otherMenus]="moreMenu"
+      [profileInfoService]="profileInfoService"
+      (back)="back()"
+    ></ui-more-menu-page>
+    <div class="end"></div>
+  </div>
+</ion-content>

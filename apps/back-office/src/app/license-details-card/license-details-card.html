@@ -1,0 +1,39 @@
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>License Details</h3>
+      </div>
+    </div>
+    <div class="content__bottom">
+      @if(license$ | async; as licenses){
+      <div class="content__body">
+        @if(licenses.licenseNumber){
+        <p>License Number</p>
+        <h5>{{ licenses.licenseNumber }}</h5>
+        }
+      </div>
+      <div class="content__body">
+        @if(licenses.issueDate){
+        <p>Issue Date</p>
+        <h5>{{ licenses.issueDate | date }}</h5>
+        }
+      </div>
+      <div class="content__body">
+        @if(licenses.expiryDate){
+        <p>Expiry Date</p>
+        <h5>{{ licenses.expiryDate | date }}</h5>
+        }
+      </div>
+      <div class="content__body">
+        @if(licenses.expiryDate){
+        <p>Expired</p>
+        <h5>{{ licenses.hasExpired ? 'Yes' : 'No' }}</h5>
+        }
+      </div>
+      } @else {
+      <h5>There are no license details yet</h5>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,297 @@
+<ion-content id="background-content" fullscreen>
+  <div id="appointment">
+    @if ((appointmentDetails$ | async); as appointmentDetail) {
+    <div class="top">
+      <div class="top__header">
+        <div class="left__wrapper">
+          <div>
+            <ion-icon
+              (click)="goBack()"
+              class="left__arrow"
+              name="left-arrow"
+            ></ion-icon>
+          </div>
+          <p>Appointment Details</p>
+        </div>
+        <div
+          tabindex=""
+          (keyup.enter)="menu()"
+          (click)="menu()"
+          id="open-options"
+          class="right__wrapper"
+        >
+          <ion-icon class="menu__icon" name="dots-vertical"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="bottom__header">
+      <div class="bottom__left">
+        <h3 class="title__text">Dr.{{appointmentDetail.professionalName}}</h3>
+        <p class="sub__title__text">{{appointmentDetail.specialization}}</p>
+      </div>
+      <div class="bottom__right">
+        <ion-img class="doctor__img" [src]="doctorImage"></ion-img>
+      </div>
+    </div>
+    <!-- <div class="middle">
+      <div class="middle__detials">
+        <p class="middle__details__sub__title">12 years+</p>
+        <h4 class="middle__details__title">Experience</h4>
+      </div>
+      <div class="middle__detials">
+        <p class="middle__details__sub__title">100+</p>
+        <h4 class="middle__details__title">Patients</h4>
+      </div>
+      <div class="middle__detials">
+        <p class="middle__details__sub__title">Consultation Type</p>
+        <h4 class="middle__details__title">
+          {{appointmentDetail.appointmentType}}
+        </h4>
+      </div>
+    </div> -->
+    <div class="bottom">
+      <div class="left__bottom">
+        <div class="left__bottom__wrapper">
+          <div>
+            <p class="middle__details__title">Appointment Information</p>
+            <div class="date__wrapper">
+              <ion-img [src]="calenderIcon"></ion-img>
+              <p class="middle__details__sub__title">
+                {{formatDateorTime(appointmentDetail.date)}}
+              </p>
+              <p class="middle__details__sub__title">
+                {{formatDateorTime(appointmentDetail.time)}}
+              </p>
+            </div>
+          </div>
+          <div
+            tabindex=""
+            (keyup.enter)="join()"
+            (click)="join()"
+            class="right__bottom"
+          >
+            <ion-img [src]="videoIcon"></ion-img>
+            <p>Join</p>
+          </div>
+        </div>
+
+        <div class="date__wrapper">
+          <ion-img [src]="computerIcon"></ion-img>
+          <p class="middle__details__sub__title">
+            {{appointmentDetail.appointmentType}} visit
+          </p>
+        </div>
+      </div>
+      <div class="date__wrapper2">
+        <p class="middle__details__sub__title">Presenting Complaints</p>
+        <p class="py middle__details__sub__title">
+          {{appointmentDetail.notes}}
+        </p>
+      </div>
+
+      @if (followUpRequest.length > 0) {
+      <div class="follow__up__wrapper">
+        <p class="middle__details__title">Follow-up Details</p>
+        <div class="date__wrapper">
+          <ion-img [src]="calenderIcon"></ion-img>
+          <p class="middle__details__sub__title">12 Nov,</p>
+          <p class="middle__details__sub__title">12:00pm - 12:45pm</p>
+        </div>
+        <div class="date__wrapper">
+          <ion-img [src]="computerIcon"></ion-img>
+          <p class="middle__details__sub__title">Virtual visit</p>
+        </div>
+        <div class="date__wrapper2">
+          <p class="middle__details__sub__title">Presenting Complaints</p>
+          <p class="py middle__details__sub__title">
+            Cough and shortness of breath worsening over a week.
+          </p>
+        </div>
+      </div>
+      } @if (uploadedDocuments?.length > 0){
+      <div class="upload__wrapper">
+        <p class="middle__details__title">Uploaded File</p>
+        @for (item of uploadedDocuments; track item?.name; let i = $index) {
+        <div class="file-item">
+          <div class="file-left">
+            <ion-img [src]="item.url && item.url" class="custom-icon">
+            </ion-img>
+            <span>{{item?.name}}.png</span>
+          </div>
+        </div>
+        }
+      </div>
+      }
+    </div>
+    } @else {
+    <div class="">
+      <div class="top">
+        <div
+          style="
+            height: 20vh;
+            display: flex;
+            padding: 35px 20px;
+            justify-content: space-between;
+          "
+        >
+          <ion-skeleton-text
+            animated
+            style="width: 180px; height: 20px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            animated
+            style="width: 40px; height: 20px"
+          ></ion-skeleton-text>
+        </div>
+        <div class="">
+          <ion-skeleton-text
+            animated
+            style="width: 100%; height: 200px"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 40px 20px 0" class="">
+      <div class="left__bottom">
+        <div class="left__bottom__wrapper">
+          <div>
+            <ion-skeleton-text
+              animated
+              style="width: 180px; height: 20px"
+            ></ion-skeleton-text>
+            <div style="padding: 10px 0" class="date__wrapper">
+              <ion-skeleton-text
+                animated
+                style="width: 200px; height: 20px"
+              ></ion-skeleton-text>
+            </div>
+          </div>
+          <ion-skeleton-text
+            animated
+            style="width: 80px; height: 40px"
+          ></ion-skeleton-text>
+        </div>
+        <div style="padding: 0 0 10px 0" class="date__wrapper">
+          <ion-skeleton-text
+            animated
+            style="width: 80px; height: 20px"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+      <div class="date__wrapper2">
+        <ion-skeleton-text
+          animated
+          style="width: 160px; height: 16px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 100%; height: 40px"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+    @if (followUpRequest.length > 0 ){
+    <div class="follow__up__wrapper skel__pad">
+      <ion-skeleton-text
+        animated
+        style="width: 160px; height: 20px; margin-bottom: 8px"
+      ></ion-skeleton-text>
+
+      <div class="date__wrapper">
+        <ion-skeleton-text
+          animated
+          style="width: 200px; height: 20px"
+        ></ion-skeleton-text>
+      </div>
+
+      <div style="padding: 10px 0" class="date__wrapper">
+        <ion-skeleton-text
+          animated
+          style="width: 80px; height: 20px"
+        ></ion-skeleton-text>
+      </div>
+
+      <div class="date__wrapper2">
+        <ion-skeleton-text
+          animated
+          style="width: 180px; height: 20px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 180px; height: 20px"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+    } @if (uploadedDocuments?.length > 0){
+    <div style="border-radius: 12px" class="upload__wrapper skel__pad">
+      <p>
+        <ion-skeleton-text
+          animated
+          style="width: 180px; height: 16px"
+        ></ion-skeleton-text>
+      </p>
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 60px"
+      ></ion-skeleton-text>
+    </div>
+    } }
+  </div>
+</ion-content>
+
+<ion-modal
+  #modal
+  trigger="open-options"
+  [isOpen]="successModal"
+  [canDismiss]="true"
+>
+  <ng-template>
+    <div class="content">
+      <p class="middle__details__sub__title">More options</p>
+      <div
+        tabindex="0"
+        (keyup.enter)="routeTo('/dashboard/follow-up-request')"
+        (click)="routeTo('/dashboard/follow-up-request')"
+        class="content__details"
+      >
+        <p class="middle__details__sub__title">Follow-up request</p>
+        <ion-icon class="left__arrow" name="right-arrow"></ion-icon>
+      </div>
+      <div
+        tabindex="1"
+        (keyup.enter)="routeTo('/dashboard/upload-result')"
+        (click)="routeTo(`/dashboard/upload-result/${appointmentId}`)"
+        class="content__details"
+      >
+        <p class="middle__details__sub__title">Upload results</p>
+        <ion-icon class="left__arrow" name="right-arrow"></ion-icon>
+      </div>
+      <div
+        tabindex="2"
+        (keyup.enter)="routeTo('/dashboard/prescription/prescription-details')"
+        (click)="routeTo(`/dashboard/prescription/prescription-details/${appointmentId}`)"
+        class="content__details"
+      >
+        <p class="middle__details__sub__title">View Prescription</p>
+        <ion-icon class="left__arrow" name="right-arrow"></ion-icon>
+      </div>
+      <div
+        tabindex="3"
+        (keyup.enter)="routeTo('/preview-video')"
+        (click)="routeTo('/preview-video')"
+        class="content__details"
+      >
+        <p class="middle__details__sub__title">Preview Video</p>
+        <ion-icon class="left__arrow" name="right-arrow"></ion-icon>
+      </div>
+      <div
+        class="content__details"
+        tabindex="5"
+        (keyup.enter)="routeTo('/dashboard/schedule-appointment')"
+        (click)="routeTo('/dashboard/schedule-appointment')"
+      >
+        <p class="middle__details__sub__title">Reschedule Appointment</p>
+        <ion-icon class="left__arrow" name="right-arrow"></ion-icon>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>

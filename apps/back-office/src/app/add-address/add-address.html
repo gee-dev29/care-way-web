@@ -1,0 +1,45 @@
+<div class="page">
+  <div class="mb-2">
+    <h3>Add Address</h3>
+    <p>Please enter your location</p>
+  </div>
+  <form [formGroup]="form">
+    <ui-form-body [columns]="'no-split'" class="form__body">
+      <ui-desktop-input
+        [label]="'Enter address'"
+        [control]="address"
+        (keyupData)="onSearchChange($event)"
+      ></ui-desktop-input>
+
+      @if (reach) {
+        <!-- <ion-list class="suggestion-list"> -->
+          <div>
+          @for (item of suggestions; track $index) {
+          <div button (click)="selectPlace(item)">
+            {{ item?.placePrediction?.text?.text }}
+          </div>
+          }
+        </div>
+        }
+
+      <div class="grouped__btn">
+        <ui-desktop-button
+          [label]="'Cancel'"
+          [width]="'full'"
+          [primary]="true"
+          [size]="'large'"
+          (Click)="cancel()"
+        ></ui-desktop-button>
+        <ui-desktop-button
+          [label]="label"
+          [width]="'full'"
+          [primary]="true"
+          [size]="'large'"
+          [loading]="loading"
+          [disabled]="loading || (!form.valid)"
+          (Click)="next()"
+        ></ui-desktop-button>
+      </div>
+    </ui-form-body>
+  </form>
+</div>

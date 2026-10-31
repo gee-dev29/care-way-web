@@ -1,0 +1,43 @@
+<div class="ion-padding">
+  <div
+    class="left__wrapper"
+    tabindex=""
+    (keypress)="goback()"
+    (click)="goback()"
+  >
+    <ion-icon name="left-arrow"></ion-icon>
+    <ion-text color="black" class="left-title">Add Patient Card Type </ion-text>
+  </div>
+  <form class="form_wrapper" [formGroup]="form">
+    <ui-input
+      [label]="'Card Name'"
+      [control]="form.get('cardName')"
+      [type]="'text'"
+    ></ui-input>
+    <ui-input
+      [label]="'Card Fee'"
+      [control]="form.get('cardFee')"
+      [showCurrency]="true"
+      [type]="'number'"
+    ></ui-input>
+    <ui-input
+      [label]="'Maximum Number of Members'"
+      [control]="form.get('membershipLimit')"
+      [type]="'text'"
+    ></ui-input>
+
+    <div class="bts">
+      <ui-button
+        [label]="label"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [loading]="loading"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (Click)="proceed()"
+        [disabled]="form.invalid"
+      ></ui-button>
+    </div>
+  </form>
+</div>

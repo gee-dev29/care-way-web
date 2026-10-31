@@ -1,0 +1,61 @@
+<div class="page">
+  <form class="ion-padding">
+    <div class="header">
+      @if(edit){
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      }
+      <ion-text color="black">
+        <h1>{{edit ? "Update Hospital Profile" : "Onboard Hospital"}}</h1>
+      </ion-text>
+    </div>
+
+    <div class="container">
+      <ui-input
+        [type]="'text'"
+        [label]="'Facility Name'"
+        [control]="name"
+      ></ui-input>
+      @for (item of categories; track $index) {
+      <ion-card>
+        <ion-card-content>
+          <div
+            class="left"
+            tabindex=""
+            (keyup.enter)="selectType(item, $index)"
+            (click)="selectType(item, $index)"
+          >
+            <ion-text>{{item.text}}</ion-text>
+            <ion-radio [checked]="item.check"></ion-radio>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      }
+    </div>
+    <div class="ui-input">
+      <ui-input
+        [label]="'Select Specialization'"
+        [control]="specializationControl"
+        [shouldSearch]="true"
+        [isMultiselect]="true"
+        [isClicked]="isClicked"
+        [type]="'dropdown'"
+        [options]="specialization"
+        [selectedText]="form.value.specializationControl"
+        (data)="isActiveClicked()"
+        (emitted)="offActiveClicked()"
+      ></ui-input>
+    </div>
+    <div class="bts">
+      <ui-button
+        [label]="label"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [loading]="loading"
+        [backgroundColor]="'#307d3d'"
+        [disabled]="!checkIfAnyIsEmpty() || loading || !(form.valid)"
+        (Click)="proceed()"
+      ></ui-button>
+    </div>
+  </form>
+</div>

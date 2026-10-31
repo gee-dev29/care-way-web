@@ -1,0 +1,56 @@
+<ion-content id="background-content" fullscreen>
+  <div id="prescription" class="ion-padding">
+    <div class="head">
+      <div class="pricing-head">
+        <div class="icon">
+          <ion-icon
+            (click)="goBack()"
+            name="chevron-back-outline"
+            size="small"
+          ></ion-icon>
+        </div>
+        <div>
+          <ion-text class="pricing-title">Ask Family & Friends</ion-text>
+        </div>
+      </div>
+    </div>
+    <div class="instruction">
+      Requesting payment help from family & friends will show your name and
+      order details to the helper.
+    </div>
+    <div class="summary-container">
+      <ui-input
+        [label]="'Helper Email'"
+        [type]="'email'"
+        [control]="email"
+      ></ui-input>
+      <ui-input-textarea
+        [label]="'Message'"
+        [control]="message"
+      ></ui-input-textarea>
+      <div class="btn">
+        <ui-button
+          expand="block"
+          [label]="'Proceed'"
+          [width]="'full'"
+          [size]="'medium'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [disabled]="!form.valid"
+          [loading]="loading"
+          (Click)="sharePaymentLink()"
+        ></ui-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ui-confirmation-modal
+  [heading]="`Are you sure you want to ask for help from this email address ${form.value.email}? `"
+  [open]="deleteModal"
+  [background]="'primary'"
+  (dismiss)="closeModal()"
+  (no)="closeModal()"
+  (next)="confirmSend()"
+></ui-confirmation-modal>

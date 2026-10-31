@@ -1,0 +1,46 @@
+<div class="page">
+  <div class="mb-2">
+    <h3>Hospital/ Clinic Details</h3>
+  </div>
+  <form [formGroup]="form">
+    <ui-form-body [columns]="'no-split'" class="form__body">
+      <div class="">
+        <ui-input-drop-down
+          [label]="'Category'"
+          [control]="category"
+          [options]="categories"
+          [key]="'value'"
+          [value]="'value'"
+        ></ui-input-drop-down>
+      </div>
+      <div class="">
+        <p-multiSelect
+          [options]="specializations$ | async"
+          formControlName="specializationId"
+          placeholder="Specialization"
+          optionLabel="name"
+          display="chip"
+        >
+        </p-multiSelect>
+      </div>
+      <div class="grouped__btn">
+        <ui-desktop-button
+          [label]="'Cancel'"
+          [width]="'full'"
+          [primary]="true"
+          [size]="'large'"
+          (Click)="cancel()"
+        ></ui-desktop-button>
+        <ui-desktop-button
+          [label]="label"
+          [width]="'full'"
+          [primary]="true"
+          [size]="'large'"
+          [loading]="loading"
+          [disabled]="loading || (!form.valid)"
+          (Click)="next()"
+        ></ui-desktop-button>
+      </div>
+    </ui-form-body>
+  </form>
+</div>

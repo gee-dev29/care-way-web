@@ -1,0 +1,14 @@
+.grouped__btn {
+  gap: 6px !important;
+}
+::ng-deep .delete button {
+  border: 1px solid red !important;
+  color: red !important;
+  background-color: transparent !important;
+}
+
+::ng-deep .delete button:hover {
+  border-color: red !important;
+  color: red !important;
+  background-color: #fff1f1 !important;
+}

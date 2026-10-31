@@ -1,0 +1,42 @@
+<form class="ion-padding" [formGroup]="form">
+  <div class="grouped">
+    <ion-icon
+      class="left__arrow__icon"
+      name="chevron-back-outline"
+      (click)="goBack()"
+    ></ion-icon>
+    <ion-text color="black">
+      <h1 class="title">{{ facilityType }} License Details</h1>
+    </ion-text>
+  </div>
+  <div class="container">
+    <ui-input [label]="'License ID'" [control]="licenseNumber"></ui-input>
+    <ui-input-calendar
+      [control]="issueDate"
+      (emitDate)="calculateDate()"
+      [min]="1900-01-01"
+      [max]="today"
+      [label]="'License Issue Date'"
+    ></ui-input-calendar>
+    <ui-input-calendar
+      [max]="max"
+      [min]="form.value.issueDate"
+      [control]="expiryDate"
+      [label]="'License Expiry Date'"
+    ></ui-input-calendar>
+  </div>
+
+  <div class="bts">
+    <ui-button
+      [label]="label"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [loading]="loading"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      [disabled]="loading || (!form.valid)"
+      (Click)="proceed()"
+    ></ui-button>
+  </div>
+</form>

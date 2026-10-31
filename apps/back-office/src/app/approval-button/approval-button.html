@@ -1,0 +1,345 @@
+@if (approval$ | async; as approval) { @if (approval.canInitiate) {
+<div class="approval__trigger">
+  @if (approvalMethod === approvalMethods.Both) {
+  <ui-split-button
+    [label]="approval.status ? 'Resubmit for Approval' : 'Initiate Approval'"
+    [items]="items"
+    (Change)="startApproval()"
+  ></ui-split-button>
+  } @else {
+  <ui-desktop-button
+    [label]="approval.status ? 'Resubmit for Approval' : 'Initiate Approval'"
+    [size]="'large'"
+    [primary]="true"
+    (Click)="startApproval()"
+  ></ui-desktop-button>
+  }
+</div>
+} @if (approval.isCurrentApprover) {
+<div class="decision__bar">
+  <div class="grouped__btn">
+    <ui-desktop-button
+      [label]="'Query'"
+      (Click)="openQuery()"
+    ></ui-desktop-button>
+    <ui-desktop-button
+      [label]="'Reject'"
+      (Click)="openReject()"
+    ></ui-desktop-button>
+    <ui-desktop-button
+      [label]="'Approve'"
+      [primary]="true"
+      (Click)="approveModal = true"
+    ></ui-desktop-button>
+  </div>
+</div>
+} }
+<ui-modal
+  class="request__modal"
+  [header]="'Initiate Approval'"
+  [(visibility)]="requestModal"
+  [selectedWidth]="'560px'"
+>
+  <div class="modal__container" [formGroup]="form">
+    <div class="field">
+      <p class="field__label">Approval Route</p>
+      <ui-input-drop-down
+        [label]="'Select a route'"
+        [control]="approvalRoute"
+        [options]="approvalRoutes$ | async"
+        [key]="'routeName'"
+        [filter]="true"
+        (data)="getSelectedRoute($event.value)"
+      ></ui-input-drop-down>
+    </div>
+    @if (selectedRoute) {
+    <div class="section__head">
+      <p class="field__label">Approvers</p>
+      @if (!openApproverForm) {
+      <button type="button" class="link" (click)="openApprover()">
+        Add Approver
+      </button>
+      }
+    </div>
+    @if (approvers.length) {
+    <ol class="approver__list">
+      @for (approver of approvers; track approver.userId; let i = $index, first
+      = $first, last = $last) {
+      <li class="approver" [class.editing]="selectedApproverIndex === i">
+        <span class="approver__order">{{ i + 1 }}</span>
+        <div class="approver__detail">
+          <span class="name">
+            {{ approver.name }} @if (approver.cannotChange) {
+            <i class="pi pi-lock lock__icon"></i>
+            }
+          </span>
+          <span class="muted">SLA {{ approver.slaInHours }}h</span>
+        </div>
+        <div class="approver__actions">
+          @if (selectedRoute.canReorder !== false) {
+          <button
+            type="button"
+            class="icon__btn"
+            [disabled]="first"
+            (click)="moveApprover(i, -1)"
+            [pTooltip]="'Move up'"
+          >
+            <i class="pi pi-arrow-up"></i>
+          </button>
+          <button
+            type="button"
+            class="icon__btn"
+            [disabled]="last"
+            (click)="moveApprover(i, 1)"
+            [pTooltip]="'Move down'"
+          >
+            <i class="pi pi-arrow-down"></i>
+          </button>
+          } @if (!approver.cannotChange) {
+          <button
+            type="button"
+            class="icon__btn"
+            (click)="openApprover(i)"
+            [pTooltip]="'Edit'"
+          >
+            <i class="pi pi-pencil"></i>
+          </button>
+          <button
+            type="button"
+            class="icon__btn danger"
+            (click)="removeApprover(i)"
+            [pTooltip]="'Remove'"
+          >
+            <i class="pi pi-trash"></i>
+          </button>
+          }
+        </div>
+      </li>
+      }
+    </ol>
+    } @else {
+    <p class="empty__text">
+      No approvers on this route yet. Add at least one to continue.
+    </p>
+    } @if (openApproverForm) {
+    <div class="approver__form">
+      <p class="field__label">
+        {{ selectedApproverIndex === null ? 'Add Approver' : 'Edit Approver' }}
+      </p>
+      <div class="approver__fields">
+        <ui-input-drop-down
+          [label]="'Staff'"
+          [control]="approverId"
+          [selectedItem]="approverId.value"
+          [options]="staffs"
+          [key]="'name'"
+          [value]="'userId'"
+          [filter]="true"
+        ></ui-input-drop-down>
+        <p-inputnumber
+          [formControl]="sla"
+          [min]="1"
+          [useGrouping]="false"
+          [placeholder]="'SLA (in hours)'"
+          [fluid]="true"
+        />
+      </div>
+      <div class="grouped__btn end">
+        <ui-desktop-button
+          [label]="'Cancel'"
+          [size]="'small'"
+          (Click)="cancelApprover()"
+        ></ui-desktop-button>
+        <ui-desktop-button
+          [label]="selectedApproverIndex === null ? 'Add' : 'Update'"
+          [size]="'small'"
+          [primary]="true"
+          [disabled]="!approverForm.valid"
+          (Click)="saveApprover()"
+        ></ui-desktop-button>
+      </div>
+    </div>
+    }
+    <div class="otp__toggle">
+      <ui-desktop-input
+        [type]="'checkbox'"
+        [control]="withOTP"
+      ></ui-desktop-input>
+      <p>
+        Require OTP
+        <span class="muted"
+          >Approvers confirm their decision with a code sent to their
+          email.</span
+        >
+      </p>
+    </div>
+    }
+    <div class="grouped__btn end">
+      <ui-desktop-button
+        [label]="'Cancel'"
+        [size]="'large'"
+        (Click)="requestModal = false"
+      ></ui-desktop-button>
+      <ui-desktop-button
+        [label]="'Send Request'"
+        [size]="'large'"
+        [primary]="true"
+        [loading]="loading"
+        [disabled]="!approvers.length || openApproverForm || loading"
+        (Click)="initiateApproval()"
+      ></ui-desktop-button>
+    </div>
+  </div>
+</ui-modal>
+<ui-modal
+  [header]="'Auto Approval'"
+  [(visibility)]="autoApprovalModal"
+  [selectedWidth]="'440px'"
+>
+  <div class="modal__container">
+    <p>
+      The approval route configured for this document type will be applied
+      automatically. Continue?
+    </p>
+    <div class="grouped__btn end">
+      <ui-desktop-button
+        [label]="'Cancel'"
+        [size]="'large'"
+        (Click)="autoApprovalModal = false"
+      ></ui-desktop-button>
+      <ui-desktop-button
+        [label]="'Start Approval'"
+        [size]="'large'"
+        [primary]="true"
+        [loading]="loading"
+        [disabled]="loading"
+        (Click)="autoInitiateApproval()"
+      ></ui-desktop-button>
+    </div>
+  </div>
+</ui-modal>
+<ui-modal
+  [header]="'Approve Document'"
+  [(visibility)]="approveModal"
+  [selectedWidth]="'440px'"
+>
+  <div class="modal__container">
+    <p>
+      Approving moves this document to the next approver, or completes the
+      approval if you are the last one.
+    </p>
+    <div class="grouped__btn end">
+      <ui-desktop-button
+        [label]="'Cancel'"
+        [size]="'large'"
+        (Click)="approveModal = false"
+      ></ui-desktop-button>
+      <ui-desktop-button
+        [label]="'Approve'"
+        [size]="'large'"
+        [primary]="true"
+        [loading]="loading"
+        [disabled]="loading"
+        (Click)="checkOTPApproval('approve')"
+      ></ui-desktop-button>
+    </div>
+  </div>
+</ui-modal>
+<ui-modal
+  [header]="'Reason for Rejection'"
+  [(visibility)]="rejectModal"
+  [selectedWidth]="'480px'"
+>
+  <div class="modal__container" [formGroup]="rejectForm">
+    <textarea
+      pTextarea
+      rows="4"
+      [formControl]="reason"
+      placeholder="What is the reason for this rejection?"
+    ></textarea>
+    <div class="grouped__btn end">
+      <ui-desktop-button
+        [label]="'Cancel'"
+        [size]="'large'"
+        (Click)="rejectModal = false"
+      ></ui-desktop-button>
+      <ui-desktop-button
+        [label]="'Reject'"
+        [size]="'large'"
+        [primary]="true"
+        [loading]="loading"
+        [disabled]="!rejectForm.valid || loading"
+        (Click)="checkOTPApproval('reject')"
+      ></ui-desktop-button>
+    </div>
+  </div>
+</ui-modal>
+<ui-modal
+  [header]="'Query'"
+  [(visibility)]="queryModal"
+  [selectedWidth]="'480px'"
+>
+  <div class="modal__container" [formGroup]="queryForm">
+    <textarea
+      pTextarea
+      rows="4"
+      [formControl]="query"
+      placeholder="What do you need clarified?"
+    ></textarea>
+    <div class="grouped__btn end">
+      <ui-desktop-button
+        [label]="'Cancel'"
+        [size]="'large'"
+        (Click)="queryModal = false"
+      ></ui-desktop-button>
+      <ui-desktop-button
+        [label]="'Send Query'"
+        [size]="'large'"
+        [primary]="true"
+        [loading]="loading"
+        [disabled]="!queryForm.valid || loading"
+        (Click)="createQuery()"
+      ></ui-desktop-button>
+    </div>
+  </div>
+</ui-modal>
+<ui-modal
+  [header]="'Enter OTP'"
+  [(visibility)]="otpModal"
+  [selectedWidth]="'440px'"
+>
+  <div class="modal__container center" [formGroup]="otpForm">
+    <p>
+      Enter the 6-digit code sent to your email to {{ pendingDecision ===
+      'reject' ? 'reject' : 'approve' }} this document.
+    </p>
+    <p-inputotp [formControl]="otp" [length]="6" [integerOnly]="true" />
+    <p class="muted">
+      Didn't get OTP? @if (counter > 0) { Resend in {{ counter }}s } @else {
+      <button
+        type="button"
+        class="link"
+        [disabled]="loading"
+        (click)="generateOtp()"
+      >
+        Resend OTP
+      </button>
+      }
+    </p>
+    <div class="grouped__btn end">
+      <ui-desktop-button
+        [label]="'Cancel'"
+        [size]="'large'"
+        (Click)="otpModal = false"
+      ></ui-desktop-button>
+      <ui-desktop-button
+        [label]="pendingDecision === 'reject' ? 'Confirm Rejection' : 'Confirm Approval'"
+        [size]="'large'"
+        [primary]="true"
+        [loading]="loading"
+        [disabled]="!otpForm.valid || loading"
+        (Click)="submitOtp()"
+      ></ui-desktop-button>
+    </div>
+  </div>
+</ui-modal>

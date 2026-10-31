@@ -1,0 +1,38 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15%;
+  margin-top: 10%;
+}
+
+.ion-padding {
+  display: block;
+  margin-top: 80px;
+}
+
+.form_wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.left__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+ion-icon {
+  font-size: 24px;
+}
+
+.bts {
+  margin-top: 20%;
+}
+
+.left-title {
+  font-size: 18px;
+  font-weight: 500;
+}

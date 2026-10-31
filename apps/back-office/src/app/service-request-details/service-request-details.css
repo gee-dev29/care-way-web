@@ -1,0 +1,16 @@
+.gap {
+  gap: 2px;
+}
+.content {
+  background-color: #e7f6e9;
+  padding: 8px;
+  border-radius: 20px;
+}
+.table__head {
+  padding: 0 10px !important;
+}
+.bg {
+  background-color: #e7f6e9;
+  padding: 12px 14px !important;
+  border-radius: 20px;
+}

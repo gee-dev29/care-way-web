@@ -1,0 +1,89 @@
+<form class="ion-padding">
+  <div class="upper">
+    <div
+      class="left__wrapper"
+      tabindex=""
+      (keypress)="goback()"
+      (click)="goback()"
+    >
+      <ion-icon class="left__arrow" name="left-arrow"></ion-icon>
+      <ion-text color="black" class="left-title">
+        Add Bank Account for {{facilityType}}
+      </ion-text>
+    </div>
+    @if(bank.length > 0) {
+    <a class="right" tabindex="" (keyup)="addMore()" (click)="addMore()">
+      <ui-plus-icon-component [size]="'small'"></ui-plus-icon-component>
+    </a>
+    }
+  </div>
+
+  @if(bank.length > 0) {
+
+  <div class="container-bank">
+    @for (item of bank; track $index) {
+    <ion-card
+      tabindex=""
+      (keyup)="selectCard(item, $index)"
+      (click)="selectCard(item, $index)"
+    >
+      <ion-card-content>
+        <div class="contentFlex">
+          <ion-icon src="/icons/bankIcon.svg"></ion-icon>
+        </div>
+        <div class="banker">
+          <div>
+            Bank Name <br />
+            <b>{{item.bank}}</b>
+          </div>
+          <div>
+            Acc No <br />
+            <b>{{item.accountNumber}}</b>
+          </div>
+          <div>
+            Acc Name <br />
+            <b>{{item.accountName}}</b>
+          </div>
+        </div>
+        <ion-radio [checked]="item.check"></ion-radio>
+      </ion-card-content>
+    </ion-card>
+    }
+  </div>
+  } @else {
+  <div class="container">
+    <div
+      [ngStyle]="{
+  'background-color':
+    facilityType === FacilityType?.Laboratory ? '#C5E6FF' :
+    facilityType === FacilityType?.Pharmacy   ? '#EFD8FF' :
+    facilityType === FacilityType?.Hospital   ? '#B3BAF5' :
+    facilityType === FacilityType?.Radiology   ? '#F5F5AA' :
+    '#F4E7E7'
+}"
+      class="rounded"
+      tabindex=""
+      (keyup)="addMore()"
+      (click)="addMore()"
+    >
+      <ion-icon src="/icons/plus-icon.svg"></ion-icon>
+    </div>
+    <p>Add Bank Account</p>
+  </div>
+  } @if(bank.length > 0) {
+
+  <div class="bts">
+    <ui-button
+      [label]="label"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [loading]="loading"
+      [disabled]="checkIfAnyIsEmpty()===false"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      (Click)="proceed()"
+    ></ui-button>
+  </div>
+  }
+</form>

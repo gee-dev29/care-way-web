@@ -1,0 +1,68 @@
+ion-content {
+  --background: #f5f6fa !important;
+}
+
+.order-container {
+  margin-top: 80px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  color: #121212;
+  font-weight: 500;
+}
+.bts {
+  margin-top: 50%;
+}
+.pin-card {
+  background-color: #f4f5fe;
+  border-radius: 24px;
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.pin-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.pin-inputs input {
+  width: 55px;
+  height: 55px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  background: white;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.instruction {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-gray);
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+.footer {
+  margin-top: auto;
+}

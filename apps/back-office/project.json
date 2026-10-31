@@ -1,0 +1,102 @@
+{
+  "name": "back-office",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "back-office",
+  "sourceRoot": "apps/back-office/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/back-office",
+        "browser": "apps/back-office/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/back-office/tsconfig.app.json",
+        "assets": [
+          "apps/back-office/src/favicon.ico",
+          "apps/back-office/src/assets",
+          { "input": "./libs/ui/assets/", "glob": "**/*", "output": "./" }
+        ],
+        "styles": [
+          "apps/back-office/src/styles.css",
+          "node_modules/ngx-toastr/toastr.css",
+          "libs/ui/theme.css",
+          "libs/ui/styles.css",
+          "node_modules/video.js/dist/video-js.css"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "libs/shared/src/lib/environment/environment.ts",
+              "with": "libs/shared/src/lib/environment/environment.prod.ts"
+            }
+          ],
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "4mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "back-office:build:production"
+        },
+        "development": {
+          "buildTarget": "back-office:build:development",
+          "port": 6006
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n",
+      "options": {
+        "buildTarget": "back-office:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/back-office/jest.config.ts",
+        "tsConfig": "apps/back-office/tsconfig.spec.json"
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "back-office:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/back-office/browser",
+        "spa": true
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+@if (isOpen) {
+<div class="udu__overlay" (click)="onOverlayClick($event)">
+  <div class="udu__modal">
+    <div class="udu__header">
+      <h2 class="udu__title">{{ title }}</h2>
+      <button
+        type="button"
+        class="udu__close"
+        (click)="close()"
+        aria-label="Close"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="18"
+          height="18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <line x1="4" y1="4" x2="20" y2="20" />
+          <line x1="20" y1="4" x2="4" y2="20" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="udu__body">
+      <label class="udu__label">Upload File</label>
+
+      <div class="udu__file-row">
+        <span
+          class="udu__file-name"
+          [class.udu__file-name--placeholder]="!fileName"
+        >
+          {{ fileName || 'Select file (Max. 200kb)' }}
+        </span>
+        <button
+          type="button"
+          class="udu__browse-btn"
+          (click)="fileInput.click()"
+        >
+          Browse
+        </button>
+      </div>
+
+      <input
+        #fileInput
+        type="file"
+        accept="image/jpeg,image/jpg,image/png"
+        hidden
+        (change)="onFileChange($event)"
+      />
+
+      <p class="udu__hint">
+        File formats allowed: JPG, JPEG, or PNG, preferably 500 x 500 px
+      </p>
+
+      @if (errorMessage) {
+      <p class="udu__error">{{ errorMessage }}</p>
+      } @if (previewUrl) {
+      <div class="udu__preview">
+        <img [src]="previewUrl" alt="Logo preview" />
+      </div>
+      }
+    </div>
+
+    <button
+      type="button"
+      class="udu__upload-btn"
+      [disabled]="!selectedFile"
+      (click)="onUpload()"
+    >
+      Upload
+    </button>
+  </div>
+</div>
+}

@@ -1,0 +1,43 @@
+.radio {
+    width: clamp(200px, 45vw, 370px);
+    background-color: white;
+    box-shadow: var(--shadow2);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .content__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  label {
+    font-size: 0.9rem;
+  }
+  
+  :host ::ng-deep .p-radiobutton .p-radiobutton-box {
+    height: 15px;
+    width: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  :host ::ng-deep .p-radiobutton  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  :host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+      border-color: red;
+      background: red;
+      border: 8px solid red;
+    }

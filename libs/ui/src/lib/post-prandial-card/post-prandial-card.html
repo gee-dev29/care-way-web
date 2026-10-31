@@ -1,0 +1,29 @@
+<ion-card class="reading-card">
+  @if ((postPrandial$ | async)){
+  <div class="circle">
+    <div class="progress"></div>
+    <div class="center-text">
+      <div class="number">{{ value }}</div>
+      <div class="unit">mg/dL</div>
+    </div>
+  </div>
+
+  <div class="details">
+    <div class="row">
+      <ion-icon src="logo/date-today.svg"></ion-icon>
+      <span>{{newDateFormat( date) }}</span>
+    </div>
+
+    <div class="row">
+      <ion-icon src="logo/alarm.svg"></ion-icon>
+      <span>{{ time }}</span>
+    </div>
+
+    <div class="row">
+      <span class="status__color" [ngClass]="getPostprandialColor(status)">
+        {{ status }}
+      </span>
+    </div>
+  </div>
+  }
+</ion-card>

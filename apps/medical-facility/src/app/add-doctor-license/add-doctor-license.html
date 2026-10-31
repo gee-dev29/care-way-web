@@ -1,0 +1,63 @@
+<ion-content class="ion-padding">
+  <div #tabs id="prescription">
+  
+    <div>
+      <div class="header">
+        <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+        @if (edit) {
+        <ion-text class="pricing-title"> Update Doctor License </ion-text>
+        } @else {
+        <ion-text class="pricing-title"> Add Doctor License </ion-text>
+
+        }
+        <div></div>
+      </div>
+      
+
+      <form class="form-wrapper" [formGroup]="form">
+        <ui-input
+          label="License ID"
+          type="text"
+          [control]="form.controls['licenseNumber']"
+        >
+        </ui-input>
+
+        <ui-input-calendar
+          [readOnly]="true"
+          [control]="form.controls['issueDate']"
+          (emitDate)="setStartDate($event)"
+          (emitDate)="calculateDate()"
+          [min]="1900-01-01"
+          []
+          label="License Issue Date"
+          type="text"
+        ></ui-input-calendar>
+
+        <ui-input-calendar
+          [readOnly]="true"
+          [control]="form.controls['expiryDate']"
+          (emitDate)="setExpiryDate($event)"
+          [max]="max"
+          [min]=""
+          label="License Expiry Date"
+          type="text"
+        ></ui-input-calendar>
+      </form>
+      <div class="btn-margin">
+        <ui-button
+          expand="block"
+          label="Next"
+          [width]="'full'"
+          size="medium"
+          [fill]="'solid'"
+          shape="round"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [loading]="loading"
+          (Click)="onNext()"
+          [disabled]="(!form.valid) || loading"
+        ></ui-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

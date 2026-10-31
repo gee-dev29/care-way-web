@@ -1,0 +1,82 @@
+.card-wrapper {
+  padding: 16px;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-icon {
+  font-size: 20px;
+  color: #3b3b3b;
+}
+
+.pencil {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+}
+
+.header-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+}
+
+.edit-text {
+  font-size: 14px;
+  color: #186bd6;
+  cursor: pointer;
+}
+
+.item-list {
+  margin-top: 12px;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.item-label {
+  font-size: 12px;
+  color: #888;
+}
+
+.item-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: #222;
+  text-align: right;
+}
+
+.license-row {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.license-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+}
+
+.eye-icon {
+  font-size: 22px;
+  color: #186bd6;
+  cursor: pointer;
+}

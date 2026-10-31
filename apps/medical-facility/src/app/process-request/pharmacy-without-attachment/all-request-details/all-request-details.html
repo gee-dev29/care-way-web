@@ -1,0 +1,179 @@
+<ion-content fullscreen id="background-content">
+  <div id="home" class="ion-padding">
+    <div class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title2">Medical Request Summary</div>
+      <div></div>
+    </div>
+    @if (request$ | async; as request) {
+    <div class="page-container">
+      <div class="info-card">
+        <div class="info-row">
+          <div class="label">Request Code</div>
+          <div class="value muted">{{request?.serviceRequestCode}}</div>
+        </div>
+
+        <div class="info-row right">
+          <div class="value muted">
+            {{moment.utc(request?.creator?.date).local().fromNow()}}
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="column">
+          <div class="label">Patient</div>
+          <div class="value">
+            {{request?.member?.firstName}} {{" "}}{{request?.member?.lastName}}
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="label">Gender</div>
+          <div class="value">{{request?.member?.gender}}</div>
+        </div>
+
+        <div class="column">
+          <div class="label">Age</div>
+          <div class="value">{{request?.member?.age}}</div>
+        </div>
+      </div>
+
+      <!--  -->
+      <div class="section-title">Requested Items</div>
+      @for(item of dataForCosting; track item){
+      <div class="outer-card">
+        <div
+          class="available-items"
+          tabindex=""
+          (keyup)="routeToCost(item)"
+          (click)="routeToCost(item)"
+        >
+          <ion-text class="act" tabindex=""
+            >{{item?.activeIngredient}}</ion-text
+          >
+          <ion-text class="variants"> {{item.type}} </ion-text>
+        </div>
+      </div>
+      } 
+      @for(values of data | keyvalue; track values.key; let i = $index){ @if
+      (i===0) {
+      <div class="section-title">{{'Available'}}</div>
+      }
+
+      <div class="outer-card">
+        <div class="available-items">
+          <ion-text class="act" tabindex="">{{values?.key}}</ion-text>
+          <ion-text class="variants"
+            >{{values?.value?.items?.length}} Variants
+
+            <ion-icon
+              (click)="onToggle(i)"
+              [name]="expanded[i] ? 'chevron-down-outline' : 'chevron-up-outline'"
+            ></ion-icon>
+          </ion-text>
+        </div>
+
+        @if(expanded[i]){ @for(items of values?.value?.items; track $index){
+        <div class="inner-card">
+          <div class="drug-info">
+            <div class="drug-name">
+              {{items?.product}}<br />
+              {{items?.strength}}
+            </div>
+            <div class="class">
+              <div class="costs">
+                <ion-text class="drug-price">
+                  {{ items?.cost | currency:"NGN" }}</ion-text
+                >
+                <ion-text class="drug-name">{{ items?.form }}</ion-text>
+              </div>
+            </div>
+          </div>
+        </div>
+        } }
+      </div>
+
+      } @if((data | keyvalue);as exist){ @if ( exist?.length) { @if
+      (request.status===documentStatus.Pending) {
+
+      <div class="ui__button">
+        <ui-button
+          (Click)="sendCost()"
+          [label]="'Send Cost'"
+          [loading]="loading"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [showImage]="false"
+        ></ui-button>
+      </div>
+      } } }
+    </div>
+    }
+  </div>
+</ion-content>
+
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="viewCostAttachment"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+      </div>
+      <ion-card-content class="apply__gap">
+        @if (imageView) {
+        <div class="preview-container">
+          <iframe [src]="imageView | safe" class="preview-img"></iframe>
+        </div>
+        <ui-button
+          [label]="'Close'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [loading]="loading"
+          [disabled]="loading"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="closeSave()"
+        ></ui-button>
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+
+<ion-modal
+  [isOpen]="greenBook"
+  [canDismiss]="true"
+  (didDismiss)="greenBook=false"
+  #modal
+  id="confirm__modal"
+>
+  <ng-template>
+    <div class="modal-card-new">
+      @for (item of greeBooks; track $index) {
+      <ion-radio slot="end" (click)="selectGreenBook(item.text)"
+        >{{item.text}}</ion-radio
+      >
+      }
+    </div>
+  </ng-template>
+</ion-modal>
+<ui-confirmation-modal
+  [heading]="'Are You Sure You Want to send Cost?'"
+  [background]="'#307d3d'"
+  [open]="confirmSend"
+  (next)="sendCost()"
+  (no)="confirmSend = false
+"
+  (dismiss)="confirmSend = false
+"
+>
+</ui-confirmation-modal>

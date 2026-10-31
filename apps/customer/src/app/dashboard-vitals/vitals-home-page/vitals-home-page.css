@@ -1,0 +1,108 @@
+#background-content {
+  background: white !important;
+}
+#prescription {
+  background: white !important;
+  margin-top: 80px !important;
+}
+h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  width: 100%;
+  gap: 50px;
+}
+.title {
+  font-size: 18px !important;
+  font-weight: 500;
+  font-family: 'montserrat';
+}
+.symptoms-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 16px;
+  background: #0c1b33;
+  color: #e7f6e9;
+  margin-top: 10px;
+}
+.plus-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.subtitle {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.health-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: none;
+  margin: 0 0 14px 0;
+}
+
+.icon-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: var(--icon-bg, #ececec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ion-icon {
+  font-size: 26px;
+  /* color: var(--ion-color-dark); */
+  color: #0c1b33 !important;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #7a7a7a;
+  margin-top: 3px;
+}
+
+.status {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}

@@ -1,0 +1,11 @@
+<ion-content id="background-content" class="ion-padding" [fullscreen]="true">
+  <ui-wallet-history
+    [balance]="balance"
+    [api]="api"
+    [auth]="auth"
+    (withdraw)="routeTo()"
+    (viewOrder)="viewOrder($event)"
+    (back)="navigateTo()"
+  >
+  </ui-wallet-history>
+</ion-content>

@@ -1,0 +1,408 @@
+<ion-content id="background-content" fullscreen>
+  @if (prescriptions$ | async; as prescription ) {
+
+  <div id="prescription" class="ion-padding">
+    <div class="head">
+      <div class="pricing-head">
+        <div class="icon">
+          <ion-icon
+            (click)="goBack()"
+            name="chevron-back-outline"
+            size="small"
+          ></ion-icon>
+        </div>
+
+        <ion-text class="pricing-title">Order Summary</ion-text>
+      </div>
+      @if(serviceRequest?.status===DocumentStatus.Ordered && prescription.status===DocumentStatus.Pending){
+      <ion-icon
+        (click)="onReset()"
+        class="refresh"
+        name="refresh-circle-outline"
+      ></ion-icon>
+      }
+    </div>
+    <ion-card class="card">
+      <ion-card-content>
+        <div class="orderDetail">
+          <div>
+            <p class="heading">Order Code</p>
+            <h4 class="detail">#{{prescription?.orderCode}}</h4>
+          </div>
+          <div>
+            <p class="heading">Order Date</p>
+            <h4 class="detail">{{prescription?.creator?.date | date}}</h4>
+          </div>
+          <div>
+            <p class="heading">Total Amount</p>
+            <h4 class="detail">
+              {{
+              prescription?.costSummary?.serviceCharge+prescription?.costSummary?.serviceCharge+prescription?.costSummary?.totalCost
+              | currency:"NGN"}}
+            </h4>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <div class="summary-container">
+      @for(item of prescription?.items; let i = $index; track item.orderItemId){
+
+      <ion-card class="p-4">
+        <ion-card-content>
+          <div class="flex">
+            <ion-text class="summary-details">
+              <span class="product"
+                >{{ item?.product??item.testName??item.serviceName }}
+              </span>
+              <!-- <span class="summary-details-name"
+                >{{ item.activeIngredient }} ({{ item.form }})</span
+              > -->
+              <!-- <span class="summary-details-pharmacy">{{ item.product }}</span> -->
+              <!-- <span>Quantity: {{ item.quantity }} ({{item.uom}})</span> -->
+              <span class="summary-details-name"
+                >{{ item.cost | currency: 'NGN' }}</span
+              >
+            </ion-text>
+            @if (serviceRequest?.status===DocumentStatus.Ordered && prescription.status===DocumentStatus.Pending) {
+
+              <ion-icon
+                class="ion-icon"
+                (click)="onTrash(item.orderItemId)"
+                name="trash-outline"
+                color="danger"
+              ></ion-icon>
+            }
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      }
+
+      <hr class="hr" />
+
+      <ion-list class="transparent-bg">
+        <ion-grid>
+          <ion-row class="gapped-row">
+            <ion-col class="ion-text-start content-bold">Subtotal</ion-col>
+            <ion-col class="ion-text-end content-bold"
+              >{{prescription?.costSummary?.totalCost |
+              currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+          <ion-row class="gapped-row">
+            <ion-col class="ion-text-start ion-col">
+              <ion-icon class="img-col" src="/logo/deliveryBike.svg"></ion-icon>
+              Delivery</ion-col
+            >
+            <ion-col class="ion-text-end"
+              >{{prescription?.costSummary?.deliveryFee |
+              currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+          <ion-row class="gapped-row">
+            <ion-col class="ion-text-start ion-col">
+              <ion-icon
+                class="img-col"
+                src="/logo/serviceCharge.svg"
+              ></ion-icon>
+              Service Charge</ion-col
+            >
+            <ion-col class="ion-text-end"
+              >{{prescription?.costSummary?.serviceCharge |
+              currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+          <hr class="hr" />
+          <ion-row class="total">
+            <ion-col class="ion-text-start">Total</ion-col>
+            <ion-col class="ion-text-end"
+              >{{
+              prescription?.costSummary?.serviceCharge+prescription?.costSummary?.serviceCharge+prescription?.costSummary?.totalCost
+              | currency:"NGN"}}</ion-col
+            >
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+
+      <div>
+        <p>
+          <ion-text class="pricing-title">Delivery Address</ion-text>
+        </p>
+
+        <ion-list class="p-4">
+          <ion-card-content class="flex pad-6" (click)="navigateTo()">
+            <div class="delivery-address">
+              <ion-icon
+                class="address__icon"
+                src="/logo/deliveryAddress.svg"
+              ></ion-icon>
+              <div class="">
+                <ion-text
+                  ><span class="content-bold"
+                    >{{serviceRequest?.address?.address}}</span
+                  >
+                  <br />
+                  {{serviceRequest?.address?.city}},
+                  {{serviceRequest?.address?.state}}</ion-text
+                >
+              </div>
+            </div>
+            <ion-icon src="/logo/addressHome.svg"></ion-icon>
+          </ion-card-content>
+        </ion-list>
+      </div>
+      @if(serviceRequest?.status!==DocumentStatus.Pending &&
+      serviceRequest?.status!==DocumentStatus.Processed &&
+      serviceRequest?.status!==DocumentStatus.Declined &&
+      serviceRequest?.status!==DocumentStatus.Draft && (!prescription)){
+      <div class="btn">
+        <ui-button
+          expand="block"
+          [label]="'Proceed to Payment'"
+          [width]="'full'"
+          [size]="'medium'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="proceedToPayment.proceedToPayment(orderType.ServiceRequestOrder, orderId, member, api, `${member.firstName} ${member.lastName}`, 'login')"
+        ></ui-button>
+        <ui-button
+          [label]="'Ask Family & Friends'"
+          [width]="'full'"
+          [size]="'medium'"
+          [fill]="'solid'"
+          [borderLine]="'#1E293B'"
+          [textColor]="'#1E293B'"
+          [showIcon]="true"
+          [backgroundColor]="'#F9FFFA'"
+          [icon]="'return-up-forward-outline'"
+          [shape]="'round'"
+          (Click)="sharePaymentLink()"
+        ></ui-button>
+      </div>
+      } @if(prescription.status!==DocumentStatus.Processed &&
+      prescription.status!=='Fulfilment Created'){
+      <div class="btn">
+        <ui-button
+          expand="block"
+          [label]="'Proceed to Payment'"
+          [width]="'full'"
+          [size]="'medium'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          (Click)="routeToCard()"
+        ></ui-button>
+        <ui-button
+          [label]="'Ask Family & Friends'"
+          [width]="'full'"
+          [size]="'medium'"
+          [fill]="'solid'"
+          [borderLine]="'#1E293B'"
+          [textColor]="'#1E293B'"
+          [showIcon]="true"
+          [backgroundColor]="'#F9FFFA'"
+          [icon]="'return-up-forward-outline'"
+          [shape]="'round'"
+          (Click)="sharePaymentLinkTwo(prescription)"
+        ></ui-button>
+      </div>
+      }
+
+      <ion-card class="medium__curve">
+        <ion-card-content class="drugs">
+          <div class="timeline-wrapper">
+            <div class="up timeline-title">
+              <div class="upper">
+                <ion-icon src="/logo/bus.svg"></ion-icon>
+                <ion-text>Order Timeline</ion-text>
+              </div>
+              <span>
+                <ion-icon
+                  class="drug-toggle"
+                  (click)="onToggle()"
+                  [name]="expanded ? 'chevron-up-outline' : 'chevron-down-outline'"
+                ></ion-icon>
+              </span>
+            </div>
+            @if (expanded) {
+            <div class="timeline">
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/arrow.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Prescription Sent</h4>
+                    <p class="date">{{prescription?.creator.date | date}}</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">
+                    {{prescription?.creator.date | date:"h:mm a"}}
+                  </p>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/green-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Waiting For Order</h4>
+                    <p class="date">{{prescription?.creator.date | date}}</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">
+                    {{prescription?.creator.date | date:"h:mm a"}}
+                  </p>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/green-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Order Accepted</h4>
+                    <p class="date">{{prescription?.creator.date | date}}</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">
+                    {{prescription?.creator.date | date:"h:mm a"}}
+                  </p>
+                </div>
+              </div>
+              <div class="grey line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/grey-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Payment Completed</h4>
+                    <p class="date">Oct. 20th, 2025</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">10:47 AM</p>
+                </div>
+              </div>
+              <div class="grey line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/grey-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Order Processed</h4>
+                    <p class="date">Oct. 20th, 2025</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">10:48 AM</p>
+                </div>
+              </div>
+              <div class="grey line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/grey-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Dispatch Pickup</h4>
+                    <p class="date">Oct. 20th, 2025</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">10:49 AM</p>
+                </div>
+              </div>
+              <div class="grey line"></div>
+              <div class="step">
+                <div class="left">
+                  <div class="dot">
+                    <ion-icon src="/logo/grey-timer.svg"></ion-icon>
+                  </div>
+                  <div class="step-text">
+                    <h4 class="desc">Prescription Delivered</h4>
+                    <p class="date">Oct. 20th, 2025</p>
+                  </div>
+                </div>
+                <div class="time">
+                  <p class="date">10:50 AM</p>
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+  }
+
+  <!-- <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>Add Adress</ion-title>
+          @if(selectedAddressId){
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+          </ion-buttons>
+          }
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding address-items">
+        @for(address of allAddresses; track address.addressId){
+        <div
+          class="address-item"
+          [ngClass]="{ 'selected-address': selectedAddressId === address.addressId }"
+          (click)="onChooseAddress(address)"
+          (keyup)="onChooseAddress(address)"
+          tabindex=""
+        >
+          <div class="icon-wrapper">
+            <ion-icon name="location-outline"></ion-icon>
+          </div>
+
+          <div class="address-text">
+            {{address.address}} {{address.street}}, Ikeja, {{address.city}}
+          </div>
+
+          <ion-icon
+            name="chevron-forward-outline"
+            class="forward-icon"
+          ></ion-icon>
+        </div>
+        }
+      </ion-content>
+    </ng-template>
+  </ion-modal> -->
+</ion-content>
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to remove this item?'"
+  [open]="deleteModal"
+  [background]="'primary'"
+  (dismiss)="closeModal()"
+  (no)="closeModal()"
+  (next)="confirmSwitch()"
+></ui-confirmation-modal>
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to reset this order?'"
+  [open]="deleteOrder"
+  [background]="'primary'"
+  (dismiss)="closeReset()"
+  (no)="closeReset()"
+  (next)="confirmDelete()"
+></ui-confirmation-modal>

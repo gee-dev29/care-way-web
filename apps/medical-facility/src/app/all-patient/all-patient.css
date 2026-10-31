@@ -1,0 +1,150 @@
+#patient {
+  --background: #ffffff !important;
+  margin-top: 80px !important;
+  font-size: 14px;
+}
+
+#background {
+  --background: #ffffff;
+}
+
+.search__wrapper {
+  background: #eff6f0;
+  border-radius: 40px !important;
+  margin-bottom: 20px;
+}
+
+.custom-searchbar {
+  --background: transparent;
+  border-radius: 40px !important;
+  --box-shadow: none;
+  --icon-padding-start: 8px;
+  --padding-end: 8px;
+  --padding-start: 8px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plus {
+  font-size: 14px;
+  background-color: #f3f3f3;
+  border-radius: 50%;
+  padding: 7px;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.history {
+  color: #000;
+}
+
+ion-searchbar {
+  --background: white;
+}
+
+.patients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.patient-card {
+  border-radius: 30px;
+  border: 1px solid #e0e1ec;
+  background-color: #eff6f0;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.patient-card .label {
+  font-weight: 500;
+  color: black;
+}
+
+.sub-text {
+  font-size: 14px;
+}
+
+.patient-card ion-icon {
+  background-color: #f2f2f2;
+  padding: 14px;
+  border-radius: 50%;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 44px 24px;
+  text-align: center;
+  color: #6f786f;
+}
+
+.empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 6px;
+  border-radius: 999px;
+  background: #e8f3ea;
+  color: #2c7a3f;
+}
+
+.empty-icon ion-icon {
+  font-size: 26px;
+}
+
+.empty-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.empty-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6f786f;
+  max-width: 260px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  color: #121212;
+  font-weight: 500;
+}
+.label{
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+}
+
+.schedule-appointment-plus-icon {
+  background: #b5dbba !important;
+  border-radius: 999px;
+  padding: 10px;
+}

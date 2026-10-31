@@ -1,0 +1,64 @@
+<ion-header id="prescription">
+  <div class="up">
+    <ion-icon
+      (click)="cancel()"
+      name="chevron-back-outline"
+      size="small"
+    ></ion-icon>
+    <ion-text class="address" color="black">Personal information</ion-text>
+  </div>
+</ion-header>
+
+<ion-content>
+  <form class="form-wrapper" [formGroup]="form">
+    <ui-input
+      label="First name"
+      [type]="'text'"
+      [control]="firstName"
+    ></ui-input>
+    <ui-input label="Last name" [type]="'text'" [control]="lastName"></ui-input>
+    <ui-input-calendar
+      [readOnly]="true"
+      [label]="'Date of Birth'"
+      [type]="'text'"
+      [control]="dob"
+    ></ui-input-calendar>
+    <ui-input
+      label="Phone number"
+      [type]="'phone'"
+      [control]="phone"
+    ></ui-input>
+    <ui-input
+      [readOnly]="true"
+      label="Email"
+      [type]="'email'"
+      [control]="email"
+      [disabled]="true"
+    ></ui-input>
+    <ui-input
+      [label]="'Blood Group'"
+      [shouldSearch]="true"
+      [isMultiselect]="false"
+      [selectedText]="form.value.bloodGroup"
+      [isClicked]="isBlood"
+      [type]="'dropdown'"
+      [options]="bloodGroups"
+      (data)="isBloodClicked()"
+      (emitted)="offBloodClicked()"
+      [control]="bloodGroup"
+    ></ui-input>
+  </form>
+  <div class="bts">
+    <ui-button
+      [label]="'Save'"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      [loading]="loading"
+      [disabled]="!form.valid"
+      (Click)="save()"
+    ></ui-button>
+  </div>
+</ion-content>

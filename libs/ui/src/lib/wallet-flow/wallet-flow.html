@@ -1,0 +1,66 @@
+<div #tabs id="home" class="mt-4 page-layout">
+  <div class="header">
+    <ion-icon (click)="back.emit()" name="chevron-back-outline"></ion-icon>
+    <div class="title">
+      {{ isInflow ? 'Inflow Details' : 'Outflow Details' }}
+    </div>
+  </div>
+
+  @if (loading) {
+  <div class="info-card">
+    <div class="fields">
+      @for (line of [1, 2, 3, 4]; track line) {
+      <div class="field">
+        <ion-skeleton-text
+          animated
+          style="width: 180px; height: 14px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 70%; height: 20px"
+        ></ion-skeleton-text>
+      </div>
+      }
+    </div>
+  </div>
+  } @else if (data) {
+  <div class="info-card">
+    <div class="card-accent" [class]="statusClass"></div>
+
+    <div class="fields">
+      @if (isInflow && data.category) {
+      <div class="field">
+        <span class="label">Category</span>
+        <span class="value">{{ data.category }}</span>
+      </div>
+      } @if (data.description) {
+      <div class="field">
+        <span class="label">Description</span>
+        <span class="value">{{ data.description }}</span>
+      </div>
+      } @if (data.orderType) {
+      <div class="field">
+        <span class="label">Order Type</span>
+        <span class="value">{{ data.orderType }}</span>
+      </div>
+      } @if (data.orderCode) {
+      <div class="field">
+        <span class="label">Order Code</span>
+        <span class="value accent" [class]="statusClass">
+          {{ data.orderCode }}
+        </span>
+      </div>
+      } @if (data.inflowType) {
+      <div class="field">
+        <span class="label"
+          >{{ isInflow ? 'Inflow Type' : 'Outflow Type' }}</span
+        >
+        <span class="value accent" [class]="statusClass">
+          {{ data.inflowType }}
+        </span>
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>

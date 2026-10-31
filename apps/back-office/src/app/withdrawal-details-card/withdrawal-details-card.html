@@ -1,0 +1,56 @@
+<div class="card__container">
+  <div class="card__wrapper">
+    <div class="content__top">
+      <div class="title">
+        <h3>{{cardHeading}}</h3>
+      </div>
+    </div>
+    @if (withdrawal$ | async; as withdrawal) {
+    <div class="content__bottom">
+      <div class="content__bottom">
+        @if (withdrawal.date) {
+        <div class="content__body">
+          <p>Date</p>
+          <h5>
+            {{ moment.utc(`${withdrawal.date}`).local().format('ddd MMM DD,
+            YYYY') }}
+          </h5>
+        </div>
+        } @if (withdrawal.date) {
+        <div class="content__body">
+          <p>Time</p>
+          <h5>
+            {{ moment.utc(`${withdrawal.date}`).local().format('h:mm A') }}
+          </h5>
+        </div>
+        } @if (withdrawal.accountName) {
+        <div class="content__body">
+          <p>Account Name</p>
+          <h5>{{ withdrawal.accountName}}</h5>
+        </div>
+        } @if (withdrawal.statusChanges) {
+        <div class="content__body">
+          <p>Beneficiary Name</p>
+          <h5>{{ withdrawal.statusChanges[0].creator.name}}</h5>
+        </div>
+        } @if (withdrawal.accountNumber) {
+        <div class="content__body">
+          <p>Account Number</p>
+          <h5>{{ withdrawal.accountNumber}}</h5>
+        </div>
+        } @if (withdrawal.amount) {
+        <div class="content__body">
+          <p>Amount</p>
+          <h5>{{ withdrawal.amount | currency: 'NGN '}}</h5>
+        </div>
+        } @if(withdrawal.status){
+        <div class="content__body">
+          <p>Status</p>
+          <h5>{{ withdrawal.status}}</h5>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,64 @@
+@if (!request) {
+<div class="request-card skeleton-card">
+  <ion-skeleton-text
+    animated
+    style="width: 50%; height: 14px"
+  ></ion-skeleton-text>
+  <ion-skeleton-text
+    animated
+    style="width: 40%; height: 12px"
+  ></ion-skeleton-text>
+  <ion-skeleton-text
+    animated
+    style="width: 30%; height: 12px"
+  ></ion-skeleton-text>
+  <ion-skeleton-text
+    animated
+    style="width: 35%; height: 12px"
+  ></ion-skeleton-text>
+  <div class="arrow">
+    <ion-skeleton-text
+      animated
+      style="width: 20px; height: 20px"
+    ></ion-skeleton-text>
+  </div>
+</div>
+} @else { @if (title) {
+<div class="header">
+  <div>{{ title }}</div>
+  <div
+    class="view__all"
+    tabindex=""
+    (keyup.enter)="viewAll()"
+    (click)="viewAll()"
+  >
+    View all
+  </div>
+</div>
+}
+<div
+  class="request-card"
+  tabindex="0"
+  (keyup.enter)="viewDetails(request?.serviceRequestId,request?.memberId);viewIt.emit()"
+  (click)="viewDetails(request?.serviceRequestId, request?.memberId); viewIt.emit()"
+  [style.background]="background"
+  [style.color]="background ? '#000':'#ffffff'"
+>
+  <div class="item-left">{{ request?.referralType || request?.name }}</div>
+  <div class="item-right">
+    @if (request?.amount) {
+    {{ request.amount }}
+    } @else { #{{ request?.serviceRequestCode || request?.phoneNumber }} }
+  </div>
+
+  <div class="item-left">
+    {{ request.state || moment.utc(request?.creator?.date).local().fromNow() }}
+  </div>
+  <div class="item-right status">{{ request.status || request.email }}</div>
+  @if (arrowShow===null) {
+  <div class="arrow">
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </div>
+  }
+</div>
+}

@@ -1,0 +1,18 @@
+@if (address$ | async) {
+<div class="container">
+  <p>Address</p>
+  @for (item of (address$ | async); track $index) {
+  <ion-card
+    tabindex=""
+    (keyup)="selectAddress.emit(item)"
+    (click)="onSelect(item)"
+  >
+    <ion-card-content>
+      <ion-icon src="/icons/locationIcon.svg"></ion-icon>
+      <div>{{item.address | slice:0:24}}... {{item.city}}, {{item.state}}</div>
+      <ion-checkbox [checked]="item.addressId === selectedId"></ion-checkbox>
+    </ion-card-content>
+  </ion-card>
+  }
+</div>
+}

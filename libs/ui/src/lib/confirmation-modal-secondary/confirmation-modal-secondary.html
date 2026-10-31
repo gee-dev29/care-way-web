@@ -1,0 +1,34 @@
+<ion-modal
+  id="confirmation-modal-secondary"
+  #modal
+  [isOpen]="open"
+  (didDismiss)="onDidDismiss()"
+>
+  <ng-template>
+    <div class="wrapper">
+      <ion-img class="logo" src="/logo/alert.svg" alt="HealBridge"></ion-img>
+      <h1 class="header">{{confirmationMessage}}</h1>
+      <hr class="hr" />
+      <p
+        tabindex="0"
+        class="action"
+        [class.disabled]="loading"
+        (keydown.enter)="onConfirmClick()"
+        (click)="onConfirmClick()"
+      >
+        @if (loading) { Please Wait... } @else { Yes, Confirm }
+      </p>
+      <hr class="hr" />
+      <p
+        tabindex="0"
+        class="action"
+        [class.disabled]="loading"
+        (keydown.enter)="onCancelClick()"
+        (click)="onCancelClick()"
+      >
+        Cancel
+      </p>
+      <hr class="hr" />
+    </div>
+  </ng-template>
+</ion-modal>

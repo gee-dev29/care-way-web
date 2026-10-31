@@ -1,0 +1,28 @@
+<div class="up" tabindex="" (keydown)="back.emit()" (click)="back.emit()">
+  <div class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title">{{title}}</div>
+      <div></div>
+    </div>
+</div>
+<div class="menuu">
+  @for (menu of otherMenus ; track $index) {
+    <ion-card class="small__curve">
+    <ion-card-content (click)="continue(menu.link, menu.name)">
+      <div class="left">
+        <ion-icon [src]="menu.icon"></ion-icon>
+        <div class="leftter">{{menu.name}}</div>
+      </div>
+      <ion-icon src="/logo/frontarrow.svg"></ion-icon>
+    </ion-card-content>
+  </ion-card>
+  }
+</div>
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to disable biometric?'"
+  [background]="'#307D3D'"
+  [open]="prompt"
+  (next)="disable()"
+  (no)="closeConfirmationModal()"
+  (dismiss)="closeConfirmationModal()"
+></ui-confirmation-modal>

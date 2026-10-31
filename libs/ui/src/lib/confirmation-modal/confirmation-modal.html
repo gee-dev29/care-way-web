@@ -1,0 +1,32 @@
+<ion-modal
+  id="example-modal"
+  #modal
+  [isOpen]="open"
+  (didDismiss)="dismiss.emit(false)"
+>
+  <ng-template>
+    <div class="wrapper">
+      <ion-img class="logo" src="/logo/alert.svg" alt="HealBridge"></ion-img>
+      <h1 class="header">{{heading}}</h1>
+      <hr class="hr" />
+      @if (!normal) { @if (loading) {
+      <p tabindex="" (keydown)="next.emit()" (click)="next.emit()">
+        Please Wait...
+      </p>
+      }@else {
+      <p tabindex="" (keydown)="next.emit()" (click)="next.emit()">
+        Yes, Confirm
+      </p>
+      } @if (loading===false) {
+      <hr class="hr" />
+      <p tabindex="" (keydown)="next.emit()" (click)="no.emit()">Cancel</p>
+      <hr class="hr" />
+      } } @else{
+      <p tabindex="" (keydown)="next.emit()" (click)="next.emit()">Patient</p>
+      <hr class="hr" />
+      <p tabindex="" (keydown)="next.emit()" (click)="no.emit()">Hospital</p>
+      <hr class="hr" />
+      }
+    </div>
+  </ng-template>
+</ion-modal>

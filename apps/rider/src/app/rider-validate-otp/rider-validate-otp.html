@@ -1,0 +1,9 @@
+<ion-content id="background-content" [fullscreen]="true" class="ion-padding">
+  <ui-validate-otp
+    [amount]="amount"
+    (back)="routeTo()"
+    [api]="api"
+    [moduleType]="moduleType"
+    [withdrawalId]="withdrawalId"
+  ></ui-validate-otp>
+</ion-content>

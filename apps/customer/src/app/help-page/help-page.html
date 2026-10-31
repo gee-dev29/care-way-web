@@ -1,0 +1,32 @@
+<div class="page">
+  <div class="center">
+    <ion-img class="logo" src="/logo/healbridge.svg" alt="HealBridge"></ion-img>
+    <ion-text class="here" color="black">
+      <h4>Confirm details of <br />Help request</h4>
+    </ion-text>
+  </div>
+  <form class="ion-padding" [formGroup]="form">
+    <ion-text color="black"> </ion-text>
+    <div>
+      <ui-input [control]="email" [label]="'Email'" [type]="'email'"></ui-input>
+      <ui-input
+        [control]="helpCode"
+        [label]="'Help Code'"
+        [type]="'text'"
+      ></ui-input>
+    </div>
+    <div class="bts ion-padding">
+      <ui-button
+        [label]="loginLabel"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [textColor]="'#FDFDFD'"
+        (Click)="proceed()"
+        [disabled]="loading || (!form.valid)"
+        [loading]="loading"
+      ></ui-button>
+    </div>
+  </form>
+</div>

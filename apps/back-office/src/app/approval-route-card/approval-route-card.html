@@ -1,0 +1,96 @@
+@if (approvalRouteDetails; as approval) {
+<div class="card__container">
+  <div class="proposal__wrapper">
+    <div class="content__head mb-2">
+      <div>
+        <h3>Approval Route Details</h3>
+      </div>
+
+      <div class="icons_group">
+        <div class="icon" (click)="editAction.emit(approval)">
+          <i class="pi pi-pencil"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="content__bottom">
+      <div>
+        <div class="riskDetail">
+          @if(approval.routeName){
+          <div class="content__body">
+            <p class="heading">Route Name</p>
+            <h4 class="detail">{{ approval.routeName }}</h4>
+          </div>
+          } @if(approval.approvalType){
+          <div class="content__body">
+            <p class="heading">Approval Type</p>
+            <h4 class="detail">{{ approval.approvalType }}</h4>
+          </div>
+          } @if(approval.approvalLimit){
+          <div class="content__body">
+            <p class="heading">Approval Limit</p>
+            <h4 class="detail">
+              {{ approval.approvalLimit | currency : ' ' }}
+            </h4>
+          </div>
+          } @if (approval.currency) {
+          <div class="content__body">
+            <p class="heading">Currency</p>
+            <h4 class="detail">{{ approval.currency }}</h4>
+          </div>
+          } @if(approval.withOTP){
+          <div class="content__body">
+            <p class="heading">Enable OTP</p>
+            <h4 class="detail">{{ approval.withOTP ? 'Yes' : 'No' }}</h4>
+          </div>
+          } 
+          @if(approval.date){
+          <div class="content__body">
+            <p class="heading">Date Created</p>
+            <h4 class="detail">{{ approval.date | date }}</h4>
+          </div>
+          }
+          @if(approval.isFinancial){
+          <div class="content__body">
+            <p class="heading">Financial Approval</p>
+            <h4 class="detail">{{ approval.isFinancial ? 'true' : 'false' }}</h4>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content__head pl-2 mt-4">
+  <h2>All Approvers</h2>
+</div>
+
+@for (approver of approval.approvers; track $index) {
+<div class="card__containerSmall mt-1">
+  <div class="proposal__wrapper">
+    <div class="content__bottom">
+      <div>
+        <div class="riskDetail">
+          <div class="content__body">
+            <p class="approver_heading">Approver Name</p>
+            <h4 class="approver_detail">{{ approver.name }}</h4>
+          </div>
+
+          <div class="content__body">
+            <p class="approver_heading">SLA (hrs)</p>
+            <h4 class="approver_detail">{{ approver.slaInHours }}</h4>
+          </div>
+
+          <div class="content__body">
+            <p class="approver_heading">Permanent</p>
+            <h4 class="approver_detail">
+              {{ approver.cannotChange ? 'Yes' : 'No' }}
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+} }

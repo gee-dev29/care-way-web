@@ -1,0 +1,122 @@
+#background-content {
+  background: #f4f5fe !important;
+}
+#prescription {
+  margin-top: 80px !important;
+}
+ion-card {
+  margin: 0;
+}
+
+.summary-temp {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  align-items: center;
+}
+
+.summary-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+ion-card {
+  background: #e7f6e9 !important;
+}
+
+.degree {
+  font-size: 40px;
+  font-weight: 500;
+  color: var(--ion-color-dark);
+}
+
+.toggle {
+  margin-top: 4px;
+  margin-bottom: -20px;
+}
+
+.summary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.status {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ion-color-danger);
+}
+
+.row-title {
+  display: flex;
+  gap: 10px;
+  justify-content: start;
+  align-items: center;
+  color: #000000;
+}
+
+.temp-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  margin-bottom: 14px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.temperature {
+  font-size: 1.55rem;
+  font-weight: 600;
+}
+
+.range {
+  margin-top: 2px;
+  font-size: 0.78rem;
+  color: #666;
+}
+
+.label {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: black;
+}
+
+.status-col {
+  text-align: right;
+}
+
+.status-badge {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  background: #b5bdb9;
+}
+
+.white {
+  color: #fff;
+}
+
+.black {
+  color: #000000;
+}
+
+.date {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: #000000b2;
+}
+
+.unit {
+  background-color: #b5bdb9;
+  border-radius: 5px;
+  padding: 2px 3px;
+  font-size: 17px;
+  color: black;
+}

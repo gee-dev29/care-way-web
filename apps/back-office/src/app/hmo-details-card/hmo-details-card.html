@@ -1,0 +1,58 @@
+<div class="card__container">
+  @if (hmoDetails$ | async; as hmoDetails) {
+  <div class="title">
+    <img
+      src="/icons/pencilIcon.svg"
+      alt=""
+      (click)="editHmoDetails.emit(hmoDetails)"
+    />
+  </div>
+  <div class="content__top">
+    <div class="card__wrapper">
+      <div class="content__bottom">
+        @if (hmoDetails.name) {
+        <div class="content__body">
+          <p>Name</p>
+          <h5>{{ hmoDetails.name }}</h5>
+        </div>
+        } @if (hmoDetails.address) {
+        <div class="content__body">
+          <p>Address</p>
+          <h5>{{ hmoDetails.address }}</h5>
+        </div>
+        } @if (hmoDetails.contactPerson) {
+        <div class="content__body">
+          <p>Contact Person</p>
+          <h5>{{ hmoDetails.contactPerson }}</h5>
+        </div>
+        } @if (hmoDetails.contactEmail) {
+        <div class="content__body">
+          <p>Contact Email</p>
+          <h5>{{ hmoDetails.contactEmail }}</h5>
+        </div>
+        } @if (hmoDetails.contactPhone) {
+        <div class="content__body">
+          <p>Contact Phone</p>
+          <h5>{{ hmoDetails.contactPhone }}</h5>
+        </div>
+        } @if (hmoDetails.url) {
+        <div class="content__body">
+          <p>URL</p>
+          <h5>{{ hmoDetails.url }}</h5>
+        </div>
+        } @if (hmoDetails.markUp) {
+        <div class="content__body">
+          <p>Mark Up</p>
+          <h5>{{ hmoDetails.markUp }}</h5>
+        </div>
+        } @if (hmoDetails.hospitalIds?.length) {
+        <div class="content__body">
+          <p>No of Hospitals</p>
+          <h5>{{ hmoDetails.hospitalIds.length }}</h5>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  }
+</div>

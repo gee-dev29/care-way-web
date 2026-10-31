@@ -1,0 +1,59 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="prescription" class="ion-padding">
+    <div class="pricing-head">
+      <div class="icon">
+        <ion-icon
+          (click)="goBack()"
+          name="chevron-back-outline"
+          size="small"
+        ></ion-icon>
+      </div>
+
+      <ion-text class="pricing-title"> Recent Doctor Patients </ion-text>
+    </div>
+    @for(patient of recentPatients; track patient.name){
+    <ion-list class="patient">
+      <div class="patient-container">
+        <div class="flex-row gap-xs">
+          <ion-icon class="profile-img1" [src]="patient.image"></ion-icon>
+
+          <div class="flex-col">
+            <ion-text class="profile-name mb"> {{patient.name}} </ion-text>
+            <ion-text class="profile-job">
+              Female | Age: {{patient.age}}
+            </ion-text>
+          </div>
+        </div>
+
+        <ion-icon src="/icons/more-icon.svg"></ion-icon>
+      </div>
+
+      <div>
+        <div class="schedule mb-12">
+          <ion-icon src="/icons/calendar-icon.svg"></ion-icon>
+          <ion-text class="schedule-text"
+            >Last Visit: {{patient.lastVisit}}
+          </ion-text>
+        </div>
+        <div class="schedule">
+          <ion-icon src="/icons/tv-icon.svg"></ion-icon>
+          <ion-text class="schedule-text"
+            >Assigned Doctor:{{patient.asignedDoctor}}</ion-text
+          >
+        </div>
+      </div>
+
+      <!-- <ui-button
+        expand="block"
+        [label]="'View Record'"
+        [width]="'full'"
+        [size]="'medium'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'primary'"
+        (Click)="viewRecord()"
+      ></ui-button> -->
+    </ion-list>
+    }
+  </div>
+</ion-content>

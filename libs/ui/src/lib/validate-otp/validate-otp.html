@@ -1,0 +1,61 @@
+<div #tabs id="home" class="mt-4 page-layout">
+  <div class="header">
+    <ion-icon (click)="back.emit()" name="chevron-back-outline"></ion-icon>
+    <div class="title">Withdraw to Account</div>
+  </div>
+
+  <div class="container">
+    <h2>OTP</h2>
+    <p class="description">
+      Please enter the verification code sent to you to authorise the transfer
+      of <span class="amount"> {{amount | currency: 'NGN'}}</span> to your
+      account.
+    </p>
+
+    <form [formGroup]="otpForm">
+      <div class="otp-boxes" formArrayName="otp">
+        @for (ctrl of otpControls; track $index; let i = $index) {
+        <input
+          type="text"
+          maxlength="1"
+          class="otp-input"
+          [formControlName]="i"
+          (input)="onInput($event, i)"
+          (keydown)="onKeyDown($event, i)"
+        />
+        }
+      </div>
+
+      <div class="resend">
+        @if (canResend) {
+        <span class="resend-text">Didn't get the code?</span>
+        <button
+          type="button"
+          class="resend-link"
+          [disabled]="resending"
+          (click)="resendOtp()"
+        >
+          {{ resending ? 'Sending…' : 'Try now' }}
+        </button>
+        } @else {
+        <span class=""
+          >Resend code in <i class="resend-timer">{{ formattedTime }}</i></span
+        >
+        }
+      </div>
+
+      <div class="button">
+        <ui-button
+          [width]="'full'"
+          [shape]="'round'"
+          [label]="'Verify'"
+          [backgroundColor]="'#307d3d'"
+          [disabled]="!otpForm.valid || loading"
+          [loading]="loading"
+          [textColor]="'#FDFDFD'"
+          (click)="submit()"
+        ></ui-button>
+      </div>
+    </form>
+  </div>
+</div>

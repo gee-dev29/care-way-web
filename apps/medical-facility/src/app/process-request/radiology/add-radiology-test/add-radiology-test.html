@@ -1,0 +1,46 @@
+<ion-content fullscreen class="ion-padding">
+  <div id="add__member">
+    <div class="header">
+      <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+      <div class="title">Imaging / Radiology Test</div>
+      <div></div>
+    </div>
+
+    <form [formGroup]="form">
+      <ui-input
+        [label]="'Service Name'"
+        [shouldSearch]="true"
+        [isMultiselect]="false"
+        [selectedText]="form.value.serviceName"
+        [isClicked]="isServiceName"
+        [type]="'dropdown'"
+        [options]="serviceNames"
+        (data)="isServiceNameClicked()"
+        (emitted)="offServiceNameClicked()"
+        [control]="form.get('serviceName')"
+      ></ui-input>
+
+      <ui-input
+        [label]="'Cost'"
+        [control]="form.get('cost')"
+        [type]="'number'"
+        [min]="min"
+      ></ui-input>
+
+      <div class="ui__button">
+        <ui-button
+          (Click)="next()"
+          [label]="'Proceed'"
+          [disabled]="form.invalid"
+          [loading]="loading"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#307d3d'"
+          [textColor]="'#FDFDFD'"
+          [showImage]="false"
+        ></ui-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,26 @@
+.provider-card {
+  background: #307d3d;
+  border-radius: 16px;
+  margin: 16px 16px 0;
+  padding: 20px 20px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.info-row .label {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.info-row .value {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: right;
+}

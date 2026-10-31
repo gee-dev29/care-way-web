@@ -1,0 +1,120 @@
+<div class="table__head" type="button">
+  <div>
+    <h2>MSA Rates - {{heading}}</h2>
+  </div>
+  <div class="grouped__btn">
+    <ui-desktop-button
+      [label]="'Set Rate'"
+      [primary]="true"
+      [size]="'large'"
+      (click)="showSetRate()"
+    ></ui-desktop-button>
+    <ui-desktop-button
+      [disabled]="selected.size === 0"
+      [label]="'Initiate Approval' + ' (' + selected.size + ')'"
+      [primary]="true"
+      [size]="'large'"
+      (Click)="openBulkApprovalConfirmationModal()"
+    ></ui-desktop-button>
+  </div>
+</div>
+<p-table
+  #dt1
+  dataKey="msaRateId"
+  [paginator]="true"
+  [lazy]="true"
+  (onLazyLoad)="load($event)"
+  [rows]="20"
+  [totalRecords]="totalRecords"
+  [value]="msaRates$ | async"
+  [(selection)]="selectedMsaRate"
+  [rowsPerPageOptions]="[20, 50, 100]"
+  (onRowSelect)="onRowSelect($event)"
+  (onRowUnselect)="onRowUnselect($event)"
+  (onHeaderCheckboxToggle)="onHeaderCheckboxToggle({$event, dt1})"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width: 5rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th>Date of Rate</th>
+      <th>Rate</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>
+        <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+            <div class="dropdown__filter__container">
+              <ui-input-drop-down
+                [label]="'Status'"
+                [options]="statusTypes"
+                [key]="'text'"
+                [value]="'text'"
+                [showClear]="true"
+                [filter]="true"
+                (data)="filterByStatus($event)"
+              ></ui-input-drop-down>
+              <div class="p-float-label"></div>
+            </div>
+          </ng-template>
+        </p-columnFilter>
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item let-columns="columns">
+    <tr>
+      <td style="width: 5rem">
+        <p-tableCheckbox
+          [disabled]="item.status !== 'Draft' && item.status !== 'Rejected'"
+          [value]="item"
+        ></p-tableCheckbox>
+      </td>
+      <td>{{item.dateOfRate | date: 'MMM dd, yyyy'}}</td>
+      <td>{{item.rate}}</td>
+      <td>{{item.status}}</td>
+      <td>
+        <ui-desktop-button
+          [label]="'Edit'"
+          [primary]="true"
+          (click)="edit(item)"
+        ></ui-desktop-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<ui-modal
+  [header]="isEdit ? `Edit MSARate - ${msaType}` : `Set MSA Rate - ${msaType}`"
+  [selectedWidth]="'40vw'"
+  [(visibility)]="showSetRateModal"
+>
+  <ui-form-body [formGroup]="form" [columns]="'no-split'">
+    <ui-desktop-input
+      [label]="'Rate'"
+      [type]="'number'"
+      [control]="rate"
+    ></ui-desktop-input>
+    <ui-date-input
+      [label]="'Date of Rate'"
+      [control]="dateOfRate"
+    ></ui-date-input>
+    <ui-desktop-button
+      [label]="isEdit ? 'Save' : 'Set'"
+      [primary]="true"
+      [disabled]="!form.valid || loading"
+      (click)="proceed()"
+    ></ui-desktop-button>
+  </ui-form-body>
+</ui-modal>
+<ui-confirmation-modal-desktop
+  [(visibility)]="bulkApprovalInitiationConfirmationModal"
+  (proceed)="approve()"
+  [message]="bulkApprovalMessage"
+></ui-confirmation-modal-desktop>

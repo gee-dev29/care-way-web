@@ -1,0 +1,279 @@
+<div class="invitations">
+  @if (!isLoading) {
+  <div class="header">
+    <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+
+    <div class="title">Invitations</div>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="searchWrap">
+    <ion-searchbar
+      placeholder="Search"
+      mode="ios"
+      show-clear-button="never"
+      class="search"
+      (ionInput)="onSearch($event)"
+    ></ion-searchbar>
+  </div>
+
+  <div class="tabs">
+    <button
+      class="pill"
+      [class.active]="activeTab === 'All'"
+      (click)="setTab('All')"
+    >
+      All
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Pending'"
+      (click)="setTab('Pending')"
+    >
+      Pending
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Approved'"
+      (click)="setTab('Approved')"
+    >
+      Accepted
+    </button>
+    <button
+      class="pill"
+      [class.active]="activeTab === 'Rejected'"
+      (click)="setTab('Rejected')"
+    >
+      Rejected
+    </button>
+  </div>
+
+  <div class="list">
+    @for (inv of filteredInvites(); track $index) {
+    <div
+      class="card"
+      [class.is-rejected]="isRejected(inv)"
+      role="button"
+      tabindex="0"
+      (click)="viewInvite(inv)"
+      (keydown.enter)="viewInvite(inv)"
+      (keydown.space)="viewInvite(inv)"
+    >
+      <div class="card-top">
+        <div class="avatar" aria-hidden="true">
+          {{ initials(inv?.facilityName || inv?.facilityTypeName) }}
+        </div>
+
+        <div class="card-main">
+          <span class="name">{{ inv?.facilityTypeName }}</span>
+        </div>
+
+        <span
+          class="status"
+          [class.pending]="isPending(inv)"
+          [class.approved]="inv?.status === 'Approved'"
+          [class.rejected]="isRejected(inv)"
+        >
+          <span class="status-dot"></span>
+          {{ statusLabel(inv) }}
+        </span>
+      </div>
+
+      <div class="card-meta">
+        <ion-icon name="time-outline"></ion-icon>
+        <span class="meta-strong">{{ relativeTime(inv?.date) }}</span>
+        <span class="meta-sep">•</span>
+        <span class="meta-muted">{{ absoluteTime(inv?.date) }}</span>
+      </div>
+
+      @if (isRejected(inv)) {
+      <div class="rejection">
+        <ion-icon name="alert-circle-outline" class="rejection-icon"></ion-icon>
+        <div class="rejection-body">
+          <span class="rejection-label">Reason for rejection</span>
+          <span class="rejection-reason">
+            <li>{{ inv?.reason || 'No reason provided' }}</li>
+          </span>
+        </div>
+      </div>
+      }
+
+      <div class="actions">
+        @if (isPending(inv)) {
+        <button
+          class="btnSolid"
+          (click)="confirmInvitation(inv); $event.stopPropagation()"
+        >
+          Accept
+        </button>
+        <button
+          class="btnOutline"
+          (click)="reject(inv); $event.stopPropagation()"
+        >
+          Reject
+        </button>
+        }
+        <button
+          class="btnGhost"
+          (click)="viewInvite(inv); $event.stopPropagation()"
+        >
+          View details
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+    } @if (filteredInvites().length === 0 && searchTerm.trim()) {
+    <div class="empty">
+      <div class="empty-icon">
+        <ion-icon name="mail-open-outline"></ion-icon>
+      </div>
+      <span class="empty-title">No results found</span>
+      <span class="empty-text">
+        Nothing matches "{{ searchTerm.trim() }}". Try a different search.
+      </span>
+    </div>
+    } @if (filteredInvites().length === 0 && !searchTerm.trim()) {
+    <div class="empty">
+      <div class="empty-icon">
+        <ion-icon name="mail-open-outline"></ion-icon>
+      </div>
+      <span class="empty-title">Nothing here yet</span>
+      <span class="empty-text">
+        @if (activeTab === 'All') { You have no invitations to show. } @else {
+        You have no {{ activeTab === 'Approved' ? 'accepted' : (activeTab |
+        lowercase) }} invitations to show. }
+      </span>
+    </div>
+    }
+  </div>
+
+  } @else {
+
+  <div class="header">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+    <ion-skeleton-text
+      animated
+      style="width: 120px; height: 16px; margin: 0 auto"
+    ></ion-skeleton-text>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="searchWrap">
+    <div class="searchSkeleton">
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 44px"
+      ></ion-skeleton-text>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <ion-skeleton-text
+      animated
+      style="width: 60px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 92px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 102px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 102px; height: 40px; border-radius: 999px"
+    ></ion-skeleton-text>
+  </div>
+
+  <div class="list">
+    @for (_ of [1,2,3,4]; track _) {
+    <div class="card skCard" aria-hidden="true">
+      <div class="card-top">
+        <ion-skeleton-text
+          animated
+          style="width: 40px; height: 40px; --border-radius: 999px; margin: 0"
+        ></ion-skeleton-text>
+        <div class="card-main">
+          <ion-skeleton-text
+            animated
+            style="width: 60%; height: 13px; margin: 0"
+          ></ion-skeleton-text>
+        </div>
+        <ion-skeleton-text
+          animated
+          style="width: 74px; height: 24px; --border-radius: 999px; margin: 0"
+        ></ion-skeleton-text>
+      </div>
+
+      <div class="card-meta">
+        <ion-skeleton-text
+          animated
+          style="width: 55%; height: 11px; margin: 0"
+        ></ion-skeleton-text>
+      </div>
+
+      <div class="actions">
+        <ion-skeleton-text
+          animated
+          style="flex: 1 1 0; height: 36px; --border-radius: 999px; margin: 0"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="flex: 1 1 0; height: 36px; --border-radius: 999px; margin: 0"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 84px; height: 36px; --border-radius: 999px; margin: 0; margin-left: auto"
+        ></ion-skeleton-text>
+      </div>
+    </div>
+    }
+  </div>
+
+  }
+</div>
+
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to accept this invitation?'"
+  [background]="'#307D3D'"
+  [open]="confirmModal"
+  (next)="confirmAccept()"
+  (no)="cancelAccept()"
+  (dismiss)="cancelAccept()"
+></ui-confirmation-modal>
+
+<ion-modal
+  class="reject-modal"
+  [isOpen]="rejectModal"
+  (didDismiss)="closeReject()"
+>
+  <ng-template>
+    <div class="reject-modal-body">
+      <div class="reject-modal-header">
+        <ion-text class="reject-modal-title">Reject Invitation</ion-text>
+        <ion-icon
+          name="close-outline"
+          class="reject-close-icon"
+          (click)="closeReject()"
+        ></ion-icon>
+      </div>
+
+      <ui-input-textarea
+        [control]="reasonControl"
+        [label]="'Reason for rejection'"
+      ></ui-input-textarea>
+
+      <ui-button
+        [label]="'Submit'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307d3d'"
+        [loading]="rejecting"
+        [disabled]="rejecting || !reasonControl.value?.trim()"
+        (Click)="submitReject()"
+      ></ui-button>
+    </div>
+  </ng-template>
+</ion-modal>

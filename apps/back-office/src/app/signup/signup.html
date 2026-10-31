@@ -1,0 +1,53 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<ui-authentication
+  title="Sign Up"
+  leftImage="/images/signin.svg"
+  [isLongForm]="false"
+>
+  <form [formGroup]="form">
+    <ui-input
+      [type]="'text'"
+      [label]="'First Name'"
+      [control]="firstName"
+    ></ui-input>
+    <ui-input
+      [type]="'text'"
+      [label]="'Last Name'"
+      [control]="lastName"
+    ></ui-input>
+    <ui-input [type]="'email'" [label]="'Email'" [control]="email"></ui-input>
+    <ui-input
+      [type]="'phone'"
+      [label]="'Phone Number'"
+      [control]="phone"
+    ></ui-input>
+    <div class="gender__based">
+      <ion-text class="gender__text">Gender</ion-text>
+      <div class="gender">
+        <ui-input
+          [options]="genders"
+          [type]="'checkbox'"
+          [control]="gender"
+        ></ui-input>
+      </div>
+    </div>
+  </form>
+  <div class="bts">
+    <ui-button
+      [label]="signupLabel"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [loading]="loading"
+      [disabled]="loading || (!form.valid)"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      (Click)="signup()"
+    ></ui-button>
+    <p class="paragraph mt-2">
+      You already have an account?
+      <span (click)="goToSignIn()" class="instruction">Sign In</span>
+    </p>
+  </div>
+</ui-authentication>

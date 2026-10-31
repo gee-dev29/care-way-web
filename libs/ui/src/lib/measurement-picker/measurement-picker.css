@@ -1,0 +1,108 @@
+#prescription {
+  margin-top: 70px !important;
+}
+ion-list {
+  background: #f4f5fe !important;
+  height: 100vh;
+}
+ion-header {
+  --shadow: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  margin: 40px 0;
+}
+
+ion-content {
+  --background: #f4f5fe !important;
+}
+
+.up {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.address {
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.cancel,
+.save {
+  font-size: 18px;
+  color: #007aff;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.container {
+  padding: 20px;
+}
+
+:host .picker-before {
+  height: unset !important;
+}
+ion-picker-column {
+  height: 3300px;
+}
+ion-picker-column-option {
+  font-size: 40px;
+  color: black;
+  border-bottom: 2px solid blue;
+  padding: 10px 0;
+  height: 100%;
+}
+
+.label {
+  color: black;
+  font-size: 18px;
+  margin-bottom: 8px;
+  margin-left: 12px;
+}
+
+.input-box {
+  background: white;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid #e5e5e5;
+}
+
+.height-box {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 20px;
+  border: 1px solid #e5e5e5;
+}
+
+.unit-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.height-value {
+  font-size: 48px;
+  font-weight: bold;
+  color: #111;
+  margin: 10px 0;
+}
+ion-picker::part(content) {
+  height: 300px !important;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.cm-label {
+  font-size: 16px;
+}

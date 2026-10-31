@@ -1,0 +1,31 @@
+.page__highlight {
+  background-color: #fff5e8;
+  width: 100%;
+  padding: clamp(10px, 4.5vw, 20px);
+  height: 44px;
+  display: flex;
+  align-items: center;
+  border-left: 25px solid var(--primary-color);
+  border-radius: 999px;
+}
+
+.content {
+  display: flex;
+  gap: 10px;
+}
+
+.section1 {
+  border-right: 1px solid #4a4a4a;
+  padding-right: 10px;
+}
+
+.section {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.clickable {
+  cursor: pointer;
+  text-decoration: underline;
+}

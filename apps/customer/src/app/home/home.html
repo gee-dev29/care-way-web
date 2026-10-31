@@ -1,0 +1,35 @@
+<ion-content class="page" fullscreen="true">
+  <div class="background">
+    <div class="center">
+      <ion-img src="/logo/healbridge.svg"></ion-img>
+      <ion-text class="ion-text">
+        <p>Connecting Health, Saving Life</p>
+      </ion-text>
+    </div>
+    <div class="content-area ion-padding">
+      <div class="nurse">
+        <ion-img src="/bg/nurse-no-noise.png"></ion-img>
+      </div>
+      <div class="bts">
+        <ui-button
+        [label]="'Sign In'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'#307D3D'"
+        (Click)="signIn()"
+      ></ui-button>
+        <ui-button
+          [label]="'Create Account'"
+          [width]="'full'"
+          [fill]="'solid'"
+          [shape]="'round'"
+          [backgroundColor]="'#F9FFFA'"
+          [borderLine]="'#1E293B'"
+          [textColor]="'#1E293B'"
+          (Click)="createAccount()"
+        ></ui-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

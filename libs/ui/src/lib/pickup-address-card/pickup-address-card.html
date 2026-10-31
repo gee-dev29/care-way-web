@@ -1,0 +1,63 @@
+@for (item of orders; track item.fulfilmentId; let i = $index) {
+<div class="card">
+  <h2 class="title">Pickup Address {{ i + 1 }}</h2>
+
+  <div class="card-box">
+    <div class="row">
+      <ion-icon src="/icons/target.svg" class="green"></ion-icon>
+
+      <div class="content">
+        <div class="top">
+          <h3>{{ item.facilityTypeName}}</h3>
+          <span class="status"> {{ item.status }}</span>
+        </div>
+
+        <p class="sub">
+          {{ item.address?.street || item.address?.address }}, {{
+          item.address?.city }}, {{ item.address?.state }}, {{
+          item.address?.country }}
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="footer"
+      tabindex="0"
+      (keyup.enter)="toggle(i)"
+      (click)="toggle(i)"
+    >
+      <span>Total Items</span>
+
+      <span class="footer-right">
+        <span class="total">
+          {{ item.orderItems?.length }} {{ item.orderItems?.length === 1 ?
+          'item' : 'items' }}
+        </span>
+        <ion-icon
+          [name]="isExpanded(i) ? 'chevron-up-outline' : 'chevron-down-outline'"
+        ></ion-icon>
+      </span>
+    </div>
+
+    @if (isExpanded(i)) {
+    <div class="items">
+      @for (drug of item.orderItems; track drug.orderItemId) {
+      <div class="drug">
+        <div class="drug-head">
+          <p class="drug-name">
+            {{ drug.product }} ({{ drug.form }})
+            <span class="strength">{{ drug.strength }}</span>
+          </p>
+          <span class="qty">{{ drug.quantity }} {{ drug.uom }}</span>
+        </div>
+
+        @if (drug.activeIngredient) {
+        <p class="ingredient">{{ drug.activeIngredient }}</p>
+        }
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>
+}

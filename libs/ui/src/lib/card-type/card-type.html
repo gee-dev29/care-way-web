@@ -1,0 +1,11 @@
+<div class="container">
+  <p>{{heading}}</p>
+  @for (item of (cardTypes); track $index) {
+  <ion-card tabindex="" (keyup)="cardType.emit(item)" (click)="onSelect(item)">
+    <ion-card-content>
+      <div>{{item.key}}</div>
+      <ion-checkbox [checked]="item.value === selectedId"></ion-checkbox>
+    </ion-card-content>
+  </ion-card>
+  }
+</div>

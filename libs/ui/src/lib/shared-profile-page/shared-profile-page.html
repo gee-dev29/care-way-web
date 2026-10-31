@@ -1,0 +1,449 @@
+<div
+  class="page ion-padding"
+  [ngClass]="{
+    'pharmacy-body': facilityType === FacilityType.Pharmacy,
+    'hospital-body': facilityType === FacilityType.Hospital,
+    'laboratory-body': facilityType === FacilityType.Laboratory,
+    'blood-bank-body': facilityType === FacilityType.BloodBank,
+    'radiology-body': facilityType === FacilityType.Radiology
+  }"
+>
+  @if (loading$ | async) {
+
+  <div class="like__header">
+    <ion-skeleton-text
+      animated
+      style="width: 32px; height: 32px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 180px; height: 24px"
+    ></ion-skeleton-text>
+    <div></div>
+  </div>
+
+  <div class="bottom__header">
+    <div class="profile__wrapper">
+      <ion-skeleton-text
+        animated
+        style="width: 160px; height: 160px; border-radius: 50%"
+      ></ion-skeleton-text>
+    </div>
+
+    <ion-card class="small__curve">
+      <div class="inside">
+        <ion-skeleton-text
+          animated
+          style="width: 200px; height: 20px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 20px; height: 20px"
+        ></ion-skeleton-text>
+      </div>
+
+      @for (i of [1, 2, 3]; track i) {
+      <div class="list">
+        <ion-skeleton-text
+          animated
+          style="width: 24px; height: 24px"
+        ></ion-skeleton-text>
+        <ion-skeleton-text
+          animated
+          style="width: 150px; height: 16px"
+        ></ion-skeleton-text>
+      </div>
+      }
+    </ion-card>
+  </div>
+
+  @for (i of [1, 2]; track i) {
+  <ion-card class="license" style="min-height: 218px">
+    <div class="inside">
+      <ion-skeleton-text
+        animated
+        style="width: 220px; height: 18px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 18px; height: 18px"
+      ></ion-skeleton-text>
+    </div>
+
+    @for (j of [1, 2]; track j) {
+    <div class="license-row">
+      <ion-skeleton-text
+        animated
+        style="width: 140px; height: 14px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 110px; height: 14px"
+      ></ion-skeleton-text>
+    </div>
+    }
+  </ion-card>
+  }
+
+  <ion-card class="bank" style="min-height: 218px">
+    <div class="inside">
+      <ion-skeleton-text
+        animated
+        style="width: 200px; height: 18px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 18px; height: 18px"
+      ></ion-skeleton-text>
+    </div>
+
+    @for (i of [1, 2]; track i) {
+    <div class="license-row">
+      <ion-skeleton-text
+        animated
+        style="width: 150px; height: 14px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 120px; height: 14px"
+      ></ion-skeleton-text>
+    </div>
+    }
+  </ion-card>
+
+  } @else {
+
+  <div class="like__header">
+    <ion-icon
+      (click)="goBack()"
+      class="left__arrow"
+      name="left-arrow"
+    ></ion-icon>
+    <ion-text>{{facilityType}} Profile</ion-text>
+    <div></div>
+  </div>
+  <div class="bottom__header">
+    <div
+      tabindex=""
+      (keyup)="upload()"
+      (click)="upload()"
+      class="profile__wrapper"
+    >
+      @if (profileInfoService?.picture?.length ) {
+      <ion-avatar class="avatar-border">
+        <ion-img class="avatar" [src]="profileInfoService?.picture"> </ion-img>
+      </ion-avatar>
+      } @else {
+      <ion-avatar class="avatar-border text__avater">
+        <span>{{profileInfoService.name[0]}} </span>
+      </ion-avatar>
+      }
+    </div>
+    <ion-card
+      class="small__curve"
+      [ngClass]="{
+  'pharmacy': facilityType === FacilityType.Pharmacy,
+  'hospital': facilityType === FacilityType.Hospital,
+  'laboratory': facilityType === FacilityType.Laboratory,
+  'blood-bank': facilityType === FacilityType.BloodBank,
+  'radiology': facilityType === FacilityType.Radiology
+}"
+    >
+      <div class="inside">
+        @if (facilityType===FacilityType.Pharmacy) {
+        <div class="catHolder">
+          <ion-icon src="/icons/catPlusIcon.svg"></ion-icon>
+          <ion-text class="categories">Green Book Types</ion-text>
+        </div>
+        } @else {
+        <div></div>
+        }
+        <div
+          class="pencil"
+          tabindex=""
+          (keyup)="editInfo('category', '')"
+          (click)="editInfo('category', '')"
+        >
+          <ion-icon src="/icons/pencilIcon.svg"></ion-icon>
+        </div>
+      </div>
+      @switch (facilityType) { @case (FacilityType.Pharmacy) { @for (item of
+      greenBookType; track $index) {
+      <div class="list">
+        <ion-icon src="/icons/catTickIcon.svg"></ion-icon
+        ><ion-text>{{item}}</ion-text>
+      </div>
+      } } @case (FacilityType.Laboratory) {
+      <h4>Area of Specialization</h4>
+      @if (category$ | async; as category) { @if (category.specializations) {
+      @for (product of category.specializations; track product) {
+      <div class="blood-item">
+        <ion-icon src="/icons/catTickIcon.svg"></ion-icon>
+        <span class="label">{{ product }}</span>
+      </div>
+      } } } } @case (FacilityType.Radiology) {
+      <div class="d-flex">
+        @if (category$ | async; as category) {
+        <div>
+          <h4>Area of Specialization</h4>
+          @for (item of category.specializations; track $index) {
+          <div class="list">
+            <ion-icon src="/icons/catTickIcon.svg"></ion-icon
+            ><ion-text>{{item}}</ion-text>
+          </div>
+          }
+        </div>
+        }
+      </div>
+      } @case (FacilityType.Hospital) { @if (category$ | async; as category) {
+      <div class="profile-body">
+        <div class="row">
+          <div class="bank-label">Category :</div>
+          <div class="value">{{category.category}}</div>
+        </div>
+
+        <div class="row">
+          <div class="bank-label">Specializations :</div>
+         
+        </div>
+       <div class="spec">
+  @for (item of category.specializations; track $index) {
+    <div class="value">
+      {{ item.name }}
+    </div>
+  }
+</div>
+      </div>
+      } } @case (FacilityType.BloodBank){
+      <div class="license-row">
+        <div>
+          <h3>Blood Bank List</h3>
+          @if (category$ | async; as category) { @if (category.bloodProducts) {
+          @for (product of category.bloodProducts; track product) {
+          <div class="blood-item">
+            <ion-icon src="/icons/catTickIcon.svg"></ion-icon>
+            <span class="label">{{ product }}</span>
+          </div>
+          } } }
+        </div>
+      </div>
+      } } @switch (facilityType) { @case (FacilityType.Pharmacy) {
+
+      <ion-img src="/bg/decoratorProfile.svg"></ion-img>
+      } @case (FacilityType.Radiology) {
+
+      <ion-img src="/bg/decoratorProfile.svg"></ion-img>
+      } @case (FacilityType.Hospital) {
+
+      <ion-img src="/bg/decoratorHospital.svg"></ion-img>
+      } @case (FacilityType.Laboratory) {
+
+      <ion-img class="lab" src="/bg/decoratorLaboratory.svg"></ion-img>
+      } @case (FacilityType.BloodBank) {
+
+      <ion-img class="lab" src="/bg/decoratorLaboratory.svg"></ion-img>
+      } }
+    </ion-card>
+  </div>
+
+  <div>
+    @for (lic of license$ | async; track lic.licenseId) {
+    <ion-card class="license">
+      <div class="inside">
+        <div class="catHolder">
+          <ion-icon src="/icons/license.svg"></ion-icon>
+          <ion-text class="categories">
+            {{ lic.licenseType }} License details
+          </ion-text>
+        </div>
+
+        <div
+          class="pencil"
+          tabindex="0"
+          (keyup)="editInfo('license', lic.licenseId)"
+          (click)="editInfo('license', lic.licenseId)"
+        >
+          <ion-icon src="/icons/pencilIcon.svg"></ion-icon>
+        </div>
+      </div>
+
+      <div class="license-row">
+        <div>
+          <div class="info-label">License ID</div>
+          <div class="info-value">{{ lic.licenseNumber }}</div>
+        </div>
+
+        <div>
+          <div class="info-label">License Issue Date</div>
+          <div class="info-value">{{ lic.issueDate | date: 'dd/MM/yyyy' }}</div>
+        </div>
+      </div>
+
+      <div class="license-row">
+        <div>
+          <div class="info-label">License Expiry Date</div>
+          <div class="info-value">
+            {{ lic.expiryDate | date: 'dd/MM/yyyy' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="license-row">
+        <div>
+          <div class="info-label">PCN License</div>
+        </div>
+        <div
+          tabindex=""
+          (keyup)="viewLicense(lic.referencedDocumentId)"
+          (click)="viewLicense(lic.referencedDocumentId)"
+        >
+          <ion-icon src="/icons/eyeGreenIcon.svg"></ion-icon>
+        </div>
+      </div>
+    </ion-card>
+    }
+  </div>
+
+  <div class="banker">
+    @if (bank$ | async; as bank) {
+      <ion-card class="profile-card bank">
+  <div class="inside">
+    <div class="catHolder">
+      <ion-icon src="/icons/edit.svg"></ion-icon>
+       <ion-text class="categories">Bank Account details</ion-text>
+    </div>
+    <div
+          class="pencil"
+          tabindex=""
+     (keyup)="editInfo('bank', bank.bankAccountId)"
+          (click)="editInfo('bank', bank.bankAccountId)"
+        >
+          <ion-icon src="/icons/pencilIcon.svg"></ion-icon>
+        </div>
+  </div>
+
+  <div class="profile-body">
+    @if(bank?.accountName){
+    <div class="row">
+      <span class="bank-label">Account Name:</span>
+      <span class="value">{{bank?.accountName}}</span>
+    </div>
+    }
+
+    @if(bank?.accountNumber){
+    <div class="row">
+      <span class="bank-label">Account No:</span>
+      <span class="value">{{bank?.accountNumber}}</span>
+    </div>
+    }
+
+    @if(bank?.bank){
+    <div class="row">
+      <span class="bank-label">Bank:</span>
+      <span class="value">{{bank?.bank}}</span>
+    </div>
+    }
+  </div>
+</ion-card>
+   
+    }
+  </div>
+
+  <div class="banker">
+    <ion-card class="bank">
+      <div class="inside">
+        <div class="catHolder">
+          <ion-icon src="/logo/addressHome.svg"></ion-icon>
+          <ion-text class="categories">Address</ion-text>
+        </div>
+        <div
+          class="pencil"
+          tabindex=""
+        >
+          <!-- <ion-icon src="/icons/pencilIcon.svg"></ion-icon> -->
+        </div>
+      </div>
+      @if ((address$ | async);as item) {
+      <div class="inside">
+        <div class="catHolder">
+          <div class="info-label">{{item.address}}</div>
+        </div>
+        <div
+          class="pencil"
+          tabindex=""
+          (keyup)="editInfo('address', item.googlePlaceId)"
+          (click)="editInfo('address', item.googlePlaceId)"
+        >
+          <ion-icon src="/icons/pencilIcon.svg"></ion-icon>
+        </div>
+      </div>
+      }
+    </ion-card>
+  </div>
+
+  <div class="banker">
+    @if (facilityType===FacilityType.Hospital) { @if ((patientType$ | async); as
+    patientCards) { @if (patientCards.length) {
+    <ion-card class="bank">
+      <div class="inside">
+        <div class="catHolder">
+          <ion-icon src="/icons/license.svg"></ion-icon>
+          <ion-text class="categories">Patient Card Type(s)</ion-text>
+        </div>
+        <!-- <div class="pencil" tabindex="" (keyup)="newInfo()" (click)="newInfo()">
+          <ion-icon src="/icons/pencilIcon.svg"></ion-icon>
+        </div> -->
+      </div>
+      @for (item of patientCards; track $index) {
+      <div class="inside">
+        <div>
+          <div class="info-label">Card Fee</div>
+          <div class="info-value">{{item.cardFee}}</div>
+        </div>
+        <div>
+          <div class="info-label">Number of Members</div>
+          <div class="info-value">{{item.membershipLimit}}</div>
+        </div>
+        <div
+          class="pencil"
+          tabindex=""
+          (keyup)="editInfo('PatientCardType', item.cardId)"
+          (click)="editInfo('PatientCardType', item.cardId)"
+        >
+          <ion-icon src="/icons/pencilIcon.svg"></ion-icon>
+        </div>
+      </div>
+      }
+    </ion-card>
+    } } }
+  </div>
+
+  }
+  <div class="end"></div>
+</div>
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="displayFile"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+        <ion-icon
+          (click)="closeSave()"
+          class="closeIcon"
+          src="/logo/closered.svg"
+        ></ion-icon>
+      </div>
+      <ion-card-content class="apply__gap">
+        @if (picture) {
+        <div class="preview-container">
+          <ion-img [src]="picture" class="preview-img"></ion-img>
+        </div>
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>

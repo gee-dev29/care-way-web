@@ -1,0 +1,65 @@
+<ui-page-body>
+  <div class="table__head">
+    <h2 class="title">Staff</h2>
+    <ui-desktop-button
+      [label]="'Add Staff'"
+      [size]="'large'"
+      [primary]="true"
+      (Click)="showAddStaffModal()"
+    ></ui-desktop-button>
+  </div>
+  <back-office-user-table
+    [user$]="staffs$"
+    [totalRecords]="totalRecords"
+    (onLoad)="load($event)"
+    (viewDetails)="view($event)"
+  ></back-office-user-table>
+</ui-page-body>
+<ui-modal
+  [header]="'Add Staff'"
+  #modal
+  [(visibility)]="addStaffModal"
+  [selectedWidth]="'40vw'"
+>
+  <div class="modal__container">
+    <div class="input">
+      <form class="mb-2" [formGroup]="form">
+        <ui-form-body [columns]="'split'" class="form__group">
+          <ui-desktop-input
+            [label]="'First Name'"
+            [control]="firstName"
+            [type]="'text'"
+          ></ui-desktop-input>
+          <ui-desktop-input
+            [label]="'Last Name'"
+            [control]="lastName"
+            [type]="'text'"
+          ></ui-desktop-input>
+          <ui-desktop-input
+            [label]="'Email'"
+            [control]="email"
+          ></ui-desktop-input>
+          <ui-desktop-input
+            [label]="'Phone Number'"
+            [control]="phone"
+          ></ui-desktop-input>
+          <ui-input-drop-down
+            [type]="'dropdown'"
+            [label]="'Gender'"
+            [control]="gender"
+            [options]="genders"
+            [key]="'text'"
+            [value]="'value'"
+          ></ui-input-drop-down>
+        </ui-form-body>
+      </form>
+      <ui-desktop-button
+        [primary]="true"
+        [disabled]="!form.valid"
+        [label]="'Save'"
+        [width]="'full'"
+        (click)="save()"
+      ></ui-desktop-button>
+    </div>
+  </div>
+</ui-modal>

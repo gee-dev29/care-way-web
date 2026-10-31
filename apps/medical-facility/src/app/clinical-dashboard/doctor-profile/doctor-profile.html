@@ -1,0 +1,376 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="prescription" class="ion-padding">
+    @if(loaded){
+    <div class="header">
+      <button
+        type="button"
+        class="back-btn"
+        aria-label="Go back"
+        (click)="goBack()"
+      >
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+      <div class="title">Doctor Profile</div>
+
+      @if (!isNurse && !isThisDoctorModule) {
+      <button type="button" class="con-text" (click)="openConnectModal()">
+        <ion-icon name="paper-plane-outline"></ion-icon>
+        <span>Send Invitation</span>
+      </button>
+      } @else {
+      <div></div>
+      }
+    </div>
+
+    <div color="light" class="ion-content">
+      <div>
+        <div class="profile-container">
+          <div
+            tabindex=""
+            (keyup)="upload()"
+            (click)="upload()"
+            class="profile-photo"
+          >
+            @if (profileInfoService?.picture?.length ) {
+            <ion-avatar class="avatar-border">
+              <ion-img class="avatar" [src]="profileInfoService?.picture">
+              </ion-img>
+            </ion-avatar>
+            } @else {
+            <ion-avatar class="avatar-border text__avater">
+              <span>{{profileInfoService?.name[0]}} </span>
+            </ion-avatar>
+            }
+          </div>
+
+          <div class="info-card">
+            @if (!isNurse) {
+            <div
+              class="pencil__two"
+              tabindex=""
+              (keyup)="editDetails('detail')"
+              (click)="editDetails('detail')"
+            >
+              <ion-icon src="/icons/pencilIcon.svg"></ion-icon>
+            </div>
+            } @if ((professional$ | async); as professional) {
+            <div>
+              <div class="details">
+                <div class="info-row">
+                  <div class="info-label">Name</div>
+                  <div class="info-value">{{professionalName}}</div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">Phone No</div>
+                  <div class="info-value">
+                    {{professional.phone??professional.phoneNumber}}
+                  </div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">Email</div>
+                  <div class="info-value">{{professional.email}}</div>
+                </div>
+                <div class="info-row">
+                  <div class="info-label">Gender</div>
+                  <div class="info-value">{{professional.gender}}</div>
+                </div>
+                <div class="info-row">
+                  <div class="info-label">Cadre</div>
+                  <div class="info-value">{{professional.cadre}}</div>
+                </div>
+                <div class="info-row">
+                  <div class="info-label">Specialization</div>
+                  <div class="info-value">
+                    {{professional.specializationName}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="fee-card">
+          @if (!isThisDoctorModule) { @if (facilityFee$ | async; as fee) {
+          <ui-fee-card [fee]="fee"></ui-fee-card>
+          } } @else { @if (professional$ | async; as professional) {
+          <ui-fee-list-card
+            [fees]="professional.consultationFees"
+            (viewFee)="openFeeDetails($event)"
+          ></ui-fee-list-card>
+          } }
+        </div>
+
+        @if ((license$ |async); as license) {
+        <div class="license-card">
+          <div class="justify_end">
+            <div class="license-card-title">
+              <ion-icon
+                src="/icons/license.svg"
+                size="small"
+                class="img"
+              ></ion-icon>
+              <h3>Doctor License details</h3>
+            </div>
+            @if (!isNurse) {
+            <div
+              class="pencil"
+              tabindex=""
+              (keyup)="editDetails('license')"
+              (click)="editDetails('license')"
+            >
+              <ion-icon src="/icons/pencilIcon.svg"></ion-icon>
+            </div>
+            }
+          </div>
+
+          <div class="justify_end">
+            <div class="info-label">License ID</div>
+            <div class="info-value">{{license.licenseNumber}}</div>
+          </div>
+
+          <div class="justify_end">
+            <div class="info-label">License Issue Date</div>
+            <div class="info-value">
+              {{ license.issueDate | date:'MMM d, y' }}
+            </div>
+          </div>
+          <div class="justify_end">
+            <div class="info-label">License Expiry Date</div>
+            <div class="info-value">
+              {{ license.expiryDate | date:'MMM d, y' }}
+            </div>
+          </div>
+          <div class="justify_end">
+            <div class="info-value">Doctor License</div>
+            <ion-icon
+              name="eye-outline"
+              class="eye-icon"
+              (click)="eyeClicked(license.referencedDocumentId)"
+            ></ion-icon>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    @if(bank !== null){
+    <div class="license-card content" style="background: #d8dfff">
+      <div class="justify_end">
+        <div class="license-card-title">
+          <ion-icon src="/icons/edit.svg" class="img"></ion-icon>
+          <h3>Bank Account Details</h3>
+        </div>
+        @if(!isNurse){
+        <div
+          class="pencil"
+          tabindex=""
+          (keyup.enter)="editBank(bank)"
+          (click)="editBank(bank)"
+        >
+          <ion-icon src="/icons/pencilIcon.svg"></ion-icon>
+        </div>
+        }
+      </div>
+
+      <div class="profile-body">
+        @if(bank?.accountName){
+        <div class="row">
+          <span class="label">Account Name:</span>
+          <span class="value">{{bank?.accountName}}</span>
+        </div>
+        } @if(bank?.accountNumber){
+        <div class="row">
+          <span class="label">Account No:</span>
+          <span class="value">{{bank?.accountNumber}}</span>
+        </div>
+        } @if(bank?.bank){
+        <div class="row">
+          <span class="label">Bank Name:</span>
+          <span class="value">{{bank?.bank}}</span>
+        </div>
+        }
+      </div>
+    </div>
+    }@else{ @if (this.router.url.includes('doctor-dashboard')) {
+    <div
+      class="content"
+      tabindex=""
+      (keyup.enter)="addNew()"
+      (click)="addNew()"
+    >
+      <ui-add-new-entry-card [title]="'Add Bank Account'">
+      </ui-add-new-entry-card>
+    </div>
+    } } } @else {
+
+    <div>
+      <div class="pricing-head">
+        <div class="icon">
+          <ion-skeleton-text
+            animated
+            style="width: 24px; height: 24px"
+          ></ion-skeleton-text>
+        </div>
+        <ion-skeleton-text
+          animated
+          style="width: 140px; height: 20px"
+        ></ion-skeleton-text>
+      </div>
+      <div class="profile-container">
+        <div class="profile-photo">
+          <ion-skeleton-text
+            animated
+            style="width: 120px; height: 120px; border-radius: 50%"
+          ></ion-skeleton-text>
+        </div>
+
+        <ion-skeleton-text
+          class="info-card"
+          animated
+          style="width: 100%; height: 150px"
+        ></ion-skeleton-text>
+      </div>
+
+      <ion-skeleton-text
+        animated
+        class="license-card"
+        style="width: 100%; height: 220px"
+      ></ion-skeleton-text>
+    </div>
+
+    }
+  </div>
+</ion-content>
+
+<ion-modal
+  #modal
+  trigger="open-modal"
+  [isOpen]="displayFile"
+  [canDismiss]="canDismiss"
+>
+  <ng-template>
+    <ion-card class="medium__curve">
+      <div class="header__two">
+        <ion-text>Upload Preview</ion-text>
+        <ion-icon
+          (click)="closeSave()"
+          class="closeIcon"
+          src="/logo/closered.svg"
+        ></ion-icon>
+      </div>
+      <ion-card-content class="apply__gap">
+        @if (picture) {
+        <div class="preview-container">
+          <ion-img [src]="picture" class="preview-img"></ion-img>
+        </div>
+        }
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-modal>
+
+<ion-modal
+  class="con-modal"
+  [isOpen]="availableHospital"
+  (didDismiss)="onDismiss()"
+>
+  <ng-template>
+    <div class="con-modal-body">
+      <div class="con-modal-header">
+        <div>
+          <h3>Send Invitation</h3>
+          <p>
+            Send a hospital invitation to Dr.<span class="highlight"
+              >{{professionalName}}</span
+            >
+          </p>
+        </div>
+        <ion-icon
+          (click)="closeConnectModal()"
+          class="closeIcon"
+          src="/logo/closered.svg"
+        ></ion-icon>
+      </div>
+
+      @if (isLoadingHospitals) {
+      <div class="con-modal-loading">Loading hospitals...</div>
+      } @else if (!availableHospitals.length) {
+      <div class="con-modal-empty">
+        No other hospital found to send connection to.
+      </div>
+      } @else {
+      <div class="con-modal-list">
+        @for (hospital of availableHospitals; track hospital.hospitalId ||
+        hospital.facilityId) {
+        <button
+          type="button"
+          class="con-hospital-item"
+          [class.is-selected]="selectedHospitalId === (hospital.hospitalId || hospital.facilityId)"
+          (click)="selectHospital(hospital)"
+        >
+          <div class="con-hospital-name">{{ hospital.name }}</div>
+          <div class="con-hospital-meta">
+            <span>{{ hospital.address?.city || 'Unknown city' }}</span>
+            <span>{{ hospital.address?.state || '' }}</span>
+          </div>
+        </button>
+        }
+      </div>
+      }
+
+      <div class="con-modal-actions">
+        <button
+          type="button"
+          class="con-modal-btn secondary"
+          (click)="closeConnectModal()"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="button"
+          class="con-text"
+          [disabled]="!selectedHospitalId"
+          (click)="sendVerification()"
+        >
+          <ion-icon name="paper-plane-outline"></ion-icon>
+          <span>Send Invitation</span>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>
+
+<medical-facility-fee-form-modal
+  [title]="'Send Hospital Invitation'"
+  [isOpen]="isModalOpen"
+  [saving]="saving"
+  [fee]="selectedFee"
+  (dismiss)="closeModal()"
+  (save)="saveFee($event)"
+></medical-facility-fee-form-modal>
+
+<ion-modal
+  class="con-modal"
+  [isOpen]="!!viewedFee"
+  (didDismiss)="closeFeeDetails()"
+>
+  <ng-template>
+    <div class="con-modal-body">
+      <div class="con-modal-header">
+        <div>
+          <h3>Consultation Fee</h3>
+        </div>
+        <ion-icon
+          (click)="closeFeeDetails()"
+          class="closeIcon"
+          src="/logo/closered.svg"
+        ></ion-icon>
+      </div>
+
+      <ui-fee-card [fee]="viewedFee"></ui-fee-card>
+    </div>
+  </ng-template>
+</ion-modal>

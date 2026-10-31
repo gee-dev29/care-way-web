@@ -1,0 +1,32 @@
+<ion-content id="background-content" fullscreen>
+  <div #tabs id="home" class="mt-4 page-layout">
+    <div class="header">
+      <ion-icon (click)="routeTo()" name="chevron-back-outline"></ion-icon>
+      <div class="title">Orders</div>
+      <div></div>
+    </div>
+
+    @if((medDetails$ | async); as medDetail){
+    <agency-med-facility-detail-card
+      [email]="medDetail.email"
+      [name]="medDetail.name"
+      [location]="medDetail.state"
+    >
+    </agency-med-facility-detail-card>
+    }
+
+    <div class="tab-content">
+      <div class="section-header">
+        <span class="section-title">Orders ({{ orders.length }})</span>
+      </div>
+
+      <div class="orders-list">
+        @if (orders.length > 0) { @for (order of orders; track order.orderId) {
+        <agency-agency-order-list-card
+          [order]="order"
+        ></agency-agency-order-list-card>
+        } }
+      </div>
+    </div>
+  </div>
+</ion-content>

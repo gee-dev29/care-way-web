@@ -1,0 +1,59 @@
+ion-content {
+  --background: #ffffff;
+}
+
+#add__member {
+  background: #ffffff !important;
+  margin-top: 80px !important;
+}
+
+.up {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.gender {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+.gender__based {
+  margin: 25px 0px;
+}
+
+.gender__based ion-text {
+  font-size: 19px;
+}
+
+form {
+  margin-top: 30px;
+}
+
+.ui__button {
+  margin-top: 30px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  color: #121212;
+  font-weight: 500;
+}

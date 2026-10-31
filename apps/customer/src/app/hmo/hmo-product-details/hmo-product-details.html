@@ -1,0 +1,87 @@
+<ion-content id="background-content" fullscreen>
+  <div class="page ion-padding">
+    <div class="header">
+      <ion-icon
+        tabindex="0"
+        (keyup.enter)="back()"
+        (click)="back()"
+        class="left__arrow"
+        name="left-arrow"
+      ></ion-icon>
+      <div class="title">HMO Product Details</div>
+      <div></div>
+    </div>
+
+    @if (!loaded) {
+    <ion-skeleton-text
+      animated
+      style="width: 100%; height: 120px; border-radius: 16px"
+    ></ion-skeleton-text>
+    <ion-skeleton-text
+      animated
+      style="width: 100%; height: 280px; border-radius: 16px; margin-top: 16px"
+    ></ion-skeleton-text>
+    } @else if (failed) {
+    <p class="empty">We couldn't load this product. Please try again.</p>
+    } @else {
+    <div class="provider">
+      <p class="provider__label">HMO Provider</p>
+      <p class="provider__value">{{ hmo?.name }}</p>
+      <p class="provider__label">Address</p>
+      <p class="provider__value">{{ hmo?.address }}</p>
+    </div>
+
+    <div class="panel">
+      <div class="stats">
+        <div class="stat">
+          <p class="stat__label">Product Name</p>
+          <p class="stat__value">{{ product?.productName }}</p>
+        </div>
+        <div class="stat">
+          <p class="stat__label">Price</p>
+          <p class="stat__value">NGN {{ product?.price | amountFormat }}</p>
+        </div>
+        <div class="stat">
+          <p class="stat__label">Duration</p>
+          <p class="stat__value">{{ product?.durationInMonths }} Months</p>
+        </div>
+        <div class="stat">
+          <p class="stat__label">Maximum No. of Members</p>
+          <p class="stat__value">{{ product?.memberCount }}</p>
+        </div>
+        <div class="stat">
+          <p class="stat__label">Waiting Period</p>
+          <p class="stat__value">{{ product?.waitingPeriods }}</p>
+        </div>
+      </div>
+
+      @if (inclusions.length) {
+      <p class="section">Inclusions</p>
+      <div class="chips">
+        @for (inclusion of inclusions; track $index) {
+        <span class="chip">{{ inclusion }}</span>
+        }
+      </div>
+      } @if (exclusions.length) {
+      <p class="section">Exclusions</p>
+      <div class="chips">
+        @for (exclusion of exclusions; track $index) {
+        <span class="chip">{{ exclusion }}</span>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="cta">
+      <ui-button
+        [label]="'Buy Now'"
+        [width]="'full'"
+        [shape]="'round'"
+        [backgroundColor]="'#317E3D'"
+        [textColor]="'#fff'"
+        (Click)="buyNow()"
+      ></ui-button>
+    </div>
+    }
+  </div>
+</ion-content>

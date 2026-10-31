@@ -1,0 +1,62 @@
+<ion-content fullscreen id="prescription">
+  <div class="up">
+    <div class="header">
+      <div class="sub-head">
+        <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+        <ion-text>Follow up Request</ion-text>
+      </div>
+    </div>
+
+    <form [formGroup]="form" class="full-field">
+      <div class="date-picker">
+        <ion-text class="date-title">Select Date</ion-text>
+
+        <div class="picker">
+          <ui-date-picker [control]="dateControl"></ui-date-picker>
+        </div>
+      </div>
+      <div class="date-picker">
+        <ion-text class="date-title">Select Time</ion-text>
+
+        <div class="picker">
+          <ui-time-picker [control]="timeControl"></ui-time-picker>
+        </div>
+      </div>
+
+      <!-- <div class="select-body">
+        <ui-input
+          label="Select Specialization"
+          [control]="specializationControl"
+          [options]="options"
+          [shouldSearch]="true"
+          [isMultiselect]="false"
+          [isClicked]="isSymptoms"
+          [type]="'dropdown'"
+          (data)="isSymptomsClicked()"
+          (emitted)="offSymptomsClicked()"
+        >
+        </ui-input>
+      </div> -->
+
+      <div>
+        <ui-input-textarea
+          [control]="description"
+          [placeholder]="'Cough and Shortness of breath worsen over a week.'"
+          [label]="'Presenting Complaints'"
+        >
+        </ui-input-textarea>
+      </div>
+    </form>
+
+    <div class="btn-container">
+      <ui-button
+        [label]="'Schedule Appointment'"
+        [width]="'full'"
+        [fill]="'solid'"
+        [shape]="'round'"
+        [backgroundColor]="'primary'"
+        (Click)="continue()"
+      ></ui-button>
+    </div>
+  </div>
+</ion-content>

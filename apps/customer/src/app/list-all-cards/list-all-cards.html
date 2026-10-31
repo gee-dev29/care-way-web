@@ -1,0 +1,102 @@
+<ion-content class="ion-padding">
+  <div class="header up">
+    <ion-icon (click)="goBack()" name="chevron-back-outline"></ion-icon>
+    <div class="title2">
+      {{removeSome?'Pay with Paystack':'My Debit Cards'}}
+    </div>
+    <div></div>
+  </div>
+  @if (orderId) {
+  <div class="amount-display">
+    <p class="label">Amount to Pay</p>
+    <h1 class="value">
+      <span class="currency">₦</span>{{ costSummary?.totalCost | currency:" "}}
+    </h1>
+    <p>Select a card or use a new payment method</p>
+  </div>
+  }
+
+  <div class="card-container">
+    @for (card of cards; track $index) {
+    <div
+      tabindex=""
+      (keydown)="confirmPayment(card)"
+      (click)="confirmPayment(card)"
+      class="bank-card"
+      [ngClass]="getCardClass($index)"
+    >
+      <div class="bg-pattern"></div>
+      <div class="card-header">
+        <span>{{ card.bank }}</span>
+        @switch (card.type) { @case ('mastercard'){
+        <img alt src="/icons/master.svg" class="card-logo" />
+        } @case ('visa') {
+        <img alt src="/icons/visa.svg" class="card-logo" />
+        } @case ('verve') {
+        <img alt src="/icons/verve.svg" class="card-logo" />
+        } }
+      </div>
+
+      <div class="card-body">
+        <div class="chip-contact">
+          <img alt="" src="/icons/chip.svg" class="chip" />
+        </div>
+
+        <div class="card-number">**** **** **** {{ card.last4 }}</div>
+
+        <div class="card-footer">
+          <div>
+            <small>Name</small>
+            <div>{{ card.name }}</div>
+          </div>
+
+          <div>
+            <small>Expiry Date</small>
+            <div>{{ card.expiry }}</div>
+          </div>
+          @if (!removeSome) {
+          <ion-icon
+            (click)="deleteCard(card)"
+            class="delete"
+            name="trash-bin-outline"
+          ></ion-icon>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  @if (removeSome) {
+  <div class="move__down">
+    <ui-button
+      [label]="'New Payment Method'"
+      [width]="'full'"
+      [fill]="'solid'"
+      [shape]="'round'"
+      [backgroundColor]="'#307d3d'"
+      [textColor]="'#FDFDFD'"
+      [loading]="loading"
+      (Click)="route()"
+    ></ui-button>
+  </div>
+  }
+</ion-content>
+<ui-confirmation-modal
+  [heading]="'Are you sure you want to remove this card?'"
+  [background]="'#307D3D'"
+  [open]="prompt"
+  [loading]="loading"
+  (next)="deleteIt()"
+  (no)="closeConfirmationModal()"
+  (dismiss)="closeConfirmationModal()"
+></ui-confirmation-modal>
+<ui-confirmation-modal
+  [heading]="`Are you sure you want to make payment of ${
+  (costSummary?.totalCost) | currency:' ₦'} with card ending with ${cardInfo?.last4}?`"
+  [background]="'#307D3D'"
+  [loading]="loading"
+  [open]="promptUsingCard"
+  (next)="payIt()"
+  (no)="closePayModal()"
+  (dismiss)="closePayModal()"
+></ui-confirmation-modal>

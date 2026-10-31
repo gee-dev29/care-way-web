@@ -1,0 +1,49 @@
+<ui-page-body>
+  <div class="page">
+    <div class="table__head">
+      <div class="grouped__btn">
+        <img
+          class="left-arrow-icon"
+          tabindex=""
+          (keyup.enter)="back()"
+          (click)="back()"
+          src="icons/left-arrow-black.svg"
+          alt=""
+        />
+        <h2 class="title">{{ isEdit ? 'Edit HMO' : 'Create HMO' }}</h2>
+      </div>
+    </div>
+    <form [formGroup]="form">
+      <ui-form-body [columns]="'split'" class="form__body">
+        <ui-desktop-input [label]="'Name'" [control]="name"></ui-desktop-input>
+        <ui-desktop-input
+          [label]="'Contact Person'"
+          [control]="contactPerson"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [label]="'Contact Email'"
+          [control]="contactEmail"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [label]="'Contact Phone'"
+          [control]="contactPhone"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [label]="'Address'"
+          [control]="address"
+        ></ui-desktop-input>
+        <ui-desktop-input
+          [label]="'Markup (%)'"
+          [control]="markUp"
+        ></ui-desktop-input>
+        <ui-desktop-input [label]="'URL'" [control]="url"></ui-desktop-input>
+      </ui-form-body>
+      <ui-desktop-button
+        [label]="'Save'"
+        [primary]="true"
+        [disabled]="!form.valid"
+        (click)="save()"
+      ></ui-desktop-button>
+    </form>
+  </div>
+</ui-page-body>

@@ -1,0 +1,11 @@
+@if (showIndicator) {
+<div
+  tabindex=""
+  class="call-indicator"
+  (keyup.enter)="returnToCall()"
+  (click)="returnToCall()"
+>
+  <ion-icon src="/icons/radio-button-on-outline.svg"></ion-icon>
+  <span>Return to call</span>
+</div>
+}
