@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import {
   AuthService,
   ProfileInfoService,
   ToastService,
-} from '@healbridge/shared';
-import { Biometric, ConfirmationModal } from '@healbridge/ui';
+} from '@care-way/shared';
+import { Biometric, ConfirmationModal } from '@care-way/ui';
 import { IonIcon, IonImg, IonAvatar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {

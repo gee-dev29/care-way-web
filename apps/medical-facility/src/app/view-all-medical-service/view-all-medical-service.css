@@ -1,7 +1,7 @@
 :host {
-  --hb-green: #307d3d;
-  --hb-green-soft: #e8f3ea;
-  --hb-green-line: #cfe3d3;
+  --hb-blue: #0284c7;
+  --hb-blue-soft: #e0f2fe;
+  --hb-blue-line: #bae6fd;
   --hb-ink: #1a1a1a;
   --hb-ink-muted: #6f786f;
   --hb-surface: #ffffff;
@@ -36,7 +36,7 @@
 }
 
 .back-btn:active {
-  background: var(--hb-green-soft);
+  background: var(--hb-blue-soft);
 }
 
 .back-btn ion-icon {
@@ -73,9 +73,9 @@
   height: 36px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid var(--hb-green-line);
+  border: 1px solid var(--hb-blue-line);
   background: var(--hb-surface);
-  color: var(--hb-green);
+  color: var(--hb-blue);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -84,9 +84,9 @@
 }
 
 .filter-chip.active {
-  background: var(--hb-green);
+  background: var(--hb-blue);
   color: #ffffff;
-  border-color: var(--hb-green);
+  border-color: var(--hb-blue);
 }
 
 
@@ -101,7 +101,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  background: var(--hb-green-soft);
+  background: var(--hb-blue-soft);
   border-radius: 14px;
   padding: 14px;
 }

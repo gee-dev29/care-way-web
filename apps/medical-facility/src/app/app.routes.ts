@@ -26,7 +26,7 @@ import {
   ConsultationLiveVideo,
   PreviewVideo,
   PaymentSummary,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { AddMedicalService } from './add-medical-service/add-medical-service';
 import { Laboratory } from './laboratory/laboratory';
 import { LaboratoryDetails } from './laboratory-details/laboratory-details';
@@ -155,7 +155,7 @@ import { AddDoctorLicense } from './add-doctor-license/add-doctor-license';
 import { OrderDetails } from './order-details/order-details';
 import { ConfirmDispatchPin } from './confirm-dispatch-pin/confirm-dispatch-pin';
 import { AppointmentVideoCallDoctor } from './appointment-video-call-doctor/appointment-video-call-doctor';
-import { AuthGuard } from '@healbridge/shared';
+import { AuthGuard } from '@care-way/shared';
 import { AddDoctorBank } from './add-doctor-bank/add-doctor-bank';
 import { MedWalletHistory } from './med-wallet-history/med-wallet-history';
 import { MedWalletWithdrawal } from './med-wallet-withdrawal/med-wallet-withdrawal';

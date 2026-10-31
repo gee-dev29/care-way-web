@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ApiService, VitalSignType } from '@healbridge/api';
-import { AddBp } from '@healbridge/ui';
+import { ApiService, VitalSignType } from '@care-way/api';
+import { AddBp } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

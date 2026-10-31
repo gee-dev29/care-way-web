@@ -1,7 +1,7 @@
 :host {
-  --hb-green: #307d3d;
-  --hb-green-soft: #e8f3ea;
-  --hb-green-line: #cfe3d3;
+  --hb-blue: #0284c7;
+  --hb-blue-soft: #e0f2fe;
+  --hb-blue-line: #bae6fd;
   --hb-amber: #e8a13a;
   --hb-red: #d9463e;
   --hb-ink: #1a1a1a;
@@ -38,7 +38,7 @@
 }
 
 .back-btn:active {
-  background: var(--hb-green-soft);
+  background: var(--hb-blue-soft);
 }
 
 .back-btn ion-icon {
@@ -80,9 +80,9 @@
   height: 36px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid var(--hb-green-line);
+  border: 1px solid var(--hb-blue-line);
   background: var(--hb-surface);
-  color: var(--hb-green);
+  color: var(--hb-blue);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -91,9 +91,9 @@
 }
 
 .filter-chip.active {
-  background: var(--hb-green);
+  background: var(--hb-blue);
   color: #ffffff;
-  border-color: var(--hb-green);
+  border-color: var(--hb-blue);
 }
 
 .filter-count {
@@ -104,8 +104,8 @@
   height: 20px;
   padding: 0 6px;
   border-radius: 999px;
-  background: var(--hb-green-soft);
-  color: var(--hb-green);
+  background: var(--hb-blue-soft);
+  color: var(--hb-blue);
   font-size: 11px;
   font-weight: 600;
   line-height: 1;
@@ -125,15 +125,15 @@
 }
 
 .request-card {
-  background: var(--hb-green-soft);
-  border: 1px solid var(--hb-green-line);
+  background: var(--hb-blue-soft);
+  border: 1px solid var(--hb-blue-line);
   border-radius: 14px;
   padding: 14px;
 }
 
 .request-card.is-rejected {
   /* background: var(--hb-surface); */
-  border: 1px solid var(--hb-green-line);
+  border: 1px solid var(--hb-blue-line);
 }
 
 .card-top {
@@ -150,7 +150,7 @@
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  background: var(--hb-green);
+  background: var(--hb-blue);
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
@@ -209,7 +209,7 @@
 
 .status.approved {
   background: #d9ecdd;
-  color: var(--hb-green);
+  color: var(--hb-blue);
 }
 
 .status.rejected {
@@ -223,7 +223,7 @@
   gap: 8px;
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid var(--hb-green-soft);
+  border-top: 1px solid var(--hb-blue-soft);
 }
 
 .rejection-icon {
@@ -266,7 +266,7 @@
   padding: 9px 16px;
   border-radius: 999px;
   border: none;
-  background: var(--hb-green);
+  background: var(--hb-blue);
   color: #ffffff;
   font-size: 13px;
   font-weight: 600;
@@ -300,8 +300,8 @@
   height: 56px;
   margin-bottom: 6px;
   border-radius: 999px;
-  background: var(--hb-green-soft);
-  color: var(--hb-green);
+  background: var(--hb-blue-soft);
+  color: var(--hb-blue);
 }
 
 .empty-icon ion-icon {

@@ -5,8 +5,8 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { SharedEmptyBank } from '@healbridge/ui';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { SharedEmptyBank } from '@care-way/ui';
+import { ApiService, FacilityType } from '@care-way/api';
 import { IonContent } from "@ionic/angular/standalone";
 @Component({
   selector: 'medical-facility-pharm-empty-bank',

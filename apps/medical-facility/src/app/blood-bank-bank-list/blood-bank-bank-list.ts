@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { ApiService, FacilityType } from '@care-way/api';
 
-import { SharedListBank } from '@healbridge/ui';
+import { SharedListBank } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-blood-bank-bank-list',

@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, ProfessionalType } from '@healbridge/api';
-import { NurseActiveFacility } from '@healbridge/shared';
+import { ApiService, ProfessionalType } from '@care-way/api';
+import { NurseActiveFacility } from '@care-way/shared';
 import {
   ButtonComponent,
   ConfirmationModal,
   InputTextarea,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonIcon,
   IonModal,

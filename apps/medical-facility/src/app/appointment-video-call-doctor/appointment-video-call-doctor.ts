@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, StreamActor } from '@healbridge/api';
-import { AgoraService, ToastService } from '@healbridge/shared';
+import { ApiService, StreamActor } from '@care-way/api';
+import { AgoraService, ToastService } from '@care-way/shared';
 import { catchError, delay, retryWhen, take, throwError } from 'rxjs';
 import moment from 'moment';
 import { CountdownComponent } from 'ngx-countdown';

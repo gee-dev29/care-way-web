@@ -12,9 +12,9 @@ import {
   IonCheckbox,
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent, InputComponent, ToastService } from '@healbridge/ui';
+import { ButtonComponent, InputComponent, ToastService } from '@care-way/ui';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, FacilityType, GreenBookType } from '@healbridge/api';
+import { ApiService, FacilityType, GreenBookType } from '@care-way/api';
 import { Validators, FormControl } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';

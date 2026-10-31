@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BloodGroup, BloodProduct } from '@healbridge/api';
-import { ConversionService, } from '@healbridge/shared';
-import { ButtonComponent, InputComponent, Item } from '@healbridge/ui';
+import { BloodGroup, BloodProduct } from '@care-way/api';
+import { ConversionService, } from '@care-way/shared';
+import { ButtonComponent, InputComponent, Item } from '@care-way/ui';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 
 @Component({

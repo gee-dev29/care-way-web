@@ -14,10 +14,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ButtonComponent, InputComponent, ToastService } from '@healbridge/ui';
-import { ConversionService, SetCountry } from '@healbridge/shared';
+import { ButtonComponent, InputComponent, ToastService } from '@care-way/ui';
+import { ConversionService, SetCountry } from '@care-way/shared';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { v4 } from 'uuid';
 import { map, Observable, switchMap } from 'rxjs';
 @Component({

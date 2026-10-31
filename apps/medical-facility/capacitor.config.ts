@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 /* eslint-disable @nx/enforce-module-boundaries */
 const config: CapacitorConfig = {
   appId: 'app.healbridge.facility',
-  appName: 'HealBridge Medical',
+  appName: 'Care-Way Medical',
   webDir: '../../dist/apps/medical-facility/browser',
   bundledWebRuntime: false,
   server: {

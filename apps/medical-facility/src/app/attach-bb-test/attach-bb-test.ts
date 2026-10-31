@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, GreenBookType } from '@healbridge/api';
+import { ApiService, GreenBookType } from '@care-way/api';
 import {
   ConversionService,
   DocumentStatus,
   FacilityTypeService,
-} from '@healbridge/shared';
-import { ButtonComponent, SafePipe, ConfirmationModal } from '@healbridge/ui';
+} from '@care-way/shared';
+import { ButtonComponent, SafePipe, ConfirmationModal } from '@care-way/ui';
 import {
   IonCard,
   IonCardContent,

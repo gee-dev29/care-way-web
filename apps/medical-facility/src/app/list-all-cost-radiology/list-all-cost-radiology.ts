@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FacilityType } from '@healbridge/api';
-import { ListAllCost } from "@healbridge/ui";
+import { FacilityType } from '@care-way/api';
+import { ListAllCost } from "@care-way/ui";
 
 @Component({
   selector: 'medical-facility-list-all-cost-radiology',

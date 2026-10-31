@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RequestCard } from '@healbridge/ui';
+import { RequestCard } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-blood-bank-cost-request-details',

@@ -8,9 +8,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { DocumentStatus, FacilityTypeService } from '@healbridge/shared';
-import { ButtonComponent, SafePipe, ConfirmationModal } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { DocumentStatus, FacilityTypeService } from '@care-way/shared';
+import { ButtonComponent, SafePipe, ConfirmationModal } from '@care-way/ui';
 import {
   IonCard,
   IonCardContent,

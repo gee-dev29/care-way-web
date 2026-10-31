@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { FacilityTypeService, DocumentStatus } from '@healbridge/shared';
-import { ButtonComponent } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { FacilityTypeService, DocumentStatus } from '@care-way/shared';
+import { ButtonComponent } from '@care-way/ui';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {

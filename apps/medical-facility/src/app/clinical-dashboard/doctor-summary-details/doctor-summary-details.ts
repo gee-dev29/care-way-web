@@ -3,8 +3,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
-import { SummaryDetalilsCardOne } from '@healbridge/ui';
-import { ButtonComponent } from '@healbridge/ui';
+import { SummaryDetalilsCardOne } from '@care-way/ui';
+import { ButtonComponent } from '@care-way/ui';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   standalone: true,

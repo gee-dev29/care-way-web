@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { WalletFlow, WalletFlowType } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { WalletFlow, WalletFlowType } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 @Component({
   selector: 'medical-facility-doctor-credit-or-debit-details',

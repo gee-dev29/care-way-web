@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ApiService } from '@healbridge/api';
-import { AuthService, environment, FacilityTypeService, SetCountry } from '@healbridge/shared';
-import { SharedLogin } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AuthService, environment, FacilityTypeService, SetCountry } from '@care-way/shared';
+import { SharedLogin } from '@care-way/ui';
 @Component({
   selector: 'medical-facility-login',
   imports: [SharedLogin],

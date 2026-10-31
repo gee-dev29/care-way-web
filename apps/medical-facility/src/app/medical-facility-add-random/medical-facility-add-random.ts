@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ApiService, VitalSignType } from '@healbridge/api';
-import { TestingType } from '@healbridge/shared';
-import { AddRandom } from '@healbridge/ui';
+import { ApiService, VitalSignType } from '@care-way/api';
+import { TestingType } from '@care-way/shared';
+import { AddRandom } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

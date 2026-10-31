@@ -5,9 +5,9 @@ import {
   ApiService,
   AppointmentType,
   MedicalAppointmentStatus,
-} from '@healbridge/api';
-import { NurseActiveFacility } from '@healbridge/shared';
-import { AppointmentCardPrimary } from '@healbridge/ui';
+} from '@care-way/api';
+import { NurseActiveFacility } from '@care-way/shared';
+import { AppointmentCardPrimary } from '@care-way/ui';
 import {
   InfiniteScrollCustomEvent,
   IonButton,

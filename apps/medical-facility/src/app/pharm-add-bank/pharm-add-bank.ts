@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { SharedAddBank } from '@healbridge/ui';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { SharedAddBank } from '@care-way/ui';
+import { ApiService, FacilityType } from '@care-way/api';
 @Component({
   selector: 'medical-facility-pharm-add-bank',
   imports: [CommonModule, SharedAddBank],

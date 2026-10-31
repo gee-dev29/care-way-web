@@ -7,8 +7,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { v4 } from 'uuid';
-import { SharedListAddress } from '@healbridge/ui';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { SharedListAddress } from '@care-way/ui';
+import { ApiService, FacilityType } from '@care-way/api';
 import { IonContent } from '@ionic/angular/standalone';
 @Component({
   selector: 'medical-facility-pharm-list-address',

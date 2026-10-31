@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ConversionService,  RadiologyCategory, TestType, } from '@healbridge/shared';
-import { ButtonComponent, ConfirmationModal, InputComponent, Item } from '@healbridge/ui';
+import { ConversionService,  RadiologyCategory, TestType, } from '@care-way/shared';
+import { ButtonComponent, ConfirmationModal, InputComponent, Item } from '@care-way/ui';
 import { IonContent, IonIcon, IonText,  } from '@ionic/angular/standalone';
 
 @Component({

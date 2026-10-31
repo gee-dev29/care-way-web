@@ -7,12 +7,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, Gender, ProfessionalType } from '@healbridge/api';
+import { ApiService, Gender, ProfessionalType } from '@care-way/api';
 import {
   ButtonComponent,
   InputComponent,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';

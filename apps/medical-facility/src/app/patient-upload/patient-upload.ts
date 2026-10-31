@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { IonContent } from '@ionic/angular/standalone';
-import { UploadComponent } from '@healbridge/ui';
+import { UploadComponent } from '@care-way/ui';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
+import { ApiService } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
 
 @Component({
   selector: 'medical-facility-patient-upload',

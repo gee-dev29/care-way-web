@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, MedicalProduct, ProductType } from '@healbridge/api';
-import { MedicalServiceCard, PlusIconComponent } from '@healbridge/ui';
+import { ApiService, MedicalProduct, ProductType } from '@care-way/api';
+import { MedicalServiceCard, PlusIconComponent } from '@care-way/ui';
 import {
   InfiniteScrollCustomEvent,
   IonContent,

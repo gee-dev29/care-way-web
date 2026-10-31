@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { IonContent } from '@ionic/angular/standalone';
-import { SummaryDetailCard } from '@healbridge/ui';
+import { SummaryDetailCard } from '@care-way/ui';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { chevronDownOutline, chevronForwardOutline } from 'ionicons/icons';

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService, FacilityType } from '@healbridge/api';
-import { SharedListAddress } from '@healbridge/ui';
+import { ApiService, FacilityType } from '@care-way/api';
+import { SharedListAddress } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-laboratory-address-list',

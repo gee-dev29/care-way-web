@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ButtonComponent } from '@healbridge/ui';
+import { ButtonComponent } from '@care-way/ui';
 import {
   IonContent,
   IonIcon,

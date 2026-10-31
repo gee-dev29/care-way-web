@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { UploadComponent } from '@healbridge/ui';
+import { UploadComponent } from '@care-way/ui';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonContent } from '@ionic/angular/standalone';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 
 @Component({
   selector: 'medical-facility-upload-pharmacist-license',

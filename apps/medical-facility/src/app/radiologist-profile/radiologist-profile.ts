@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService, ProfessionalType } from '@healbridge/api';
+import { ApiService, ProfessionalType } from '@care-way/api';
 import { IonContent } from '@ionic/angular/standalone';
-import { SharedProfile } from '@healbridge/ui';
+import { SharedProfile } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-radiologist-profile',

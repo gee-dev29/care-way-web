@@ -24,18 +24,18 @@ import {
   AppointmentCardPrimary,
   MedicalServiceCard,
   WalletCard,
-} from '@healbridge/ui';
-import { AuthService, FacilityTypeService } from '@healbridge/shared';
+} from '@care-way/ui';
+import { AuthService, FacilityTypeService } from '@care-way/shared';
 import {
   ApiService,
   AppointmentType,
   FacilityType,
   MedicalAppointmentStatus,
   ProfessionalType,
-} from '@healbridge/api';
+} from '@care-way/api';
 import moment from 'moment';
 import { forkJoin, Observable, of, Subject, takeUntil } from 'rxjs';
-import { DashboardIdentitiesListCard } from '@healbridge/ui';
+import { DashboardIdentitiesListCard } from '@care-way/ui';
 @Component({
   standalone: true,
   selector: 'medical-facility-hospital-dashboard',

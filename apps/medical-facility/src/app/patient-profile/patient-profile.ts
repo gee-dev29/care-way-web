@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, AppointmentType } from '@healbridge/api';
+import { ApiService, AppointmentType } from '@care-way/api';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MedicalAppointmentStatus, ProfessionalType } from '@healbridge/api';
+import { MedicalAppointmentStatus, ProfessionalType } from '@care-way/api';
 import {
   IonContent,
   IonIcon,
@@ -19,8 +19,8 @@ import moment from 'moment';
 import { map, Observable, Subject, takeUntil } from 'rxjs';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
-import { FacilityTypeService, LimitSize } from '@healbridge/shared';
-import { ConfirmationModal, PlusIconComponent, ToastService } from '@healbridge/ui';
+import { FacilityTypeService, LimitSize } from '@care-way/shared';
+import { ConfirmationModal, PlusIconComponent, ToastService } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-patient-profile',

@@ -5,8 +5,8 @@ import {
   ApiService,
   AppointmentType,
   MedicalAppointmentStatus,
-} from '@healbridge/api';
-import { ConfirmationModal, AppointmentCardPrimary } from '@healbridge/ui';
+} from '@care-way/api';
+import { ConfirmationModal, AppointmentCardPrimary } from '@care-way/ui';
 import {
   InfiniteScrollCustomEvent,
   IonButton,

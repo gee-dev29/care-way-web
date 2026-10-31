@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, MedicalAppointmentStatus } from '@healbridge/api';
+import { ApiService, MedicalAppointmentStatus } from '@care-way/api';
 import {
   AuthService,
   DocumentStatus,
   ProfileInfoService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   AddNewEntryCard,
   ButtonComponent,
@@ -18,7 +18,7 @@ import {
   ToastService,
   AppointmentCardPrimary,
   WalletCard,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonIcon,
   IonModal,

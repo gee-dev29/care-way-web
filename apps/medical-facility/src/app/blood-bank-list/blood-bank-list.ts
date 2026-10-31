@@ -6,9 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, BloodProduct, FacilityType } from '@healbridge/api';
-import { ConversionService } from '@healbridge/shared';
-import { ButtonComponent, InputComponent, ToastService } from '@healbridge/ui';
+import { ApiService, BloodProduct, FacilityType } from '@care-way/api';
+import { ConversionService } from '@care-way/shared';
+import { ButtonComponent, InputComponent, ToastService } from '@care-way/ui';
 import {
   IonCard,
   IonCardContent,

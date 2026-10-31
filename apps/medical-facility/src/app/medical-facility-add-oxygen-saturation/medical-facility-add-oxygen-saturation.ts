@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ApiService, VitalSignType } from '@healbridge/api';
+import { ApiService, VitalSignType } from '@care-way/api';
 import { IonContent } from '@ionic/angular/standalone';
-import { AddOxygenSaturation as newOxygen } from '@healbridge/ui';
+import { AddOxygenSaturation as newOxygen } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-medical-facility-add-oxygen-saturation',

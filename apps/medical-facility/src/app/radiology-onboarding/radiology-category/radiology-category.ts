@@ -12,15 +12,15 @@ import {
   IonIcon,
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent, InputComponent, ToastService } from '@healbridge/ui';
+import { ButtonComponent, InputComponent, ToastService } from '@care-way/ui';
 import {
   ConversionService,
   DiagnosticRadiology,
   FacilityType,
   InterventionalRadiology,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline, chevronDown, chevronUp } from 'ionicons/icons';
 import { FormControl, Validators } from '@angular/forms';

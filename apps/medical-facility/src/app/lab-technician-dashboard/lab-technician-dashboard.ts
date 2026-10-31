@@ -14,10 +14,10 @@ import {
   AddNewEntryCard,
   CardIdentityType,
   DashboardIdentitiesListCard,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { Router } from '@angular/router';
-import { ApiService, FacilityType } from '@healbridge/api';
-import { AuthService, FacilityTypeService } from '@healbridge/shared';
+import { ApiService, FacilityType } from '@care-way/api';
+import { AuthService, FacilityTypeService } from '@care-way/shared';
 import { AsyncPipe } from '@angular/common';
 import { forkJoin, Observable, of, Subject, takeUntil } from 'rxjs';
 

@@ -5,9 +5,9 @@ import {
   OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { ApiService, FacilityType } from '@care-way/api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SharedLicense } from '@healbridge/ui';
+import { SharedLicense } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-pharm-license',

@@ -5,7 +5,7 @@ import {
   Input,
 } from '@angular/core';
 import { IonContent } from '@ionic/angular/standalone';
-import { AppointmentForm, Item } from '@healbridge/ui';
+import { AppointmentForm, Item } from '@care-way/ui';
 import { Router } from '@angular/router';
 
 @Component({

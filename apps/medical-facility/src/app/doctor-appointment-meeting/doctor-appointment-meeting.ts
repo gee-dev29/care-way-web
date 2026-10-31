@@ -1,8 +1,8 @@
 import { Component, inject, OnDestroy } from '@angular/core';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { ViewAppointment } from '../view-appointment/view-appointment';
 import { ActivatedRoute } from '@angular/router';
-import { VitalsRefresh } from '@healbridge/shared';
+import { VitalsRefresh } from '@care-way/shared';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({

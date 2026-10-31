@@ -1,4 +1,4 @@
-package app.healbridge.facility;
+package app.care-way.facility;
 
 import com.getcapacitor.BridgeActivity;
 

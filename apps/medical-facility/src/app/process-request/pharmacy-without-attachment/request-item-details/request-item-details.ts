@@ -8,9 +8,9 @@ import {
   FormGroup,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, GreenBookType } from '@healbridge/api';
-import { ConversionService, UOM } from '@healbridge/shared';
-import { InputComponent, ButtonComponent, ConfirmationModal, LimitSize, ScheduleCard } from '@healbridge/ui';
+import { ApiService, GreenBookType } from '@care-way/api';
+import { ConversionService, UOM } from '@care-way/shared';
+import { InputComponent, ButtonComponent, ConfirmationModal, LimitSize, ScheduleCard } from '@care-way/ui';
 import {
   IonContent,
   IonIcon,

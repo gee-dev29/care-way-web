@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { AgoraService } from '@healbridge/shared';
+import { AgoraService } from '@care-way/shared';
 import { IonIcon } from '@ionic/angular/standalone';
 import { filter } from 'rxjs';
 

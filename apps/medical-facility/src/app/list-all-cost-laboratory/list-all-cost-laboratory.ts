@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ApiService, FacilityType } from '@healbridge/api';
-import { AuthService, FacilityTypeService } from '@healbridge/shared';
-import { ListAllCost } from '@healbridge/ui';
+import { ApiService, FacilityType } from '@care-way/api';
+import { AuthService, FacilityTypeService } from '@care-way/shared';
+import { ListAllCost } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 import { Subject, takeUntil } from 'rxjs';
 

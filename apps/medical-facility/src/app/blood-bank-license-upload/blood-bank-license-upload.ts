@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { UploadComponent } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { UploadComponent } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-blood-bank-license-upload',

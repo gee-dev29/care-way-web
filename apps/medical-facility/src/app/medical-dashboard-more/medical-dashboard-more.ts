@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { ApiService, FacilityType } from '@care-way/api';
 import {
   AuthService,
   FacilityTypeService,
   ProfileInfoService,
   ToastService,
-} from '@healbridge/shared';
-import { Biometric, MoreMenuPage } from '@healbridge/ui';
+} from '@care-way/shared';
+import { Biometric, MoreMenuPage } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

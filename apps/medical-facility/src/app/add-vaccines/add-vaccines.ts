@@ -14,10 +14,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, GreenBookType, ReferralType } from '@healbridge/api';
-import { ConversionService, Frequency } from '@healbridge/shared';
+import { ApiService, GreenBookType, ReferralType } from '@care-way/api';
+import { ConversionService, Frequency } from '@care-way/shared';
 
-import { ButtonComponent, InputComponent, Item } from '@healbridge/ui';
+import { ButtonComponent, InputComponent, Item } from '@care-way/ui';
 import { IonIcon, IonText } from '@ionic/angular/standalone';
 import { v4 } from 'uuid';
 

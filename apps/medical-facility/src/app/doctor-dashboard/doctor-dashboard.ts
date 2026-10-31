@@ -12,9 +12,9 @@ import {
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
-import { ApiService, ProfessionalType } from '@healbridge/api';
-import { AuthService, ToastService } from '@healbridge/shared';
-import { PushService } from '@healbridge/ui';
+import { ApiService, ProfessionalType } from '@care-way/api';
+import { AuthService, ToastService } from '@care-way/shared';
+import { PushService } from '@care-way/ui';
 import {
   IonAvatar,
   IonBadge,

@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConversionService, Specialization } from '@healbridge/shared';
-import { Item, AppointmentForm } from '@healbridge/ui';
+import { ConversionService, Specialization } from '@care-way/shared';
+import { Item, AppointmentForm } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

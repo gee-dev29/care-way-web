@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService, FacilityType } from '@healbridge/api';
-import { ProfileInfoService } from '@healbridge/shared';
-import { SharedProfilePage } from '@healbridge/ui';
+import { ApiService, FacilityType } from '@care-way/api';
+import { ProfileInfoService } from '@care-way/shared';
+import { SharedProfilePage } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

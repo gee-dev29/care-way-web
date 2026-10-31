@@ -6,9 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { ConversionService, DrugsForms } from '@healbridge/shared';
-import { InputComponent, ButtonComponent, Item, LimitSize } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { ConversionService, DrugsForms } from '@care-way/shared';
+import { InputComponent, ButtonComponent, Item, LimitSize } from '@care-way/ui';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { v4 } from 'uuid';
 

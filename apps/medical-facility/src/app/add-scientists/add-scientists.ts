@@ -5,9 +5,9 @@ import {
   FacilityType,
   Gender,
   ProfessionalType,
-} from '@healbridge/api';
-import { ConversionService } from '@healbridge/shared';
-import { AddNewMember } from '@healbridge/ui';
+} from '@care-way/api';
+import { ConversionService } from '@care-way/shared';
+import { AddNewMember } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

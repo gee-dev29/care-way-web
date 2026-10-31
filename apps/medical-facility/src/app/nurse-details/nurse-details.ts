@@ -1,8 +1,8 @@
 import { CommonModule,  Location } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApiService, ProfessionalType } from '@healbridge/api';
-import { AddNewEntryCard, ToastService } from '@healbridge/ui';
+import { ApiService, ProfessionalType } from '@care-way/api';
+import { AddNewEntryCard, ToastService } from '@care-way/ui';
 import { IonContent, IonIcon, IonText, IonImg, IonSkeletonText, IonAvatar, IonCard, IonCardContent, IonModal } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline, eye, paperPlaneOutline } from 'ionicons/icons';

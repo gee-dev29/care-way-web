@@ -16,13 +16,13 @@ import {
   InputComponent,
   LimitSize,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   ConversionService,
   FacilityType,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { FormControl, Validators } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';

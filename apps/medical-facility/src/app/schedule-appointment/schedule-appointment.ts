@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, AppointmentType } from '@healbridge/api';
-import { ConversionService, LimitSize } from '@healbridge/shared';
-import { ScheduleAppointment } from '@healbridge/ui';
+import { ApiService, AppointmentType } from '@care-way/api';
+import { ConversionService, LimitSize } from '@care-way/shared';
+import { ScheduleAppointment } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

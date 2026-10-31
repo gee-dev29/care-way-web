@@ -7,13 +7,13 @@ import {
   chevronBackOutline,
   chevronForwardOutline,
 } from 'ionicons/icons';
-import { ButtonComponent, InputComponent } from '@healbridge/ui';
+import { ButtonComponent, InputComponent } from '@care-way/ui';
 import { Subject, takeUntil } from 'rxjs';
 import {
   DocumentStatus,
   FacilityTypeService,
   ToastService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 
 import { CommonModule } from '@angular/common';
 import {
@@ -24,7 +24,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { ApiService, FacilityType } from '@care-way/api';
 
 @Component({
   selector: 'medical-facility-confirm-dispatch-pin',

@@ -12,15 +12,15 @@ import {
   FacilityType,
   Gender,
   ProfessionalType,
-} from '@healbridge/api';
-import { Cadre, ConversionService, Specialization } from '@healbridge/shared';
+} from '@care-way/api';
+import { Cadre, ConversionService, Specialization } from '@care-way/shared';
 import {
   ButtonComponent,
   InputCalendar,
   InputComponent,
   Item,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';

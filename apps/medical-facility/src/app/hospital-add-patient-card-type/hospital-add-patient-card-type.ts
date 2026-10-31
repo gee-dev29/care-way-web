@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AddPatientCardType } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AddPatientCardType } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-hospital-add-patient-card-type',

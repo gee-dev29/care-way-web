@@ -5,16 +5,16 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { ApiService, FacilityType } from '@care-way/api';
 import { PharmacyDashboard } from '../pharmacy-dashboard/pharmacy-dashboard';
 import { RadiologyDashboard } from '../radiology-dashboard/radiology-dashboard';
 import { LabTechnicianDashboard } from '../lab-technician-dashboard/lab-technician-dashboard';
 import { ManageDoctors } from '../clinical-dashboard/manage-doctors/manage-doctors';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LabDashboard } from '../lab-dashboard/lab-dashboard';
-import { AuthService, FacilityTypeService } from '@healbridge/shared';
+import { AuthService, FacilityTypeService } from '@care-way/shared';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
-import { ToastService } from '@healbridge/ui';
+import { ToastService } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-dashboard-home',

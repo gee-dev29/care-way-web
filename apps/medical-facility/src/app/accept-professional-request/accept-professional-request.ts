@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import {
   ButtonComponent,
   DatePicker,
@@ -16,7 +16,7 @@ import {
   TimePicker,
   ToastService,
   ConfirmationModalSecondary,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';

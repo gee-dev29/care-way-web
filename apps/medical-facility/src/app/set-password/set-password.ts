@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService, NonProfessionalUserType } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
-import { SharedSetPassword } from '@healbridge/ui';
+import { ApiService, NonProfessionalUserType } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
+import { SharedSetPassword } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-set-password',

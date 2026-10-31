@@ -1,8 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
 import { IonContent } from '@ionic/angular/standalone';
-import { AppointmentForm, Item } from '@healbridge/ui';
+import { AppointmentForm, Item } from '@care-way/ui';
 import { Router } from '@angular/router';
-import { ConversionService, Specialization } from '@healbridge/shared';
+import { ConversionService, Specialization } from '@care-way/shared';
 
 @Component({
   selector: 'medical-facility-pharmacist-schedule',

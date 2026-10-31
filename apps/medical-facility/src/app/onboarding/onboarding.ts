@@ -12,15 +12,15 @@ import {
   IonCheckbox,
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent, PlusIconComponent } from '@healbridge/ui';
+import { ButtonComponent, PlusIconComponent } from '@care-way/ui';
 import {
   ConversionService,
   FacilityType,
   FacilityTypeService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import { ActivatedRoute, Router } from '@angular/router';
 import { v4 } from 'uuid';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 
 @Component({
   selector: 'medical-facility-onboarding',

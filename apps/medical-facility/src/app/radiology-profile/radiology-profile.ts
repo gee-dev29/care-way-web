@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharedProfile } from '@healbridge/ui';
+import { SharedProfile } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

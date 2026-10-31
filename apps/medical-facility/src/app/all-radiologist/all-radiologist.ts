@@ -1,8 +1,8 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService, FacilityType } from '@healbridge/api';
-import { AuthService, FacilityTypeService } from '@healbridge/shared';
-import { SharedAllMember } from '@healbridge/ui';
+import { ApiService, FacilityType } from '@care-way/api';
+import { AuthService, FacilityTypeService } from '@care-way/shared';
+import { SharedAllMember } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 import { Subject, takeUntil } from 'rxjs';
 

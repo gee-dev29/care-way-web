@@ -1,7 +1,7 @@
 :host {
-  --hb-green: #2c7a3f;
-  --hb-green-soft: #e8f3ea;
-  --hb-green-line: #cfe3d3;
+  --hb-blue: #0284c7;
+  --hb-blue-soft: #e0f2fe;
+  --hb-blue-line: #bae6fd;
   --hb-red: #d9463e;
   --hb-ink: #1a1a1a;
   --hb-ink-muted: #6f786f;
@@ -138,8 +138,8 @@
 }
 
 .card {
-  background: var(--hb-green-soft);
-  border: 1px solid var(--hb-green-line);
+  background: var(--hb-blue-soft);
+  border: 1px solid var(--hb-blue-line);
   border-radius: 16px;
   padding: 14px;
   display: flex;
@@ -151,7 +151,7 @@
 }
 
 .card:hover {
-  border-color: var(--hb-green);
+  border-color: var(--hb-blue);
   box-shadow: 0 6px 18px rgba(44, 122, 63, 0.12);
 }
 
@@ -160,12 +160,12 @@
 }
 
 .card:focus-visible {
-  outline: 2px solid var(--hb-green);
+  outline: 2px solid var(--hb-blue);
   outline-offset: 2px;
 }
 
 .card.is-rejected {
-  border: 1px solid var(--hb-green-line);
+  border: 1px solid var(--hb-blue-line);
 }
 
 .card-top {
@@ -182,7 +182,7 @@
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  background: var(--hb-green);
+  background: var(--hb-blue);
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
@@ -250,7 +250,7 @@
 
 .status.approved {
   background: #d9ecdd;
-  color: var(--hb-green);
+  color: var(--hb-blue);
 }
 
 .status.rejected {
@@ -292,7 +292,7 @@
   align-items: flex-start;
   gap: 8px;
   padding-top: 12px;
-  border-top: 1px solid var(--hb-green-line);
+  border-top: 1px solid var(--hb-blue-line);
 }
 
 .rejection-icon {
@@ -327,7 +327,7 @@
   align-items: center;
   gap: 10px;
   padding-top: 12px;
-  border-top: 1px solid var(--hb-green-line);
+  border-top: 1px solid var(--hb-blue-line);
 }
 
 .card.is-rejected .actions,
@@ -366,8 +366,8 @@
 }
 
 .btnSolid {
-  border: 1px solid var(--hb-green);
-  background: var(--hb-green);
+  border: 1px solid var(--hb-blue);
+  background: var(--hb-blue);
   color: #fff;
 }
 
@@ -378,9 +378,9 @@
 }
 
 .btnOutline {
-  border: 1px solid var(--hb-green);
+  border: 1px solid var(--hb-blue);
   background: var(--hb-surface);
-  color: var(--hb-green);
+  color: var(--hb-blue);
 }
 
 .btnOutline:hover {
@@ -397,7 +397,7 @@
   border: none;
   font-size: 13px;
   font-weight: 600;
-  color: var(--hb-green);
+  color: var(--hb-blue);
   margin-left: auto;
   background: transparent;
 }
@@ -428,8 +428,8 @@
   height: 56px;
   margin-bottom: 6px;
   border-radius: 999px;
-  background: var(--hb-green-soft);
-  color: var(--hb-green);
+  background: var(--hb-blue-soft);
+  color: var(--hb-blue);
 }
 
 .empty-icon ion-icon {

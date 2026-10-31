@@ -7,13 +7,13 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { ApiService, ProfessionalType } from '@healbridge/api';
+import { ApiService, ProfessionalType } from '@care-way/api';
 import {
   AuthService,
   NurseActiveFacility,
   ToastService,
-} from '@healbridge/shared';
-import { PushService } from '@healbridge/ui';
+} from '@care-way/shared';
+import { PushService } from '@care-way/ui';
 import {
   IonAvatar,
   IonBadge,

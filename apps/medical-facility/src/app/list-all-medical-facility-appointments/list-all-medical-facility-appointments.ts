@@ -11,15 +11,15 @@ import {
   IonInfiniteScrollContent,
   InfiniteScrollCustomEvent,
 } from '@ionic/angular/standalone';
-import { ConfirmationModal, AppointmentCardPrimary } from '@healbridge/ui';
+import { ConfirmationModal, AppointmentCardPrimary } from '@care-way/ui';
 import { CommonModule } from '@angular/common';
 import {
   ApiService,
   AppointmentType,
   MedicalAppointmentStatus,
-} from '@healbridge/api';
+} from '@care-way/api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LimitSize } from '@healbridge/shared';
+import { LimitSize } from '@care-way/shared';
 
 @Component({
   selector: 'medical-facility-list-all-medical-facility-appointments',

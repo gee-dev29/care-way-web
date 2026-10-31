@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { environment } from '@healbridge/shared';
-import { SharedAddAddress } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { environment } from '@care-way/shared';
+import { SharedAddAddress } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-hospital-add-address',

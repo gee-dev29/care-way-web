@@ -6,13 +6,13 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { ApiService, FacilityType } from '@care-way/api';
 import {
   ConfirmationModal,
   PlusIconComponent,
   PushService,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { v4 } from 'uuid';
 
 import {
@@ -45,7 +45,7 @@ import {
   AuthService,
   FacilityTypeService,
   ProfileInfoService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import { distinctUntilChanged, filter, Subject, takeUntil } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { addNotification, notifications$ } from '../notification/notification';

@@ -9,12 +9,12 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { ApiService, FacilityType } from '@care-way/api';
 import {
   AuthService,
   DocumentStatus,
   FacilityTypeService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   AddNewEntryCard,
   CardIdentityType,
@@ -22,7 +22,7 @@ import {
   FufilCard,
   MedicalRequestCard,
   WalletCard,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { IonSkeletonText } from '@ionic/angular/standalone';
 import { forkJoin, Observable, of, Subject, takeUntil } from 'rxjs';
 

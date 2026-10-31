@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { UploadComponent, ButtonComponent } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { UploadComponent, ButtonComponent } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

@@ -6,8 +6,8 @@ import {
   Input,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConversionService, Specialization } from '@healbridge/shared';
-import { AppointmentForm, Item } from '@healbridge/ui';
+import { ConversionService, Specialization } from '@care-way/shared';
+import { AppointmentForm, Item } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

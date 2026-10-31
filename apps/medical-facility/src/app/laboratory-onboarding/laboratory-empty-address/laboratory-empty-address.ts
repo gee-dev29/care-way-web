@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { FacilityType } from '@healbridge/shared';
-import { SharedEmptyAddress } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { FacilityType } from '@care-way/shared';
+import { SharedEmptyAddress } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-laboratory-empty-address',

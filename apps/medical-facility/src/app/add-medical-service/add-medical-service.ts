@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService, ProductType, ReferralType } from '@healbridge/api';
+import { ApiService, ProductType, ReferralType } from '@care-way/api';
 import {
   IonCheckbox,
   IonContent,
@@ -18,7 +18,7 @@ import {
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
 import { v4 } from 'uuid';
-import { ButtonComponent, InputComponent, Item } from '@healbridge/ui';
+import { ButtonComponent, InputComponent, Item } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-add-medical-service',

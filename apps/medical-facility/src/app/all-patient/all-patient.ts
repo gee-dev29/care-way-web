@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { ApiService, FacilityType } from '@care-way/api';
 import {
   AuthService,
   FacilityTypeService,
   LimitSize,
   NurseActiveFacility,
-} from '@healbridge/shared';
-import { PlusIconComponent } from '@healbridge/ui';
+} from '@care-way/shared';
+import { PlusIconComponent } from '@care-way/ui';
 import {
   IonContent,
   IonIcon,

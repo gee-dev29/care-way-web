@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { DocumentStatus } from '@healbridge/shared';
-import { ConfirmationModal } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { DocumentStatus } from '@care-way/shared';
+import { ConfirmationModal } from '@care-way/ui';
 import {
   InfiniteScrollCustomEvent,
   IonButton,

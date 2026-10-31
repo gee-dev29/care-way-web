@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { IonContent } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SharedLicense } from '@healbridge/ui';
-import { ApiService } from '@healbridge/api';
+import { SharedLicense } from '@care-way/ui';
+import { ApiService } from '@care-way/api';
 
 @Component({
   selector: 'medical-facility-pharmacy-license-details',

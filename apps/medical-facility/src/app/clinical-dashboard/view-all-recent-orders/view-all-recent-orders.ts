@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { ApiService, FacilityType } from '@care-way/api';
 import {
   AuthService,
   DocumentStatus,
   FacilityTypeService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   IonContent,
   IonChip,
@@ -18,7 +18,7 @@ import {
 import { addIcons } from 'ionicons';
 import { chevronBackOutline, cubeOutline } from 'ionicons/icons';
 import { map, Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
-import { FufilCard } from '@healbridge/ui';
+import { FufilCard } from '@care-way/ui';
 
 @Component({
   selector: 'medical-facility-view-all-recent-orders',

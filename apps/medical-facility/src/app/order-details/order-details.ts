@@ -46,7 +46,7 @@ import {
   Item,
   InputComponent,
   InputTextarea,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   forkJoin,
   map,
@@ -63,8 +63,8 @@ import {
   FacilityTypeService,
   Frequency,
   ToastService,
-} from '@healbridge/shared';
-import { ApiService, FacilityType } from '@healbridge/api';
+} from '@care-way/shared';
+import { ApiService, FacilityType } from '@care-way/api';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { NgxImageCompressService } from 'ngx-image-compress';

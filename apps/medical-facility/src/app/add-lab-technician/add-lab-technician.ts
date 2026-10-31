@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService, Gender, ProfessionalType } from '@healbridge/api';
-import { FacilityType } from '@healbridge/api';
-import { ConversionService } from '@healbridge/shared';
-import { AddNewMember } from '@healbridge/ui';
+import { ApiService, Gender, ProfessionalType } from '@care-way/api';
+import { FacilityType } from '@care-way/api';
+import { ConversionService } from '@care-way/shared';
+import { AddNewMember } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

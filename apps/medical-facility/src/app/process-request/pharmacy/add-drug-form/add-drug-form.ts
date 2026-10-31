@@ -8,9 +8,9 @@ import {
   FormGroup,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { ConversionService } from '@healbridge/shared';
-import { InputComponent, ButtonComponent } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { ConversionService } from '@care-way/shared';
+import { InputComponent, ButtonComponent } from '@care-way/ui';
 import { IonContent, IonIcon, IonModal } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';

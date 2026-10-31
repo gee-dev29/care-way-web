@@ -14,7 +14,7 @@ import {
   environment,
   ErrorInterceptor,
   JwtInterceptor,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
@@ -28,7 +28,7 @@ import {
 } from '@angular/common/http';
 import { Capacitor } from '@capacitor/core';
 import '@ionic/pwa-elements/dist/ionicpwaelements/ionicpwaelements.js';
-import { ApiModule } from '@healbridge/api';
+import { ApiModule } from '@care-way/api';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 import { CurrencyPipe } from '@angular/common';
 AgoraRTC.setLogLevel(3);

@@ -14,7 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, NonProfessionalUserType } from '@healbridge/api';
+import { ApiService, NonProfessionalUserType } from '@care-way/api';
 import {
   AuthService,
   BloodGroup,
@@ -22,14 +22,14 @@ import {
   Gender,
   Relationship,
   ToastService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   ButtonComponent,
   InputCalendar,
   InputComponent,
   Item,
   LimitSize,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { concatMap, map, of, switchMap } from 'rxjs';
 import { v4 } from 'uuid';

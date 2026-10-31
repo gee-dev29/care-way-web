@@ -45,7 +45,7 @@ import {
   TimePicker,
   DatePicker,
   CalendarReminder,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   AppointmentCategory,
   BloodGroup,
@@ -53,7 +53,7 @@ import {
   DocumentStatus,
   RadiologySpecialization,
   VitalsRefresh,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   ApiService,
   AppointmentType,
@@ -63,7 +63,7 @@ import {
   ProfessionalType,
   ReferralType,
   ServiceRequestStatus,
-} from '@healbridge/api';
+} from '@care-way/api';
 import {
   concatMap,
   finalize,
@@ -1463,7 +1463,7 @@ export class ViewAppointment implements OnDestroy, OnInit {
 
     this.calenderReminderService.downloadIcs({
       title: 'Appointment',
-      description: `HealBridge ${
+      description: `Care-Way ${
         appointment.appointmentType
       } Appointment with ${appointment.memberName} on ${localDateTime.format(
         'ddd MMMM D, YYYY'

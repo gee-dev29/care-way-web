@@ -11,10 +11,10 @@ import {
   ToastService,
   InputComponent,
   Item,
-} from '@healbridge/ui';
-import { ConversionService, FacilityType } from '@healbridge/shared';
+} from '@care-way/ui';
+import { ConversionService, FacilityType } from '@care-way/shared';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, HospitalCategory as Category } from '@healbridge/api';
+import { ApiService, HospitalCategory as Category } from '@care-way/api';
 import {
   FormControl,
   FormGroup,

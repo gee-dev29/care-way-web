@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { FacilityType, FacilityTypeService } from '@healbridge/shared';
-import { SharedEmptyBank } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { FacilityType, FacilityTypeService } from '@care-way/shared';
+import { SharedEmptyBank } from '@care-way/ui';
 import { Subject, takeUntil } from 'rxjs';
 import { IonContent } from "@ionic/angular/standalone";
 

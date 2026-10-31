@@ -8,14 +8,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, GreenBookType } from '@healbridge/api';
-import { ConversionService, UOM } from '@healbridge/shared';
+import { ApiService, GreenBookType } from '@care-way/api';
+import { ConversionService, UOM } from '@care-way/shared';
 import {
   ButtonComponent,
   InputComponent,
   ConfirmationModal,
   LimitSize,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonContent,
   IonIcon,

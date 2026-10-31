@@ -1,10 +1,10 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, ProfessionalType } from '@healbridge/api';
-import { NurseActiveFacility } from '@healbridge/shared';
-import { ToastService } from '@healbridge/ui';
-import { AddNewEntryCard, FeeCard, FeeListCard } from '@healbridge/ui';
+import { ApiService, ProfessionalType } from '@care-way/api';
+import { NurseActiveFacility } from '@care-way/shared';
+import { ToastService } from '@care-way/ui';
+import { AddNewEntryCard, FeeCard, FeeListCard } from '@care-way/ui';
 import { FeeFormModal } from '../../fee-form-modal/fee-form-modal';
 import {
   IonAvatar,

@@ -15,7 +15,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { ButtonComponent, InputComponent, Item } from '@healbridge/ui';
+import { ButtonComponent, InputComponent, Item } from '@care-way/ui';
 import { IonIcon, IonModal, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { closeOutline } from 'ionicons/icons';
