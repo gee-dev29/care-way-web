@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MedicalProduct } from '@healbridge/api';
+import { MedicalProduct } from '@care-way/api';
 
 @Component({
   selector: 'ui-medical-service-card',

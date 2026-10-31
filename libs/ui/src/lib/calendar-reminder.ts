@@ -41,7 +41,7 @@ export class CalendarReminder {
     const start = moment(`${date} ${time}`, 'YYYY-MM-DD HH:mm');
     const end = start.clone().add(durationMinutes, 'minutes');
     const now = moment().utc().format('YYYYMMDDTHHmmss') + 'Z';
-    const uid = `${Date.now()}@healbridge.app`;
+    const uid = `${Date.now()}@care-way.app`;
     const alarmBlocks = reminderMinutesBefore.flatMap((minutesBefore) => [
       'BEGIN:VALARM',
       `TRIGGER:${this.toTrigger(minutesBefore)}`,

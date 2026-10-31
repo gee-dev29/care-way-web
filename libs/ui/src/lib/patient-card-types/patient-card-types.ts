@@ -13,7 +13,7 @@ import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
 import { ButtonComponent } from '../button/button.component';
 import { ToastService } from '../toast';
-import { PlusIconComponent } from '@healbridge/ui';
+import { PlusIconComponent } from '@care-way/ui';
 
 @Component({
   selector: 'ui-patient-card-types',

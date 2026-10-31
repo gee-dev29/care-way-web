@@ -9,7 +9,7 @@
   z-index: 1000;
   background-color: #fafafa;
   overflow: hidden;
-  background-image: url('/bg/healbridge-pill.svg');
+  background-image: url('/bg/care-way-pill.svg');
   background-repeat: no-repeat;
   background-position: right bottom;
   background-size: 140px auto;
@@ -47,7 +47,7 @@
   background: rgba(0, 255, 0, 0.083);
   border-radius: 20px;
   font-size: 0.75rem;
-  color: green;
+  color: #0ea5e9;
 }
 
 .unit p {
