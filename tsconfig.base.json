@@ -18,9 +18,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@healbridge/api": ["libs/api/src/index.ts"],
-      "@healbridge/shared": ["libs/shared/src/index.ts"],
-      "@healbridge/ui": ["libs/ui/src/index.ts"]
+      "@care-way/api": ["libs/api/src/index.ts"],
+      "@care-way/shared": ["libs/shared/src/index.ts"],
+      "@care-way/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
