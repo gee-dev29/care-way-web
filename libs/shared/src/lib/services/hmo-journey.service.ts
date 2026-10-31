@@ -5,7 +5,7 @@ import {
   MedicalFacilityHospital,
   Member,
   OrderType,
-} from '@healbridge/api';
+} from '@care-way/api';
 import moment from 'moment';
 
 export type HmoHospital = MedicalFacilityHospital & {

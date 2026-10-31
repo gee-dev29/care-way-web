@@ -1,4 +1,4 @@
-import { OrderStatus } from '@healbridge/api';
+import { OrderStatus } from '@care-way/api';
 
 export function isPaid(status?: string): boolean {
   return (

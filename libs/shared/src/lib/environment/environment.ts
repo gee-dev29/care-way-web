@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://api.test.healbridge.app',
+  apiUrl: 'https://api.test.care-way.app',
   appUrl: 'http://localhost:4200',
   MedAppUrl: 'http://localhost:6001',
   clientId:
