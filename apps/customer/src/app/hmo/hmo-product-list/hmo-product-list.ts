@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, Hmo, HmoProduct } from '@healbridge/api';
-import { LimitSize } from '@healbridge/shared';
-import { AmountFormatPipe } from '@healbridge/ui';
+import { ApiService, Hmo, HmoProduct } from '@care-way/api';
+import { LimitSize } from '@care-way/shared';
+import { AmountFormatPipe } from '@care-way/ui';
 import {
   IonContent,
   IonIcon,
@@ -18,7 +18,7 @@ import {
   statusColor,
   statusLabel,
   HmoJourneyService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 export interface HmoProductRow extends HmoProduct {
   hmoId?: string;
   hmo?: Hmo;

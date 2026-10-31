@@ -36,15 +36,15 @@ import {
   DoctorsAppointmentAvailabilityCard,
   ConfirmationModalSecondary,
   CalendarReminder,
-} from '@healbridge/ui';
-import { ConversionService, DocumentStatus } from '@healbridge/shared';
+} from '@care-way/ui';
+import { ConversionService, DocumentStatus } from '@care-way/shared';
 import {
   ApiService,
   AppointmentType,
   MedicalAppointmentStatus,
   ProfessionalType,
   ReferralType,
-} from '@healbridge/api';
+} from '@care-way/api';
 import {
   concatMap,
   from,
@@ -649,7 +649,7 @@ export class ViewAppointmentCustomer implements OnInit, OnDestroy {
           .local();
         this.calenderReminderService.downloadIcs({
           title: 'Appointment',
-          description: `HealBridge Appointment with Doctor ${
+          description: `Care-Way Appointment with Doctor ${
             appointment.professionalName
           } on ${localDateTime.format(
             'ddd MMMM D, YYYY'

@@ -2,9 +2,9 @@ import { inject, Injectable } from '@angular/core';
 import { v4 } from 'uuid';
 import moment from 'moment';
 import { Router } from '@angular/router';
-import { ToastService } from '@healbridge/shared';
+import { ToastService } from '@care-way/shared';
 import Paystack from '@paystack/inline-js';
-import { CalendarReminder, OrderType } from '@healbridge/ui';
+import { CalendarReminder, OrderType } from '@care-way/ui';
 declare const PaystackPop: any;
 
 @Injectable({
@@ -110,7 +110,7 @@ export class PaymentService {
       .local();
     this.calenderReminderService.downloadIcs({
       title: 'Appointment',
-      description: `HealBridge Appointment with Doctor ${
+      description: `Care-Way Appointment with Doctor ${
         appointment.professional?.firstName +
         ' ' +
         appointment.professional?.lastName

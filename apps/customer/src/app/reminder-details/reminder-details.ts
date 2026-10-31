@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ButtonComponent } from '@healbridge/ui';
+import { ButtonComponent } from '@care-way/ui';
 import { IonCard, IonText } from '@ionic/angular/standalone';
 import { Subject } from 'rxjs';
 

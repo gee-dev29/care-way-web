@@ -16,7 +16,7 @@ import {
   environment,
   ErrorInterceptor,
   JwtInterceptor,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
@@ -26,7 +26,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { Capacitor } from '@capacitor/core';
-import { ApiModule } from '@healbridge/api';
+import { ApiModule } from '@care-way/api';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 import { CurrencyPipe } from '@angular/common';
 import { providePrimeNG } from 'primeng/config';
@@ -42,7 +42,7 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideAnimations(),
-    // Theme for PrimeNG-based @healbridge/ui inputs; dark mode follows a
+    // Theme for PrimeNG-based @care-way/ui inputs; dark mode follows a
     // class the app never sets, so dropdowns stay light like the rest of the UI.
     providePrimeNG({
       theme: { preset: Aura, options: { darkModeSelector: '.p-dark' } },

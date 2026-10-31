@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
-import { InputTextarea, ButtonComponent } from '@healbridge/ui';
+import { InputTextarea, ButtonComponent } from '@care-way/ui';
 import {
   FormBuilder,
   FormControl,

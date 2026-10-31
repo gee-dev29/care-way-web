@@ -11,8 +11,8 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageCropperComponent, ImageCroppedEvent } from 'ngx-image-cropper';
-import { ApiService, ReferralType } from '@healbridge/api';
-import { CostFlow, DocumentStatus } from '@healbridge/shared';
+import { ApiService, ReferralType } from '@care-way/api';
+import { CostFlow, DocumentStatus } from '@care-way/shared';
 import {
   ButtonComponent,
   SafePipe,
@@ -20,7 +20,7 @@ import {
   StorageService,
   ToastService,
   ConfirmationModal,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonContent,
   IonIcon,

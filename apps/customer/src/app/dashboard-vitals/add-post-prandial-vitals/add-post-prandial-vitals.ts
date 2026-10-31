@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { IonContent } from '@ionic/angular/standalone';
-import { AddPostPrandial } from '@healbridge/ui';
-import { ApiService, VitalSignType } from '@healbridge/api';
-import { TestingType } from '@healbridge/shared';
+import { AddPostPrandial } from '@care-way/ui';
+import { ApiService, VitalSignType } from '@care-way/api';
+import { TestingType } from '@care-way/shared';
 
 @Component({
   selector: 'app-add-post-prandial-vitals',

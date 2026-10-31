@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ApiService, VitalSignType } from '@healbridge/api';
-import { AddHeight } from '@healbridge/ui';
+import { ApiService, VitalSignType } from '@care-way/api';
+import { AddHeight } from '@care-way/ui';
 
 @Component({
   selector: 'app-vitals-add-height',

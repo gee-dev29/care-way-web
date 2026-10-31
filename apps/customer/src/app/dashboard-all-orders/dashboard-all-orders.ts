@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { DocumentStatus } from '@healbridge/shared';
-import { OrderCard, StorageService } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { DocumentStatus } from '@care-way/shared';
+import { OrderCard, StorageService } from '@care-way/ui';
 import {
   InfiniteScrollCustomEvent,
   IonChip,

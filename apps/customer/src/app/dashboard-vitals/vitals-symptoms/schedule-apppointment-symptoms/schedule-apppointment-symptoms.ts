@@ -8,8 +8,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApiService, AppointmentType } from '@healbridge/api';
-import { LimitSize } from '@healbridge/shared';
+import { ApiService, AppointmentType } from '@care-way/api';
+import { LimitSize } from '@care-way/shared';
 import {
   ButtonComponent,
   CardType,
@@ -20,7 +20,7 @@ import {
   Item,
   StorageService,
   TimePicker,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonContent,
   IonIcon,

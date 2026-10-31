@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UploadedPrescription } from '../uploaded-prescription/uploaded-prescription';
-import { Address } from '@healbridge/ui';
-import { ApiService, ReferralType } from '@healbridge/api';
-import { CostFlow } from '@healbridge/shared';
+import { Address } from '@care-way/ui';
+import { ApiService, ReferralType } from '@care-way/api';
+import { CostFlow } from '@care-way/shared';
 
 @Component({
   standalone: true,

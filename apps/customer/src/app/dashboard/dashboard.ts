@@ -8,15 +8,15 @@ import {
   OnInit,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import {
   AuthService,
   LimitSize,
   ProfileInfoService,
   ToastService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import { FirebaseMessaging } from '@capacitor-firebase/messaging';
-import { ButtonComponent, StorageService } from '@healbridge/ui';
+import { ButtonComponent, StorageService } from '@care-way/ui';
 import { addNotification, notifications$ } from '../notification/notification';
 import {
   IonAvatar,
@@ -41,7 +41,7 @@ import {
   notificationsOutline,
   powerOutline,
 } from 'ionicons/icons';
-import { PushService } from '@healbridge/ui';
+import { PushService } from '@care-way/ui';
 import {
   catchError,
   filter,

@@ -11,8 +11,8 @@ import {
   ApiService,
   FacilityType,
   MedicalAppointmentStatus,
-} from '@healbridge/api';
-import { AuthService, DocumentStatus } from '@healbridge/shared';
+} from '@care-way/api';
+import { AuthService, DocumentStatus } from '@care-way/shared';
 import {
   StorageService,
   AddNewEntryCard,
@@ -22,7 +22,7 @@ import {
   CardIdentityType,
   AppointmentCardPrimary,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonCard,
   IonCardContent,

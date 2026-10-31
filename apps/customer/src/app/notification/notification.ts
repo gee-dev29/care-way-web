@@ -6,7 +6,7 @@ import {
   inject,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { ButtonComponent } from '@healbridge/ui';
+import { ButtonComponent } from '@care-way/ui';
 import { BehaviorSubject } from 'rxjs';
 import {
   IonAvatar,

@@ -168,7 +168,7 @@ ion-modal {
 }
 
 .profile:hover {
-  border: 2px solid green;
+  border: 2px solid #0ea5e9;
 }
 
 .name {
@@ -181,7 +181,7 @@ ion-modal {
 
 .button {
   margin: 40px auto;
-  color: green;
+  color: #0ea5e9;
   font-weight: 500;
 }
 
@@ -281,7 +281,7 @@ ion-modal {
   z-index: 1000;
   background-color: #fafafa;
   overflow: hidden;
-  background-image: url('/bg/healbridge-pill.svg');
+  background-image: url('/bg/care-way-pill.svg');
   background-repeat: no-repeat;
   background-position: right bottom;
   background-size: 140px auto;

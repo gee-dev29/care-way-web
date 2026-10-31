@@ -8,9 +8,9 @@ import {
 import { Keyboard, KeyboardResize } from '@capacitor/keyboard';
 import { Router } from '@angular/router';
 import { ActiveCallIndicatorComponent } from './active-call-indicator/active-call-indicator';
-import { ApiService, AppName } from '@healbridge/api';
+import { ApiService, AppName } from '@care-way/api';
 import { Capacitor } from '@capacitor/core';
-import { AppVersion, ButtonComponent } from '@healbridge/ui';
+import { AppVersion, ButtonComponent } from '@care-way/ui';
 import { App } from '@capacitor/app';
 import { addIcons } from 'ionicons';
 import { cloudDownloadOutline } from 'ionicons/icons';
@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
             this.showForceUpdate = true;
             this.storeUrl =
               Capacitor.getPlatform() === 'android'
-                ? 'https://play.google.com/store/apps/details?id=app.healbridge.customer'
+                ? 'https://play.google.com/store/apps/details?id=app.care-way.customer'
                 : 'https://apps.apple.com/app/idXXXXXXXX';
           }
         });

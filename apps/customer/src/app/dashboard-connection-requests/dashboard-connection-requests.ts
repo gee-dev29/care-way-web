@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { Status } from '@healbridge/shared';
-import { ConfirmationModal, StorageService } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { Status } from '@care-way/shared';
+import { ConfirmationModal, StorageService } from '@care-way/ui';
 import {
   IonIcon,
   IonSkeletonText,

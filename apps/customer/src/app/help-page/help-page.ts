@@ -16,9 +16,9 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { switchMap } from 'rxjs';
-import { AuthService, SetCountry } from '@healbridge/shared';
-import { ButtonComponent, InputComponent, ToastService } from '@healbridge/ui';
-import { ApiService } from '@healbridge/api';
+import { AuthService, SetCountry } from '@care-way/shared';
+import { ButtonComponent, InputComponent, ToastService } from '@care-way/ui';
+import { ApiService } from '@care-way/api';
 
 @Component({
   selector: 'app-help-page',

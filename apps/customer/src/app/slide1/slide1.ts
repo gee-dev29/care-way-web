@@ -17,7 +17,7 @@ import {
 } from '@ionic/angular/standalone';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
-import { ButtonComponent } from '@healbridge/ui';
+import { ButtonComponent } from '@care-way/ui';
 
 @Component({
   selector: 'app-slide1',

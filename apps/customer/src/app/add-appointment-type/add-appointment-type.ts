@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { MoreMenuPage } from '@healbridge/ui';
+import { MoreMenuPage } from '@care-way/ui';
 
 @Component({
   selector: 'app-add-appointment-type',

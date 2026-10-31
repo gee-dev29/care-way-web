@@ -7,13 +7,13 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, OrderType } from '@healbridge/api';
-import { DocumentStatus } from '@healbridge/shared';
+import { ApiService, OrderType } from '@care-way/api';
+import { DocumentStatus } from '@care-way/shared';
 import {
   ButtonComponent,
   ToastService,
   ConfirmationModal,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonCard,
   IonCardContent,

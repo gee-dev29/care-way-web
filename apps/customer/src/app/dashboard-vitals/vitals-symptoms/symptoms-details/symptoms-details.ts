@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, VitalSignType } from '@healbridge/api';
-import { ButtonComponent, SafePipe, StorageService } from '@healbridge/ui';
+import { ApiService, VitalSignType } from '@care-way/api';
+import { ButtonComponent, SafePipe, StorageService } from '@care-way/ui';
 import {
   IonContent,
   IonHeader,

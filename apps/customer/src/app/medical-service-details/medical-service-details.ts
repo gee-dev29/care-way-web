@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, OrderType, ReferralType } from '@healbridge/api';
-import { ButtonComponent, StorageService } from '@healbridge/ui';
+import { ApiService, OrderType, ReferralType } from '@care-way/api';
+import { ButtonComponent, StorageService } from '@care-way/ui';
 import { IonContent, IonIcon, IonModal } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {

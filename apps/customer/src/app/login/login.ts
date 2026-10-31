@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService, environment, SetCountry } from '@healbridge/shared';
-import { SharedLogin } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AuthService, environment, SetCountry } from '@care-way/shared';
+import { SharedLogin } from '@care-way/ui';
 
 @Component({
   selector: 'app-login',

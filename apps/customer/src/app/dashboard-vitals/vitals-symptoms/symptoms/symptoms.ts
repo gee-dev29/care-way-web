@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, VitalSignType } from '@healbridge/api';
+import { ApiService, VitalSignType } from '@care-way/api';
 import {
   IonContent,
   IonIcon,
@@ -11,7 +11,7 @@ import { addIcons } from 'ionicons';
 import { chevronForwardOutline } from 'ionicons/icons';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { StorageService } from '@healbridge/ui';
+import { StorageService } from '@care-way/ui';
 
 @Component({
   selector: 'app-symptoms',

@@ -7,12 +7,12 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, FacilityType } from '@healbridge/api';
+import { ApiService, FacilityType } from '@care-way/api';
 import {
   ButtonComponent,
   SaveUploadService,
   MedicalRequestCard,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonCard,
   IonCardContent,

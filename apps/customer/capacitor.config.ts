@@ -3,7 +3,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'app.healbridge.customer',
-  appName: 'HealBridge Customer',
+  appName: 'Care-Way Customer',
   webDir: '../../dist/apps/customer/browser',
   bundledWebRuntime: false,
   server: {

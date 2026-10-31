@@ -5,12 +5,12 @@ import {
   ApiService,
   AppointmentType,
   MedicalAppointmentStatus,
-} from '@healbridge/api';
+} from '@care-way/api';
 import {
   ConfirmationModal,
   PlusIconComponent,
   AppointmentCardPrimary,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonButton,
   IonContent,
@@ -21,7 +21,7 @@ import {
   IonInfiniteScrollContent,
   InfiniteScrollCustomEvent,
 } from '@ionic/angular/standalone';
-import { StorageService } from '@healbridge/ui';
+import { StorageService } from '@care-way/ui';
 import { addIcons } from 'ionicons';
 import {
   addCircleOutline,

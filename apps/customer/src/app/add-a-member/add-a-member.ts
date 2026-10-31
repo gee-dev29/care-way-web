@@ -15,19 +15,19 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, BloodGroup, Gender } from '@healbridge/api';
+import { ApiService, BloodGroup, Gender } from '@care-way/api';
 import {
   AuthService,
   ConversionService,
   Relationship,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   ButtonComponent,
   InputCalendar,
   InputComponent,
   Item,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { v4 } from 'uuid';

@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy } from '@angular/core';
-import { ApiService, VitalSignType } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
-import { StorageService, TemperatureRecord } from '@healbridge/ui';
+import { ApiService, VitalSignType } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
+import { StorageService, TemperatureRecord } from '@care-way/ui';
 import { filter, map, Subject, switchMap, takeUntil } from 'rxjs';
 
 @Component({

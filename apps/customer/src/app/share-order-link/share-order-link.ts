@@ -13,14 +13,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import {
   ButtonComponent,
   InputComponent,
   ToastService,
   InputTextarea,
   ConfirmationModal,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonContent,
   IonIcon,

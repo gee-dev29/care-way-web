@@ -14,13 +14,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ConversionService } from '@healbridge/shared';
+import { ConversionService } from '@care-way/shared';
 import {
   InputCalendar,
   InputComponent,
   InputTextarea,
   ButtonComponent,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonContent,
   IonModal,

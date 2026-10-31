@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { LimitSize } from '@healbridge/shared';
+import { ApiService } from '@care-way/api';
+import { LimitSize } from '@care-way/shared';
 import { FormControl } from '@angular/forms';
-import { ButtonComponent, InputDropDownComponent } from '@healbridge/ui';
+import { ButtonComponent, InputDropDownComponent } from '@care-way/ui';
 import {
   IonContent,
   IonIcon,
@@ -21,7 +21,7 @@ import {
   hospitalKey,
   HmoHospital,
   HmoJourneyService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 type FilterType = 'State' | 'LGA' | 'Ward';
 
 @Component({

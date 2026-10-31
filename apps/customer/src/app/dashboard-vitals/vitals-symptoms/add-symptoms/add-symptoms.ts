@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ApiService, VitalSignType } from '@healbridge/api';
-import { Symptoms } from '@healbridge/ui';
+import { ApiService, VitalSignType } from '@care-way/api';
+import { Symptoms } from '@care-way/ui';
 
 @Component({
   selector: 'app-add-symptoms',

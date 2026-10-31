@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@healbridge/shared';
-import { Biometric, ButtonComponent } from '@healbridge/ui';
+import { AuthService } from '@care-way/shared';
+import { Biometric, ButtonComponent } from '@care-way/ui';
 import { IonImg, IonText } from '@ionic/angular/standalone';
 
 @Component({

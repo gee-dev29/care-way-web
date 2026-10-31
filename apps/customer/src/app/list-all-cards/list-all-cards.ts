@@ -10,12 +10,12 @@ import {
   ToastService,
   OrderType,
   CalendarReminder,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { PaymentService } from '../payment-service';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { v4 } from 'uuid';
 import moment from 'moment-timezone';
-import { HmoJourneyService } from '@healbridge/shared';
+import { HmoJourneyService } from '@care-way/shared';
 @Component({
   selector: 'app-list-all-cards',
   imports: [
@@ -247,7 +247,7 @@ export class ListAllCards implements OnInit {
       .local();
     this.calenderReminderService.downloadIcs({
       title: 'Appointment',
-      description: `HealBridge Appointment with Doctor ${
+      description: `Care-Way Appointment with Doctor ${
         appointment.professional?.firstName +
         ' ' +
         appointment.professional?.lastName

@@ -6,9 +6,9 @@ import {
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, ReferralType } from '@healbridge/api';
-import { AuthService, CostFlow } from '@healbridge/shared';
-import { UploadComponent } from '@healbridge/ui';
+import { ApiService, ReferralType } from '@care-way/api';
+import { AuthService, CostFlow } from '@care-way/shared';
+import { UploadComponent } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 import { v4 } from 'uuid';
 

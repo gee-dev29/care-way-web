@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">HealBridge</string>
-    <string name="title_activity_main">HealBridge</string>
-    <string name="package_name">app.healbridge.customer</string>
-    <string name="custom_url_scheme">app.healbridge.customer</string>
+    <string name="app_name">Care-Way</string>
+    <string name="title_activity_main">Care-Way</string>
+    <string name="package_name">app.care-way.customer</string>
+    <string name="custom_url_scheme">app.care-way.customer</string>
 </resources>

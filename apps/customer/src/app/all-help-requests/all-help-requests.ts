@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { DocumentStatus, ProfileInfoService } from '@healbridge/shared';
-import { StorageService } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { DocumentStatus, ProfileInfoService } from '@care-way/shared';
+import { StorageService } from '@care-way/ui';
 import { IonContent, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {

@@ -7,7 +7,7 @@ import {
 } from '@ionic/angular/standalone';
 import { HealthCard } from '../health-card/health-card';
 import { Router, RouterLink } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import moment from 'moment';
 import {
   filter,
@@ -19,8 +19,8 @@ import {
   tap,
 } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { StorageService } from '@healbridge/ui';
-import { AuthService, LimitSize } from '@healbridge/shared';
+import { StorageService } from '@care-way/ui';
+import { AuthService, LimitSize } from '@care-way/shared';
 import { addIcons } from 'ionicons';
 import {
   addCircleOutline,

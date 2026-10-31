@@ -8,14 +8,14 @@ import {
   Member,
   OrderStatus,
   User,
-} from '@healbridge/api';
+} from '@care-way/api';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '@healbridge/shared';
+import { AuthService } from '@care-way/shared';
 import {
   AmountFormatPipe,
   ButtonComponent,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonAvatar,
   IonContent,
@@ -41,7 +41,7 @@ import {
   splitToChips,
   HmoHospital,
   HmoJourneyService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 type MemberRow = Member & { age?: number; profilePicture?: string | null };
 
 @Component({

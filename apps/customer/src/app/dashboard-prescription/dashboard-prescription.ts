@@ -1,8 +1,8 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, ReferralType } from '@healbridge/api';
-import { CostFlow } from '@healbridge/shared';
-import { CostOptionCard, StorageService } from '@healbridge/ui';
+import { ApiService, ReferralType } from '@care-way/api';
+import { CostFlow } from '@care-way/shared';
+import { CostOptionCard, StorageService } from '@care-way/ui';
 import {
   IonContent,
   IonHeader,

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, Hmo, HmoProduct } from '@healbridge/api';
-import { AmountFormatPipe, ButtonComponent } from '@healbridge/ui';
+import { ApiService, Hmo, HmoProduct } from '@care-way/api';
+import { AmountFormatPipe, ButtonComponent } from '@care-way/ui';
 import {
   IonContent,
   IonIcon,
@@ -11,7 +11,7 @@ import {
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
 import { forkJoin } from 'rxjs';
-import { splitToChips, HmoJourneyService } from '@healbridge/shared';
+import { splitToChips, HmoJourneyService } from '@care-way/shared';
 
 @Component({
   selector: 'app-hmo-product-details',

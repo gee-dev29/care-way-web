@@ -5,9 +5,9 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService, ProfileInfoService } from '@healbridge/shared';
-import { Biometric, MoreMenuPage, ToastService } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AuthService, ProfileInfoService } from '@care-way/shared';
+import { Biometric, MoreMenuPage, ToastService } from '@care-way/ui';
 
 @Component({
   selector: 'app-dashboard-more',

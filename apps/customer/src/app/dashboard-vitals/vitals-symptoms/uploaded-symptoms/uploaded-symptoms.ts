@@ -1,12 +1,12 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import {
   ButtonComponent,
   SaveUploadService,
   ConfirmationModal,
   SafePipe,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonHeader,
   IonToolbar,

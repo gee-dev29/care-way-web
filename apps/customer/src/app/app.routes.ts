@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from '@healbridge/shared';
+import { AuthGuard } from '@care-way/shared';
 import {
   AvailableSymptoms,
   ConsultationLiveVideo,
@@ -7,7 +7,7 @@ import {
   PaymentSummary,
   PreviewVideo,
   ScanPrescription,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { DashboardCostFlow } from './dashboard-cost-flow/dashboard-cost-flow';
 import { AddBpVitals } from './dashboard-vitals/add-bp-vitals/add-bp-vitals';
 import { VitalsAddHeight } from './dashboard-vitals/vitals-add-height/vitals-add-height';

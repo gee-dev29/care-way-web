@@ -7,11 +7,11 @@ import {
   inject,
   ViewChild,
 } from '@angular/core';
-import { ApiService, StreamActor } from '@healbridge/api';
+import { ApiService, StreamActor } from '@care-way/api';
 import { CountdownComponent } from 'ngx-countdown';
 import { catchError, delay, retryWhen, take, throwError } from 'rxjs';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { AgoraService, ToastService } from '@healbridge/shared';
+import { AgoraService, ToastService } from '@care-way/shared';
 import moment from 'moment';
 import { IonIcon } from '@ionic/angular/standalone';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';

@@ -8,8 +8,8 @@ import { IonImg, IonText } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '@healbridge/ui';
-import { ApiService } from '@healbridge/api';
+import { ButtonComponent } from '@care-way/ui';
+import { ApiService } from '@care-way/api';
 
 @Component({
   selector: 'app-help-home-page',

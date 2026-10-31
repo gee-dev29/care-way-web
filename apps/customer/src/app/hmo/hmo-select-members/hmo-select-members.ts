@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, Member } from '@healbridge/api';
-import { AuthService, LimitSize } from '@healbridge/shared';
-import { ButtonComponent, ToastService } from '@healbridge/ui';
+import { ApiService, Member } from '@care-way/api';
+import { AuthService, LimitSize } from '@care-way/shared';
+import { ButtonComponent, ToastService } from '@care-way/ui';
 import {
   IonAvatar,
   IonCheckbox,
@@ -16,7 +16,7 @@ import { chevronBackOutline } from 'ionicons/icons';
 import moment from 'moment';
 import { map } from 'rxjs';
 
-import { HmoJourneyService } from '@healbridge/shared';
+import { HmoJourneyService } from '@care-way/shared';
 
 type MemberRow = Member & { age?: number; profilePicture?: string | null };
 

@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService, AppointmentType, VitalSignType } from '@healbridge/api';
-import { LimitSize } from '@healbridge/shared';
-import { ScheduleAppointment } from '@healbridge/ui';
+import { ApiService, AppointmentType, VitalSignType } from '@care-way/api';
+import { LimitSize } from '@care-way/shared';
+import { ScheduleAppointment } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

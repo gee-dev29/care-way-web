@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ApiService } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
-import { PaymentSummary } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
+import { PaymentSummary } from '@care-way/ui';
 import { PaymentService } from '../payment-service';
 
 @Component({

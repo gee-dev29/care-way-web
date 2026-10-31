@@ -4,9 +4,9 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { ApiService } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
-import { UploadPrescription } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
+import { UploadPrescription } from '@care-way/ui';
 
 @Component({
   selector: 'app-prescription-upload',

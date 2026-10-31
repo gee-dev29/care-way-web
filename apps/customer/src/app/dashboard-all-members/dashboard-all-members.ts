@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService, LimitSize } from '@healbridge/shared';
+import { ApiService } from '@care-way/api';
+import { AuthService, LimitSize } from '@care-way/shared';
 import {
   IonAvatar,
   IonContent,
@@ -13,7 +13,7 @@ import { addIcons } from 'ionicons';
 import { chevronBackOutline, chevronForwardOutline } from 'ionicons/icons';
 import moment from 'moment';
 import { map, Observable } from 'rxjs';
-import { PlusIconComponent } from "@healbridge/ui";
+import { PlusIconComponent } from "@care-way/ui";
 
 @Component({
   selector: 'app-dashboard-all-members',

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ApiService, VitalSignType } from '@healbridge/api';
-import { ProfileInfoService } from '@healbridge/shared';
-import { AddTemperature } from '@healbridge/ui';
+import { ApiService, VitalSignType } from '@care-way/api';
+import { ProfileInfoService } from '@care-way/shared';
+import { AddTemperature } from '@care-way/ui';
 
 @Component({
   selector: 'app-vitals-add-temperature',

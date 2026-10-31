@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, FacilityType, ReferralType } from '@healbridge/api';
+import { ApiService, FacilityType, ReferralType } from '@care-way/api';
 import {
   CostFlow,
   DocumentStatus,
   ProfileInfoService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   ConfirmationModal,
   MedicalRequestCard,
   PlusIconComponent,
   StorageService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   InfiniteScrollCustomEvent,
   IonContent,

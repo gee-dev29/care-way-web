@@ -13,12 +13,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, BloodGroup, Gender, Relationship } from '@healbridge/api';
+import { ApiService, BloodGroup, Gender, Relationship } from '@care-way/api';
 import {
   AuthService,
   ConversionService,
   ProfileInfoService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   ButtonComponent,
   InputCalendar,
@@ -26,7 +26,7 @@ import {
   Item,
   StorageService,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   IonContent,
   IonHeader,

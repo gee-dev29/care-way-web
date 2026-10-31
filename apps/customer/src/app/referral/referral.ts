@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ButtonComponent, ToastService } from '@healbridge/ui';
+import { ButtonComponent, ToastService } from '@care-way/ui';
 import {
   IonContent,
   IonIcon,
@@ -13,8 +13,8 @@ import {
   IonText,
 } from '@ionic/angular/standalone';
 import { Share } from '@capacitor/share';
-import { AuthService, environment } from '@healbridge/shared';
-import { ApiService } from '@healbridge/api';
+import { AuthService, environment } from '@care-way/shared';
+import { ApiService } from '@care-way/api';
 
 @Component({
   selector: 'app-referral',
@@ -60,7 +60,7 @@ export class Referral implements OnInit {
     this.loading = true;
     await Share.share({
       title: 'Check this out!',
-      text: 'A friend on HealBridge app wants you to also enjoy an unlimited health facilities:',
+      text: 'A friend on Care-Way app wants you to also enjoy an unlimited health facilities:',
       url: this.refLink,
       dialogTitle: 'Share via',
     }).then(() => (this.loading = false));

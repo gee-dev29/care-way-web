@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, AppointmentType } from '@healbridge/api';
+import { ApiService, AppointmentType } from '@care-way/api';
 import {
   AppointmentForm,
   ButtonComponent,
@@ -23,7 +23,7 @@ import {
   StorageService,
   TimePicker,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
