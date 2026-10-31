@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.test.healbridge.app',
-  appUrl: 'https://customer.test.healbridge.app',
-  MedAppUrl: 'https://facility.test.healbridge.app',
+  apiUrl: 'https://api.test.care-way.app',
+  appUrl: 'https://customer.test.care-way.app',
+  MedAppUrl: 'https://facility.test.care-way.app',
 
   mapKey: 'AIzaSyCaiAR-VTIv3hz1y4lcwRSTa_ifqTwU5-w',
   clientId:
