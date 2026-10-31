@@ -5,14 +5,14 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { ApiService, NonProfessionalUserType, OrderStatus } from '@healbridge/api';
-import { ConversionService } from '@healbridge/shared';
+import { ApiService, NonProfessionalUserType, OrderStatus } from '@care-way/api';
+import { ConversionService } from '@care-way/shared';
 import {
   PageBody,
   DesktopButton,
   InputDropDownComponent,
   LimitSize,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { BehaviorSubject, map, Observable, skip, tap } from 'rxjs';
 

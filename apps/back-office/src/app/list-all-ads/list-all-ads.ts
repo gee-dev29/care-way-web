@@ -14,7 +14,7 @@ import {
   ConfirmationModal,
   Modal,
   ConfirmationModalDesktop,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import moment from 'moment';
@@ -26,8 +26,8 @@ import {
   AppNames,
   ConversionService,
   Status,
-} from '@healbridge/shared';
-import { ApiService, ApprovalType } from '@healbridge/api';
+} from '@care-way/shared';
+import { ApiService, ApprovalType } from '@care-way/api';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

@@ -3,7 +3,7 @@ import { VerifyOtp } from './verify-otp/verify-otp';
 import { Signin } from './signin/signin';
 import { Signup } from './signup/signup';
 import { ListAllCustomers } from './list-all-customers/list-all-customers';
-import { AuthGuard, PageLayout, setLayout } from '@healbridge/shared';
+import { AuthGuard, PageLayout, setLayout } from '@care-way/shared';
 import { CustomerDetails } from './customer-details/customer-details';
 import { ListAllMedicalFacilities } from './list-all-medical-facilities/list-all-medical-facilities';
 import { ListAllPharmacies } from './list-all-pharmacies/list-all-pharmacies';

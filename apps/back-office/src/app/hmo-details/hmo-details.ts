@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import {
   PageBody,
   Tab,
@@ -17,7 +17,7 @@ import {
   DesktopUpload,
   DesktopInput,
   DesktopChips,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { Observable, tap } from 'rxjs';
 import { HmoDetailsCard } from '../hmo-details-card/hmo-details-card';
 import { HmoProductTable } from '../hmo-product-table/hmo-product-table';

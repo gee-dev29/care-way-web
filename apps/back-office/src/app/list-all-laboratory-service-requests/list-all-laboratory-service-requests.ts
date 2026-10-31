@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ServiceRequestTable } from '../service-request-table/service-request-table';
-import { ReferralType } from '@healbridge/api';
+import { ReferralType } from '@care-way/api';
 
 @Component({
   selector: 'back-office-list-all-laboratory-service-requests',

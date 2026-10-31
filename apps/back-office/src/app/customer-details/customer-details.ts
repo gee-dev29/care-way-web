@@ -7,14 +7,14 @@ import {
   Relationship,
   User,
   VitalSignType,
-} from '@healbridge/api';
+} from '@care-way/api';
 import {
   PageBody,
   Tab,
   CustomerDetailsCard,
   PageHighlight,
   TabSecondary,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { map, Observable, tap } from 'rxjs';
 import { ListMembers } from '../list-members/list-members';
 import { ListBloodPressure } from '../list-blood-pressure/list-blood-pressure';

@@ -5,7 +5,7 @@ import {
   inject,
   Input,
 } from '@angular/core';
-import { ApprovalState } from '@healbridge/shared';
+import { ApprovalState } from '@care-way/shared';
 import moment from 'moment';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TooltipModule } from 'primeng/tooltip';

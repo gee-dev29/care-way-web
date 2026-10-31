@@ -12,7 +12,7 @@ import {
   AppointmentType,
   MedicalAppointmentStatus,
   ProfessionalType,
-} from '@healbridge/api';
+} from '@care-way/api';
 import {
   PageBody,
   DesktopButton,
@@ -24,7 +24,7 @@ import {
   InputDropDownComponent,
   ConfirmationModalDesktop,
   AppointmentRecordingCard,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { ToastrService } from 'ngx-toastr';
 import { Table, TableModule } from 'primeng/table';
 import { BehaviorSubject, map, Observable, switchMap, tap } from 'rxjs';

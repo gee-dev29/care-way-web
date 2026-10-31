@@ -14,13 +14,13 @@ import {
   ApiService,
   AppointmentType,
   MedicalAppointmentStatus,
-} from '@healbridge/api';
-import { ConversionService } from '@healbridge/shared';
+} from '@care-way/api';
+import { ConversionService } from '@care-way/shared';
 import {
   DesktopButton,
   InputDropDownComponent,
   LimitSize,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import moment from 'moment';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';

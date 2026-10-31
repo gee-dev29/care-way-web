@@ -10,16 +10,16 @@ import {
   PageHighlight,
   PaymentTypes,
   Tab,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { MedicalFacilityDetailsCard } from '../medical-facility-details-card/medical-facility-details-card';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, InflowCategory, OrderType } from '@healbridge/api';
+import { ApiService, InflowCategory, OrderType } from '@care-way/api';
 import { BehaviorSubject, forkJoin, map, Observable, tap } from 'rxjs';
 import { BankDetailsCard } from '../bank-details-card/bank-details-card';
 import { LicenseDetailsCard } from '../license-details-card/license-details-card';
 import { Wallet } from '../wallet/wallet';
 import { CommonModule, Location } from '@angular/common';
-import { ConversionService } from '@healbridge/shared';
+import { ConversionService } from '@care-way/shared';
 import moment from 'moment';
 
 @Component({

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
-import { PageBody, DesktopButton } from '@healbridge/ui';
+import { PageBody, DesktopButton } from '@care-way/ui';
 import { MedicalProfessionalTable } from '../medical-professional-table/medical-professional-table';
-import { ApiService, ProfessionalType } from '@healbridge/api';
+import { ApiService, ProfessionalType } from '@care-way/api';
 import { Router } from '@angular/router';
 
 @Component({

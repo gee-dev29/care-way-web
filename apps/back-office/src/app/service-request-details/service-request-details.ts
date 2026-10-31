@@ -6,7 +6,7 @@ import {
   FacilityType,
   ReferralType,
   ServiceRequestStatus,
-} from '@healbridge/api';
+} from '@care-way/api';
 import {
   DesktopButton,
   PageBody,
@@ -17,7 +17,7 @@ import {
   Modal,
   InputTextarea,
   ConfirmationModalDesktop,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { forkJoin, map, Observable, switchMap, tap } from 'rxjs';
 import { MedicalFacilityTable } from '../medical-facility-table/medical-facility-table';
 import { Table } from 'primeng/table';

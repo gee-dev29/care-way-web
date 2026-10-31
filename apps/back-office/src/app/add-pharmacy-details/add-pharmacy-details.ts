@@ -7,11 +7,11 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import {
   DesktopButton,
   FacilityType,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { ToastrService } from 'ngx-toastr';
 import { CheckboxModule } from 'primeng/checkbox';
 import { v4 } from 'uuid';

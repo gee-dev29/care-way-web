@@ -4,12 +4,12 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { PageBody } from '@healbridge/ui';
+import { PageBody } from '@care-way/ui';
 import { WithdrawalTable } from '../withdrawal-table/withdrawal-table';
 import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
-import { ApiService, WithdrawalStatus } from '@healbridge/api';
+import { ApiService, WithdrawalStatus } from '@care-way/api';
 import { Router } from '@angular/router';
-import { ConversionService } from '@healbridge/shared';
+import { ConversionService } from '@care-way/shared';
 import moment from 'moment';
 
 @Component({

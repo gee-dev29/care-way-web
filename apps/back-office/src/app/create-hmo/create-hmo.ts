@@ -13,13 +13,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import {
   PageBody,
   FormBody,
   DesktopInput,
   DesktopButton,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { ToastrService } from 'ngx-toastr';
 import { v4 } from 'uuid';
 

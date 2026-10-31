@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService, DisplayLayout, PageLayout } from '@healbridge/shared';
-import { Sidebar } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AuthService, DisplayLayout, PageLayout } from '@care-way/shared';
+import { Sidebar } from '@care-way/ui';
 
 @Component({
   imports: [CommonModule, RouterModule, Sidebar],

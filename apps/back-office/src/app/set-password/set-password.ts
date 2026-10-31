@@ -9,14 +9,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { DisplayLayout, PageLayout } from '@healbridge/shared';
+import { ApiService } from '@care-way/api';
+import { DisplayLayout, PageLayout } from '@care-way/shared';
 import {
   Authentication,
   InputComponent,
   ButtonComponent,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { IonText } from '@ionic/angular/standalone';
 
 @Component({

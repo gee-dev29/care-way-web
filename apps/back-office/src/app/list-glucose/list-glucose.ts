@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { Observable } from 'rxjs';
-import { DesktopButton, Modal } from '@healbridge/ui';
+import { DesktopButton, Modal } from '@care-way/ui';
 
 @Component({
   selector: 'back-office-list-glucose',

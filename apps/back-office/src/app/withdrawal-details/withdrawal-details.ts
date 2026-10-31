@@ -4,12 +4,12 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { PageBody, Tab, UploadCard, PageHighlight } from '@healbridge/ui';
+import { PageBody, Tab, UploadCard, PageHighlight } from '@care-way/ui';
 import { BankDetailsCard } from '../bank-details-card/bank-details-card';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { map, Observable, of, tap } from 'rxjs';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { WithdrawalDetailsCard } from '../withdrawal-details-card/withdrawal-details-card';
 
 @Component({

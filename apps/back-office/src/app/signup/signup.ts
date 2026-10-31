@@ -4,7 +4,7 @@ import {
   ButtonComponent,
   InputComponent,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   FormBuilder,
   FormControl,
@@ -14,9 +14,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ApiService, NonProfessionalUserType } from '@healbridge/api';
+import { ApiService, NonProfessionalUserType } from '@care-way/api';
 import { Router } from '@angular/router';
-import { ConversionService, Gender, SetCountry } from '@healbridge/shared';
+import { ConversionService, Gender, SetCountry } from '@care-way/shared';
 import { v4 } from 'uuid';
 import { IonText } from '@ionic/angular/standalone';
 import { switchMap } from 'rxjs';

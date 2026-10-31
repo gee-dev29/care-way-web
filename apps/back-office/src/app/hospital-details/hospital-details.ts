@@ -8,14 +8,14 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
   ApiService,
   FacilityType,
-} from '@healbridge/api';
+} from '@care-way/api';
 import {
   PageBody,
   PageHighlight,
   Tab,
   MedicalProfessionalHospitalTable,
   PaymentTypes,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { BehaviorSubject, forkJoin, map, Observable, pipe, tap } from 'rxjs';
 import { MedicalFacilityDetailsCard } from '../medical-facility-details-card/medical-facility-details-card';
 import { AppointmentTable } from '../appointment-table/appointment-table';
@@ -25,7 +25,7 @@ import { ListAllPatients } from '../list-all-patients/list-all-patients';
 import { Wallet } from '../wallet/wallet';
 import { BankDetailsCard } from '../bank-details-card/bank-details-card';
 import { LicenseDetailsCard } from '../license-details-card/license-details-card';
-import { ConversionService, Status } from '@healbridge/shared';
+import { ConversionService, Status } from '@care-way/shared';
 import moment from 'moment';
 import { MedicalProductTable } from '../medical-product-table/medical-product-table';
 

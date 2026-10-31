@@ -16,15 +16,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ApiService, NonProfessionalUserType } from '@healbridge/api';
-import { ApprovalMethod, LimitSize } from '@healbridge/shared';
+import { ApiService, NonProfessionalUserType } from '@care-way/api';
+import { ApprovalMethod, LimitSize } from '@care-way/shared';
 import {
   DesktopButton,
   DesktopInput,
   InputDropDownComponent,
   Modal,
   SplitButtonComponent,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { ToastrService } from 'ngx-toastr';
 import { MenuItem } from 'primeng/api';
 import { InputNumberModule } from 'primeng/inputnumber';

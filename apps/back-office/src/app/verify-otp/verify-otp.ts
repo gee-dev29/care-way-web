@@ -9,7 +9,7 @@ import {
   ButtonComponent,
   InputComponent,
   ToastService,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   FormBuilder,
   FormControl,
@@ -19,9 +19,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService, DisplayLayout, PageLayout } from '@healbridge/shared';
+import { AuthService, DisplayLayout, PageLayout } from '@care-way/shared';
 
 @Component({
   selector: 'back-office-verify-otp',

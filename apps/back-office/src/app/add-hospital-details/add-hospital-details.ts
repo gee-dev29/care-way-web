@@ -16,17 +16,17 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService, HospitalCategory } from '@healbridge/api';
+import { ApiService, HospitalCategory } from '@care-way/api';
 import {
   ConversionService,
   FacilityType,
   ToastService,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   DesktopButton,
   FormBody,
   InputDropDownComponent,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { MultiSelect, MultiSelectModule } from 'primeng/multiselect';
 import { Observable } from 'rxjs';
 import { v4 } from 'uuid';

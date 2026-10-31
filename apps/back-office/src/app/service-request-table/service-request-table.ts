@@ -13,14 +13,14 @@ import {
   NonProfessionalUserType,
   ReferralType,
   ServiceRequestStatus,
-} from '@healbridge/api';
-import { ConversionService, Export } from '@healbridge/shared';
+} from '@care-way/api';
+import { ConversionService, Export } from '@care-way/shared';
 import {
   DesktopButton,
   PageBody,
   InputDropDownComponent,
   LimitSize,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import moment from 'moment';

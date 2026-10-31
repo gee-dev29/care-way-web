@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import {
   PageBody,
   DesktopButton,
   InputDropDownComponent,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 

@@ -5,8 +5,8 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { ApiService, ProfessionalType } from '@healbridge/api';
-import { DesktopButton, PageBody } from '@healbridge/ui';
+import { ApiService, ProfessionalType } from '@care-way/api';
+import { DesktopButton, PageBody } from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { MedicalProfessionalTable } from '../medical-professional-table/medical-professional-table';
 import { Router } from '@angular/router';

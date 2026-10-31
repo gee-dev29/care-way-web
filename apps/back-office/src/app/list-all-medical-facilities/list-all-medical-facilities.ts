@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DesktopButton, PageBody } from '@healbridge/ui';
+import { DesktopButton, PageBody } from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { map, Observable, tap } from 'rxjs';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { Router } from '@angular/router';
-import { Export } from '@healbridge/shared';
+import { Export } from '@care-way/shared';
 
 @Component({
   selector: 'back-office-list-all-medical-facilities',

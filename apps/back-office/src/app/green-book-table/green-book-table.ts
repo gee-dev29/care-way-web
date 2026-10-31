@@ -13,18 +13,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ApiService, GreenBookType } from '@healbridge/api';
+import { ApiService, GreenBookType } from '@care-way/api';
 import {
   ConversionService,
   Export,
   GreenBookItemStatus,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   DesktopButton,
   Modal,
   DesktopInput,
   InputDropDownComponent,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { ToastrService } from 'ngx-toastr';
 import { TableModule } from 'primeng/table';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';

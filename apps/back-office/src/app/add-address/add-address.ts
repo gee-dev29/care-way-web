@@ -17,9 +17,9 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { importLibrary, setOptions } from '@googlemaps/js-api-loader';
-import { ApiService } from '@healbridge/api';
-import { FacilityType, ToastService } from '@healbridge/shared';
-import { Address, DesktopButton, DesktopInput, FormBody } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { FacilityType, ToastService } from '@care-way/shared';
+import { Address, DesktopButton, DesktopInput, FormBody } from '@care-way/ui';
 import { v4 } from 'uuid';
 
 @Component({

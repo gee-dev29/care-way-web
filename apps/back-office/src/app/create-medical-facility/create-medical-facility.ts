@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { DesktopButton, DesktopInput, FormBody, PageBody, ToastService } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { DesktopButton, DesktopInput, FormBody, PageBody, ToastService } from '@care-way/ui';
 import { map, Observable } from 'rxjs';
 import { v4 } from 'uuid';
 

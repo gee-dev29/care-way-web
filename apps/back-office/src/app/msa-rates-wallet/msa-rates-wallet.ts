@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { PageBody } from '@healbridge/ui';
+import { PageBody } from '@care-way/ui';
 import { MsaRatesTable } from '../msa-rates-table/msa-rates-table';
-import { MsaType } from '@healbridge/api';
+import { MsaType } from '@care-way/api';
 import { CommonModule } from '@angular/common';
 
 @Component({

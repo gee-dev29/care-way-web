@@ -6,8 +6,8 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { PageBody, DesktopButton } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { PageBody, DesktopButton } from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { map, Observable, tap } from 'rxjs';
 

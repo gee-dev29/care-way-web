@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ApiService } from '@healbridge/api';
-import { DesktopButton } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { DesktopButton } from '@care-way/ui';
 import moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { TextareaModule } from 'primeng/textarea';

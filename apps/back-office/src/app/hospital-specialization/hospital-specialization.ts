@@ -6,8 +6,8 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ApiService } from '@healbridge/api';
-import { PageBody, DesktopButton, Modal, DesktopInput } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { PageBody, DesktopButton, Modal, DesktopInput } from '@care-way/ui';
 import { IonModal } from '@ionic/angular/standalone';
 import { TableModule } from 'primeng/table';
 import { Observable, tap } from 'rxjs';

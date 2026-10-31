@@ -6,17 +6,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { IonModal } from '@ionic/angular/common';
 import { addIcons } from 'ionicons';
 import { close } from 'ionicons/icons';
 import { ToastrService } from 'ngx-toastr';
 import { map, Observable, tap } from 'rxjs';
 import { v4 } from 'uuid';
-import { PageBody, DesktopButton, Modal, DesktopInput, InputDropDownComponent } from '@healbridge/ui';
+import { PageBody, DesktopButton, Modal, DesktopInput, InputDropDownComponent } from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
-import { AppNames, ConversionService } from '@healbridge/shared';
+import { AppNames, ConversionService } from '@care-way/shared';
 
 @Component({
   selector: 'back-office-app-version',

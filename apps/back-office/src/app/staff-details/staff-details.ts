@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { user } from '@angular/fire/auth';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { PageBody, Tab, StaffDetailsCard } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { PageBody, Tab, StaffDetailsCard } from '@care-way/ui';
 import { Observable } from 'rxjs';
 
 @Component({

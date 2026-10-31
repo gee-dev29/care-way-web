@@ -5,7 +5,7 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { LimitSize, PageBody, Tab } from '@healbridge/ui';
+import { LimitSize, PageBody, Tab } from '@care-way/ui';
 import { HmoPurchasedOrderDetailsCard } from '../hmo-purchased-order-details-card/hmo-purchased-order-details-card';
 import {
   catchError,
@@ -16,7 +16,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import moment from 'moment';
 

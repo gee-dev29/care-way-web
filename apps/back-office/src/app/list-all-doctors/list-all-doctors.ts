@@ -7,8 +7,8 @@ import {
   Output,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, ProfessionalType } from '@healbridge/api';
-import { PageBody, DesktopButton } from '@healbridge/ui';
+import { ApiService, ProfessionalType } from '@care-way/api';
+import { PageBody, DesktopButton } from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { map, Observable, tap } from 'rxjs';
 import { MedicalProfessionalTable } from '../medical-professional-table/medical-professional-table';

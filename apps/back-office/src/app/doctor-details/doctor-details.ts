@@ -20,8 +20,8 @@ import {
   FacilityType,
   MedicalAppointmentStatus,
   ProfessionalType,
-} from '@healbridge/api';
-import { ConversionService } from '@healbridge/shared';
+} from '@care-way/api';
+import { ConversionService } from '@care-way/shared';
 import {
   DesktopButton,
   PageBody,
@@ -35,7 +35,7 @@ import {
   MedicalProfessionalFeeTable,
   DesktopInput,
   LimitSize,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { IonModal } from '@ionic/angular/standalone';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';

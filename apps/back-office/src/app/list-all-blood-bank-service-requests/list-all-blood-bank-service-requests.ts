@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReferralType } from '@healbridge/api';
+import { ReferralType } from '@care-way/api';
 import { ServiceRequestTable } from '../service-request-table/service-request-table';
 
 @Component({

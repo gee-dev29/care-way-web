@@ -14,8 +14,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService, NonProfessionalUserType } from '@healbridge/api';
-import { ConversionService, Gender } from '@healbridge/shared';
+import { ApiService, NonProfessionalUserType } from '@care-way/api';
+import { ConversionService, Gender } from '@care-way/shared';
 import {
   PageBody,
   DesktopButton,
@@ -23,7 +23,7 @@ import {
   DesktopInput,
   InputDropDownComponent,
   FormBody,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { IonModal } from '@ionic/angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { TableModule } from 'primeng/table';

@@ -5,11 +5,11 @@ import {
   DesktopButton,
   InputDropDownComponent,
   ConfirmationModalDesktop,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { ApprovalTable } from '../approval-table/approval-table';
-import { ApiService, ApprovalType } from '@healbridge/api';
+import { ApiService, ApprovalType } from '@care-way/api';
 import { Router } from '@angular/router';
-import { ConversionService } from '@healbridge/shared';
+import { ConversionService } from '@care-way/shared';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';

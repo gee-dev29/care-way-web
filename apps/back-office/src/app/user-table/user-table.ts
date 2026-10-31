@@ -6,7 +6,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { DesktopButton } from '@healbridge/ui';
+import { DesktopButton } from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { Observable } from 'rxjs';
 

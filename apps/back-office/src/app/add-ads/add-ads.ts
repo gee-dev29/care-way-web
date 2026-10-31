@@ -23,10 +23,10 @@ import {
   PageBody,
   UploadBox,
   DateInput,
-} from '@healbridge/ui';
-import { AppNames, ConversionService } from '@healbridge/shared';
+} from '@care-way/ui';
+import { AppNames, ConversionService } from '@care-way/shared';
 import { v4 } from 'uuid';
-import { AdvertDevice, ApiService } from '@healbridge/api';
+import { AdvertDevice, ApiService } from '@care-way/api';
 import moment from 'moment';
 import { forkJoin, map, Observable, of } from 'rxjs';
 

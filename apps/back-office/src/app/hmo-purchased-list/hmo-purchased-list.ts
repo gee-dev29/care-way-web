@@ -10,14 +10,14 @@ import {
   ApiService,
   NonProfessionalUserType,
   OrderStatus,
-} from '@healbridge/api';
-import { ConversionService, Export } from '@healbridge/shared';
+} from '@care-way/api';
+import { ConversionService, Export } from '@care-way/shared';
 import {
   PageBody,
   DesktopButton,
   InputDropDownComponent,
   LimitSize,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import {
   BehaviorSubject,

@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { map, Observable, tap } from 'rxjs';
-import { PageBody, DesktopButton } from '@healbridge/ui';
-import { ApiService, NonProfessionalUserType } from '@healbridge/api';
+import { PageBody, DesktopButton } from '@care-way/ui';
+import { ApiService, NonProfessionalUserType } from '@care-way/api';
 import { PaginatorModule } from 'primeng/paginator';
 import { Router } from '@angular/router';
-import { Export } from '@healbridge/shared';
+import { Export } from '@care-way/shared';
 import { UserTable } from '../user-table/user-table';
 
 @Component({

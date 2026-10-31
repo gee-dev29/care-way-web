@@ -10,7 +10,7 @@ import {
   environment,
   ErrorInterceptor,
   JwtInterceptor,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { provideCharts } from 'ng2-charts';
 import {
@@ -23,7 +23,7 @@ import {
   IonicRouteStrategy,
   provideIonicAngular,
 } from '@ionic/angular/standalone';
-import { ApiModule } from '@healbridge/api';
+import { ApiModule } from '@care-way/api';
 import { appRoutes } from './app/app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { CurrencyPipe } from '@angular/common';

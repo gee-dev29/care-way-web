@@ -1,8 +1,8 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, FacilityType, InflowCategory, OrderType } from '@healbridge/api';
-import { PageBody, PageHighlight, PaymentTypes, Tab } from '@healbridge/ui';
+import { ApiService, FacilityType, InflowCategory, OrderType } from '@care-way/api';
+import { PageBody, PageHighlight, PaymentTypes, Tab } from '@care-way/ui';
 import {
   BehaviorSubject,
   forkJoin,
@@ -15,7 +15,7 @@ import { BankDetailsCard } from '../bank-details-card/bank-details-card';
 import { Wallet } from '../wallet/wallet';
 import { LicenseDetailsCard } from '../license-details-card/license-details-card';
 import { MedicalFacilityDetailsCard } from '../medical-facility-details-card/medical-facility-details-card';
-import { ConversionService } from '@healbridge/shared';
+import { ConversionService } from '@care-way/shared';
 import moment from 'moment';
 
 @Component({

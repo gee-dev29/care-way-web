@@ -6,9 +6,9 @@ import {
   ApiService,
   FacilityType,
   ServiceRequestStatus,
-} from '@healbridge/api';
-import { Export } from '@healbridge/shared';
-import { DesktopButton, PageBody, InputDropDownComponent } from '@healbridge/ui';
+} from '@care-way/api';
+import { Export } from '@care-way/shared';
+import { DesktopButton, PageBody, InputDropDownComponent } from '@care-way/ui';
 import { Table, TableModule } from 'primeng/table';
 import { map, Observable, tap } from 'rxjs';
 

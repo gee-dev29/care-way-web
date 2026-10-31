@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { PageBody } from '@healbridge/ui';
+import { PageBody } from '@care-way/ui';
 import { BankTables } from '../bank-tables/bank-tables';
 import { ActivatedRoute, Params } from '@angular/router';
 

@@ -13,14 +13,14 @@ import {
   PageBody,
   Tab,
   UploadCard,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import moment from 'moment';
 import { DatePickerModule } from 'primeng/datepicker';
 import { TableModule } from 'primeng/table';
 import { Observable, of, tap } from 'rxjs';
 import { AdsDetailsCard } from '../ads-details-card/ads-details-card';
-import { AdDeviceType, AppNames, ConversionService } from '@healbridge/shared';
-import { ApiService, ApprovalType } from '@healbridge/api';
+import { AdDeviceType, AppNames, ConversionService } from '@care-way/shared';
+import { ApiService, ApprovalType } from '@care-way/api';
 import { ApprovalButton } from '../approval-button/approval-button';
 import { ApprovalTimeline } from '../approval-timeline/approval-timeline';
 import { ApprovalQueries } from '../approval-queries/approval-queries';

@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, InflowCategory, OrderType } from '@healbridge/api';
+import { ApiService, InflowCategory, OrderType } from '@care-way/api';
 import {
   PageBody,
   Tab,
@@ -14,13 +14,13 @@ import {
   PageHighlight,
   UploadCard,
   PaymentTypes,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { BehaviorSubject, forkJoin, map, Observable, tap } from 'rxjs';
 import { OrderTable } from '../order-table/order-table';
 import { LicenseDetailsCard } from '../license-details-card/license-details-card';
 import { BankDetailsCard } from '../bank-details-card/bank-details-card';
 import { Wallet } from '../wallet/wallet';
-import { ConversionService } from '@healbridge/shared';
+import { ConversionService } from '@care-way/shared';
 import moment from 'moment';
 
 @Component({

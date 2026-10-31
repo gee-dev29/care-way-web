@@ -4,11 +4,11 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { PageBody } from '@healbridge/ui';
+import { PageBody } from '@care-way/ui';
 import { ApprovalRouteCard } from '../approval-route-card/approval-route-card';
 import { Observable, tap } from 'rxjs';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { CommonModule } from '@angular/common';
 
 @Component({

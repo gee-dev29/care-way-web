@@ -5,11 +5,11 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { DesktopButton, PageBody, InputDropDownComponent } from '@healbridge/ui';
+import { DesktopButton, PageBody, InputDropDownComponent } from '@care-way/ui';
 import { Table, TableModule } from 'primeng/table';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
-import { AuthService, ConversionService, Export } from '@healbridge/shared';
-import { ApiService, ApprovalType } from '@healbridge/api';
+import { AuthService, ConversionService, Export } from '@care-way/shared';
+import { ApiService, ApprovalType } from '@care-way/api';
 import moment from 'moment';
 import { Router } from '@angular/router';
 import { DatePicker } from 'primeng/datepicker';

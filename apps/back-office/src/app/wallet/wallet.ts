@@ -11,16 +11,16 @@ import {
 import moment from 'moment';
 import { TableModule } from 'primeng/table';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
-import { InputDropDownComponent } from '@healbridge/ui';
+import { InputDropDownComponent } from '@care-way/ui';
 import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
-import { ConversionService, Status } from '@healbridge/shared';
+import { ConversionService, Status } from '@care-way/shared';
 import {
   ApiService,
   InflowCategory,
   OrderType,
   WithdrawalStatus,
-} from '@healbridge/api';
+} from '@care-way/api';
 
 @Component({
   selector: 'back-office-wallet',

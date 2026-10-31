@@ -7,8 +7,8 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { ApiService } from '@healbridge/api';
-import { DesktopButton } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { DesktopButton } from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { map, Observable, tap } from 'rxjs';
 

@@ -6,8 +6,8 @@ import {
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, ProfessionalType } from '@healbridge/api';
-import { PageBody, Tab, MedicalProfessionalDetailsCard } from '@healbridge/ui';
+import { ApiService, ProfessionalType } from '@care-way/api';
+import { PageBody, Tab, MedicalProfessionalDetailsCard } from '@care-way/ui';
 import { Observable } from 'rxjs';
 
 @Component({

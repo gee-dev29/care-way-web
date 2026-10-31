@@ -3,7 +3,7 @@ import {
   Authentication,
   ButtonComponent,
   InputComponent,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import {
   FormBuilder,
   FormControl,
@@ -13,7 +13,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import {
@@ -21,7 +21,7 @@ import {
   DisplayLayout,
   PageLayout,
   SetCountry,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

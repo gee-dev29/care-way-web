@@ -1,19 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, InflowCategory, OrderType } from '@healbridge/api';
+import { ApiService, InflowCategory, OrderType } from '@care-way/api';
 import {
   FacilityType,
   PageBody,
   Tab,
   PageHighlight,
   PaymentTypes,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { BehaviorSubject, forkJoin, map, Observable, tap } from 'rxjs';
 import { MedicalFacilityDetailsCard } from '../medical-facility-details-card/medical-facility-details-card';
 import { BankDetailsCard } from '../bank-details-card/bank-details-card';
 import { LicenseDetailsCard } from '../license-details-card/license-details-card';
 import { Wallet } from '../wallet/wallet';
-import { ConversionService, Status } from '@healbridge/shared';
+import { ConversionService, Status } from '@care-way/shared';
 import { Location } from '@angular/common';
 import moment from 'moment';
 

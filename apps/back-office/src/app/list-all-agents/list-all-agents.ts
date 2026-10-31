@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, NonProfessionalUserType } from '@healbridge/api';
-import { Export } from '@healbridge/shared';
-import { PageBody, DesktopButton } from '@healbridge/ui';
+import { ApiService, NonProfessionalUserType } from '@care-way/api';
+import { Export } from '@care-way/shared';
+import { PageBody, DesktopButton } from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { map, Observable, tap } from 'rxjs';
 import { UserTable } from '../user-table/user-table';

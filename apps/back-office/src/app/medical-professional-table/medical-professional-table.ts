@@ -7,9 +7,9 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { ApiService, ProfessionalType } from '@healbridge/api';
-import { Export } from '@healbridge/shared';
-import { DesktopButton } from '@healbridge/ui';
+import { ApiService, ProfessionalType } from '@care-way/api';
+import { Export } from '@care-way/shared';
+import { DesktopButton } from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { map, Observable, tap } from 'rxjs';
 

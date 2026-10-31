@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { GreenBookTable } from '../green-book-table/green-book-table';
-import { GreenBookType } from '@healbridge/api';
-import { PageBody } from '@healbridge/ui';
+import { GreenBookType } from '@care-way/api';
+import { PageBody } from '@care-way/ui';
 
 @Component({
   selector: 'back-office-green-book-vaccines-biologics',

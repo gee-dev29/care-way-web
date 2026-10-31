@@ -11,20 +11,20 @@ import {
   InflowCategory,
   NonProfessionalUserType,
   OrderType,
-} from '@healbridge/api';
+} from '@care-way/api';
 import {
   PageBody,
   Tab,
   PageHighlight,
   RiderDetailsCard,
   PaymentTypes,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { BehaviorSubject, forkJoin, map, Observable, tap } from 'rxjs';
 import { BankDetailsCard } from '../bank-details-card/bank-details-card';
 import { UserTable } from '../user-table/user-table';
 import { Wallet } from '../wallet/wallet';
 import { MedicalFacilities } from '../medical-facilities/medical-facilities';
-import { ConversionService } from '@healbridge/shared';
+import { ConversionService } from '@care-way/shared';
 import moment from 'moment';
 
 @Component({

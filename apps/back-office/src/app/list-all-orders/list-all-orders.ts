@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { OrderTable } from '../order-table/order-table';
-import { PageBody } from '@healbridge/ui';
+import { PageBody } from '@care-way/ui';
 
 @Component({
   selector: 'back-office-list-all-orders',

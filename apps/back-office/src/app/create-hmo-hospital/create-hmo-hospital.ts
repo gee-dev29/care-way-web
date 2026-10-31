@@ -13,15 +13,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
+import { ApiService } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
 import {
   PageBody,
   FormBody,
   InputDropDownComponent,
   DesktopButton,
   LimitSize,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 

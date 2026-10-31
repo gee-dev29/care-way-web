@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { PageBody } from '@healbridge/ui';
+import { PageBody } from '@care-way/ui';
 import { ApprovalTable } from '../approval-table/approval-table';
 
 @Component({

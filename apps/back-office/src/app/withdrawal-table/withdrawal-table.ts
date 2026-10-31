@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DesktopButton, InputDropDownComponent } from '@healbridge/ui';
+import { DesktopButton, InputDropDownComponent } from '@care-way/ui';
 import moment from 'moment';
 import { DatePickerModule } from 'primeng/datepicker';
 import { TableModule } from 'primeng/table';

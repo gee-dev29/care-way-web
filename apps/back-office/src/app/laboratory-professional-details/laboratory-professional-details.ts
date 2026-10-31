@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, ProfessionalType } from '@healbridge/api';
-import { PageBody, MedicalProfessionalDetailsCard, Tab } from '@healbridge/ui';
+import { ApiService, ProfessionalType } from '@care-way/api';
+import { PageBody, MedicalProfessionalDetailsCard, Tab } from '@care-way/ui';
 import { Observable } from 'rxjs';
 
 @Component({

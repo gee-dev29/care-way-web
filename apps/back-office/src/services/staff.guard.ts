@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { NonProfessionalUserType } from '@healbridge/api';
-import { AuthService, DisplayLayout, PageLayout } from '@healbridge/shared';
+import { NonProfessionalUserType } from '@care-way/api';
+import { AuthService, DisplayLayout, PageLayout } from '@care-way/shared';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({

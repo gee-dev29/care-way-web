@@ -18,8 +18,8 @@ import {
   ApiService,
   ApprovalType,
   NonProfessionalUserType,
-} from '@healbridge/api';
-import { AuthService, ConversionService, Export } from '@healbridge/shared';
+} from '@care-way/api';
+import { AuthService, ConversionService, Export } from '@care-way/shared';
 import {
   InputDropDownComponent,
   DesktopButton,
@@ -27,7 +27,7 @@ import {
   Modal,
   FormBody,
   ConfirmationModalDesktop,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Table, TableModule } from 'primeng/table';

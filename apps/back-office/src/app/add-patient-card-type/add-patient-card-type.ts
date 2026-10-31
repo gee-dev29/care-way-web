@@ -9,8 +9,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { DesktopButton, DesktopInput, FormBody } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { DesktopButton, DesktopInput, FormBody } from '@care-way/ui';
 import { v4 } from 'uuid';
 
 @Component({

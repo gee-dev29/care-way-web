@@ -11,7 +11,7 @@ import {
   NonProfessionalUserType,
   OrderStatus,
   ReferralType,
-} from '@healbridge/api';
+} from '@care-way/api';
 import {
   PageBody,
   Tab,
@@ -20,12 +20,12 @@ import {
   Modal,
   RiderDetailsCard,
   ConfirmationModalDesktop,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { map, Observable, shareReplay, tap } from 'rxjs';
 import { ReferralItems } from '../referral-items/referral-items';
 import { Table, TableModule } from 'primeng/table';
 import { ToastrService } from 'ngx-toastr';
-import { DocumentStatus } from '@healbridge/shared';
+import { DocumentStatus } from '@care-way/shared';
 
 @Component({
   selector: 'back-office-order-details',

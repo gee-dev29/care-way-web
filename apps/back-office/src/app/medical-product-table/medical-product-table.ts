@@ -7,11 +7,11 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, ProductType } from '@healbridge/api';
+import { ApiService, ProductType } from '@care-way/api';
 import { TableModule } from 'primeng/table';
 import { BehaviorSubject, map, Observable, skip, tap } from 'rxjs';
-import { InputDropDownComponent } from '@healbridge/ui';
-import { ConversionService } from '@healbridge/shared';
+import { InputDropDownComponent } from '@care-way/ui';
+import { ConversionService } from '@care-way/shared';
 
 @Component({
   selector: 'back-office-medical-product-table',

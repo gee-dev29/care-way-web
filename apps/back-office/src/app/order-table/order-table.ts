@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, OrderStatus } from '@healbridge/api';
-import { ConversionService } from '@healbridge/shared';
+import { ApiService, OrderStatus } from '@care-way/api';
+import { ConversionService } from '@care-way/shared';
 import {
   PageBody,
   DesktopInput,
   DesktopButton,
   InputDropDownComponent,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import moment from 'moment';

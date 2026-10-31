@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { ApiService, ApprovalType } from '@healbridge/api';
-import { ApprovalState, AuthService } from '@healbridge/shared';
+import { ApiService, ApprovalType } from '@care-way/api';
+import { ApprovalState, AuthService } from '@care-way/shared';
 import moment from 'moment';
 import {
   BehaviorSubject,

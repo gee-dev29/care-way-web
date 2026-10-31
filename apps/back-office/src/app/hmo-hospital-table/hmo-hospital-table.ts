@@ -6,10 +6,10 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { TableModule } from 'primeng/table';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
-import { DesktopButton, ConfirmationModalDesktop, InputDropDownComponent } from '@healbridge/ui';
+import { DesktopButton, ConfirmationModalDesktop, InputDropDownComponent } from '@care-way/ui';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

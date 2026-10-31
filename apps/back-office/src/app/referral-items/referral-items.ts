@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { ReferralType } from '@healbridge/api';
+import { ReferralType } from '@care-way/api';
 import { TableModule } from 'primeng/table';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MsaType } from '@healbridge/api';
-import { PageBody } from '@healbridge/ui';
+import { MsaType } from '@care-way/api';
+import { PageBody } from '@care-way/ui';
 import { MsaRatesTable } from '../msa-rates-table/msa-rates-table';
 
 @Component({

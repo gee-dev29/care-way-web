@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { Export } from '@healbridge/shared';
-import { PageBody, DesktopButton } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { Export } from '@care-way/shared';
+import { PageBody, DesktopButton } from '@care-way/ui';
 import { AppointmentTable } from '../appointment-table/appointment-table';
 
 @Component({

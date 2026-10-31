@@ -6,13 +6,13 @@ import {
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, ProfessionalType } from '@healbridge/api';
+import { ApiService, ProfessionalType } from '@care-way/api';
 import {
   PageBody,
   DesktopButton,
   Tab,
   MedicalProfessionalDetailsCard,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { Observable } from 'rxjs';
 
 @Component({

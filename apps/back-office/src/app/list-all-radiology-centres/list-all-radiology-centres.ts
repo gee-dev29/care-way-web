@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { MedicalFacilityTable } from '../medical-facility-table/medical-facility-table';
-import { FacilityType } from '@healbridge/api';
+import { FacilityType } from '@care-way/api';
 import { Router } from '@angular/router';
 
 @Component({

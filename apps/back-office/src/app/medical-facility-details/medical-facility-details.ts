@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, Facility, FacilityType } from '@healbridge/api';
+import { ApiService, Facility, FacilityType } from '@care-way/api';
 import {
   HospitalCategoryDetailsCard,
   MedicalFacilityDetailsCard,
@@ -15,7 +15,7 @@ import {
   PageHighlight,
   SplitButtonComponent,
   Tab,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { BehaviorSubject, map, Observable, of, switchMap, tap } from 'rxjs';
 

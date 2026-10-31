@@ -15,12 +15,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService, ApprovalType } from '@healbridge/api';
+import { ApiService, ApprovalType } from '@care-way/api';
 import {
   AuthService,
   ConversionService,
   DocumentStatus,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   DesktopButton,
   Modal,
@@ -29,7 +29,7 @@ import {
   DateInput,
   InputDropDownComponent,
   ConfirmationModalDesktop,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Table, TableModule } from 'primeng/table';

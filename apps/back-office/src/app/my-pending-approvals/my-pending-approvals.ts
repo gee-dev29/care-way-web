@@ -12,8 +12,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService, ApprovalType } from '@healbridge/api';
-import { AuthService, ConversionService, Export } from '@healbridge/shared';
+import { ApiService, ApprovalType } from '@care-way/api';
+import { AuthService, ConversionService, Export } from '@care-way/shared';
 import {
   InputDropDownComponent,
   LimitSize,
@@ -23,7 +23,7 @@ import {
   DesktopInput,
   FormBody,
   Modal,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { DatePicker } from 'primeng/datepicker';

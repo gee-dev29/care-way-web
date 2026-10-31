@@ -16,8 +16,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FacilityType } from '@healbridge/shared';
-import { DesktopButton, ToastService, DesktopInput } from '@healbridge/ui';
+import { FacilityType } from '@care-way/shared';
+import { DesktopButton, ToastService, DesktopInput } from '@care-way/ui';
 import moment from 'moment';
 import { v4 } from 'uuid';
 

@@ -10,10 +10,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { TableModule } from 'primeng/table';
 import { map, Observable, tap } from 'rxjs';
-import { DesktopButton } from '@healbridge/ui';
+import { DesktopButton } from '@care-way/ui';
 
 @Component({
   selector: 'back-office-hmo-product-table',

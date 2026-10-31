@@ -4,15 +4,15 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { PageBody, Tab, PageHighlight, PaymentTypes } from '@healbridge/ui';
+import { PageBody, Tab, PageHighlight, PaymentTypes } from '@care-way/ui';
 import { MedicalFacilityDetailsCard } from '../medical-facility-details-card/medical-facility-details-card';
 import { BankDetailsCard } from '../bank-details-card/bank-details-card';
 import { Wallet } from '../wallet/wallet';
 import { LicenseDetailsCard } from '../license-details-card/license-details-card';
 import { BehaviorSubject, forkJoin, map, Observable, tap } from 'rxjs';
-import { ApiService, FacilityType, InflowCategory, OrderType } from '@healbridge/api';
+import { ApiService, FacilityType, InflowCategory, OrderType } from '@care-way/api';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ConversionService } from '@healbridge/shared';
+import { ConversionService } from '@care-way/shared';
 import { Location } from '@angular/common';
 import moment from 'moment';
 

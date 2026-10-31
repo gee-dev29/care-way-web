@@ -15,8 +15,8 @@ import {
   InputDropDownComponent,
   ConfirmationModalDesktop,
   RegisteredBankStatus,
-} from '@healbridge/ui';
-import { ApiService, BankStatus } from '@healbridge/api';
+} from '@care-way/ui';
+import { ApiService, BankStatus } from '@care-way/api';
 import {
   FormBuilder,
   FormControl,
@@ -26,7 +26,7 @@ import {
 } from '@angular/forms';
 import { v4 } from 'uuid';
 import { ToastrService } from 'ngx-toastr';
-import { ConversionService } from '@healbridge/shared';
+import { ConversionService } from '@care-way/shared';
 
 @Component({
   selector: 'back-office-bank-tables',

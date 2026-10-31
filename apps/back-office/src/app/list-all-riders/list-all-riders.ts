@@ -6,9 +6,9 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, NonProfessionalUserType } from '@healbridge/api';
-import { Export } from '@healbridge/shared';
-import { DesktopButton, PageBody } from '@healbridge/ui';
+import { ApiService, NonProfessionalUserType } from '@care-way/api';
+import { Export } from '@care-way/shared';
+import { DesktopButton, PageBody } from '@care-way/ui';
 import { TableModule } from 'primeng/table';
 import { map, Observable, tap } from 'rxjs';
 import { UserTable } from '../user-table/user-table';
