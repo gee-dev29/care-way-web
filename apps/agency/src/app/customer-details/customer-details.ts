@@ -4,8 +4,8 @@ import {
   ApiService,
   MedicalAppointmentStatus,
   OrderStatus,
-} from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
+} from '@care-way/api';
+import { AuthService } from '@care-way/shared';
 
 import {
   IonContent,

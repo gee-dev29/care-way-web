@@ -1,5 +1,5 @@
 .order-card {
-  background: #e8f5e9;
+  background: #e0f2fe;
   border-radius: 10px;
   padding: 14px 16px;
   display: flex;
@@ -9,7 +9,7 @@
 
 .order-card:active {
   transform: scale(0.99);
-  background: #c8e6c9;
+  background: #bae6fd;
 }
 
 .order-left {

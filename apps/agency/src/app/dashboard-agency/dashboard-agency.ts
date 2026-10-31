@@ -7,9 +7,9 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService, ProfileInfoService } from '@healbridge/shared';
-import { ToastService } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AuthService, ProfileInfoService } from '@care-way/shared';
+import { ToastService } from '@care-way/ui';
 import {
   IonTabBar,
   IonTabButton,

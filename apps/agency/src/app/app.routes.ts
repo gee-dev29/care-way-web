@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from '@healbridge/shared';
+import { AuthGuard } from '@care-way/shared';
 import { DashboardAgency } from './dashboard-agency/dashboard-agency';
 import { ForgotPassword } from './forgot-password/forgot-password';
 import { Login } from './login/login';

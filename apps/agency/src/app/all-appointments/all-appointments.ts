@@ -5,7 +5,7 @@ import { AppointmentCard } from '../appointment-card/appointment-card';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, MedicalAppointmentStatus } from '@healbridge/api';
+import { ApiService, MedicalAppointmentStatus } from '@care-way/api';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 

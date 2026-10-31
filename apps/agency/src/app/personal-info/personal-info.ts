@@ -8,14 +8,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService, Gender } from '@healbridge/api';
+import { ApiService, Gender } from '@care-way/api';
 import {
   AuthService,
   ConversionService,
   ProfileInfoService,
   ToastService,
-} from '@healbridge/shared';
-import { ButtonComponent, InputCalendar, InputComponent } from '@healbridge/ui';
+} from '@care-way/shared';
+import { ButtonComponent, InputCalendar, InputComponent } from '@care-way/ui';
 import {
   IonContent,
   IonHeader,

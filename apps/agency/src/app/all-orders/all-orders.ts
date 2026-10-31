@@ -3,7 +3,7 @@ import { MedFacilityDetailCard } from '../med-facility-detail-card/med-facility-
 import { IonContent, IonIcon } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AgencyOrderListCard } from '../agency-order-list-card/agency-order-list-card';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 

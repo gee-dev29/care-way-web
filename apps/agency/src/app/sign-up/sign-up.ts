@@ -3,9 +3,9 @@ import {
   ConversionService,
   SetCountry,
   ToastService,
-} from '@healbridge/shared';
-import { ApiService, Gender, NonProfessionalUserType } from '@healbridge/api';
-import { SharedSignup } from '@healbridge/ui';
+} from '@care-way/shared';
+import { ApiService, Gender, NonProfessionalUserType } from '@care-way/api';
+import { SharedSignup } from '@care-way/ui';
 
 @Component({
   selector: 'agency-sign-up',

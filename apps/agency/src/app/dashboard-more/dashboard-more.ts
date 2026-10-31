@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
+import { ApiService } from '@care-way/api';
 import {
   AuthService,
   ProfileInfoService,
   ToastService,
-} from '@healbridge/shared';
-import { MoreMenuPage } from '@healbridge/ui';
+} from '@care-way/shared';
+import { MoreMenuPage } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 @Component({
   selector: 'agency-dashboard-more',

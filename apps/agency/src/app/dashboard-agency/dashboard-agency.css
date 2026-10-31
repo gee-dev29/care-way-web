@@ -46,7 +46,7 @@ ion-header {
 }
 
 .mobile-tabs ion-tab-bar {
-  --color-selected: green !important;
+  --color-selected: #0ea5e9 !important;
 }
 
 #confirmSwitchModal::part(content) {
@@ -232,7 +232,7 @@ ion-header {
 }
 
 .profile:hover {
-  border: 2px solid green;
+  border: 2px solid #0ea5e9;
 }
 
 .name {
@@ -245,7 +245,7 @@ ion-header {
 
 .button {
   margin: 40px auto;
-  color: green;
+  color: #0ea5e9;
   font-weight: 500;
 }
 
@@ -365,7 +365,7 @@ ion-header {
   z-index: 1000;
   background-color: #fafafa;
   overflow: hidden;
-  background-image: url('/bg/healbridge-pill.svg');
+  background-image: url('/bg/care-way-pill.svg');
   background-repeat: no-repeat;
   background-position: right bottom;
   background-size: 140px auto;

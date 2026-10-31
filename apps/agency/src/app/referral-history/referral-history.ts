@@ -1,8 +1,8 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
+import { ApiService } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
 import {
   IonIcon,
   IonContent,

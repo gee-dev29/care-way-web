@@ -1,13 +1,13 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
+import { ApiService } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
 import {
   AddNewEntryCard,
   CardIdentityType,
   ReuseableWalletCard,
-} from '@healbridge/ui';
+} from '@care-way/ui';
 import { IonCard, IonContent } from '@ionic/angular/standalone';
 import { map, Observable } from 'rxjs';
 import { MedFacilityHomeCard } from '../med-facility-home-card/med-facility-home-card';

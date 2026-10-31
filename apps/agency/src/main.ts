@@ -16,7 +16,7 @@ import {
   environment,
   ErrorInterceptor,
   JwtInterceptor,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
@@ -28,7 +28,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { Capacitor } from '@capacitor/core';
 // import '@ionic/pwa-elements/dist/ionicpwaelements/ionicpwaelements.js';
-import { ApiModule } from '@healbridge/api';
+import { ApiModule } from '@care-way/api';
 import { CurrencyPipe } from '@angular/common';
 // import { provideCharts } from 'ng2-charts';
 // import { Chart, registerables } from 'chart.js';

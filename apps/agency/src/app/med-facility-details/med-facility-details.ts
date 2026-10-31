@@ -5,7 +5,7 @@ import {
   ApiService,
   FacilityType,
   MedicalAppointmentStatus,
-} from '@healbridge/api';
+} from '@care-way/api';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';

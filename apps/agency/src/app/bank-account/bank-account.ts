@@ -1,9 +1,9 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
-import { AddNewEntryCard } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
+import { AddNewEntryCard } from '@care-way/ui';
 import { IonContent, IonIcon, IonText } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline } from 'ionicons/icons';
