@@ -14,12 +14,12 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { ApiService, NonProfessionalUserType, Gender } from '@healbridge/api';
-import { ConversionService, SetCountry } from '@healbridge/shared';
+import { ApiService, NonProfessionalUserType, Gender } from '@care-way/api';
+import { ConversionService, SetCountry } from '@care-way/shared';
 import { Platform } from '@ionic/angular/common';
 import { IonText, IonImg } from '@ionic/angular/standalone';
 import { switchMap } from 'rxjs';
-import { ButtonComponent, InputComponent, ToastService } from '@healbridge/ui';
+import { ButtonComponent, InputComponent, ToastService } from '@care-way/ui';
 import { v4 } from 'uuid';
 
 @Component({

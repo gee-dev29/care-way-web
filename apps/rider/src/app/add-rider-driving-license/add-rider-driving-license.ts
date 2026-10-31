@@ -8,9 +8,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { ConversionService, Module, ToastService } from '@healbridge/shared';
-import { ButtonComponent, InputCalendar, InputComponent } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { ConversionService, Module, ToastService } from '@care-way/shared';
+import { ButtonComponent, InputCalendar, InputComponent } from '@care-way/ui';
 import { IonContent, IonText } from '@ionic/angular/standalone';
 import moment from 'moment';
 import { v4 } from 'uuid';

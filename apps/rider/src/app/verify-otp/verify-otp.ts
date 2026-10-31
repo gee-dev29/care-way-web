@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ApiService, NonProfessionalUserType } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
-import { SharedVerifyOtp } from '@healbridge/ui';
+import { ApiService, NonProfessionalUserType } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
+import { SharedVerifyOtp } from '@care-way/ui';
 
 @Component({
   selector: 'rider-verify-otp',

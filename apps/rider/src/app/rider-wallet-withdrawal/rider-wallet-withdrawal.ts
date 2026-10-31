@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, BankAccount } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
-import { WalletWithdraw } from '@healbridge/ui';
+import { ApiService, BankAccount } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
+import { WalletWithdraw } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 import { v4 } from 'uuid';
 

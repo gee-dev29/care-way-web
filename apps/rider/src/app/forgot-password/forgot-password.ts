@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ApiService } from '@healbridge/api';
-import { SharedForgotPassword } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { SharedForgotPassword } from '@care-way/ui';
 
 @Component({
   selector: 'rider-forgot-password',

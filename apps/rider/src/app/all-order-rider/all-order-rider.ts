@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { ApiService } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
-import { OrderCard } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
+import { OrderCard } from '@care-way/ui';
 import {
   IonContent,
   IonCard,

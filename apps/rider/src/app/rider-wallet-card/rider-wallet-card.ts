@@ -10,8 +10,8 @@ import { IonText, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { cardOutline, eyeOffOutline, eyeOutline } from 'ionicons/icons';
 import { Router } from '@angular/router';
-import { AuthService } from '@healbridge/shared';
-import { ButtonComponent } from '@healbridge/ui';
+import { AuthService } from '@care-way/shared';
+import { ButtonComponent } from '@care-way/ui';
 @Component({
   selector: 'rider-wallet-card',
   imports: [IonText, IonIcon, ButtonComponent],

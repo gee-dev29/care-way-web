@@ -9,9 +9,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService, PinType, ToastService } from '@healbridge/shared';
-import { ButtonComponent, InputComponent } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AuthService, PinType, ToastService } from '@care-way/shared';
+import { ButtonComponent, InputComponent } from '@care-way/ui';
 import { IonContent, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {

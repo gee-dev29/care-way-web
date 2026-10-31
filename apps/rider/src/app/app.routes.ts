@@ -12,7 +12,7 @@ import { DashboardRider } from './dashboard-rider/dashboard-rider';
 import { AllOrderRider } from './all-order-rider/all-order-rider';
 import { OrderDetailsRider } from './order-details-rider/order-details-rider';
 import { OrderCapture } from './order-capture/order-capture';
-import { AuthGuard } from '@healbridge/shared';
+import { AuthGuard } from '@care-way/shared';
 import { DeliveryPin } from './delivery-pin/delivery-pin';
 import { MoreRider } from './more-rider/more-rider';
 import { UploadProfilePicture } from './upload-profile-picture/upload-profile-picture';

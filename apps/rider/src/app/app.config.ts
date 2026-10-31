@@ -14,12 +14,12 @@ import {
   IonicRouteStrategy,
   provideIonicAngular,
 } from '@ionic/angular/standalone';
-import { ApiModule } from '@healbridge/api';
+import { ApiModule } from '@care-way/api';
 import {
   environment,
   ErrorInterceptor,
   JwtInterceptor,
-} from '@healbridge/shared';
+} from '@care-way/shared';
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,

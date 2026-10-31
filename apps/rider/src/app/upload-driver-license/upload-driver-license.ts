@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { ApiService } from '@healbridge/api';
-import { AddNewEntryCard, ButtonComponent, SafePipe } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AddNewEntryCard, ButtonComponent, SafePipe } from '@care-way/ui';
 import {
   IonCard,
   IonCardContent,

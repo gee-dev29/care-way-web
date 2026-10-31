@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { AuthService } from '@healbridge/shared';
-import { AddNewEntryCard, OrderCard, TransactionCard } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { AuthService } from '@care-way/shared';
+import { AddNewEntryCard, OrderCard, TransactionCard } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 import { RiderWalletCard } from '../rider-wallet-card/rider-wallet-card';
 

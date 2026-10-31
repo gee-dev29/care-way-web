@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiService, NonProfessionalUserType } from '@healbridge/api';
-import { ValidateOtp } from '@healbridge/ui';
+import { ApiService, NonProfessionalUserType } from '@care-way/api';
+import { ValidateOtp } from '@care-way/ui';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({

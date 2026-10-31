@@ -13,8 +13,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@healbridge/api';
-import { ButtonComponent, InputComponent, ToastService } from '@healbridge/ui';
+import { ApiService } from '@care-way/api';
+import { ButtonComponent, InputComponent, ToastService } from '@care-way/ui';
 import {
   IonContent,
   IonHeader,
