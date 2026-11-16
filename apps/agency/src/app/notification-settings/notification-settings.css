@@ -27,11 +27,11 @@ ion-toggle {
   font-size: 16px;
   font-weight: 500;
   font-family: 'montserrat';
-  --track-background-checked: #307d3d;
+  --track-background-checked: #0284c7;
 }
 ion-toggle {
   --track-background: #e0ac08;
-  --track-background-checked: #307d3d;
-  --handle-background: #307d3d;
+  --track-background-checked: #0284c7;
+  --handle-background: #0284c7;
   --handle-background-checked: #e0ac08;
 }

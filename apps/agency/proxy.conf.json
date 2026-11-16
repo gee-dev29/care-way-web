@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://api.test.care-way.app",
+    "changeOrigin": true,
+    "secure": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

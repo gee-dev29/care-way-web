@@ -27,7 +27,7 @@
 
 ion-icon {
   font-size: 16px;
-  color: #307d3d;
+  color: #0284c7;
 }
 
 .order-id {
@@ -57,5 +57,5 @@ ion-icon {
 .order-status {
   font-size: 16px;
   font-weight: 500;
-  color: #307d3d;
+  color: #0284c7;
 }
