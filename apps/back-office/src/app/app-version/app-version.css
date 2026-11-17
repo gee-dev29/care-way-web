@@ -37,12 +37,12 @@ form{
   }
   
   .specialization__item:hover {
-    background: #307d3d;
+    background: #0284c7;
     color: #fff;
   }
   
   .specialization__item.active {
-    background: #307d3d;
+    background: #0284c7;
     color: white;
   }
   .modal__top {
