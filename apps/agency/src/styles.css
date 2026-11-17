@@ -18,8 +18,8 @@ ion-button {
 }
 
 ion-input-otp {
-  --highlight-color-focused: #307d3d;
-  --highlight-color-valid: #307d3d;
+  --highlight-color-focused: #0284c7;
+  --highlight-color-valid: #0284c7;
   --highlight-color-invalid: var(--ion-color-primary);
   --border-color: var(--ion-color-primary);
 }
