@@ -32,13 +32,13 @@
 }
 
 .up p {
-  color: #307d3d;
+  color: #0284c7;
   font-weight: 500;
   font-size: 18px;
 }
 
 .avatar-border {
-  border: 2px solid #307d3d;
+  border: 2px solid #0284c7;
   height: 150px;
   width: 150px;
   border-radius: 50%;
@@ -88,7 +88,7 @@ ion-img::part(image) {
   align-items: center;
   padding: 22px 14px 22px 20px;
   border-radius: 12px;
-  background: #c8eacd;
+  background: #bae6fd;
   cursor: pointer;
   transition: background 0.2s ease;
 }
