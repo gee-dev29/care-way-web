@@ -1,5 +1,5 @@
 :host {
-  --ok: var(--primary-color, #307d3d);
+  --ok: var(--primary-color, #0284c7);
   --wait: #b7791f;
   --muted: #8a9099;
   --line: #e4e8ec;
