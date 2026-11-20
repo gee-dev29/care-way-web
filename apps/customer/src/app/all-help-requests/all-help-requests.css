@@ -44,8 +44,8 @@
 }
 
 .tab.active {
-  color: #307d3d;
-  border-bottom: 2px solid #307d3d;
+  color: #0284c7;
+  border-bottom: 2px solid #0284c7;
   font-weight: 500;
 }
 .status-filters {
@@ -82,9 +82,9 @@
 }
 
 .status-btn.active {
-  background: #307d3d;
+  background: #0284c7;
   color: #ffffff;
-  border-color: #307d3d;
+  border-color: #0284c7;
 }
 .requests {
   display: flex;
