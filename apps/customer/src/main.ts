@@ -30,7 +30,7 @@ import { ApiModule } from '@care-way/api';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 import { CurrencyPipe } from '@angular/common';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeuix/themes/aura';
+import { AppTheme } from '@care-way/ui';
 AgoraRTC.setLogLevel(3);
 
 const apiProviders =
@@ -45,7 +45,7 @@ bootstrapApplication(AppComponent, {
     // Theme for PrimeNG-based @care-way/ui inputs; dark mode follows a
     // class the app never sets, so dropdowns stay light like the rest of the UI.
     providePrimeNG({
-      theme: { preset: Aura, options: { darkModeSelector: '.p-dark' } },
+      theme: { preset: AppTheme, options: { darkModeSelector: '.p-dark' } },
     }),
     provideAuth(() => getAuth()),
     {
