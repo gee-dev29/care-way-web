@@ -30,8 +30,8 @@ ion-button {
 }
 
 ion-input-otp {
-  --highlight-color-focused: #307d3d;
-  --highlight-color-valid: #307d3d;
+  --highlight-color-focused: #0284c7;
+  --highlight-color-valid: #0284c7;
   --highlight-color-invalid: var(--ion-color-primary);
   --border-color: var(--ion-color-primary);
 }
@@ -130,7 +130,7 @@ ion-item {
 
 ion-tab-button {
   --color: #1e293b;
-  --color-selected: #317e3d;
+  --color-selected: #0284c7;
 }
 
 ion-picker .picker-item-empty {
