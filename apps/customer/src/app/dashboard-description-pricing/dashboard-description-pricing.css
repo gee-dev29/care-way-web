@@ -24,9 +24,9 @@
 
 .selected {
   width: 150px !important;
-  --background: #307d3d !important;
+  --background: #0284c7 !important;
   color: white;
-  --background-activated: #307d3d !important;
+  --background-activated: #0284c7 !important;
 }
 .pricing-head {
   margin-bottom: 20px;
