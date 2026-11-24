@@ -37,7 +37,7 @@ ion-text {
   color: black;
 }
 .selectedColor {
-  --background: #307d3d !important;
+  --background: #0284c7 !important;
   color: white;
   width: 40px !important;
   height: 40px !important;
